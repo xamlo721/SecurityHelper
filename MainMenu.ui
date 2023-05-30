@@ -15,20 +15,20 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_categories">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_categories_title">
        <property name="text">
         <string>Категории событий</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea">
+      <widget class="QScrollArea" name="scrollArea_categories">
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents">
+       <widget class="QWidget" name="scrollAreaWidgetContents_categories">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -43,20 +43,20 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="verticalLayout_events">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_events_title">
        <property name="text">
         <string>События в категории</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_2">
+      <widget class="QScrollArea" name="scrollArea_events">
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_2">
+       <widget class="QWidget" name="scrollAreaWidgetContents_events">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -84,20 +84,20 @@
     </spacer>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <layout class="QVBoxLayout" name="verticalLayout_selectes_eventes">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="label_selectes_eventes_title">
        <property name="text">
         <string>Выбранные события</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_3">
+      <widget class="QScrollArea" name="scrollArea_selectes_eventes">
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_3">
+       <widget class="QWidget" name="scrollAreaWidgetContents_selectes_eventes">
         <property name="geometry">
          <rect>
           <x>0</x>
