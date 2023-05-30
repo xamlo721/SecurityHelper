@@ -4,19 +4,19 @@
 #include <QWidget>
 
 namespace Ui {
-class Scenario;
+    class Scenario;
 }
 
-class Scenario : public QWidget
-{
+class Scenario : public QWidget {
+
     Q_OBJECT
 
-public:
-    explicit Scenario(QWidget *parent = nullptr);
-    ~Scenario();
+    public:
+        explicit Scenario(QWidget *parent = nullptr);
+        ~Scenario();
 
-private:
-    Ui::Scenario *ui;
+    private:
+        Ui::Scenario *ui;
 };
 
 #endif // SCENARIO_H

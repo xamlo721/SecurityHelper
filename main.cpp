@@ -1,11 +1,13 @@
 #include "MainWindow.h"
 
 #include <QApplication>
+#include <QDesktopWidget>
 
-int main(int argc, char *argv[])
-{
+#include <QDebug>
+
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
-    w.show();
+    w.showMaximized();
     return a.exec();
 }

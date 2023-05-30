@@ -4,19 +4,20 @@
 #include <QWidget>
 
 namespace Ui {
-class Recommendations;
+    class Recommendations;
 }
 
-class Recommendations : public QWidget
-{
+class Recommendations : public QWidget {
+
     Q_OBJECT
 
-public:
-    explicit Recommendations(QWidget *parent = nullptr);
-    ~Recommendations();
+    public:
+        explicit Recommendations(QWidget *parent = nullptr);
+        ~Recommendations();
 
-private:
-    Ui::Recommendations *ui;
+    private:
+        Ui::Recommendations *ui;
+
 };
 
 #endif // RECOMMENDATIONS_H
