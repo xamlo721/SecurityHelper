@@ -16,29 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    EventWidget.cpp \
-    Incident.cpp \
-    MainMenu.cpp \
-    Recommendations.cpp \
-    Scenario.cpp \
-    main.cpp \
-    MainWindow.cpp
+    src\ui\EventWidget.cpp \
+    src\ui\Incident.cpp \
+    src\ui\MainMenu.cpp \
+    src\ui\Recommendations.cpp \
+    src\ui\Scenario.cpp \
+    src\main.cpp \
+    src\ui\MainWindow.cpp
 
 HEADERS += \
-    EventWidget.h \
-    Incident.h \
-    MainMenu.h \
-    MainWindow.h \
-    Recommendations.h \
-    Scenario.h
+    src\ui\EventWidget.h \
+    src\ui\Incident.h \
+    src\ui\MainMenu.h \
+    src\ui\MainWindow.h \
+    src\ui\Recommendations.h \
+    src\ui\Scenario.h
 
 FORMS += \
-    EventWidget.ui \
-    Incident.ui \
-    MainMenu.ui \
-    MainWindow.ui \
-    Recommendations.ui \
-    Scenario.ui
+    ui\EventWidget.ui \
+    ui\Incident.ui \
+    ui\MainMenu.ui \
+    ui\MainWindow.ui \
+    ui\Recommendations.ui \
+    ui\Scenario.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
