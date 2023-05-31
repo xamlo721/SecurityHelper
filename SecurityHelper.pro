@@ -17,7 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
-    src/items/IncidentCategory.cpp \
+    src/items/SecurityEvent.cpp \
+    src/items/SecurityEventCategory.cpp \
+    src/items/SecurityIncident.cpp \
+    src/items/SecurityRecommendations.cpp \
+    src/items/SecurityScenario.cpp \
     src/logic/Database.cpp \
     src/ui/EventWidget.cpp \
     src/ui/IncidentCategoryWidget.cpp \
@@ -32,7 +36,11 @@ SOURCES += \
 
 HEADERS += \
     src/controllers/MainWindowController.h \
-    src/items/IncidentCategory.h \
+    src/items/SecurityEvent.h \
+    src/items/SecurityEventCategory.h \
+    src/items/SecurityIncident.h \
+    src/items/SecurityRecommendations.h \
+    src/items/SecurityScenario.h \
     src/logic/Database.h \
     src/ui/EventWidget.h \
     src/ui/IncidentCategoryWidget.h \

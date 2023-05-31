@@ -22,10 +22,10 @@ void MainWindowController::show() {
     w->showMaximized();
 }
 
-void MainWindowController::setCategoryList(QList<IncidentCategory> categories) {
+void MainWindowController::setCategoryList(QList<SecurityEventCategory> categories) {
     this->categories = categories;
     this->w->clearCategoryList();
-    for (IncidentCategory cat : categories) {
+    for (SecurityEventCategory cat : categories) {
         this->w->addCategory(new IncidentCategoryWidget(cat.getId(), cat.getText()));
     }
 }

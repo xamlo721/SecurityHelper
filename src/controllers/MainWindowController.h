@@ -14,7 +14,7 @@
 #include "src/ui/RecommendationsWidget.h"
 
 #include "src/ui/IncidentCategoryWidget.h"
-#include "src/items/IncidentCategory.h"
+#include "src/items/SecurityEventCategory.h"
 
 class MainWindowController : public QObject {
 
@@ -27,7 +27,7 @@ class MainWindowController : public QObject {
 
         void show();
 
-        void setCategoryList(QList<IncidentCategory> categories);
+        void setCategoryList(QList<SecurityEventCategory> categories);
 
         void shutdown();
 
@@ -42,7 +42,7 @@ class MainWindowController : public QObject {
 
     private:
         MainWindow * w;
-        QList<IncidentCategory> categories;
+        QList<SecurityEventCategory> categories;
 
     signals:
 
