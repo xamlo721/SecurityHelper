@@ -4,14 +4,14 @@
 #include <QObject>
 
 #include "src/ui/EventWidget.h"
-#include "src/ui/Incident.h"
-#include "src/ui/Scenario.h"
+#include "src/ui/IncidentWidget.h"
+#include "src/ui/ScenarioWidget.h"
 #include "src/ui/MainWindow.h"
 
-#include "src/ui/MainMenu.h"
-#include "src/ui/ScenarioMenu.h"
-#include "src/ui/IncidentMenu.h"
-#include "src/ui/Recommendations.h"
+#include "src/ui/MainMenuWidget.h"
+#include "src/ui/ScenarioMenuWidget.h"
+#include "src/ui/IncidentMenuWidget.h"
+#include "src/ui/RecommendationsWidget.h"
 
 #include "src/ui/IncidentCategoryWidget.h"
 #include "src/items/IncidentCategory.h"

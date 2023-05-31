@@ -1,12 +1,11 @@
-#include "MainMenu.h"
-#include "ui_MainMenu.h"
+#include "MainMenuWidget.h"
+#include "ui_MainMenuWidget.h"
 
-MainMenu::MainMenu(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenu) {
+MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);
 }
 
-void MainMenu::clearCategories() {
-//    this->ui->scrollArea_categories->layout().re
+void MainMenuWidget::clearCategories() {
     QScrollArea * m_view = this->ui->scrollArea_categories;
     if ( m_view->layout() != NULL ) {
         QLayoutItem* item;
@@ -18,11 +17,11 @@ void MainMenu::clearCategories() {
     }
 }
 
-void MainMenu::addCategory(IncidentCategoryWidget * category) {
+void MainMenuWidget::addCategory(IncidentCategoryWidget * category) {
     this->ui->scrollArea_categories->layout()->addWidget(category);
 }
 
 
-MainMenu::~MainMenu() {
+MainMenuWidget::~MainMenuWidget() {
     delete ui;
 }

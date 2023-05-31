@@ -1,5 +1,5 @@
-#ifndef INCIDENTCATEGORYWIDGET_H
-#define INCIDENTCATEGORYWIDGET_H
+#ifndef INCIDENTCATEGORY_WIDGET_H
+#define INCIDENTCATEGORY_WIDGET_H
 
 #include <QWidget>
 
@@ -23,4 +23,4 @@ class IncidentCategoryWidget : public QWidget {
 
 };
 
-#endif // INCIDENTCATEGORYWIDGET_H
+#endif // INCIDENTCATEGORY_WIDGET_H

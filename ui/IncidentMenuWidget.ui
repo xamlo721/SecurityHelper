@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>IncidentMenu</class>
- <widget class="QWidget" name="IncidentMenu">
+ <class>IncidentMenuWidget</class>
+ <widget class="QWidget" name="IncidentMenuWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -52,7 +52,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="Incident" name="widget" native="true">
+        <widget class="IncidentWidget" name="widget" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -68,7 +68,7 @@
         </widget>
        </item>
        <item>
-        <widget class="Incident" name="widget_2" native="true"/>
+        <widget class="IncidentWidget" name="widget_2" native="true"/>
        </item>
       </layout>
      </widget>
@@ -78,9 +78,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>Incident</class>
+   <class>IncidentWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/Incident.h</header>
+   <header location="global">src/ui/IncidentWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

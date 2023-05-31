@@ -18,40 +18,42 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/items/IncidentCategory.cpp \
+    src/logic/Database.cpp \
     src/ui/EventWidget.cpp \
-    src/ui/Incident.cpp \
     src/ui/IncidentCategoryWidget.cpp \
-    src/ui/MainMenu.cpp \
-    src/ui/Recommendations.cpp \
-    src/ui/Scenario.cpp \
+    src/ui/IncidentMenuWidget.cpp \
+    src/ui/IncidentWidget.cpp \
+    src/ui/MainMenuWidget.cpp \
     src/ui/MainWindow.cpp \
-    src/ui/IncidentMenu.cpp \
     src/main.cpp \
-    src/ui/ScenarioMenu.cpp
+    src/ui/RecommendationsWidget.cpp \
+    src/ui/ScenarioMenuWidget.cpp \
+    src/ui/ScenarioWidget.cpp
 
 HEADERS += \
     src/controllers/MainWindowController.h \
     src/items/IncidentCategory.h \
+    src/logic/Database.h \
     src/ui/EventWidget.h \
-    src/ui/Incident.h \
     src/ui/IncidentCategoryWidget.h \
-    src/ui/MainMenu.h \
+    src/ui/IncidentMenuWidget.h \
+    src/ui/IncidentWidget.h \
+    src/ui/MainMenuWidget.h \
     src/ui/MainWindow.h \
-    src/ui/Recommendations.h \
-    src/ui/Scenario.h \
-    src/ui/IncidentMenu.h \
-    src/ui/ScenarioMenu.h
+    src/ui/RecommendationsWidget.h \
+    src/ui/ScenarioMenuWidget.h \
+    src/ui/ScenarioWidget.h
 
 FORMS += \
-    src/ui/IncidentCategoryWidget.ui \
-    ui/ScenarioMenu.ui \
-    ui\IncidentMenu.ui \
-    ui\EventWidget.ui \
-    ui\Incident.ui \
-    ui\MainMenu.ui \
-    ui\MainWindow.ui \
-    ui\Recommendations.ui \
-    ui\Scenario.ui
+    ui/IncidentCategoryWidget.ui \
+    ui/IncidentMenuWidget.ui \
+    ui/MainMenuWidget.ui \
+    ui/RecommendationsWidget.ui \
+    ui/EventWidget.ui \
+    ui/IncidentWidget.ui \
+    ui/MainWindow.ui \
+    ui/ScenarioMenuWidget.ui \
+    ui/ScenarioWidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

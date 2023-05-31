@@ -1,22 +1,22 @@
-#ifndef EVENTWIDGET_H
-#define EVENTWIDGET_H
+#ifndef EVENTWIDGET_WIDGET_H
+#define EVENTWIDGET_WIDGET_H
 
 #include <QWidget>
 
 namespace Ui {
-class EventWidget;
+    class EventWidget;
 }
 
-class EventWidget : public QWidget
-{
+class EventWidget : public QWidget {
+
     Q_OBJECT
 
-public:
-    explicit EventWidget(QWidget *parent = nullptr);
-    ~EventWidget();
+    public:
+        explicit EventWidget(QWidget *parent = nullptr);
+        ~EventWidget();
 
-private:
-    Ui::EventWidget *ui;
+    private:
+        Ui::EventWidget *ui;
 };
 
-#endif // EVENTWIDGET_H
+#endif // EVENTWIDGET_WIDGET_H

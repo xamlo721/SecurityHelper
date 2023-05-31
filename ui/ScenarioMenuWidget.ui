@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ScenarioMenu</class>
- <widget class="QWidget" name="ScenarioMenu">
+ <class>ScenarioMenuWidget</class>
+ <widget class="QWidget" name="ScenarioMenuWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -52,7 +52,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="Scenario" name="widget" native="true">
+        <widget class="ScenarioWidget" name="widget" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -68,7 +68,7 @@
         </widget>
        </item>
        <item>
-        <widget class="Scenario" name="widget_2" native="true"/>
+        <widget class="ScenarioWidget" name="widget_2" native="true"/>
        </item>
       </layout>
      </widget>
@@ -78,9 +78,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>Scenario</class>
+   <class>ScenarioWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/Scenario.h</header>
+   <header location="global">src/ui/ScenarioWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

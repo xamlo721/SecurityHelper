@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainMenu</class>
- <widget class="QWidget" name="MainMenu">
+ <class>MainMenuWidget</class>
+ <widget class="QWidget" name="MainMenuWidget">
   <property name="geometry">
    <rect>
     <x>0</x>

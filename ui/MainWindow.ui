@@ -18,33 +18,33 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="MainMenu" name="widget_main_menu" native="true"/>
+         <widget class="MainMenuWidget" name="widget_main_menu" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_2">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="IncidentMenu" name="widget_incident_menu" native="true"/>
+         <widget class="IncidentMenuWidget" name="widget_incident_menu" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_3">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="Recommendations" name="widget_recomendations_menu" native="true"/>
+         <widget class="RecommendationsWidget" name="widget_recomendations_menu" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_4">
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="ScenarioMenu" name="widget_scenario_menu" native="true"/>
+         <widget class="ScenarioMenuWidget" name="widget_scenario_menu" native="true"/>
         </item>
        </layout>
       </widget>
@@ -142,27 +142,27 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>MainMenu</class>
+   <class>MainMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/MainMenu.h</header>
+   <header location="global">src/ui/MainMenuWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>IncidentMenu</class>
+   <class>IncidentMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/IncidentMenu.h</header>
+   <header location="global">src/ui/IncidentMenuWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Recommendations</class>
+   <class>RecommendationsWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/Recommendations.h</header>
+   <header location="global">src/ui/RecommendationsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>ScenarioMenu</class>
+   <class>ScenarioMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/ScenarioMenu.h</header>
+   <header location="global">src/ui/ScenarioMenuWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
