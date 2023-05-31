@@ -17,24 +17,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
-    src\ui\EventWidget.cpp \
-    src\ui\Incident.cpp \
-    src\ui\MainMenu.cpp \
-    src\ui\Recommendations.cpp \
-    src\ui\Scenario.cpp \
-    src\main.cpp \
-    src\ui\MainWindow.cpp
+    src/items/IncidentCategory.cpp \
+    src/ui/EventWidget.cpp \
+    src/ui/Incident.cpp \
+    src/ui/IncidentCategoryWidget.cpp \
+    src/ui/MainMenu.cpp \
+    src/ui/Recommendations.cpp \
+    src/ui/Scenario.cpp \
+    src/ui/MainWindow.cpp \
+    src/ui/IncidentMenu.cpp \
+    src/main.cpp \
+    src/ui/ScenarioMenu.cpp
 
 HEADERS += \
     src/controllers/MainWindowController.h \
-    src\ui\EventWidget.h \
-    src\ui\Incident.h \
-    src\ui\MainMenu.h \
-    src\ui\MainWindow.h \
-    src\ui\Recommendations.h \
-    src\ui\Scenario.h
+    src/items/IncidentCategory.h \
+    src/ui/EventWidget.h \
+    src/ui/Incident.h \
+    src/ui/IncidentCategoryWidget.h \
+    src/ui/MainMenu.h \
+    src/ui/MainWindow.h \
+    src/ui/Recommendations.h \
+    src/ui/Scenario.h \
+    src/ui/IncidentMenu.h \
+    src/ui/ScenarioMenu.h
 
 FORMS += \
+    src/ui/IncidentCategoryWidget.ui \
+    ui/ScenarioMenu.ui \
+    ui\IncidentMenu.ui \
     ui\EventWidget.ui \
     ui\Incident.ui \
     ui\MainMenu.ui \

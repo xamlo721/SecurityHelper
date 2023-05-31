@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "src/ui/IncidentCategoryWidget.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
     class MainWindow;
@@ -16,6 +18,22 @@ class MainWindow : public QMainWindow {
     public:
         MainWindow(QWidget *parent = nullptr);
         ~MainWindow();
+
+        //TODO: Странная проектировка, возможно переписать
+        void openMainMenu();
+        void openIncidentMenu();
+        void openScenarioMenu();
+        void openRecommendationMenu();
+
+        void clearCategoryList();
+        void addCategory(IncidentCategoryWidget * category);
+
+    signals:
+        void signalAdminButtonPressed();
+        void signalResetButtonPressed();
+        void signalIncidentsButtonPressed();
+        void signalSettingsButtonPressed();
+        void signalExitButtonPressed();
 
     private:
         Ui::MainWindow *ui;

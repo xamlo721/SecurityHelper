@@ -3,20 +3,26 @@
 
 #include <QWidget>
 
+#include "src/ui/IncidentCategoryWidget.h"
+
 namespace Ui {
 class MainMenu;
 }
 
-class MainMenu : public QWidget
-{
+class MainMenu : public QWidget {
+
     Q_OBJECT
 
-public:
-    explicit MainMenu(QWidget *parent = nullptr);
-    ~MainMenu();
+    public:
+        explicit MainMenu(QWidget *parent = nullptr);
+        ~MainMenu();
 
-private:
-    Ui::MainMenu *ui;
+        void clearCategories();
+
+        void addCategory(IncidentCategoryWidget * category);
+
+    private:
+        Ui::MainMenu *ui;
 };
 
 #endif // MAINMENU_H
