@@ -81,6 +81,190 @@ QString XmlUtils::readText(QDomElement element, QString searchElementName) {
     return element.elementsByTagName(searchElementName).at(0).toElement().text();
 }
 
+QList<char> XmlUtils::readChars(QDomElement element, QString searchElementName) {
+    QList<char> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().at(0).row());
+    }
+    return values;
+}
+
+
+QList<unsigned char> XmlUtils::readUChars(QDomElement element, QString searchElementName) {
+    QList<unsigned char> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().at(0).row());
+    }
+    return values;
+}
+
+
+QList<short> XmlUtils::readShorts(QDomElement element, QString searchElementName) {
+    QList<short> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toShort());
+    }
+    return values;
+}
+
+
+QList<unsigned short> XmlUtils::readUShorts(QDomElement element, QString searchElementName) {
+    QList<unsigned short> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toUShort());
+    }
+    return values;
+}
+
+
+QList<int> XmlUtils::readints(QDomElement element, QString searchElementName) {
+    QList<int> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toInt());
+    }
+    return values;
+}
+
+
+QList<unsigned int> XmlUtils::readUints(QDomElement element, QString searchElementName) {
+    QList<unsigned int> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toUInt());
+    }
+    return values;
+}
+
+
+QList<long> XmlUtils::readLongs(QDomElement element, QString searchElementName) { //Кажется long на многих платформах 32
+    QList<long> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toLong());
+    }
+    return values;
+}
+
+QList<unsigned long> XmlUtils::readULongs(QDomElement element, QString searchElementName) {
+    QList<unsigned long> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text().toULong());
+    }
+    return values;
+}
+
+
+QList<QString> XmlUtils::readTexts(QDomElement element, QString searchElementName) {
+    QList<QString> values;
+    QDomNodeList elements = element.elementsByTagName(searchElementName);
+    for (int i = 0; i < elements.size(); i++ ) {
+        QDomNode em = elements.at(i);
+        values.append(em.toElement().text());
+    }
+    return values;
+}
+
+
+void XmlUtils::writeChar(QDomElement element, QString searchElementName, char value) {
+
+}
+
+
+void XmlUtils::writeUChar(QDomElement element, QString searchElementName, unsigned char value) {
+
+}
+
+
+void XmlUtils::writeShort(QDomElement element, QString searchElementName, short value) {
+
+}
+
+
+void XmlUtils::writeUShort(QDomElement element, QString searchElementName, unsigned short value) {
+
+}
+
+
+void XmlUtils::writeint(QDomElement element, QString searchElementName, int value) {
+
+}
+
+
+void XmlUtils::writeUint(QDomElement element, QString searchElementName, unsigned int value) {
+
+}
+
+
+void XmlUtils::writeLong(QDomElement element, QString searchElementName, long value) { //Кажется long на многих платформах 32
+
+}
+
+void XmlUtils::writeULong(QDomElement element, QString searchElementName, unsigned long value) {
+
+}
+
+
+void XmlUtils::writeText(QDomElement element, QString searchElementName, QString value) {
+
+}
+
+
+void XmlUtils::writeChars(QDomElement element, QString searchElementName, QList<char> value) {
+
+}
+
+
+void XmlUtils::writeUChars(QDomElement element, QString searchElementName, QList<unsigned char> value) {
+
+}
+
+
+void XmlUtils::writeShorts(QDomElement element, QString searchElementName, QList<short> value) {
+
+}
+
+
+void XmlUtils::writeUShorts(QDomElement element, QString searchElementName, QList<unsigned short> value) {
+
+}
+
+
+void XmlUtils::writeInts(QDomElement element, QString searchElementName, QList<int> value) {
+
+}
+
+void XmlUtils::writeUints(QDomElement element, QString searchElementName, QList<unsigned int> value)  {
+
+}
+
+
+void XmlUtils::writeLongs(QDomElement element, QString searchElementName, QList<long> value) { //Кажется long на многих платформах 32
+
+}
+
+void XmlUtils::writeULongs(QDomElement element, QString searchElementName, QList<unsigned long> value) {
+
+}
+
+
+void XmlUtils::writeTexts(QDomElement element, QString searchElementName, QList<QString> value) {
+
+}
+
 QDomElement XmlUtils::readSingleNode(QDomElement element, QString searchElementName) {
     //Взять список всех дочерних, входящих в неё нод
     QDomNodeList childs= element.childNodes();
