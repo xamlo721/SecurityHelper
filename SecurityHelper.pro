@@ -23,6 +23,8 @@ SOURCES += \
     src/items/SecurityRecommendations.cpp \
     src/items/SecurityScenario.cpp \
     src/logic/Database.cpp \
+    src/logic/XmlHelper.cpp \
+    src/logic/XmlUtils.cpp \
     src/ui/EventWidget.cpp \
     src/ui/IncidentCategoryWidget.cpp \
     src/ui/IncidentMenuWidget.cpp \
@@ -42,6 +44,8 @@ HEADERS += \
     src/items/SecurityRecommendations.h \
     src/items/SecurityScenario.h \
     src/logic/Database.h \
+    src/logic/XmlHelper.h \
+    src/logic/XmlUtils.h \
     src/ui/EventWidget.h \
     src/ui/IncidentCategoryWidget.h \
     src/ui/IncidentMenuWidget.h \
