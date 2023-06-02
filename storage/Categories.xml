@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+	<Database>
+		<Categories>
+			<Category>
+				<id>0</id>
+				<Text>Я категориЯ</Text>
+				<events>5</events>
+			</Category>
+			<Category>
+				<id>1</id>
+				<Text>Я категориЯ</Text>
+				<events>7</events>
+			</Category>
+		</Categories>
+	</Database>
+</xmlDocument>

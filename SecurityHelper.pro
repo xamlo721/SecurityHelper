@@ -71,3 +71,10 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    storage/Categories.xml \
+    storage/Events.xml \
+    storage/Incidents.xml \
+    storage/Recommendations.xml \
+    storage/Scenaries.xml

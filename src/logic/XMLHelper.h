@@ -21,19 +21,19 @@ class XMLHelper: public QObject {
     public:
         explicit XMLHelper(QObject *parent = nullptr);
 
-        Database readDatabase(QString path);
+        static Database readDatabase(QString path);
 
-        void writeDatabase(QString path);
+        static void writeDatabase(QString path);
 
-        SecurityEvent readSecurityEvent(QDomElement xmlDomElement);
+        static SecurityEvent readSecurityEvent(QDomElement xmlDomElement);
 
-        SecurityEventCategory readSecurityEventCategory(QDomElement xmlDomElement);
+        static SecurityEventCategory readSecurityEventCategory(QDomElement xmlDomElement);
 
-        SecurityIncident readSecurityIncident(QDomElement xmlDomElement);
+        static SecurityIncident readSecurityIncident(QDomElement xmlDomElement);
 
-        SecurityRecommendations readSecurityRecommendations(QDomElement xmlDomElement);
+        static SecurityRecommendations readSecurityRecommendations(QDomElement xmlDomElement);
 
-        SecurityScenario readSecurityScenario(QDomElement xmlDomElement);
+        static SecurityScenario readSecurityScenario(QDomElement xmlDomElement);
 
     signals:
 

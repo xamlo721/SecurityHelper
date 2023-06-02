@@ -24,6 +24,8 @@ bool XmlUtils::checkFile(QString databasePath) {
         return false;
     }
 
+    file.seek(0); // Сбросить позицию чтения файла до начала
+
     QXmlStreamReader xml(&file);
 
     while (!xml.atEnd() && !xml.hasError()) {
@@ -286,6 +288,7 @@ QDomElement XmlUtils::readSingleNode(QDomElement element, QString searchElementN
         }
 
         //Если элемент входяший в element это searchElementName, то читаем его как корневую группу
+        QString nodeName = domElement.nodeName();
         if (domElement.nodeName() == searchElementName) {
             return domElement;
         }

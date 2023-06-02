@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+	<Database>
+		<Recommendations>
+			<Recommendation>
+				<id>0</id>
+				<TextContainment>Текст TextContainment</TextContainment>
+				<TextFixes>Текст TextFixes</TextFixes>
+				<TextRestore>Текст TextRestore</TextRestore>
+			</Recommendation>
+			<Recommendation>
+				<id>1</id>
+				<TextContainment>Другой Текст TextContainment</TextContainment>
+				<TextFixes>Другой Текст TextFixes</TextFixes>
+				<TextRestore>Другой Текст TextRestore</TextRestore>
+			</Recommendation>
+		</Recommendations>
+	</Database>
+</xmlDocument>

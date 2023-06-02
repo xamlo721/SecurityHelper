@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+	<Database>
+		<Scenaries>
+			<Scenary>
+				<id>0</id>
+				<Text>Текст сценария</Text>
+			</Scenary>
+			<Scenary>
+				<id>1</id>
+				<Text>Другой Текст сценария</Text>
+			</Scenary>
+		</Scenaries>
+	</Database>
+</xmlDocument>
