@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    Database db = XMLHelper::readDatabase("C:/workspace/SecurityHelper/storage/");
+    Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");
 
 
     MainWindowController c;
