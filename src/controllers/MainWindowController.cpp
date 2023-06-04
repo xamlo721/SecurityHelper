@@ -26,7 +26,7 @@ void MainWindowController::setCategoryList(QList<SecurityEventCategory> categori
     this->categories = categories;
     this->w->clearCategoryList();
     for (SecurityEventCategory cat : categories) {
-        this->w->addCategory(new IncidentCategoryWidget(cat.getId(), cat.getText()));
+        this->w->addCategory(new EventCategoryWidget(cat.getId(), cat.getText()));
     }
 }
 

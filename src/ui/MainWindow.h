@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "src/ui/IncidentCategoryWidget.h"
+#include "src/ui/EventCategoryWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,7 +26,7 @@ class MainWindow : public QMainWindow {
         void openRecommendationMenu();
 
         void clearCategoryList();
-        void addCategory(IncidentCategoryWidget * category);
+        void addCategory(EventCategoryWidget * category);
 
     signals:
         void signalAdminButtonPressed();

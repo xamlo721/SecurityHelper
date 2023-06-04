@@ -25,8 +25,8 @@ SOURCES += \
     src/logic/Database.cpp \
     src/logic/XmlHelper.cpp \
     src/logic/XmlUtils.cpp \
+    src/ui/EventCategoryWidget.cpp \
     src/ui/EventWidget.cpp \
-    src/ui/IncidentCategoryWidget.cpp \
     src/ui/IncidentMenuWidget.cpp \
     src/ui/IncidentWidget.cpp \
     src/ui/MainMenuWidget.cpp \
@@ -46,8 +46,8 @@ HEADERS += \
     src/logic/Database.h \
     src/logic/XmlHelper.h \
     src/logic/XmlUtils.h \
+    src/ui/EventCategoryWidget.h \
     src/ui/EventWidget.h \
-    src/ui/IncidentCategoryWidget.h \
     src/ui/IncidentMenuWidget.h \
     src/ui/IncidentWidget.h \
     src/ui/MainMenuWidget.h \

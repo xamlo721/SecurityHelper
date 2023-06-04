@@ -33,7 +33,7 @@ void MainWindow::clearCategoryList() {
     this->ui->widget_main_menu->clearCategories();
 }
 
-void MainWindow::addCategory(IncidentCategoryWidget * category) {
+void MainWindow::addCategory(EventCategoryWidget * category) {
     this->ui->widget_main_menu->addCategory(category);
 }
 

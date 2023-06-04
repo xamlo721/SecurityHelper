@@ -13,7 +13,7 @@
 #include "src/ui/IncidentMenuWidget.h"
 #include "src/ui/RecommendationsWidget.h"
 
-#include "src/ui/IncidentCategoryWidget.h"
+#include "src/ui/EventCategoryWidget.h"
 #include "src/items/SecurityEventCategory.h"
 
 class MainWindowController : public QObject {

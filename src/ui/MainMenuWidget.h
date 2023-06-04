@@ -2,8 +2,10 @@
 #define MAINMENU_WIDGET_H
 
 #include <QWidget>
+#include <QList>
+#include <QPushButton>
 
-#include "src/ui/IncidentCategoryWidget.h"
+#include "src/ui/EventCategoryWidget.h"
 
 namespace Ui {
     class MainMenuWidget;
@@ -19,10 +21,13 @@ class MainMenuWidget : public QWidget {
 
         void clearCategories();
 
-        void addCategory(IncidentCategoryWidget * category);
+        void addCategory(EventCategoryWidget * category);
 
+    public slots:
+        void onCategoryClicked(int categoryId);
     private:
         Ui::MainMenuWidget *ui;
+        QList<QPushButton *> categoriesWidgetList;
 };
 
 #endif // MAINMENU_H

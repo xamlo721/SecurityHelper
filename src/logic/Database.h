@@ -23,7 +23,7 @@ class Database : public QObject {
         bool operator==(const Database& other) const;
         bool operator!=(const Database& other) const;
 
-    private:
+    public:
         QMap<int, SecurityEvent> events;
         QMap<int, SecurityEventCategory> categories;
         QMap<int, SecurityIncident> incidents;

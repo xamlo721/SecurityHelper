@@ -3,6 +3,7 @@
 
 MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);
+    ui->scrollAreaWidgetContents_categories->setLayout(new QVBoxLayout());
 }
 
 void MainMenuWidget::clearCategories() {
@@ -17,8 +18,15 @@ void MainMenuWidget::clearCategories() {
     }
 }
 
-void MainMenuWidget::addCategory(IncidentCategoryWidget * category) {
-    this->ui->scrollArea_categories->layout()->addWidget(category);
+void MainMenuWidget::addCategory(EventCategoryWidget * category) {
+    QLayout * layout = this->ui->scrollAreaWidgetContents_categories->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
+    layout->addWidget(category);
+    QObject::connect(category, &EventCategoryWidget::signalOpenIncident, this, &MainMenuWidget::onCategoryClicked);
+
+}
+
+void MainMenuWidget::onCategoryClicked(int categoryId) {
+
 }
 
 

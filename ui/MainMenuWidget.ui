@@ -25,6 +25,9 @@
      </item>
      <item>
       <widget class="QScrollArea" name="scrollArea_categories">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
        <property name="widgetResizable">
         <bool>true</bool>
        </property>
