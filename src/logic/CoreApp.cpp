@@ -29,3 +29,7 @@ void CoreApp::onOpenCategory(int categoryId) {
     emit signalOpenCategory(categoryEvents);
 
 }
+
+void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
+
+}

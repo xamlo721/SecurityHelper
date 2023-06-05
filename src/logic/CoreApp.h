@@ -26,6 +26,7 @@ class CoreApp : public QObject {
 
     public slots:
         void onOpenCategory(int categoryId);
+        void onCalculateIncident(QList<SecurityEvent> selectedEvents);
 
     private:
         Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");
