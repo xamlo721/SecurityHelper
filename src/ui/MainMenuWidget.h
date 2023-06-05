@@ -6,6 +6,7 @@
 #include <QPushButton>
 
 #include "src/ui/EventCategoryWidget.h"
+#include "src/ui/EventWidget.h"
 
 namespace Ui {
     class MainMenuWidget;
@@ -20,11 +21,19 @@ class MainMenuWidget : public QWidget {
         ~MainMenuWidget();
 
         void clearCategories();
+        void clearAvailableEvents();
+        void clearSelectedEvents();
 
         void addCategory(EventCategoryWidget * category);
+        void addEvent(EventWidget * event);
+        void addSelectedEvent(EventWidget * event);
 
     public slots:
-        void onCategoryClicked(int categoryId);
+        //void onCategoryClicked(int categoryId);
+
+    signals:
+        //void signalCategoryClicked(int categoryId);
+
     private:
         Ui::MainMenuWidget *ui;
         QList<QPushButton *> categoriesWidgetList;

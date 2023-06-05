@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "src/ui/EventCategoryWidget.h"
+#include "src/ui/EventWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,12 +29,16 @@ class MainWindow : public QMainWindow {
         void clearCategoryList();
         void addCategory(EventCategoryWidget * category);
 
+        void clearCategoryEventList();
+        void addCategoryEvent(EventWidget * event);
+
     signals:
         void signalAdminButtonPressed();
         void signalResetButtonPressed();
         void signalIncidentsButtonPressed();
         void signalSettingsButtonPressed();
         void signalExitButtonPressed();
+        void signalCategoryClicked(int categoryID);
 
     private:
         Ui::MainWindow *ui;

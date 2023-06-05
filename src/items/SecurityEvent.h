@@ -10,7 +10,7 @@ class SecurityEvent : public QObject {
     public:
         explicit SecurityEvent(int id, QString text, QObject *parent = nullptr);
         SecurityEvent(const SecurityEvent& other);
-
+        SecurityEvent() {}
         SecurityEvent& operator=(const SecurityEvent& other);
         bool operator==(const SecurityEvent& other) const;
         bool operator!=(const SecurityEvent& other) const;

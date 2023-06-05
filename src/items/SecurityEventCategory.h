@@ -9,6 +9,7 @@ class SecurityEventCategory : public QObject {
 
     public:
         explicit SecurityEventCategory(int id, QString text, QList<int> incidentes, QObject *parent = nullptr);
+        SecurityEventCategory() {};
 
         SecurityEventCategory(const SecurityEventCategory& other);
 

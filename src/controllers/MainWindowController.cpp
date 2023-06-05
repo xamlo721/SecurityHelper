@@ -26,10 +26,30 @@ void MainWindowController::setCategoryList(QList<SecurityEventCategory> categori
     this->categories = categories;
     this->w->clearCategoryList();
     for (SecurityEventCategory cat : categories) {
-        this->w->addCategory(new EventCategoryWidget(cat.getId(), cat.getText()));
+        EventCategoryWidget * categoryWidget = new EventCategoryWidget(cat.getId(), cat.getText());
+        QObject::connect(categoryWidget, &EventCategoryWidget::signalOpenIncident, this, &MainWindowController::signalOpenCategory);
+
+        this->w->addCategory(categoryWidget);
     }
 }
 
+void MainWindowController::setEventList(QList<SecurityEvent> events) {
+    this->availableEvents = events;
+
+    //TODO: Вычесть те, которые уже отображены
+    this->w->clearCategoryEventList();
+
+    for (SecurityEvent event : events) {
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText());
+        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventSelected);
+
+        this->w->addCategoryEvent(eventWidget);
+    }
+
+}
+void MainWindowController::onEventSelected(int eventID) {
+
+}
 
 void MainWindowController::shutdown() {
     delete w;

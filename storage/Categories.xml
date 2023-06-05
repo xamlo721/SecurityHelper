@@ -5,8 +5,13 @@
 			<Category>
 				<id>0</id>
 				<Text>Я категориЯ</Text>
-				<events>5</events>
-			</Category>
+                                <events>5</events>
+                                <events>2</events>
+                                <events>4</events>
+                                <events>6</events>
+                                <events>1</events>
+                                <events>0</events>
+                        </Category>
 			<Category>
 				<id>1</id>
 				<Text>Я категориЯ</Text>

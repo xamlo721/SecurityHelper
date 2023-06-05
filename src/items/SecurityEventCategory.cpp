@@ -6,7 +6,6 @@ SecurityEventCategory::SecurityEventCategory(int id, QString text, QList<int> ev
     this->events = events;
 }
 
-
 SecurityEventCategory::SecurityEventCategory(const SecurityEventCategory& other)
     : QObject(other.parent()), id(other.id), text(other.text),  events(other.events) {
 

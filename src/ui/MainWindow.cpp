@@ -37,6 +37,15 @@ void MainWindow::addCategory(EventCategoryWidget * category) {
     this->ui->widget_main_menu->addCategory(category);
 }
 
+void MainWindow::clearCategoryEventList() {
+    this->ui->widget_main_menu->clearAvailableEvents();
+}
+
+void MainWindow::addCategoryEvent(EventWidget * event) {
+    this->ui->widget_main_menu->addEvent(event);
+}
+
+
 MainWindow::~MainWindow() {
     delete ui;
 }

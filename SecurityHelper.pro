@@ -22,6 +22,7 @@ SOURCES += \
     src/items/SecurityIncident.cpp \
     src/items/SecurityRecommendations.cpp \
     src/items/SecurityScenario.cpp \
+    src/logic/CoreApp.cpp \
     src/logic/Database.cpp \
     src/logic/XmlHelper.cpp \
     src/logic/XmlUtils.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     src/items/SecurityIncident.h \
     src/items/SecurityRecommendations.h \
     src/items/SecurityScenario.h \
+    src/logic/CoreApp.h \
     src/logic/Database.h \
     src/logic/XmlHelper.h \
     src/logic/XmlUtils.h \

@@ -15,6 +15,7 @@
 
 #include "src/ui/EventCategoryWidget.h"
 #include "src/items/SecurityEventCategory.h"
+#include "src/items/SecurityEvent.h"
 
 class MainWindowController : public QObject {
 
@@ -27,7 +28,6 @@ class MainWindowController : public QObject {
 
         void show();
 
-        void setCategoryList(QList<SecurityEventCategory> categories);
 
         void shutdown();
 
@@ -40,9 +40,20 @@ class MainWindowController : public QObject {
         void onSettingsButtonPressed();
         void onExitButtonPressed();
 
+        void setCategoryList(QList<SecurityEventCategory> categories);
+        void setEventList(QList<SecurityEvent> events);
+
+    signals:
+        void signalOpenCategory(int id);
+
     private:
         MainWindow * w;
         QList<SecurityEventCategory> categories;
+        QList<SecurityEvent> availableEvents;
+        QList<SecurityEvent> activeEvents;
+
+    private slots:
+        void onEventSelected(int eventID);
 
     signals:
 

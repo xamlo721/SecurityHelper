@@ -2,17 +2,25 @@
 
 #include "src/controllers/MainWindowController.h"
 #include "src/logic/Database.h"
-#include "src/logic/XMLHelper.h"
+#include "src/logic/CoreApp.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");
+    CoreApp core;
+
+    MainWindowController controller;
 
 
-    MainWindowController c;
-    c.init();
-    c.setCategoryList(db.categories.values());
-    c.show();
+    QObject::connect(&core, &CoreApp::signalOpenCategories, &controller, &MainWindowController::setCategoryList);
+    QObject::connect(&core, &CoreApp::signalOpenCategory, &controller, &MainWindowController::setEventList);
+    QObject::connect(&controller, &MainWindowController::signalOpenCategory, &core, &CoreApp::onOpenCategory);
+
+    controller.init();
+
+    core.init();
+
+    controller.show();
+
     return a.exec();
 }
