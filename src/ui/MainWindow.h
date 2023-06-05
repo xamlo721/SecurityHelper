@@ -32,6 +32,9 @@ class MainWindow : public QMainWindow {
         void clearCategoryEventList();
         void addCategoryEvent(EventWidget * event);
 
+        void clearSelectedEventList();
+        void addSelectedEvent(EventWidget * event);
+
     signals:
         void signalAdminButtonPressed();
         void signalResetButtonPressed();

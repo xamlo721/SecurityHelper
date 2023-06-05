@@ -45,6 +45,7 @@ class MainWindowController : public QObject {
 
     signals:
         void signalOpenCategory(int id);
+        void signalOpenIncident(QList<SecurityEvent> activeEvents);
 
     private:
         MainWindow * w;
@@ -54,6 +55,7 @@ class MainWindowController : public QObject {
 
     private slots:
         void onEventSelected(int eventID);
+        void onEventUnselected(int eventID);
 
     signals:
 

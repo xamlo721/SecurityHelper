@@ -45,6 +45,14 @@ void MainWindow::addCategoryEvent(EventWidget * event) {
     this->ui->widget_main_menu->addEvent(event);
 }
 
+void MainWindow::clearSelectedEventList() {
+    this->ui->widget_main_menu->clearSelectedEvents();
+}
+
+void MainWindow::addSelectedEvent(EventWidget * event) {
+    this->ui->widget_main_menu->addSelectedEvent(event);
+}
+
 
 MainWindow::~MainWindow() {
     delete ui;

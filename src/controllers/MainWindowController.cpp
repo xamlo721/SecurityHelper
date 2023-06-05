@@ -40,7 +40,7 @@ void MainWindowController::setEventList(QList<SecurityEvent> events) {
     this->w->clearCategoryEventList();
 
     for (SecurityEvent event : events) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText());
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
         QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventSelected);
 
         this->w->addCategoryEvent(eventWidget);
@@ -49,7 +49,72 @@ void MainWindowController::setEventList(QList<SecurityEvent> events) {
 }
 void MainWindowController::onEventSelected(int eventID) {
 
+    ///1) Найти и переложить событие
+
+    //TODO: Проверка, что он его вообще содержит!
+    for (int i = 0; i < availableEvents.size(); i++) {
+        SecurityEvent event = availableEvents.at(i);
+        if (event.getId() == eventID) {
+            this->activeEvents.append(availableEvents.takeAt(i));
+        }
+    }
+
+    ///2) Почистить доступные ивенты от него
+
+    //TODO: Вычесть те, которые уже отображены
+    this->w->clearCategoryEventList();
+    for (SecurityEvent event : availableEvents) {
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
+        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventSelected);
+        this->w->addCategoryEvent(eventWidget);
+    }
+
+    ///3) обновить выбранные ивенты
+    this->w->clearSelectedEventList();
+    for (SecurityEvent event : activeEvents) {
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), true);
+        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventUnselected);
+        this->w->addSelectedEvent(eventWidget);
+    }
+
+
 }
+
+void MainWindowController::onEventUnselected(int eventID) {
+
+    ///1) Найти и переложить событие
+
+    //TODO: Проверка, что он его вообще содержит!
+    for (int i = 0; i < activeEvents.size(); i++) {
+        SecurityEvent event = activeEvents.at(i);
+        if (event.getId() == eventID) {
+            this->availableEvents.append(activeEvents.takeAt(i));
+        }
+    }
+
+
+    ///2) Почистить доступные ивенты от него
+
+    //TODO: Вычесть те, которые уже отображены
+    this->w->clearCategoryEventList();
+    for (SecurityEvent event : availableEvents) {
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
+        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventSelected);
+        this->w->addCategoryEvent(eventWidget);
+    }
+
+
+    ///3) обновить выбранные ивенты
+    this->w->clearSelectedEventList();
+    for (SecurityEvent event : activeEvents) {
+        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), true);
+        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &MainWindowController::onEventUnselected);
+        this->w->addSelectedEvent(eventWidget);
+    }
+
+
+}
+
 
 void MainWindowController::shutdown() {
     delete w;
@@ -65,6 +130,7 @@ void MainWindowController::onResetButtonPressed() {
 }
 
 void MainWindowController::onIncidentsButtonPressed() {
+    emit signalOpenIncident(this->activeEvents);
     this->w->openIncidentMenu();
 
 }

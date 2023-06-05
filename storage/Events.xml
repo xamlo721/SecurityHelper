@@ -8,19 +8,19 @@
 			</Event>
 			<Event>
 				<id>1</id>
-				<Text>Другое событие</Text>
+                                <Text>Другое 1234</Text>
 			</Event>
                         <Event>
                                 <id>2</id>
-                                <Text>Другое событие</Text>
+                                <Text>52345 событие</Text>
                         </Event>
                         <Event>
                                 <id>3</id>
-                                <Text>Другое событие</Text>
+                                <Text>sfg событие</Text>
                         </Event>
                         <Event>
                                 <id>4</id>
-                                <Text>Другое событие</Text>
+                                <Text>2345 событие</Text>
                         </Event>
                         <Event>
                                 <id>5</id>
@@ -28,7 +28,7 @@
                         </Event>
                         <Event>
                                 <id>6</id>
-                                <Text>Другое событие</Text>
+                                <Text>Другое sdf</Text>
                         </Event>
                         <Event>
                                 <id>7</id>
