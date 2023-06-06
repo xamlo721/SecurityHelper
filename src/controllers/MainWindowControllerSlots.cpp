@@ -37,6 +37,17 @@ void MainWindowController::setIncidentList(QList<SecurityIncident> incidents) {
 
 }
 
+void MainWindowController::setScenariesList(QList<SecurityScenario> scenaries) {
+    this->w->openScenarioMenu();
+
+    for (SecurityScenario sc : scenaries) {
+        ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText());
+        QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &MainWindowController::signalOpenScenario);
+        QObject::connect(widget, &ScenarioWidget::signalClarify, this, &MainWindowController::onClarifyEvents);
+        this->w->addScenarioWidget(widget);
+    }
+}
+
 void MainWindowController::onEventSelected(int eventID) {
 
     ///1) Найти и переложить событие
@@ -103,4 +114,7 @@ void MainWindowController::onEventUnselected(int eventID) {
     }
 
 
+}
+void MainWindowController::onClarifyEvents() {
+    this->w->openMainMenu();
 }

@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&core, &CoreApp::signalOpenCategories, &controller, &MainWindowController::setCategoryList);
     QObject::connect(&core, &CoreApp::signalOpenCategory, &controller, &MainWindowController::setEventList);
     QObject::connect(&core, &CoreApp::signalOpenIncidents, &controller, &MainWindowController::setIncidentList);
+    QObject::connect(&core, &CoreApp::signalOpenScenaries, &controller, &MainWindowController::setScenariesList);
 
     QObject::connect(&controller, &MainWindowController::signalOpenCategory, &core, &CoreApp::onOpenCategory);
     QObject::connect(&controller, &MainWindowController::signalCalculateIncident, &core, &CoreApp::onCalculateIncident);

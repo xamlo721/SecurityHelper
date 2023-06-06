@@ -1,8 +1,17 @@
 #include "ScenarioWidget.h"
 #include "ui_ScenarioWidget.h"
 
-ScenarioWidget::ScenarioWidget(QWidget *parent) : QWidget(parent), ui(new Ui::ScenarioWidget) {
+ScenarioWidget::ScenarioWidget(int id, QString text, QWidget *parent) : QWidget(parent), ui(new Ui::ScenarioWidget) {
     ui->setupUi(this);
+    this->id = id;
+    this->ui->textEdit_scenario_decription->append(text);
+    this->ui->label_scenario_title->setText("Предполагаемый Сценарий №" +QString::number(id));
+    QObject::connect(this->ui->pushButton_recommendations, &QPushButton::clicked, this, &ScenarioWidget::onPuttonClicked);
+    QObject::connect(this->ui->pushButton_clarify, &QPushButton::clicked, this, &ScenarioWidget::signalClarify);
+}
+
+void ScenarioWidget::onPuttonClicked() {
+    emit signalScenarioOpen(this->id);
 }
 
 ScenarioWidget::~ScenarioWidget() {

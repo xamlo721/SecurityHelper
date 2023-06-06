@@ -63,6 +63,15 @@ void MainWindow::addIncidentWidget(IncidentWidget * widget) {
     this->ui->widget_incident_menu->addcIncidentWidget(widget);
 }
 
+void MainWindow::clearScenarioList() {
+    this->ui->widget_scenario_menu->clear();
+}
+
+void MainWindow::addScenarioWidget(ScenarioWidget * widget) {
+    this->ui->widget_scenario_menu->addScenarioWidget(widget);
+
+}
+
 MainWindow::~MainWindow() {
     delete ui;
 }

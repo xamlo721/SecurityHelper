@@ -7,9 +7,9 @@ enum EnumMenuPages : int  {
 
     IncidentMenu = 1,
 
-    ScenarioMenu = 2,
+    RecommendationMenu = 2,
 
-    RecommendationMenu = 3
+    ScenarioMenu = 3
 
 };
 #endif // ENUMMENUPAGES_H

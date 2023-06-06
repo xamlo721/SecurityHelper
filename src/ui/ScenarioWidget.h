@@ -12,10 +12,18 @@ class ScenarioWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit ScenarioWidget(QWidget *parent = nullptr);
+        explicit ScenarioWidget(int id, QString text, QWidget *parent = nullptr);
         ~ScenarioWidget();
 
+    signals:
+        void signalScenarioOpen(int incidentId);
+        void signalClarify(int incidentId);
+
+    private slots:
+        void onPuttonClicked();
+
     private:
+        int id;
         Ui::ScenarioWidget *ui;
 };
 

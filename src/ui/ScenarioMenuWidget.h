@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "src/ui/ScenarioWidget.h"
+
 namespace Ui {
     class ScenarioMenuWidget;
 }
@@ -14,6 +16,10 @@ class ScenarioMenuWidget : public QWidget {
     public:
         explicit ScenarioMenuWidget(QWidget *parent = nullptr);
         ~ScenarioMenuWidget();
+
+        void clear();
+
+        void addScenarioWidget(ScenarioWidget * widget);
 
     private:
         Ui::ScenarioMenuWidget *ui;

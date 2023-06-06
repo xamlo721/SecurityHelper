@@ -18,6 +18,7 @@
 #include "src/items/SecurityEventCategory.h"
 #include "src/items/SecurityEvent.h"
 #include "src/items/SecurityIncident.h"
+#include "src/items/SecurityScenario.h"
 
 class MainWindowController : public QObject {
 
@@ -45,11 +46,13 @@ class MainWindowController : public QObject {
         void setCategoryList(QList<SecurityEventCategory> categories);
         void setEventList(QList<SecurityEvent> events);
         void setIncidentList(QList<SecurityIncident> incidents);
+        void setScenariesList(QList<SecurityScenario> scenaries);
 
     signals:
         void signalOpenCategory(int id);
         void signalCalculateIncident(QList<SecurityEvent> activeEvents);
         void signalOpenIncident(int id);
+        void signalOpenScenario(int id);
 
     private:
         MainWindow * w;
@@ -60,6 +63,7 @@ class MainWindowController : public QObject {
     private slots:
         void onEventSelected(int eventID);
         void onEventUnselected(int eventID);
+        void onClarifyEvents();
 
     signals:
 
