@@ -55,5 +55,22 @@ void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
 
 void CoreApp::onOpenIncident(int id) {
 
+    QList<SecurityScenario> scenaries;
+    ///Ищем среди сценариев те, что образуется указанным инцидентом
+
+    for (SecurityScenario sc : this->db.scenaries) {
+
+        if (sc.getIncidents().contains(id)) {
+
+            scenaries.append(sc);
+
+        }
+
+    }
+
+
+    //TODO: Удалить повторы
+
+    emit signalOpenScenaries(scenaries);
 }
 

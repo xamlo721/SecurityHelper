@@ -1,13 +1,14 @@
 #include "SecurityScenario.h"
 
-SecurityScenario::SecurityScenario(int id, QString text, QObject *parent) : QObject(parent) {
+SecurityScenario::SecurityScenario(int id, QString text, QList<int> incidents, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
+    this->incidents = incidents;
 }
 
 
 SecurityScenario::SecurityScenario(const SecurityScenario& other)
-    : QObject(other.parent()), id(other.id), text(other.text) {
+    : QObject(other.parent()), id(other.id), text(other.text), incidents(other.incidents){
 
 
 }
@@ -19,13 +20,15 @@ SecurityScenario& SecurityScenario::operator=(const SecurityScenario& other) {
     QObject::setParent(other.parent());
     id = other.id;
     text = other.text;
+    incidents = other.incidents;
 
     return *this;
 }
 
 bool SecurityScenario::operator==(const SecurityScenario& other) const {
     return (id == other.id
-         && text == other.text);
+         && text == other.text
+            && incidents == other.incidents);
 }
 
 bool SecurityScenario::operator!=(const SecurityScenario& other) const {
@@ -48,3 +51,8 @@ int SecurityScenario::getId() {
 QString SecurityScenario::getText() {
     return this->text;
 }
+
+QList<int> SecurityScenario::getIncidents() {
+    return this->incidents;
+}
+

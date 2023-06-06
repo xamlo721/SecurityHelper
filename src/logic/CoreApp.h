@@ -24,6 +24,7 @@ class CoreApp : public QObject {
         void signalOpenCategory(QList<SecurityEvent> categoryEvents);
         void signalOpenCategories(QList<SecurityEventCategory> availableCategories);
         void signalOpenIncidents(QList<SecurityIncident> incidents);
+        void signalOpenScenaries(QList<SecurityScenario> scenaries);
 
     public slots:
         void onOpenCategory(int categoryId);

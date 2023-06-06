@@ -2,13 +2,14 @@
 #define SECURITYSCENARIO_H
 
 #include <QObject>
+#include <QList>
 
 class SecurityScenario : public QObject {
 
     Q_OBJECT
 
     public:
-        explicit SecurityScenario(int id, QString text, QObject *parent = nullptr);
+        explicit SecurityScenario(int id, QString text, QList<int> incidents, QObject *parent = nullptr);
         SecurityScenario(const SecurityScenario& other);
 
         SecurityScenario& operator=(const SecurityScenario& other);
@@ -19,10 +20,12 @@ class SecurityScenario : public QObject {
 
         int getId();
         QString getText();
+        QList<int> getIncidents();
 
     private:
         int id;
         QString text;
+        QList<int> incidents;
 
     signals:
 
