@@ -34,6 +34,11 @@ void MainWindowController::onAdminButtonPressed() {
 }
 
 void MainWindowController::onResetButtonPressed() {
+    this->availableEvents.clear();
+    this->activeEvents.clear();
+    this->w->clearCategoryEventList();
+    this->w->clearSelectedEventList();
+    this->w->openMainMenu();
 
 }
 
