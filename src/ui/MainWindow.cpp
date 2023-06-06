@@ -2,6 +2,8 @@
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 
+#include "EnumMenuPages.h"
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
@@ -14,19 +16,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
 }
 
 void MainWindow::openMainMenu() {
-    this->ui->stackedWidget->setCurrentIndex(0);//Сменить на енам
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
 }
 
 void MainWindow::openIncidentMenu() {
-    this->ui->stackedWidget->setCurrentIndex(1);//Сменить на енам
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::IncidentMenu);
 }
 
 void MainWindow::openScenarioMenu() {
-    this->ui->stackedWidget->setCurrentIndex(2);//Сменить на енам
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::ScenarioMenu);
 }
 
 void MainWindow::openRecommendationMenu() {
-    this->ui->stackedWidget->setCurrentIndex(3);//Сменить на енам
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::RecommendationMenu);
 }
 
 void MainWindow::clearCategoryList() {

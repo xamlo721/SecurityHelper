@@ -49,6 +49,7 @@ HEADERS += \
     src/logic/Database.h \
     src/logic/XmlHelper.h \
     src/logic/XmlUtils.h \
+    src/ui/EnumMenuPages.h \
     src/ui/EventCategoryWidget.h \
     src/ui/EventWidget.h \
     src/ui/IncidentMenuWidget.h \
