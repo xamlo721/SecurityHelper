@@ -1,13 +1,14 @@
 #include "SecurityIncident.h"
 
-SecurityIncident::SecurityIncident(int id, QString text, QObject *parent) : QObject(parent) {
+SecurityIncident::SecurityIncident(int id, QString text, QList<int> events, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
+    this->events = events;
 }
 
 
 SecurityIncident::SecurityIncident(const SecurityIncident& other)
-    : QObject(other.parent()), id(other.id), text(other.text) {
+    : QObject(other.parent()), id(other.id), text(other.text), events(other.events) {
 
 
 }
@@ -19,6 +20,7 @@ SecurityIncident& SecurityIncident::operator=(const SecurityIncident& other) {
     QObject::setParent(other.parent());
     id = other.id;
     text = other.text;
+    events = other.events;
 
     return *this;
 }
@@ -47,4 +49,8 @@ int SecurityIncident::getId() {
 
 QString SecurityIncident::getText() {
     return this->text;
+}
+
+QList<int> SecurityIncident::getEventIds() {
+    return this->events;
 }

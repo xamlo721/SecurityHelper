@@ -32,4 +32,23 @@ void CoreApp::onOpenCategory(int categoryId) {
 
 void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
 
+    QList<SecurityIncident> incidents;
+    ///Ищем среди инцидентов те, что образуются указанными событиями
+    for (SecurityEvent event : selectedEvents) {
+
+        for (SecurityIncident inc : this->db.incidents) {
+
+            if (inc.getEventIds().contains(event.getId())) {
+
+                incidents.append(inc);
+
+            }
+
+        }
+
+    }
+
+    //TODO: Удалить повторы
+
+    emit signalOpenIncidents(incidents);
 }

@@ -14,8 +14,10 @@
 #include "src/ui/RecommendationsWidget.h"
 
 #include "src/ui/EventCategoryWidget.h"
+
 #include "src/items/SecurityEventCategory.h"
 #include "src/items/SecurityEvent.h"
+#include "src/items/SecurityIncident.h"
 
 class MainWindowController : public QObject {
 
@@ -42,6 +44,7 @@ class MainWindowController : public QObject {
 
         void setCategoryList(QList<SecurityEventCategory> categories);
         void setEventList(QList<SecurityEvent> events);
+        void setIncidentList(QList<SecurityIncident> incidents);
 
     signals:
         void signalOpenCategory(int id);

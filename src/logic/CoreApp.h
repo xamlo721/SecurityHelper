@@ -23,7 +23,7 @@ class CoreApp : public QObject {
     signals:
         void signalOpenCategory(QList<SecurityEvent> categoryEvents);
         void signalOpenCategories(QList<SecurityEventCategory> availableCategories);
-
+        void signalOpenIncidents(QList<SecurityIncident> incidents);
     public slots:
         void onOpenCategory(int categoryId);
         void onCalculateIncident(QList<SecurityEvent> selectedEvents);

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "src/ui/IncidentWidget.h"
+
 namespace Ui {
     class IncidentMenuWidget;
 }
@@ -14,6 +16,9 @@ class IncidentMenuWidget : public QWidget {
     public:
         explicit IncidentMenuWidget(QWidget *parent = nullptr);
         ~IncidentMenuWidget();
+
+        void clear();
+        void addcIncidentWidget(IncidentWidget * widget);
 
     private:
         Ui::IncidentMenuWidget *ui;

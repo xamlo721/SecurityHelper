@@ -5,6 +5,7 @@
 
 #include "src/ui/EventCategoryWidget.h"
 #include "src/ui/EventWidget.h"
+#include "src/ui/IncidentWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +35,9 @@ class MainWindow : public QMainWindow {
 
         void clearSelectedEventList();
         void addSelectedEvent(EventWidget * event);
+
+        void clearIncidentList();
+        void addIncidentWidget(IncidentWidget * widget);
 
     signals:
         void signalAdminButtonPressed();

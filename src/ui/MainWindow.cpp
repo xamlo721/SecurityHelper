@@ -53,6 +53,13 @@ void MainWindow::addSelectedEvent(EventWidget * event) {
     this->ui->widget_main_menu->addSelectedEvent(event);
 }
 
+void MainWindow::clearIncidentList() {
+    this->ui->widget_incident_menu->clear();
+}
+
+void MainWindow::addIncidentWidget(IncidentWidget * widget) {
+    this->ui->widget_incident_menu->addcIncidentWidget(widget);
+}
 
 MainWindow::~MainWindow() {
     delete ui;

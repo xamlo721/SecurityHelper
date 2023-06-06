@@ -4,12 +4,56 @@
 		<Incidents>
 			<Incident>
 				<id>0</id>
-				<Text>Событие</Text>
-			</Incident>
+                                <Text>Событие</Text>
+                                <events>2</events>
+                                <events>4</events>
+                                <events>6</events>
+                        </Incident>
 			<Incident>
 				<id>1</id>
 				<Text>Другое событие</Text>
+                                <events>1</events>
+                                <events>0</events>
 			</Incident>
+                        <Incident>
+                                <id>3</id>
+                                <Text>Событие</Text>
+                                <events>2</events>
+                                <events>4</events>
+                                <events>6</events>
+                        </Incident>
+                        <Incident>
+                                <id>4</id>
+                                <Text>Другое событие</Text>
+                                <events>1</events>
+                                <events>0</events>
+                        </Incident>
+                        <Incident>
+                                <id>5</id>
+                                <Text>Событие</Text>
+                                <events>2</events>
+                                <events>4</events>
+                                <events>6</events>
+                        </Incident>
+                        <Incident>
+                                <id>6</id>
+                                <Text>Другое событие</Text>
+                                <events>1</events>
+                                <events>0</events>
+                        </Incident>
+                        <Incident>
+                                <id>7</id>
+                                <Text>Событие</Text>
+                                <events>2</events>
+                                <events>4</events>
+                                <events>6</events>
+                        </Incident>
+                        <Incident>
+                                <id>8</id>
+                                <Text>Другое событие</Text>
+                                <events>1</events>
+                                <events>0</events>
+                        </Incident>
 		</Incidents>
 	</Database>
 </xmlDocument>

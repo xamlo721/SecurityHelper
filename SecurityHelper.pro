@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
+    src/controllers/MainWindowControllerSlots.cpp \
     src/items/SecurityEvent.cpp \
     src/items/SecurityEventCategory.cpp \
     src/items/SecurityIncident.cpp \

@@ -1,8 +1,15 @@
 #include "IncidentWidget.h"
 #include "ui_IncidentWidget.h"
 
-IncidentWidget::IncidentWidget(QWidget *parent) :  QWidget(parent), ui(new Ui::IncidentWidget) {
+IncidentWidget::IncidentWidget(int id, QString text,QWidget *parent) :  QWidget(parent), ui(new Ui::IncidentWidget) {
     ui->setupUi(this);
+    this->id = id;
+    this->ui->textEdit_incident_description->append(text);
+    this->ui->label_incident_title->setText("Предполагаемый инцидент №" +QString::number(id));
+}
+
+void IncidentWidget::onPuttonClicked() {
+    emit signalIncidentOpen(this->id);
 }
 
 IncidentWidget::~IncidentWidget() {
