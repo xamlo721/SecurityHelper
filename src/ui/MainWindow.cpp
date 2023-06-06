@@ -72,6 +72,16 @@ void MainWindow::addScenarioWidget(ScenarioWidget * widget) {
 
 }
 
+void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {
+    //FIXME: Уродская система, переписать!
+    delete this->ui->widget_recomendations_menu;
+    this->ui->widget_recomendations_menu = widget;
+    this->ui->stackedWidget->repaint();
+    this->ui->verticalLayout_3->addWidget(widget);
+
+}
+
+
 MainWindow::~MainWindow() {
     delete ui;
 }

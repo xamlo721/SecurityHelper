@@ -48,6 +48,15 @@ void MainWindowController::setScenariesList(QList<SecurityScenario> scenaries) {
     }
 }
 
+void MainWindowController::setRecommendationsList(QList<SecurityRecommendations> scenaries) {
+    this->w->openRecommendationMenu();
+    SecurityRecommendations rec = scenaries.at(0);
+    RecommendationsWidget * widget = new RecommendationsWidget(rec.getTextContainment(), rec.getTextFixes(), rec.getTextRestore());
+    this->w->setRemmendationWidget(widget);
+
+}
+
+
 void MainWindowController::onEventSelected(int eventID) {
 
     ///1) Найти и переложить событие

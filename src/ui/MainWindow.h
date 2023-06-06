@@ -7,6 +7,7 @@
 #include "src/ui/EventWidget.h"
 #include "src/ui/IncidentWidget.h"
 #include "src/ui/ScenarioWidget.h"
+#include "src/ui/RecommendationsWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -42,6 +43,8 @@ class MainWindow : public QMainWindow {
 
         void clearScenarioList();
         void addScenarioWidget(ScenarioWidget * widget);
+
+        void setRemmendationWidget(RecommendationsWidget * widget);
 
     signals:
         void signalAdminButtonPressed();

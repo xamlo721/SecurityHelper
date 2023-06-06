@@ -74,3 +74,24 @@ void CoreApp::onOpenIncident(int id) {
     emit signalOpenScenaries(scenaries);
 }
 
+void CoreApp::onOpenScenario(int id) {
+
+    QList<SecurityRecommendations> recoms;
+    ///Ищем среди рекомендаций те, что образуется указанным инцидентом
+
+    for (SecurityRecommendations rec : this->db.recommendations) {
+
+        if (rec.getScenaries().contains(id)) {
+
+            recoms.append(rec);
+
+        }
+
+    }
+
+
+    //TODO: Удалить повторы
+
+    emit signalOpenRecommandations(recoms);
+}
+

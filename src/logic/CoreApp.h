@@ -25,11 +25,13 @@ class CoreApp : public QObject {
         void signalOpenCategories(QList<SecurityEventCategory> availableCategories);
         void signalOpenIncidents(QList<SecurityIncident> incidents);
         void signalOpenScenaries(QList<SecurityScenario> scenaries);
+        void signalOpenRecommandations(QList<SecurityRecommendations> scenaries);
 
     public slots:
         void onOpenCategory(int categoryId);
         void onCalculateIncident(QList<SecurityEvent> selectedEvents);
         void onOpenIncident(int id);
+        void onOpenScenario(int id);
 
     private:
         Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");

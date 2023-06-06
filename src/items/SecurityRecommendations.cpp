@@ -1,15 +1,17 @@
 #include "SecurityRecommendations.h"
 
-SecurityRecommendations::SecurityRecommendations(int id, QString textContainment, QString textFixes, QString textRestore, QObject *parent) : QObject(parent) {
+SecurityRecommendations::SecurityRecommendations(int id, QString textContainment, QString textFixes, QString textRestore, QList<int> scenaries, QObject *parent) : QObject(parent) {
     this->id = id;
     this->textContainment = textContainment;
     this->textFixes = textFixes;
     this->textRestore = textRestore;
+    this->scenaries = scenaries;
 }
 
 
 SecurityRecommendations::SecurityRecommendations(const SecurityRecommendations& other)
-    : QObject(other.parent()), id(other.id), textContainment(other.textContainment), textFixes(other.textFixes), textRestore(other.textRestore) {
+    : QObject(other.parent()), id(other.id), textContainment(other.textContainment),
+      textFixes(other.textFixes), textRestore(other.textRestore), scenaries(other.scenaries) {
 
 
 }
@@ -23,6 +25,7 @@ SecurityRecommendations& SecurityRecommendations::operator=(const SecurityRecomm
     textContainment = other.textContainment;
     textFixes = other.textFixes;
     textRestore = other.textRestore;
+    scenaries = other.scenaries;
 
     return *this;
 }
@@ -31,7 +34,8 @@ bool SecurityRecommendations::operator==(const SecurityRecommendations& other) c
     return (id == other.id
          && textContainment == other.textContainment
          && textFixes == other.textFixes
-         && textRestore == other.textRestore);
+         && textRestore == other.textRestore
+         && scenaries == other.scenaries);
 }
 
 bool SecurityRecommendations::operator!=(const SecurityRecommendations& other) const {
@@ -61,4 +65,7 @@ QString SecurityRecommendations::getTextFixes() {
 
 QString SecurityRecommendations::getTextRestore() {
     return this->textRestore;
+}
+QList<int> SecurityRecommendations::getScenaries() {
+    return this->scenaries;
 }

@@ -143,7 +143,8 @@ SecurityRecommendations XMLHelper::readSecurityRecommendations(QDomElement xmlDo
     QString recFixes =XmlUtils::readText(xmlDomElement, "TextFixes");
     QString recRestore =XmlUtils::readText(xmlDomElement, "TextRestore");
     int recId = XmlUtils::readint(xmlDomElement, "id");
-    return SecurityRecommendations(recId, recContainment, recFixes, recRestore);
+    QList<int> scenaryIds = XmlUtils::readints(xmlDomElement, "Scenario");
+    return SecurityRecommendations(recId, recContainment, recFixes, recRestore,scenaryIds);
 }
 
 SecurityScenario XMLHelper::readSecurityScenario(QDomElement xmlDomElement) {

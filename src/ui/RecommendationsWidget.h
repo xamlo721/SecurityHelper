@@ -13,6 +13,7 @@ class RecommendationsWidget : public QWidget {
 
     public:
         explicit RecommendationsWidget(QWidget *parent = nullptr);
+        explicit RecommendationsWidget(QString textContainment, QString textFixes, QString textRestore, QWidget *parent = nullptr);
         ~RecommendationsWidget();
 
     private:

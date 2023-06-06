@@ -19,6 +19,7 @@
 #include "src/items/SecurityEvent.h"
 #include "src/items/SecurityIncident.h"
 #include "src/items/SecurityScenario.h"
+#include "src/items/SecurityRecommendations.h"
 
 class MainWindowController : public QObject {
 
@@ -47,6 +48,7 @@ class MainWindowController : public QObject {
         void setEventList(QList<SecurityEvent> events);
         void setIncidentList(QList<SecurityIncident> incidents);
         void setScenariesList(QList<SecurityScenario> scenaries);
+        void setRecommendationsList(QList<SecurityRecommendations> scenaries);
 
     signals:
         void signalOpenCategory(int id);

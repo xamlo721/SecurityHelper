@@ -7,13 +7,33 @@
 				<TextContainment>Текст TextContainment</TextContainment>
 				<TextFixes>Текст TextFixes</TextFixes>
 				<TextRestore>Текст TextRestore</TextRestore>
-			</Recommendation>
+                                <Scenario>3</Scenario>
+                                <Scenario>4</Scenario>
+                        </Recommendation>
 			<Recommendation>
 				<id>1</id>
 				<TextContainment>Другой Текст TextContainment</TextContainment>
 				<TextFixes>Другой Текст TextFixes</TextFixes>
 				<TextRestore>Другой Текст TextRestore</TextRestore>
+                                <Scenario>1</Scenario>
+                                <Scenario>0</Scenario>
 			</Recommendation>
+                        <Recommendation>
+                                <id>0</id>
+                                <TextContainment>Текст TextContainment</TextContainment>
+                                <TextFixes>Текст TextFixes</TextFixes>
+                                <TextRestore>Текст TextRestore</TextRestore>
+                                <Scenario>5</Scenario>
+                                <Scenario>7</Scenario>
+                        </Recommendation>
+                        <Recommendation>
+                                <id>1</id>
+                                <TextContainment>Другой Текст TextContainment</TextContainment>
+                                <TextFixes>Другой Текст TextFixes</TextFixes>
+                                <TextRestore>Другой Текст TextRestore</TextRestore>
+                                <Scenario>1</Scenario>
+                                <Scenario>9</Scenario>
+                        </Recommendation>
 		</Recommendations>
 	</Database>
 </xmlDocument>
