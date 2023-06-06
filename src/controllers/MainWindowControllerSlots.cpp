@@ -31,6 +31,7 @@ void MainWindowController::setIncidentList(QList<SecurityIncident> incidents) {
 
     for (SecurityIncident inc : incidents) {
         IncidentWidget * widget = new IncidentWidget(inc.getId(), inc.getText());
+        QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &MainWindowController::signalOpenIncident);
         this->w->addIncidentWidget(widget);
     }
 

@@ -48,7 +48,8 @@ class MainWindowController : public QObject {
 
     signals:
         void signalOpenCategory(int id);
-        void signalOpenIncident(QList<SecurityEvent> activeEvents);
+        void signalCalculateIncident(QList<SecurityEvent> activeEvents);
+        void signalOpenIncident(int id);
 
     private:
         MainWindow * w;

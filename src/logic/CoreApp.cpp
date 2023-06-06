@@ -52,3 +52,8 @@ void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
 
     emit signalOpenIncidents(incidents);
 }
+
+void CoreApp::onOpenIncident(int id) {
+
+}
+
