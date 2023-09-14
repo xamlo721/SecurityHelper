@@ -1,6 +1,6 @@
 #include "SecurityIncident.h"
 
-SecurityIncident::SecurityIncident(int id, QString text, QList<int> events, QObject *parent) : QObject(parent) {
+SecurityIncident::SecurityIncident(quint32 id, QString text, QList<quint32> events, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
     this->events = events;
@@ -43,7 +43,7 @@ bool SecurityIncident::operator>(const SecurityIncident& other) const {
 }
 
 
-int SecurityIncident::getId() {
+quint32 SecurityIncident::getId() {
     return this->id;
 }
 
@@ -51,6 +51,6 @@ QString SecurityIncident::getText() {
     return this->text;
 }
 
-QList<int> SecurityIncident::getEventIds() {
+QList<quint32> SecurityIncident::getEventIds() {
     return this->events;
 }

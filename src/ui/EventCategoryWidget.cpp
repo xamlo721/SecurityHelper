@@ -1,7 +1,7 @@
 #include "EventCategoryWidget.h"
 #include "ui_IncidentCategoryWidget.h"
 
-EventCategoryWidget::EventCategoryWidget(int id, QString title, QWidget *parent) : QWidget(parent), ui(new Ui::EventCategoryWidget) {
+EventCategoryWidget::EventCategoryWidget(quint32 id, QString title, QWidget *parent) : QWidget(parent), ui(new Ui::EventCategoryWidget) {
     ui->setupUi(this);
     this->ui->pushButton->setMinimumSize(200, 60);
     this->id = id;
@@ -9,7 +9,7 @@ EventCategoryWidget::EventCategoryWidget(int id, QString title, QWidget *parent)
     QObject::connect(this->ui->pushButton, &QPushButton::clicked, this, &EventCategoryWidget::onOpenIncidentButtonClicked);
 }
 
-int EventCategoryWidget::getId() {
+quint32 EventCategoryWidget::getId() {
     return this->id;
 }
 

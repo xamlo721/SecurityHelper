@@ -9,7 +9,7 @@ class SecurityScenario : public QObject {
     Q_OBJECT
 
     public:
-        explicit SecurityScenario(int id, QString text, QList<int> incidents, QObject *parent = nullptr);
+        explicit SecurityScenario(quint32 id, QString text, QList<quint32> incidents, QObject *parent = nullptr);
         SecurityScenario(const SecurityScenario& other);
 
         SecurityScenario& operator=(const SecurityScenario& other);
@@ -18,14 +18,14 @@ class SecurityScenario : public QObject {
         bool operator<(const SecurityScenario& other) const;
         bool operator>(const SecurityScenario& other) const;
 
-        int getId();
+        quint32 getId();
         QString getText();
-        QList<int> getIncidents();
+        QList<quint32> getIncidents();
 
     private:
-        int id;
+        quint32 id;
         QString text;
-        QList<int> incidents;
+        QList<quint32> incidents;
 
     signals:
 

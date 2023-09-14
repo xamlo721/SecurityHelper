@@ -12,17 +12,17 @@ class IncidentWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit IncidentWidget(int id, QString text, QWidget *parent = nullptr);
+        explicit IncidentWidget(quint32 id, QString text, QWidget *parent = nullptr);
         ~IncidentWidget();
 
     signals:
-        void signalIncidentOpen(int incidentId);
+        void signalIncidentOpen(quint32 incidentId);
 
     private slots:
         void onPuttonClicked();
 
     private:
-        int id;
+        quint32 id;
         Ui::IncidentWidget *ui;
 };
 

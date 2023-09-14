@@ -1,6 +1,6 @@
 #include "SecurityEventCategory.h"
 
-SecurityEventCategory::SecurityEventCategory(int id, QString text, QList<int> events, QObject *parent) : QObject(parent) {
+SecurityEventCategory::SecurityEventCategory(quint32 id, QString text, QList<quint32> events, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
     this->events = events;
@@ -43,7 +43,7 @@ bool SecurityEventCategory::operator>(const SecurityEventCategory& other) const 
 }
 
 
-int SecurityEventCategory::getId() {
+quint32 SecurityEventCategory::getId() {
     return this->id;
 }
 
@@ -51,6 +51,6 @@ QString SecurityEventCategory::getText() {
     return this->text;
 }
 
-QList<int> SecurityEventCategory::getEventIds() {
+QList<quint32> SecurityEventCategory::getEventIds() {
     return this->events;
 }

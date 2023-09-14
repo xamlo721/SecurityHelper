@@ -8,7 +8,7 @@ class SecurityEvent : public QObject {
     Q_OBJECT
 
     public:
-        explicit SecurityEvent(int id, QString text, QObject *parent = nullptr);
+        explicit SecurityEvent(quint32 id, QString text, QObject *parent = nullptr);
         SecurityEvent(const SecurityEvent& other);
         SecurityEvent() {}
         SecurityEvent& operator=(const SecurityEvent& other);
@@ -17,11 +17,11 @@ class SecurityEvent : public QObject {
         bool operator<(const SecurityEvent& other) const;
         bool operator>(const SecurityEvent& other) const;
 
-        int getId();
+        quint32 getId();
         QString getText();
 
     private:
-        int id;
+        quint32 id;
         QString text;
 
     signals:

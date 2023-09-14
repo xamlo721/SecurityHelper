@@ -51,10 +51,10 @@ class MainWindowController : public QObject {
         void setRecommendationsList(QList<SecurityRecommendations> scenaries);
 
     signals:
-        void signalOpenCategory(int id);
+        void signalOpenCategory(quint32 id);
         void signalCalculateIncident(QList<SecurityEvent> activeEvents);
-        void signalOpenIncident(int id);
-        void signalOpenScenario(int id);
+        void signalOpenIncident(quint32 id);
+        void signalOpenScenario(quint32 id);
 
     private:
         MainWindow * w;
@@ -63,8 +63,8 @@ class MainWindowController : public QObject {
         QList<SecurityEvent> activeEvents;
 
     private slots:
-        void onEventSelected(int eventID);
-        void onEventUnselected(int eventID);
+        void onEventSelected(quint32 eventID);
+        void onEventUnselected(quint32 eventID);
         void onClarifyEvents();
 
     signals:

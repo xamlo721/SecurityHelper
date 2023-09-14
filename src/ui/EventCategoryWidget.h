@@ -12,19 +12,19 @@ class EventCategoryWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit EventCategoryWidget(int id, QString title, QWidget *parent = nullptr);
+        explicit EventCategoryWidget(quint32 id, QString title, QWidget *parent = nullptr);
         ~EventCategoryWidget();
 
-        int getId();
+        quint32 getId();
 
     public slots:
         void onOpenIncidentButtonClicked();
 
     signals:
-        void signalOpenIncident(int incidentId);
+        void signalOpenIncident(quint32 incidentId);
 
     private:
-        int id;
+        quint32 id;
         Ui::EventCategoryWidget *ui;
 
 };

@@ -57,12 +57,12 @@ void MainWindowController::setRecommendationsList(QList<SecurityRecommendations>
 }
 
 
-void MainWindowController::onEventSelected(int eventID) {
+void MainWindowController::onEventSelected(quint32 eventID) {
 
     ///1) Найти и переложить событие
 
     //TODO: Проверка, что он его вообще содержит!
-    for (int i = 0; i < availableEvents.size(); i++) {
+    for (quint32 i = 0; i < availableEvents.size(); i++) {
         SecurityEvent event = availableEvents.at(i);
         if (event.getId() == eventID) {
             this->activeEvents.append(availableEvents.takeAt(i));
@@ -90,12 +90,12 @@ void MainWindowController::onEventSelected(int eventID) {
 
 }
 
-void MainWindowController::onEventUnselected(int eventID) {
+void MainWindowController::onEventUnselected(quint32 eventID) {
 
     ///1) Найти и переложить событие
 
     //TODO: Проверка, что он его вообще содержит!
-    for (int i = 0; i < activeEvents.size(); i++) {
+    for (quint32 i = 0; i < activeEvents.size(); i++) {
         SecurityEvent event = activeEvents.at(i);
         if (event.getId() == eventID) {
             this->availableEvents.append(activeEvents.takeAt(i));

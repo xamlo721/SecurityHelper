@@ -8,7 +8,7 @@ class SecurityEventCategory : public QObject {
     Q_OBJECT
 
     public:
-        explicit SecurityEventCategory(int id, QString text, QList<int> incidentes, QObject *parent = nullptr);
+        explicit SecurityEventCategory(quint32 id, QString text, QList<quint32> incidentes, QObject *parent = nullptr);
         SecurityEventCategory() {};
 
         SecurityEventCategory(const SecurityEventCategory& other);
@@ -19,14 +19,14 @@ class SecurityEventCategory : public QObject {
         bool operator<(const SecurityEventCategory& other) const;
         bool operator>(const SecurityEventCategory& other) const;
 
-        int getId();
+        quint32 getId();
         QString getText();
-        QList<int> getEventIds();
+        QList<quint32> getEventIds();
 
     private:
-        int id;
+        quint32 id;
         QString text;
-        QList<int> events;
+        QList<quint32> events;
 
     signals:
 

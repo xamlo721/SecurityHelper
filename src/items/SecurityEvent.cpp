@@ -1,6 +1,6 @@
 #include "SecurityEvent.h"
 
-SecurityEvent::SecurityEvent(int id, QString text, QObject *parent) : QObject(parent) {
+SecurityEvent::SecurityEvent(quint32 id, QString text, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
 }
@@ -41,7 +41,7 @@ bool SecurityEvent::operator>(const SecurityEvent& other) const {
 }
 
 
-int SecurityEvent::getId() {
+quint32 SecurityEvent::getId() {
     return this->id;
 }
 

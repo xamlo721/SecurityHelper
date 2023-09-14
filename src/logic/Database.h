@@ -15,7 +15,7 @@ class Database : public QObject {
     Q_OBJECT
 
     public:
-        Database(QMap<int, SecurityEvent> events, QMap<int, SecurityEventCategory> categories, QMap<int, SecurityIncident> incidents, QMap<int, SecurityRecommendations> recommendations, QMap<int, SecurityScenario> scenaries, QObject *parent = nullptr);
+        Database(QMap<quint32, SecurityEvent> events, QMap<quint32, SecurityEventCategory> categories, QMap<quint32, SecurityIncident> incidents, QMap<quint32, SecurityRecommendations> recommendations, QMap<quint32, SecurityScenario> scenaries, QObject *parent = nullptr);
 
         Database(const Database& other);
 
@@ -24,11 +24,11 @@ class Database : public QObject {
         bool operator!=(const Database& other) const;
 
     public:
-        QMap<int, SecurityEvent> events;
-        QMap<int, SecurityEventCategory> categories;
-        QMap<int, SecurityIncident> incidents;
-        QMap<int, SecurityRecommendations> recommendations;
-        QMap<int, SecurityScenario> scenaries;
+        QMap<quint32, SecurityEvent> events;
+        QMap<quint32, SecurityEventCategory> categories;
+        QMap<quint32, SecurityIncident> incidents;
+        QMap<quint32, SecurityRecommendations> recommendations;
+        QMap<quint32, SecurityScenario> scenaries;
 
     signals:
 

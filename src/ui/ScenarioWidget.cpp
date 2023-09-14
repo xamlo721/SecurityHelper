@@ -1,7 +1,7 @@
 #include "ScenarioWidget.h"
 #include "ui_ScenarioWidget.h"
 
-ScenarioWidget::ScenarioWidget(int id, QString text, QWidget *parent) : QWidget(parent), ui(new Ui::ScenarioWidget) {
+ScenarioWidget::ScenarioWidget(quint32 id, QString text, QWidget *parent) : QWidget(parent), ui(new Ui::ScenarioWidget) {
     ui->setupUi(this);
     this->id = id;
     this->ui->textEdit_scenario_decription->append(text);

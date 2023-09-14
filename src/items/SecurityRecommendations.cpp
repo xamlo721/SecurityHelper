@@ -1,6 +1,6 @@
 #include "SecurityRecommendations.h"
 
-SecurityRecommendations::SecurityRecommendations(int id, QString textContainment, QString textFixes, QString textRestore, QList<int> scenaries, QObject *parent) : QObject(parent) {
+SecurityRecommendations::SecurityRecommendations(quint32 id, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent) : QObject(parent) {
     this->id = id;
     this->textContainment = textContainment;
     this->textFixes = textFixes;
@@ -51,7 +51,7 @@ bool SecurityRecommendations::operator>(const SecurityRecommendations& other) co
 }
 
 
-int SecurityRecommendations::getId() {
+quint32 SecurityRecommendations::getId() {
     return this->id;
 }
 
@@ -66,6 +66,6 @@ QString SecurityRecommendations::getTextFixes() {
 QString SecurityRecommendations::getTextRestore() {
     return this->textRestore;
 }
-QList<int> SecurityRecommendations::getScenaries() {
+QList<quint32> SecurityRecommendations::getScenaries() {
     return this->scenaries;
 }

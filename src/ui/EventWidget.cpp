@@ -1,7 +1,7 @@
 #include "EventWidget.h"
 #include "ui_EventWidget.h"
 
-EventWidget::EventWidget(int id, QString text, bool isChecked, QWidget *parent) : QWidget(parent), ui(new Ui::EventWidget) {
+EventWidget::EventWidget(quint32 id, QString text, bool isChecked, QWidget *parent) : QWidget(parent), ui(new Ui::EventWidget) {
     ui->setupUi(this);
     this->id = id;
     this->ui->checkBox->setChecked(isChecked);

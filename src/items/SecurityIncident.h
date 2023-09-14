@@ -8,7 +8,7 @@ class SecurityIncident : public QObject {
     Q_OBJECT
 
     public:
-        explicit SecurityIncident(int id, QString text, QList<int> events, QObject *parent = nullptr);
+        explicit SecurityIncident(quint32 id, QString text, QList<quint32> events, QObject *parent = nullptr);
         SecurityIncident(const SecurityIncident& other);
 
         SecurityIncident& operator=(const SecurityIncident& other);
@@ -17,14 +17,14 @@ class SecurityIncident : public QObject {
         bool operator<(const SecurityIncident& other) const;
         bool operator>(const SecurityIncident& other) const;
 
-        int getId();
+        quint32 getId();
         QString getText();
-        QList<int> getEventIds();
+        QList<quint32> getEventIds();
 
     private:
-        int id;
+        quint32 id;
         QString text;
-        QList<int> events;
+        QList<quint32> events;
 
     signals:
 

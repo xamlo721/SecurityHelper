@@ -1,7 +1,7 @@
 #include "IncidentWidget.h"
 #include "ui_IncidentWidget.h"
 
-IncidentWidget::IncidentWidget(int id, QString text, QWidget *parent) :  QWidget(parent), ui(new Ui::IncidentWidget) {
+IncidentWidget::IncidentWidget(quint32 id, QString text, QWidget *parent) :  QWidget(parent), ui(new Ui::IncidentWidget) {
     ui->setupUi(this);
     this->id = id;
     this->ui->textEdit_incident_description->append(text);

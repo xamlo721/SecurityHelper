@@ -52,7 +52,7 @@ class MainWindow : public QMainWindow {
         void signalIncidentsButtonPressed();
         void signalSettingsButtonPressed();
         void signalExitButtonPressed();
-        void signalCategoryClicked(int categoryID);
+        void signalCategoryClicked(quint32 categoryID);
 
     private:
         Ui::MainWindow *ui;

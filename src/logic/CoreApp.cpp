@@ -12,7 +12,7 @@ void CoreApp::init() {
 }
 
 
-void CoreApp::onOpenCategory(int categoryId) {
+void CoreApp::onOpenCategory(quint32 categoryId) {
 
     QList<SecurityEvent> categoryEvents;
     SecurityEventCategory category = db.categories.value(categoryId);
@@ -53,7 +53,7 @@ void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
     emit signalOpenIncidents(incidents);
 }
 
-void CoreApp::onOpenIncident(int id) {
+void CoreApp::onOpenIncident(quint32 id) {
 
     QList<SecurityScenario> scenaries;
     ///Ищем среди сценариев те, что образуется указанным инцидентом
@@ -74,7 +74,7 @@ void CoreApp::onOpenIncident(int id) {
     emit signalOpenScenaries(scenaries);
 }
 
-void CoreApp::onOpenScenario(int id) {
+void CoreApp::onOpenScenario(quint32 id) {
 
     QList<SecurityRecommendations> recoms;
     ///Ищем среди рекомендаций те, что образуется указанным инцидентом

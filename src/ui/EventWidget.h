@@ -12,18 +12,18 @@ class EventWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit EventWidget(int id, QString text, bool isChecked, QWidget *parent = nullptr);
+        explicit EventWidget(quint32 id, QString text, bool isChecked, QWidget *parent = nullptr);
         ~EventWidget();
-        int getId();
+        quint32 getId();
 
     signals:
-        void signalEventSelected(int eventID);
+        void signalEventSelected(quint32 eventID);
 
     private slots:
         void onCheckBoxClicked();
 
     private:
-        int id;
+        quint32 id;
         QString text;
         Ui::EventWidget *ui;
 };

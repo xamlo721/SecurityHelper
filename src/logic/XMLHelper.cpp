@@ -25,11 +25,11 @@ Database XMLHelper::readDatabase(QString path) {
     }
 
 
-    QMap<int, SecurityEvent> events;
-    QMap<int, SecurityEventCategory> categories;
-    QMap<int, SecurityIncident> incidents;
-    QMap<int, SecurityRecommendations> recommendations;
-    QMap<int, SecurityScenario> scenaries;
+    QMap<quint32, SecurityEvent> events;
+    QMap<quint32, SecurityEventCategory> categories;
+    QMap<quint32, SecurityIncident> incidents;
+    QMap<quint32, SecurityRecommendations> recommendations;
+    QMap<quint32, SecurityScenario> scenaries;
 
     {
         QFile eventsFile(path + "Events.xml");
@@ -120,21 +120,21 @@ void XMLHelper::writeDatabase(QString path) {
 
 SecurityEvent XMLHelper::readSecurityEvent(QDomElement xmlDomElement) {
     QString eventTitle =XmlUtils::readText(xmlDomElement, "Text");
-    int eventId = XmlUtils::readint(xmlDomElement, "id");
+    quint32 eventId = XmlUtils::readint(xmlDomElement, "id");
     return SecurityEvent(eventId, eventTitle);
 }
 
 SecurityEventCategory XMLHelper::readSecurityEventCategory(QDomElement xmlDomElement) {
     QString categoryTitle =XmlUtils::readText(xmlDomElement, "Text");
-    int categoryId = XmlUtils::readint(xmlDomElement, "id");
-    QList<int> categoryEventIds = XmlUtils::readints(xmlDomElement, "events");
+    quint32 categoryId = XmlUtils::readint(xmlDomElement, "id");
+    QList<quint32> categoryEventIds = XmlUtils::readUints(xmlDomElement, "events");
     return SecurityEventCategory(categoryId, categoryTitle, categoryEventIds);
 }
 
 SecurityIncident XMLHelper::readSecurityIncident(QDomElement xmlDomElement) {
     QString incidentTitle =XmlUtils::readText(xmlDomElement, "Text");
-    int incidentId = XmlUtils::readint(xmlDomElement, "id");
-    QList<int> incidentEventIds = XmlUtils::readints(xmlDomElement, "events");
+    quint32 incidentId = XmlUtils::readint(xmlDomElement, "id");
+    QList<quint32> incidentEventIds = XmlUtils::readUints(xmlDomElement, "events");
     return SecurityIncident(incidentId, incidentTitle, incidentEventIds);
 }
 
@@ -142,14 +142,14 @@ SecurityRecommendations XMLHelper::readSecurityRecommendations(QDomElement xmlDo
     QString recContainment =XmlUtils::readText(xmlDomElement, "TextContainment");
     QString recFixes =XmlUtils::readText(xmlDomElement, "TextFixes");
     QString recRestore =XmlUtils::readText(xmlDomElement, "TextRestore");
-    int recId = XmlUtils::readint(xmlDomElement, "id");
-    QList<int> scenaryIds = XmlUtils::readints(xmlDomElement, "Scenario");
+    quint32 recId = XmlUtils::readint(xmlDomElement, "id");
+    QList<quint32> scenaryIds = XmlUtils::readUints(xmlDomElement, "Scenario");
     return SecurityRecommendations(recId, recContainment, recFixes, recRestore,scenaryIds);
 }
 
 SecurityScenario XMLHelper::readSecurityScenario(QDomElement xmlDomElement) {
     QString scenarioTitle =XmlUtils::readText(xmlDomElement, "Text");
-    int scenarioId = XmlUtils::readint(xmlDomElement, "id");
-    QList<int> incidentIds = XmlUtils::readints(xmlDomElement, "Incident");
+    quint32 scenarioId = XmlUtils::readint(xmlDomElement, "id");
+    QList<quint32> incidentIds = XmlUtils::readUints(xmlDomElement, "Incident");
     return SecurityScenario(scenarioId, scenarioTitle, incidentIds);
 }

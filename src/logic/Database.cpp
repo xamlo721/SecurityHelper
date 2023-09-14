@@ -1,8 +1,8 @@
 #include "Database.h"
 
-Database::Database(QMap<int, SecurityEvent> events, QMap<int, SecurityEventCategory> categories,
-                   QMap<int, SecurityIncident> incidents, QMap<int, SecurityRecommendations> recommendations,
-                   QMap<int, SecurityScenario> scenaries, QObject *parent) : QObject(parent) {
+Database::Database(QMap<quint32, SecurityEvent> events, QMap<quint32, SecurityEventCategory> categories,
+                   QMap<quint32, SecurityIncident> incidents, QMap<quint32, SecurityRecommendations> recommendations,
+                   QMap<quint32, SecurityScenario> scenaries, QObject *parent) : QObject(parent) {
 
     this->events = events;
     this->categories = categories;

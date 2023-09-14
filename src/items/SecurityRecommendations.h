@@ -8,7 +8,7 @@ class SecurityRecommendations : public QObject {
     Q_OBJECT
 
     public:
-        explicit SecurityRecommendations(int id, QString textContainment, QString textFixes, QString textRestore, QList<int> scenaries, QObject *parent = nullptr);
+        explicit SecurityRecommendations(quint32 id, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent = nullptr);
         SecurityRecommendations(const SecurityRecommendations& other);
 
         SecurityRecommendations& operator=(const SecurityRecommendations& other);
@@ -17,18 +17,18 @@ class SecurityRecommendations : public QObject {
         bool operator<(const SecurityRecommendations& other) const;
         bool operator>(const SecurityRecommendations& other) const;
 
-        int getId();
+        quint32 getId();
         QString getTextContainment();
         QString getTextFixes();
         QString getTextRestore();
-        QList<int> getScenaries();
+        QList<quint32> getScenaries();
 
     private:
-        int id;
+        quint32 id;
         QString textContainment;
         QString textFixes;
         QString textRestore;
-        QList<int> scenaries;
+        QList<quint32> scenaries;
 
     signals:
 
