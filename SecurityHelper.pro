@@ -40,6 +40,11 @@ SOURCES += \
 
 HEADERS += \
     src/controllers/MainWindowController.h \
+    src/exception/Exception.h \
+    src/exception/FileOperationException.h \
+    src/exception/IllegalArgumentException.h \
+    src/exception/ParsingException.h \
+    src/exception/UnsupportedOperationException.h \
     src/items/SecurityEvent.h \
     src/items/SecurityEventCategory.h \
     src/items/SecurityIncident.h \
