@@ -127,3 +127,26 @@ void MainWindowController::onEventUnselected(quint32 eventID) {
 void MainWindowController::onClarifyEvents() {
     this->w->openMainMenu();
 }
+
+void MainWindowController::setAdminCategoryList(QList<SecurityEventCategory> categories) {
+    this->categories = categories;
+    this->w->clearCategoryList();
+    for (SecurityEventCategory cat : categories) {
+        EditableEventCategoryWidget *editableCategoryWidget = new EditableEventCategoryWidget(new EventCategoryWidget(cat.getId(), cat.getText()));
+        this->w->addEditableCategory(editableCategoryWidget);
+    }
+}
+
+void MainWindowController::setAdminEventList(QList<SecurityEvent> events) {
+    this->availableEvents = events;
+
+    //TODO: Вычесть те, которые уже отображены
+    this->w->clearCategoryEventList();
+
+    for (SecurityEvent event : events) {
+        EditableEventWidget * editableEventWidget = new EditableEventWidget(new EventWidget(event.getId(), event.getText(), false));
+        //EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
+        this->w->addEditableCategoryEvent(editableEventWidget);
+    }
+
+}

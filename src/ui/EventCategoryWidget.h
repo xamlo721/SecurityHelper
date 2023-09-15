@@ -17,6 +17,8 @@ class EventCategoryWidget : public QWidget {
 
         quint32 getId();
 
+        QString getText();
+
     public slots:
         void onOpenIncidentButtonClicked();
 
@@ -25,6 +27,7 @@ class EventCategoryWidget : public QWidget {
 
     private:
         quint32 id;
+        QString text;
         Ui::EventCategoryWidget *ui;
 
 };

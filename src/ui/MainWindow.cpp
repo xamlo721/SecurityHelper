@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "src/ui/EditableEventCategoryWidget.h"
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 
@@ -70,6 +71,14 @@ void MainWindow::clearScenarioList() {
 void MainWindow::addScenarioWidget(ScenarioWidget * widget) {
     this->ui->widget_scenario_menu->addScenarioWidget(widget);
 
+}
+
+void MainWindow::addEditableCategory(EditableEventCategoryWidget * editableCategory) {
+    this->ui->widget_main_menu->addEditableCategory(editableCategory);
+}
+
+void MainWindow::addEditableCategoryEvent(EditableEventWidget * editableEvent) {
+    this->ui->widget_main_menu->addEditableEvent(editableEvent);
 }
 
 void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {

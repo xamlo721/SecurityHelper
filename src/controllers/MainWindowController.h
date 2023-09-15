@@ -21,6 +21,9 @@
 #include "src/items/SecurityScenario.h"
 #include "src/items/SecurityRecommendations.h"
 
+#include "src/ui/EditableEventCategoryWidget.h"
+#include "src/ui/EditableEventWidget.h"
+
 class MainWindowController : public QObject {
 
     Q_OBJECT
@@ -49,6 +52,9 @@ class MainWindowController : public QObject {
         void setIncidentList(QList<SecurityIncident> incidents);
         void setScenariesList(QList<SecurityScenario> scenaries);
         void setRecommendationsList(QList<SecurityRecommendations> scenaries);
+
+        void setAdminCategoryList(QList<SecurityEventCategory> categories);
+        void setAdminEventList(QList<SecurityEvent> events);
 
     signals:
         void signalOpenCategory(quint32 id);

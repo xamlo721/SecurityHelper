@@ -27,6 +27,8 @@ SOURCES += \
     src/logic/Database.cpp \
     src/logic/XmlHelper.cpp \
     src/logic/XmlUtils.cpp \
+    src/ui/EditableEventCategoryWidget.cpp \
+    src/ui/EditableEventWidget.cpp \
     src/ui/EventCategoryWidget.cpp \
     src/ui/EventWidget.cpp \
     src/ui/IncidentMenuWidget.cpp \
@@ -54,6 +56,8 @@ HEADERS += \
     src/logic/Database.h \
     src/logic/XmlHelper.h \
     src/logic/XmlUtils.h \
+    src/ui/EditableEventCategoryWidget.h \
+    src/ui/EditableEventWidget.h \
     src/ui/EnumMenuPages.h \
     src/ui/EventCategoryWidget.h \
     src/ui/EventWidget.h \
@@ -66,6 +70,8 @@ HEADERS += \
     src/ui/ScenarioWidget.h
 
 FORMS += \
+    ui/EditableEventWidget.ui \
+    ui/EditableEventCategoryWidget.ui \
     ui/IncidentCategoryWidget.ui \
     ui/IncidentMenuWidget.ui \
     ui/MainMenuWidget.ui \

@@ -3,6 +3,7 @@
 
 EventWidget::EventWidget(quint32 id, QString text, bool isChecked, QWidget *parent) : QWidget(parent), ui(new Ui::EventWidget) {
     ui->setupUi(this);
+    this->text = text;
     this->id = id;
     this->ui->checkBox->setChecked(isChecked);
     this->ui->label_event_title->setText(text);
@@ -16,4 +17,8 @@ void EventWidget::onCheckBoxClicked() {
 
 EventWidget::~EventWidget() {
     delete ui;
+}
+
+QString EventWidget::getText() {
+    return this->text;
 }

@@ -30,7 +30,19 @@ void MainWindowController::shutdown() {
 
 
 void MainWindowController::onAdminButtonPressed() {
+    /*
+        TODO №1: создать класс Interface для управления контроллерами и разбить MainWindowController на несколько контроллеров.
 
+        TODO №2: реализовать виджет с кнопками режима админа:
+    a) редактировать ( редактировать только тот этап, на котором была нажата кнопка, второе её нажатие должно отменить режим редактирования);
+    б) отменить ( отмена последнего действия, возможность откатить несколько действий );
+    в) повторить ( возврат последнего действия, возможность вернуть несколько действий );
+    г) сбросить ( сброс до состояния, в котором была дб при входе );
+    д) сохранить ( сохранить изменения );
+    е) назад ( возвращение к MainWindow ).
+    */
+    this->setAdminCategoryList(this->categories);
+    this->setAdminEventList(this->availableEvents);
 }
 
 void MainWindowController::onResetButtonPressed() {

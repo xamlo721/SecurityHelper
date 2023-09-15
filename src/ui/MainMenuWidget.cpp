@@ -54,10 +54,19 @@ void MainMenuWidget::clearSelectedEvents() {
     }
 }
 
-
 void MainMenuWidget::addSelectedEvent(EventWidget * event) {
     QLayout * layout = this->ui->scrollAreaWidgetContents_selectes_eventes->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
     layout->addWidget(event);
+}
+
+void MainMenuWidget::addEditableCategory(EditableEventCategoryWidget * editableCategory) {
+    QLayout * layout = this->ui->scrollAreaWidgetContents_categories->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
+    layout->addWidget(editableCategory);
+}
+
+void MainMenuWidget::addEditableEvent(EditableEventWidget * editableEvent) {
+    QLayout * layout = this->ui->scrollAreaWidgetContents_events->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
+    layout->addWidget(editableEvent);
 }
 
 MainMenuWidget::~MainMenuWidget() {

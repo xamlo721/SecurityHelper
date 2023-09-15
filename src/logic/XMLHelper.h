@@ -2,6 +2,7 @@
 #define XMLHELPER_H
 
 #include <QObject>
+#include <QFile>
 
 #include <QtXml/QDomElement>
 

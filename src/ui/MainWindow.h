@@ -9,6 +9,9 @@
 #include "src/ui/ScenarioWidget.h"
 #include "src/ui/RecommendationsWidget.h"
 
+#include "src/ui/EditableEventCategoryWidget.h"
+#include "src/ui/EditableEventWidget.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
     class MainWindow;
@@ -45,6 +48,9 @@ class MainWindow : public QMainWindow {
         void addScenarioWidget(ScenarioWidget * widget);
 
         void setRemmendationWidget(RecommendationsWidget * widget);
+
+        void addEditableCategory(EditableEventCategoryWidget * editableCategory);
+        void addEditableCategoryEvent(EditableEventWidget * editableEvent);
 
     signals:
         void signalAdminButtonPressed();

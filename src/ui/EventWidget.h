@@ -14,7 +14,10 @@ class EventWidget : public QWidget {
     public:
         explicit EventWidget(quint32 id, QString text, bool isChecked, QWidget *parent = nullptr);
         ~EventWidget();
+
         quint32 getId();
+
+        QString getText();
 
     signals:
         void signalEventSelected(quint32 eventID);
