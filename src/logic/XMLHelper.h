@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QFile>
+#include <QTextStream>
+#include <QTextCodec>
+
 
 #include <QtXml/QDomElement>
 
@@ -24,7 +27,7 @@ class XMLHelper: public QObject {
 
         static Database readDatabase(QString path);
 
-        static void writeDatabase(QString path);
+        static void writeDatabase(QString path, Database database);
 
         static SecurityEvent readSecurityEvent(QDomElement xmlDomElement);
 

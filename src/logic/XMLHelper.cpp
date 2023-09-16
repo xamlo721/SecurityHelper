@@ -114,8 +114,99 @@ Database XMLHelper::readDatabase(QString path) {
     return Database(events, categories, incidents, recommendations, scenaries);
 }
 
-void XMLHelper::writeDatabase(QString path) {
-    //TODO:
+void XMLHelper::writeDatabase(QString path, Database database) {
+
+    if (!XmlUtils::checkFile(path + "Events.xml")) {
+        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Events.xml!").toLocal8Bit().constData());
+    }
+    if (!XmlUtils::checkFile(path + "Categories.xml")) {
+        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Categories.xml!").toLocal8Bit().constData());
+    }
+    if (!XmlUtils::checkFile(path + "Incidents.xml")) {
+        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Incidents.xml!").toLocal8Bit().constData());
+    }
+    if (!XmlUtils::checkFile(path + "Recommendations.xml")) {
+        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Recommendations.xml!").toLocal8Bit().constData());
+    }
+    if (!XmlUtils::checkFile(path + "Scenaries.xml")) {
+        throw std::runtime_error(QString("[XMLHelper] Erro!r Cannot load Scenaries.xml!").toLocal8Bit().constData());
+    }
+
+    {
+        QFile eventsFile(path + "Events.xml");
+        eventsFile.open(QFile::WriteOnly | QFile::Text);
+        QDomDocument eventsDoc;
+        XmlUtils::writeXMLHeader(&eventsDoc);
+        QDomElement root = eventsDoc.createElement("Events");
+        eventsDoc.appendChild(root);
+        XmlUtils::writeUint(eventsDoc, root, "events", database.events.firstKey());
+        QTextStream out(&eventsFile);
+        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
+        out.setCodec(codec);
+        out << eventsDoc;
+        eventsFile.close();
+    }
+
+    {
+        QFile categoriesFile(path + "Categories.xml");
+        categoriesFile.open(QFile::WriteOnly | QFile::Text);
+        QDomDocument eventsDoc;
+        XmlUtils::writeXMLHeader(&eventsDoc);
+        QDomElement root = eventsDoc.createElement("Categories");
+        eventsDoc.appendChild(root);
+        XmlUtils::writeUint(eventsDoc, root, "categories", database.categories.firstKey());
+        QTextStream out(&categoriesFile);
+        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
+        out.setCodec(codec);
+        out << eventsDoc;
+        categoriesFile.close();
+    }
+
+    {
+        QFile incidentsFile(path + "Incidents.xml");
+        incidentsFile.open(QFile::WriteOnly | QFile::Text);
+        QDomDocument eventsDoc;
+        XmlUtils::writeXMLHeader(&eventsDoc);
+        QDomElement root = eventsDoc.createElement("Incidents");
+        eventsDoc.appendChild(root);
+        XmlUtils::writeUint(eventsDoc, root, "incidents", database.incidents.firstKey());
+        QTextStream out(&incidentsFile);
+        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
+        out.setCodec(codec);
+        out << eventsDoc;
+        incidentsFile.close();
+    }
+
+    {
+        QFile recommendationsFile(path + "Recommendations.xml");
+        recommendationsFile.open(QFile::WriteOnly | QFile::Text);
+        QDomDocument eventsDoc;
+        XmlUtils::writeXMLHeader(&eventsDoc);
+        QDomElement root = eventsDoc.createElement("Recommendations");
+        eventsDoc.appendChild(root);
+        XmlUtils::writeUint(eventsDoc, root, "recommendations", database.recommendations.firstKey());
+        QTextStream out(&recommendationsFile);
+        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
+        out.setCodec(codec);
+        out << eventsDoc;
+        recommendationsFile.close();
+    }
+
+    {
+        QFile scenariesFile(path + "Scenaries.xml");
+        scenariesFile.open(QFile::WriteOnly | QFile::Text);
+        QDomDocument eventsDoc;
+        XmlUtils::writeXMLHeader(&eventsDoc);
+        QDomElement root = eventsDoc.createElement("Scenaries");
+        eventsDoc.appendChild(root);
+        XmlUtils::writeUint(eventsDoc, root, "scenaries", database.scenaries.firstKey());
+        QTextStream out(&scenariesFile);
+        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
+        out.setCodec(codec);
+        out << eventsDoc;
+        scenariesFile.close();
+    }
+
 }
 
 SecurityEvent XMLHelper::readSecurityEvent(QDomElement xmlDomElement) {
