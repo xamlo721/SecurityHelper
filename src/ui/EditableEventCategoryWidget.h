@@ -10,6 +10,7 @@ namespace Ui {
 class EditableEventCategoryWidget;
 }
 
+// EditableEventCategoryWidget - класс для режима редактирования категорий администратором
 class EditableEventCategoryWidget : public QWidget {
 
     Q_OBJECT

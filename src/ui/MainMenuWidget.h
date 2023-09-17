@@ -31,14 +31,26 @@ class MainMenuWidget : public QWidget {
         void addEvent(EventWidget * event);
         void addSelectedEvent(EventWidget * event);
 
+        void addCategoryToAdmin(EventCategoryWidget * category);
+        void addEventToAdmin(EventWidget * event);
+
         void addEditableCategory(EditableEventCategoryWidget * editableCategory);
         void addEditableEvent(EditableEventWidget * editableEvent);
+
+        void openUserMainMenu();
+        void openAdminMainMenu();
 
     public slots:
         //void onCategoryClicked(int categoryId);
 
     signals:
         //void signalCategoryClicked(int categoryId);
+
+        void signalAddCategoryButtonPressed();
+        void signalDeleteCategoriesButtonPressed();
+
+        void signalAddEventButtonPressed();
+        void signalDeleteEventButtonPressed();
 
     private:
         Ui::MainMenuWidget *ui;

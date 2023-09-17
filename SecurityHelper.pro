@@ -58,7 +58,9 @@ HEADERS += \
     src/logic/XmlUtils.h \
     src/ui/EditableEventCategoryWidget.h \
     src/ui/EditableEventWidget.h \
+    src/ui/EnumMainMenuPages.h \
     src/ui/EnumMenuPages.h \
+    src/ui/EnumToolbarPages.h \
     src/ui/EventCategoryWidget.h \
     src/ui/EventWidget.h \
     src/ui/IncidentMenuWidget.h \
