@@ -5,7 +5,7 @@ IncidentWidget::IncidentWidget(quint32 id, QString text, QWidget *parent) :  QWi
     ui->setupUi(this);
     this->id = id;
     this->ui->textEdit_incident_description->append(text);
-    this->ui->label_incident_title->setText("Предполагаемый инцидент №" +QString::number(id));
+    this->ui->label_incident_title->setText("Название предполагаемого инцидента");
     QObject::connect(this->ui->pushButton_openScenario, &QPushButton::clicked, this, &IncidentWidget::onPuttonClicked);
 
 }

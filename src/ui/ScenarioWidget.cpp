@@ -5,7 +5,7 @@ ScenarioWidget::ScenarioWidget(quint32 id, QString text, QWidget *parent) : QWid
     ui->setupUi(this);
     this->id = id;
     this->ui->textEdit_scenario_decription->append(text);
-    this->ui->label_scenario_title->setText("Предполагаемый Сценарий №" +QString::number(id));
+    this->ui->label_scenario_title->setText("Название предполагаемого сценария");
     QObject::connect(this->ui->pushButton_recommendations, &QPushButton::clicked, this, &ScenarioWidget::onPuttonClicked);
     QObject::connect(this->ui->pushButton_clarify, &QPushButton::clicked, this, &ScenarioWidget::signalClarify);
 }
