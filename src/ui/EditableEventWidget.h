@@ -9,6 +9,7 @@ namespace Ui {
 class EditableEventWidget;
 }
 
+// EditableEventWidget - класс для режима редактирования событий администратором
 class EditableEventWidget : public QWidget {
 
     Q_OBJECT

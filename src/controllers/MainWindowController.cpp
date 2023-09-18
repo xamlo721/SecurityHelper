@@ -13,8 +13,21 @@ void MainWindowController::init() {
     QObject::connect(this->w, &MainWindow::signalSettingsButtonPressed, this, &MainWindowController::onSettingsButtonPressed);
     QObject::connect(this->w, &MainWindow::signalExitButtonPressed, this, &MainWindowController::onExitButtonPressed);
 
+    QObject::connect(this->w, &MainWindow::signalUndoButtonPressed, this, &MainWindowController::onUndoButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalRedoButtonPressed, this, &MainWindowController::onRedoButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalResetEditButtonPressed, this, &MainWindowController::onResetEditButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalEditButtonPressed, this, &MainWindowController::onEditButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalBackButtonPressed, this, &MainWindowController::onBackButtonPressed);
 
-    w->openMainMenu();
+    QObject::connect(this->w, &MainWindow::signalAddCategoryButtonPressed, this, &MainWindowController::onAddCategoryButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalDeleteCategoriesButtonPressed, this, &MainWindowController::onDeleteCategoriesButtonPressed);
+
+    QObject::connect(this->w, &MainWindow::signalAddEventButtonPressed, this, &MainWindowController::onAddEventButtonPressed);
+    QObject::connect(this->w, &MainWindow::signalDeleteEventButtonPressed, this, &MainWindowController::onDeleteEventsButtonPressed);
+
+
+    w->openUserMainMenu();
+    w->openUserToolbar();
 
 }
 
@@ -33,14 +46,14 @@ void MainWindowController::onAdminButtonPressed() {
     /*
         TODO №1: создать класс Interface для управления контроллерами и разбить MainWindowController на несколько контроллеров.
 
-        TODO №2: реализовать виджет с кнопками режима админа:
-    a) редактировать ( редактировать только тот этап, на котором была нажата кнопка, второе её нажатие должно отменить режим редактирования);
-    б) отменить ( отмена последнего действия, возможность откатить несколько действий );
-    в) повторить ( возврат последнего действия, возможность вернуть несколько действий );
-    г) сбросить ( сброс до состояния, в котором была дб при входе );
+        TODO №2.5: добавить на тулбар админа кнопки:
     д) сохранить ( сохранить изменения );
-    е) назад ( возвращение к MainWindow ).
+
+        TODO №4: добавить отслеживание активного меню.
+
     */
+    w->openAdminToolbar();
+    w->openAdminMainMenu();
     this->setAdminCategoryList(this->categories);
     this->setAdminEventList(this->availableEvents);
 }
@@ -50,7 +63,7 @@ void MainWindowController::onResetButtonPressed() {
     this->activeEvents.clear();
     this->w->clearCategoryEventList();
     this->w->clearSelectedEventList();
-    this->w->openMainMenu();
+    this->w->openUserMainMenu();
 
 }
 
@@ -69,6 +82,45 @@ void MainWindowController::onExitButtonPressed() {
 
 }
 
+void MainWindowController::onUndoButtonPressed() {
+
+}
+
+void MainWindowController::onRedoButtonPressed() {
+
+}
+
+void MainWindowController::onResetEditButtonPressed() {
+
+}
+
+void MainWindowController::onEditButtonPressed() {
+    // замена item-ов на редактируемые
+}
+
+void MainWindowController::onAddCategoryButtonPressed() {
+    // тут должен отправляться сигнал в ядро о добавлении в лист новой категории или этот лист должен быть в самом контроллере???
+}
+
+void MainWindowController::onDeleteCategoriesButtonPressed() {
+
+}
+
+void MainWindowController::onAddEventButtonPressed() {
+
+}
+
+void MainWindowController::onDeleteEventsButtonPressed() {
+
+}
+
+void MainWindowController::onBackButtonPressed() {
+    this->setCategoryList(this->categories);
+    this->setEventList(this->availableEvents);
+
+    w->openUserMainMenu();
+    w->openUserToolbar();
+}
 
 MainWindowController::~MainWindowController() {
     this->shutdown();
