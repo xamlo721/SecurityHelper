@@ -19,15 +19,7 @@ void MainWindowController::init() {
     QObject::connect(this->w, &MainWindow::signalEditButtonPressed, this, &MainWindowController::onEditButtonPressed);
     QObject::connect(this->w, &MainWindow::signalBackButtonPressed, this, &MainWindowController::onBackButtonPressed);
 
-    QObject::connect(this->w, &MainWindow::signalAddCategoryButtonPressed, this, &MainWindowController::onAddCategoryButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalDeleteCategoriesButtonPressed, this, &MainWindowController::onDeleteCategoriesButtonPressed);
-
-    QObject::connect(this->w, &MainWindow::signalAddEventButtonPressed, this, &MainWindowController::onAddEventButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalDeleteEventButtonPressed, this, &MainWindowController::onDeleteEventsButtonPressed);
-
-
-    w->openUserMainMenu();
-    w->openUserToolbar();
+    w->openMainMenu();
 
 }
 
@@ -53,7 +45,6 @@ void MainWindowController::onAdminButtonPressed() {
 
     */
     w->openAdminToolbar();
-    w->openAdminMainMenu();
 }
 
 void MainWindowController::onResetButtonPressed() {
@@ -61,7 +52,7 @@ void MainWindowController::onResetButtonPressed() {
     this->activeEvents.clear();
     this->w->clearCategoryEventList();
     this->w->clearSelectedEventList();
-    this->w->openUserMainMenu();
+    this->w->openMainMenu();
 
 }
 
@@ -96,27 +87,11 @@ void MainWindowController::onEditButtonPressed() {
     // замена item-ов на редактируемые
 }
 
-void MainWindowController::onAddCategoryButtonPressed() {
-    // тут должен отправляться сигнал в ядро о добавлении в лист новой категории или этот лист должен быть в самом контроллере???
-}
-
-void MainWindowController::onDeleteCategoriesButtonPressed() {
-
-}
-
-void MainWindowController::onAddEventButtonPressed() {
-
-}
-
-void MainWindowController::onDeleteEventsButtonPressed() {
-
-}
-
 void MainWindowController::onBackButtonPressed() {
     this->setCategoryList(this->categories);
     this->setEventList(this->availableEvents);
 
-    w->openUserMainMenu();
+    w->openMainMenu();
     w->openUserToolbar();
 }
 

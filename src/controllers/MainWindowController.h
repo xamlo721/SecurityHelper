@@ -53,12 +53,6 @@ class MainWindowController : public QObject {
         void onEditButtonPressed();
         void onBackButtonPressed();
 
-        void onAddCategoryButtonPressed();
-        void onDeleteCategoriesButtonPressed();
-
-        void onAddEventButtonPressed();
-        void onDeleteEventsButtonPressed();
-
         void setCategoryList(QList<SecurityEventCategory> categories);
         void setEventList(QList<SecurityEvent> events);
         void setIncidentList(QList<SecurityIncident> incidents);

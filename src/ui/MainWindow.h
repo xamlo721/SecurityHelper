@@ -27,12 +27,10 @@ class MainWindow : public QMainWindow {
         ~MainWindow();
 
         //TODO: Странная проектировка, возможно переписать
-        void openUserMainMenu();
+        void openMainMenu();
         void openIncidentMenu();
         void openScenarioMenu();
         void openRecommendationMenu();
-
-        void openAdminMainMenu();
 
         void openUserToolbar();
         void openAdminToolbar();
@@ -40,12 +38,8 @@ class MainWindow : public QMainWindow {
         void clearCategoryList();
         void addCategory(EventCategoryWidget * category);
 
-        void addCategoryToAdmin(EventCategoryWidget * category);
-
         void clearCategoryEventList();
         void addCategoryEvent(EventWidget * event);
-
-        void addCategoryEventToAdmin(EventWidget * event);
 
         void clearSelectedEventList();
         void addSelectedEvent(EventWidget * event);
@@ -57,9 +51,6 @@ class MainWindow : public QMainWindow {
         void addScenarioWidget(ScenarioWidget * widget);
 
         void setRemmendationWidget(RecommendationsWidget * widget);
-
-        void addEditableCategory(EditableEventCategoryWidget * editableCategory);
-        void addEditableCategoryEvent(EditableEventWidget * editableEvent);
 
     signals:
         void signalAdminButtonPressed();
@@ -74,12 +65,6 @@ class MainWindow : public QMainWindow {
         void signalResetEditButtonPressed();
         void signalEditButtonPressed();
         void signalBackButtonPressed();
-
-        void signalAddCategoryButtonPressed();
-        void signalDeleteCategoriesButtonPressed();
-
-        void signalAddEventButtonPressed();
-        void signalDeleteEventButtonPressed();
 
     private:
         Ui::MainWindow *ui;

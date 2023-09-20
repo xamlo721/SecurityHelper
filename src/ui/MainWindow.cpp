@@ -22,14 +22,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     QObject::connect(this->ui->pushButton_back, &QPushButton::clicked, this, &MainWindow::signalBackButtonPressed);
 }
 
-void MainWindow::openUserMainMenu() {
+void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
-    this->ui->widget_main_menu->openUserMainMenu();
-}
-
-void MainWindow::openAdminMainMenu() {
-    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
-    this->ui->widget_main_menu->openAdminMainMenu();
+    this->ui->widget_main_menu->openMainMenu();
 }
 
 void MainWindow::openIncidentMenu() {
@@ -91,14 +86,6 @@ void MainWindow::clearScenarioList() {
 void MainWindow::addScenarioWidget(ScenarioWidget * widget) {
     this->ui->widget_scenario_menu->addScenarioWidget(widget);
 
-}
-
-void MainWindow::addEditableCategory(EditableEventCategoryWidget * editableCategory) {
-    this->ui->widget_main_menu->addEditableCategory(editableCategory);
-}
-
-void MainWindow::addEditableCategoryEvent(EditableEventWidget * editableEvent) {
-    this->ui->widget_main_menu->addEditableEvent(editableEvent);
 }
 
 void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {

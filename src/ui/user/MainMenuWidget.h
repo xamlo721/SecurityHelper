@@ -8,9 +8,6 @@
 #include "src/ui/user/EventCategoryWidget.h"
 #include "src/ui/user/EventWidget.h"
 
-#include "src/ui/admin/EditableEventCategoryWidget.h"
-#include "src/ui/admin/EditableEventWidget.h"
-
 namespace Ui {
     class MainMenuWidget;
 }
@@ -31,14 +28,7 @@ class MainMenuWidget : public QWidget {
         void addEvent(EventWidget * event);
         void addSelectedEvent(EventWidget * event);
 
-        void addCategoryToAdmin(EventCategoryWidget * category);
-        void addEventToAdmin(EventWidget * event);
-
-        void addEditableCategory(EditableEventCategoryWidget * editableCategory);
-        void addEditableEvent(EditableEventWidget * editableEvent);
-
-        void openUserMainMenu();
-        void openAdminMainMenu();
+        void openMainMenu();
 
     public slots:
         //void onCategoryClicked(int categoryId);

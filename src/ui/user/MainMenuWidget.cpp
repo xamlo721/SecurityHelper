@@ -1,7 +1,7 @@
 #include "MainMenuWidget.h"
 #include "ui_MainMenuWidget.h"
 
-#include "../EnumMainMenuPages.h"
+#include "../EnumMenuPages.h"
 
 MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);
@@ -61,22 +61,8 @@ void MainMenuWidget::addSelectedEvent(EventWidget * event) {
     layout->addWidget(event);
 }
 
-void MainMenuWidget::addEditableCategory(EditableEventCategoryWidget * editableCategory) {
-    QLayout * layout = this->ui->scrollAreaWidgetContents_categories->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(editableCategory);
-}
-
-void MainMenuWidget::addEditableEvent(EditableEventWidget * editableEvent) {
-    QLayout * layout = this->ui->scrollAreaWidgetContents_events->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(editableEvent);
-}
-
-void MainMenuWidget::openUserMainMenu() {
-    this->ui->stackedWidget->setCurrentIndex(EnumMainMenuPages::UserMainMenu);
-}
-
-void MainMenuWidget::openAdminMainMenu() {
-    this->ui->stackedWidget->setCurrentIndex(EnumMainMenuPages::AdminMainMenu);
+void MainMenuWidget::openMainMenu() {
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
 }
 
 MainMenuWidget::~MainMenuWidget() {

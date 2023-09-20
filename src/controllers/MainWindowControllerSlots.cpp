@@ -125,5 +125,5 @@ void MainWindowController::onEventUnselected(quint32 eventID) {
 
 }
 void MainWindowController::onClarifyEvents() {
-    this->w->openUserMainMenu();
+    this->w->openMainMenu();
 }
