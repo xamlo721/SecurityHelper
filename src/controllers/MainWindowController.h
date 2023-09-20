@@ -15,14 +15,9 @@
 
 #include "src/ui/user/EventCategoryWidget.h"
 
-#include "src/items/SecurityEventCategory.h"
-#include "src/items/SecurityEvent.h"
 #include "src/items/SecurityIncident.h"
 #include "src/items/SecurityScenario.h"
 #include "src/items/SecurityRecommendations.h"
-
-#include "src/ui/admin/EditableEventCategoryWidget.h"
-#include "src/ui/admin/EditableEventWidget.h"
 
 class MainWindowController : public QObject {
 
@@ -31,7 +26,7 @@ class MainWindowController : public QObject {
     public:
         explicit MainWindowController(QObject *parent = nullptr);
 
-        void init();
+        void init(MainWindow *mainWindow);
 
         void show();
 
@@ -53,30 +48,22 @@ class MainWindowController : public QObject {
         void onEditButtonPressed();
         void onBackButtonPressed();
 
-        void setCategoryList(QList<SecurityEventCategory> categories);
-        void setEventList(QList<SecurityEvent> events);
         void setIncidentList(QList<SecurityIncident> incidents);
         void setScenariesList(QList<SecurityScenario> scenaries);
         void setRecommendationsList(QList<SecurityRecommendations> scenaries);
 
     signals:
-        void signalOpenCategory(quint32 id);
-        void signalCalculateIncident(QList<SecurityEvent> activeEvents);
+        void signalCalculateIncident();
         void signalOpenIncident(quint32 id);
         void signalOpenScenario(quint32 id);
 
+        void signalResetButtonPressed();
+
     private:
         MainWindow * w;
-        QList<SecurityEventCategory> categories;
-        QList<SecurityEvent> availableEvents;
-        QList<SecurityEvent> activeEvents;
 
     private slots:
-        void onEventSelected(quint32 eventID);
-        void onEventUnselected(quint32 eventID);
         void onClarifyEvents();
-
-    signals:
 
 };
 

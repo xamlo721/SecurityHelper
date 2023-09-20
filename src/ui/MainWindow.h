@@ -6,6 +6,7 @@
 #include "src/ui/user/EventCategoryWidget.h"
 #include "src/ui/user/EventWidget.h"
 #include "src/ui/user/IncidentWidget.h"
+#include "src/ui/user/MainMenuWidget.h"
 #include "src/ui/user/ScenarioWidget.h"
 #include "src/ui/user/RecommendationsWidget.h"
 
@@ -26,6 +27,8 @@ class MainWindow : public QMainWindow {
         MainWindow(QWidget *parent = nullptr);
         ~MainWindow();
 
+        MainMenuWidget *getMainMenuWidget();
+
         //TODO: Странная проектировка, возможно переписать
         void openMainMenu();
         void openIncidentMenu();
@@ -34,15 +37,6 @@ class MainWindow : public QMainWindow {
 
         void openUserToolbar();
         void openAdminToolbar();
-
-        void clearCategoryList();
-        void addCategory(EventCategoryWidget * category);
-
-        void clearCategoryEventList();
-        void addCategoryEvent(EventWidget * event);
-
-        void clearSelectedEventList();
-        void addSelectedEvent(EventWidget * event);
 
         void clearIncidentList();
         void addIncidentWidget(IncidentWidget * widget);

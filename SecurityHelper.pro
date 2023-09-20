@@ -30,7 +30,7 @@ FORMS += ui/MainWindow.ui \
 
 HEADERS += \
     src/controllers/MainWindowController.h \
-    src/controllers/UserCategoryEventWidgetController.h \
+    src/controllers/user/UserCategoryEventWidgetController.h \
     src/exception/Exception.h \
     src/exception/FileOperationException.h \
     src/exception/IllegalArgumentException.h \
@@ -62,7 +62,7 @@ HEADERS += \
 SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/controllers/MainWindowControllerSlots.cpp \
-    src/controllers/UserCategoryEventWidgetController.cpp \
+    src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/items/SecurityEvent.cpp \
     src/items/SecurityEventCategory.cpp \
     src/items/SecurityIncident.cpp \
