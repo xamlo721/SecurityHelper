@@ -22,6 +22,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     QObject::connect(this->ui->pushButton_back, &QPushButton::clicked, this, &MainWindow::signalBackButtonPressed);
 }
 
+MainMenuWidget *MainWindow::getMainMenuWidget() {
+    return this->ui->widget_main_menu;
+}
+
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
     this->ui->widget_main_menu->openMainMenu();
@@ -45,30 +49,6 @@ void MainWindow::openUserToolbar() {
 
 void MainWindow::openAdminToolbar() {
     this->ui->stackedWidget_toolbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
-}
-
-void MainWindow::clearCategoryList() {
-    this->ui->widget_main_menu->clearCategories();
-}
-
-void MainWindow::addCategory(EventCategoryWidget * category) {
-    this->ui->widget_main_menu->addCategory(category);
-}
-
-void MainWindow::clearCategoryEventList() {
-    this->ui->widget_main_menu->clearAvailableEvents();
-}
-
-void MainWindow::addCategoryEvent(EventWidget * event) {
-    this->ui->widget_main_menu->addEvent(event);
-}
-
-void MainWindow::clearSelectedEventList() {
-    this->ui->widget_main_menu->clearSelectedEvents();
-}
-
-void MainWindow::addSelectedEvent(EventWidget * event) {
-    this->ui->widget_main_menu->addSelectedEvent(event);
 }
 
 void MainWindow::clearIncidentList() {

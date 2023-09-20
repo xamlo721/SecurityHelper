@@ -5,8 +5,8 @@ MainWindowController::MainWindowController(QObject *parent) : QObject(parent) {
 }
 
 
-void MainWindowController::init() {
-    w = new MainWindow();
+void MainWindowController::init(MainWindow *mainWindow) {
+    w = mainWindow;
     QObject::connect(this->w, &MainWindow::signalAdminButtonPressed, this, &MainWindowController::onAdminButtonPressed);
     QObject::connect(this->w, &MainWindow::signalResetButtonPressed, this, &MainWindowController::onResetButtonPressed);
     QObject::connect(this->w, &MainWindow::signalIncidentsButtonPressed, this, &MainWindowController::onIncidentsButtonPressed);
@@ -44,20 +44,18 @@ void MainWindowController::onAdminButtonPressed() {
         TODO №4: добавить отслеживание активного меню.
 
     */
+    emit signalResetButtonPressed();
     w->openAdminToolbar();
 }
 
 void MainWindowController::onResetButtonPressed() {
-    this->availableEvents.clear();
-    this->activeEvents.clear();
-    this->w->clearCategoryEventList();
-    this->w->clearSelectedEventList();
+    emit signalResetButtonPressed();
     this->w->openMainMenu();
 
 }
 
 void MainWindowController::onIncidentsButtonPressed() {
-    emit signalCalculateIncident(this->activeEvents);
+    emit signalCalculateIncident(); //
     this->w->openIncidentMenu();
 
 }
@@ -88,11 +86,10 @@ void MainWindowController::onEditButtonPressed() {
 }
 
 void MainWindowController::onBackButtonPressed() {
-    this->setCategoryList(this->categories);
-    this->setEventList(this->availableEvents);
-
+    emit signalResetButtonPressed();
     w->openMainMenu();
     w->openUserToolbar();
+
 }
 
 MainWindowController::~MainWindowController() {
