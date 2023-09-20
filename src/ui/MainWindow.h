@@ -3,14 +3,14 @@
 
 #include <QMainWindow>
 
-#include "src/ui/EventCategoryWidget.h"
-#include "src/ui/EventWidget.h"
-#include "src/ui/IncidentWidget.h"
-#include "src/ui/ScenarioWidget.h"
-#include "src/ui/RecommendationsWidget.h"
+#include "src/ui/user/EventCategoryWidget.h"
+#include "src/ui/user/EventWidget.h"
+#include "src/ui/user/IncidentWidget.h"
+#include "src/ui/user/ScenarioWidget.h"
+#include "src/ui/user/RecommendationsWidget.h"
 
-#include "src/ui/EditableEventCategoryWidget.h"
-#include "src/ui/EditableEventWidget.h"
+#include "src/ui/admin/EditableEventCategoryWidget.h"
+#include "src/ui/admin/EditableEventWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

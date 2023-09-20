@@ -5,11 +5,11 @@
 #include <QList>
 #include <QPushButton>
 
-#include "src/ui/EventCategoryWidget.h"
-#include "src/ui/EventWidget.h"
+#include "src/ui/user/EventCategoryWidget.h"
+#include "src/ui/user/EventWidget.h"
 
-#include "src/ui/EditableEventCategoryWidget.h"
-#include "src/ui/EditableEventWidget.h"
+#include "src/ui/admin/EditableEventCategoryWidget.h"
+#include "src/ui/admin/EditableEventWidget.h"
 
 namespace Ui {
     class MainMenuWidget;

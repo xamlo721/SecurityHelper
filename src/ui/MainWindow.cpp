@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "src/ui/EditableEventCategoryWidget.h"
+#include "src/ui/admin/EditableEventCategoryWidget.h"
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 

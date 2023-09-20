@@ -15,30 +15,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    src/controllers/MainWindowController.cpp \
-    src/controllers/MainWindowControllerSlots.cpp \
-    src/items/SecurityEvent.cpp \
-    src/items/SecurityEventCategory.cpp \
-    src/items/SecurityIncident.cpp \
-    src/items/SecurityRecommendations.cpp \
-    src/items/SecurityScenario.cpp \
-    src/logic/CoreApp.cpp \
-    src/logic/Database.cpp \
-    src/logic/XmlHelper.cpp \
-    src/logic/XmlUtils.cpp \
-    src/ui/EditableEventCategoryWidget.cpp \
-    src/ui/EditableEventWidget.cpp \
-    src/ui/EventCategoryWidget.cpp \
-    src/ui/EventWidget.cpp \
-    src/ui/IncidentMenuWidget.cpp \
-    src/ui/IncidentWidget.cpp \
-    src/ui/MainMenuWidget.cpp \
-    src/ui/MainWindow.cpp \
-    src/main.cpp \
-    src/ui/RecommendationsWidget.cpp \
-    src/ui/ScenarioMenuWidget.cpp \
-    src/ui/ScenarioWidget.cpp
+
+FORMS += ui/MainWindow.ui \
+    ui/admin/EditableEventCategoryWidget.ui \
+    ui/admin/EditableEventWidget.ui \
+    ui/user/EventWidget.ui \
+    ui/user/IncidentCategoryWidget.ui \
+    ui/user/IncidentMenuWidget.ui \
+    ui/user/IncidentWidget.ui \
+    ui/user/MainMenuWidget.ui \
+    ui/user/RecommendationsWidget.ui \
+    ui/user/ScenarioMenuWidget.ui \
+    ui/user/ScenarioWidget.ui
 
 HEADERS += \
     src/controllers/MainWindowController.h \
@@ -54,40 +42,47 @@ HEADERS += \
     src/items/SecurityScenario.h \
     src/logic/CoreApp.h \
     src/logic/Database.h \
-    src/logic/XmlHelper.h \
+    src/logic/XMLHelper.h \
     src/logic/XmlUtils.h \
-    src/ui/EditableEventCategoryWidget.h \
-    src/ui/EditableEventWidget.h \
     src/ui/EnumMainMenuPages.h \
     src/ui/EnumMenuPages.h \
     src/ui/EnumToolbarPages.h \
-    src/ui/EventCategoryWidget.h \
-    src/ui/EventWidget.h \
-    src/ui/IncidentMenuWidget.h \
-    src/ui/IncidentWidget.h \
-    src/ui/MainMenuWidget.h \
     src/ui/MainWindow.h \
-    src/ui/RecommendationsWidget.h \
-    src/ui/ScenarioMenuWidget.h \
-    src/ui/ScenarioWidget.h
+    src/ui/admin/EditableEventCategoryWidget.h \
+    src/ui/admin/EditableEventWidget.h \
+    src/ui/user/EventCategoryWidget.h \
+    src/ui/user/EventWidget.h \
+    src/ui/user/IncidentMenuWidget.h \
+    src/ui/user/IncidentWidget.h \
+    src/ui/user/MainMenuWidget.h \
+    src/ui/user/RecommendationsWidget.h \
+    src/ui/user/ScenarioMenuWidget.h \
+    src/ui/user/ScenarioWidget.h
 
-FORMS += \
-    ui/EditableEventWidget.ui \
-    ui/EditableEventCategoryWidget.ui \
-    ui/IncidentCategoryWidget.ui \
-    ui/IncidentMenuWidget.ui \
-    ui/MainMenuWidget.ui \
-    ui/RecommendationsWidget.ui \
-    ui/EventWidget.ui \
-    ui/IncidentWidget.ui \
-    ui/MainWindow.ui \
-    ui/ScenarioMenuWidget.ui \
-    ui/ScenarioWidget.ui
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+SOURCES += \
+    src/controllers/MainWindowController.cpp \
+    src/controllers/MainWindowControllerSlots.cpp \
+    src/items/SecurityEvent.cpp \
+    src/items/SecurityEventCategory.cpp \
+    src/items/SecurityIncident.cpp \
+    src/items/SecurityRecommendations.cpp \
+    src/items/SecurityScenario.cpp \
+    src/logic/CoreApp.cpp \
+    src/logic/Database.cpp \
+    src/logic/XMLHelper.cpp \
+    src/logic/XmlUtils.cpp \
+    src/main.cpp \
+    src/ui/MainWindow.cpp \
+    src/ui/admin/EditableEventCategoryWidget.cpp \
+    src/ui/admin/EditableEventWidget.cpp \
+    src/ui/user/EventCategoryWidget.cpp \
+    src/ui/user/EventWidget.cpp \
+    src/ui/user/IncidentMenuWidget.cpp \
+    src/ui/user/IncidentWidget.cpp \
+    src/ui/user/MainMenuWidget.cpp \
+    src/ui/user/RecommendationsWidget.cpp \
+    src/ui/user/ScenarioMenuWidget.cpp \
+    src/ui/user/ScenarioWidget.cpp
 
 DISTFILES += \
     storage/Categories.xml \
@@ -95,3 +90,8 @@ DISTFILES += \
     storage/Incidents.xml \
     storage/Recommendations.xml \
     storage/Scenaries.xml
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

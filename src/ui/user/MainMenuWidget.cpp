@@ -1,7 +1,7 @@
 #include "MainMenuWidget.h"
 #include "ui_MainMenuWidget.h"
 
-#include "EnumMainMenuPages.h"
+#include "../EnumMainMenuPages.h"
 
 MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);

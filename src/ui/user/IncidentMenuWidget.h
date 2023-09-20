@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "src/ui/IncidentWidget.h"
+#include "src/ui/user/IncidentWidget.h"
 
 namespace Ui {
     class IncidentMenuWidget;
