@@ -3,32 +3,118 @@
 
 #include <QObject>
 
+/**
+ * @brief The SecurityEventCategory class - Data-class для описания
+ * понятия Категории событий информационной безопаности
+ *
+ * По сути это как папка для событий
+ */
 class SecurityEventCategory : public QObject {
 
     Q_OBJECT
 
-    public:
-        explicit SecurityEventCategory(quint32 id, QString text, QList<quint32> incidentes, QObject *parent = nullptr);
-        SecurityEventCategory() {};
-
-        SecurityEventCategory(const SecurityEventCategory& other);
-
-        SecurityEventCategory& operator=(const SecurityEventCategory& other);
-        bool operator==(const SecurityEventCategory& other) const;
-        bool operator!=(const SecurityEventCategory& other) const;
-        bool operator<(const SecurityEventCategory& other) const;
-        bool operator>(const SecurityEventCategory& other) const;
-
-        quint32 getId();
-        QString getText();
-        QList<quint32> getEventIds();
-
     private:
+        ///Цифровой целочисленный ID для однозначной идентификации и учёта объекта
         quint32 id;
+        ///Текстовое название категории событий, задаваемое администратором
         QString text;
+        ///Перечень ID событий, входящих в эту категорию
+        //TODO: Выяснить, может ли событие быть в нескольких категориях
         QList<quint32> events;
 
-    signals:
+    public:
+
+        /**
+         * @brief SecurityEventCategory - базовый конструктор по умолчанию
+         * Он необходим для того, чтобы объект можно было хранить
+         * в контейнерах Qlist, QMap и т.д
+         */
+        SecurityEventCategory();
+
+        /**
+         * @brief SecurityEvent - конструктор копирования объектов
+         * Достаточно часто неявно вызывается, особенно при передаче
+         * в функцию в качестве параметра и т.д
+         * @param other - объект, используемый как источник данных
+         */
+        SecurityEventCategory(const SecurityEventCategory& other);
+
+        /**
+         * @brief SecurityEventCategory
+         * @param id - Цифровой целочисленный ID для однозначной идентификации и учёта объекта
+         * @param text - Текстовое название категории событий, задаваемое администратором
+         * @param events - Перечень ID событий, входящих в эту категорию
+         * @param parent - родительский объект в иерархии Qt
+         */
+        SecurityEventCategory(quint32 id, QString text, QList<quint32> events, QObject *parent = nullptr);
+
+        /**
+         * @brief getId - Получить ID категории
+         * @return
+         */
+        quint32 getId() const;
+
+        /**
+         * @brief getText - Получить название категории
+         * @return
+         */
+        QString getText() const;
+
+        /**
+         * @brief getEventIds - Получить перечень ID событий, входящих в эту категорию
+         * @return
+         */
+        QList<quint32> getEventIds() const;
+
+        /**
+         * @brief operator =
+         * @param other
+         * @return
+         */
+        SecurityEventCategory& operator=(const SecurityEventCategory& other);
+
+        /**
+         * @brief operator ==
+         * @param other
+         * @return
+         */
+        bool operator==(const SecurityEventCategory& other) const;
+
+        /**
+         * @brief operator !=
+         * @param other
+         * @return
+         */
+        bool operator!=(const SecurityEventCategory& other) const;
+
+        /**
+         * @brief operator <
+         * @param other
+         * @return
+         */
+        bool operator<(const SecurityEventCategory& other) const;
+
+        /**
+         * @brief operator >
+         * @param other
+         * @return
+         */
+        bool operator>(const SecurityEventCategory& other) const;
+
+        /**
+         * @brief operator >=
+         * @param other
+         * @return
+         */
+        bool operator>=(const SecurityEventCategory& other) const;
+
+        /**
+         * @brief operator <=
+         * @param other
+         * @return
+         */
+        bool operator<=(const SecurityEventCategory& other) const;
+
 
 };
 

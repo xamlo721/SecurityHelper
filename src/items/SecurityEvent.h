@@ -2,6 +2,7 @@
 #define SECURITYEVENT_H
 
 #include <QObject>
+
 /**
  * @brief The SecurityEvent class - Data-class, описывающий
  * понятие события информационной безопасности
