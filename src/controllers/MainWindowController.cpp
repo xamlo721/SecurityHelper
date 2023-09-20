@@ -54,8 +54,6 @@ void MainWindowController::onAdminButtonPressed() {
     */
     w->openAdminToolbar();
     w->openAdminMainMenu();
-    this->setAdminCategoryList(this->categories);
-    this->setAdminEventList(this->availableEvents);
 }
 
 void MainWindowController::onResetButtonPressed() {

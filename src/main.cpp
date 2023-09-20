@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&controller, &MainWindowController::signalOpenIncident, &core, &CoreApp::onOpenIncident);
     QObject::connect(&controller, &MainWindowController::signalOpenScenario, &core, &CoreApp::onOpenScenario);
 
+
     controller.init();
 
     core.init();

@@ -8,16 +8,6 @@ MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Ma
     ui->scrollAreaWidgetContents_categories->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_events->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_selectes_eventes->setLayout(new QVBoxLayout());
-
-    ui->scrollAreaWidgetContents_categories_2->setLayout(new QVBoxLayout());
-    ui->scrollAreaWidgetContents_events_2->setLayout(new QVBoxLayout());
-    ui->scrollAreaWidgetContents_selectes_eventes_2->setLayout(new QVBoxLayout());
-
-    QObject::connect(this->ui->pushButton_add_category, &QPushButton::clicked, this, &MainMenuWidget::signalAddCategoryButtonPressed);
-    QObject::connect(this->ui->pushButton_delete_categories, &QPushButton::clicked, this, &MainMenuWidget::signalDeleteCategoriesButtonPressed);
-
-    QObject::connect(this->ui->pushButton_add_event, &QPushButton::clicked, this, &MainMenuWidget::signalAddEventButtonPressed);
-    QObject::connect(this->ui->pushButton_delete_events, &QPushButton::clicked, this, &MainMenuWidget::signalDeleteEventButtonPressed);
 }
 
 void MainMenuWidget::clearCategories() {
@@ -37,11 +27,6 @@ void MainMenuWidget::addCategory(EventCategoryWidget * category) {
     layout->addWidget(category);
 }
 
-void MainMenuWidget::addCategoryToAdmin(EventCategoryWidget * category) {
-    QLayout * layout = this->ui->scrollAreaWidgetContents_categories_2->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(category);
-}
-
 void MainMenuWidget::clearAvailableEvents() {
     QWidget * m_view = this->ui->scrollAreaWidgetContents_events;
     if ( m_view->layout() != NULL ) {
@@ -56,11 +41,6 @@ void MainMenuWidget::clearAvailableEvents() {
 
 void MainMenuWidget::addEvent(EventWidget * event) {
     QLayout * layout = this->ui->scrollAreaWidgetContents_events->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(event);
-}
-
-void MainMenuWidget::addEventToAdmin(EventWidget * event) {
-    QLayout * layout = this->ui->scrollAreaWidgetContents_events_2->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
     layout->addWidget(event);
 }
 

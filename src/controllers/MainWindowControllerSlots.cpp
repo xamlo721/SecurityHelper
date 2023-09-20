@@ -127,30 +127,3 @@ void MainWindowController::onEventUnselected(quint32 eventID) {
 void MainWindowController::onClarifyEvents() {
     this->w->openUserMainMenu();
 }
-
-
-// TODO: Разделить 2 метода ниже на методы устанавливающие редактируемые и не редактируемые листы для админ мода
-void MainWindowController::setAdminCategoryList(QList<SecurityEventCategory> categories) {
-    this->categories = categories;
-    this->w->clearCategoryList();
-    for (SecurityEventCategory cat : categories) {
-        //EditableEventCategoryWidget *editableCategoryWidget = new EditableEventCategoryWidget(new EventCategoryWidget(cat.getId(), cat.getText()));
-        //this->w->addEditableCategory(editableCategoryWidget);
-        EventCategoryWidget * categoryWidget = new EventCategoryWidget(cat.getId(), cat.getText());
-        this->w->addCategoryToAdmin(categoryWidget);
-    }
-}
-
-void MainWindowController::setAdminEventList(QList<SecurityEvent> events) {
-    this->availableEvents = events;
-    this->w->clearCategoryEventList();
-
-    for (SecurityEvent event : events) {
-        //EditableEventWidget * editableEventWidget = new EditableEventWidget(new EventWidget(event.getId(), event.getText(), false));
-        //this->w->addEditableCategoryEvent(editableEventWidget);
-
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
-        this->w->addCategoryEventToAdmin(eventWidget);
-    }
-
-}

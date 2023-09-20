@@ -20,12 +20,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     QObject::connect(this->ui->pushButton_reset_edit, &QPushButton::clicked, this, &MainWindow::signalResetEditButtonPressed);
     QObject::connect(this->ui->pushButton_edit, &QPushButton::clicked, this, &MainWindow::signalEditButtonPressed);
     QObject::connect(this->ui->pushButton_back, &QPushButton::clicked, this, &MainWindow::signalBackButtonPressed);
-
-    QObject::connect(this->ui->widget_main_menu, &MainMenuWidget::signalAddCategoryButtonPressed, this, &MainWindow::signalAddCategoryButtonPressed);
-    QObject::connect(this->ui->widget_main_menu, &MainMenuWidget::signalDeleteCategoriesButtonPressed, this, &MainWindow::signalDeleteCategoriesButtonPressed);
-
-    QObject::connect(this->ui->widget_main_menu, &MainMenuWidget::signalAddEventButtonPressed, this, &MainWindow::signalAddEventButtonPressed);
-    QObject::connect(this->ui->widget_main_menu, &MainMenuWidget::signalDeleteEventButtonPressed, this, &MainWindow::signalDeleteEventButtonPressed);
 }
 
 void MainWindow::openUserMainMenu() {
@@ -66,20 +60,12 @@ void MainWindow::addCategory(EventCategoryWidget * category) {
     this->ui->widget_main_menu->addCategory(category);
 }
 
-void MainWindow::addCategoryToAdmin(EventCategoryWidget * category) {
-    this->ui->widget_main_menu->addCategoryToAdmin(category);
-}
-
 void MainWindow::clearCategoryEventList() {
     this->ui->widget_main_menu->clearAvailableEvents();
 }
 
 void MainWindow::addCategoryEvent(EventWidget * event) {
     this->ui->widget_main_menu->addEvent(event);
-}
-
-void MainWindow::addCategoryEventToAdmin(EventWidget * event) {
-    this->ui->widget_main_menu->addEventToAdmin(event);
 }
 
 void MainWindow::clearSelectedEventList() {

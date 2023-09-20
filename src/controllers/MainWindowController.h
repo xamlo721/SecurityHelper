@@ -65,9 +65,6 @@ class MainWindowController : public QObject {
         void setScenariesList(QList<SecurityScenario> scenaries);
         void setRecommendationsList(QList<SecurityRecommendations> scenaries);
 
-        void setAdminCategoryList(QList<SecurityEventCategory> categories);
-        void setAdminEventList(QList<SecurityEvent> events);
-
     signals:
         void signalOpenCategory(quint32 id);
         void signalCalculateIncident(QList<SecurityEvent> activeEvents);

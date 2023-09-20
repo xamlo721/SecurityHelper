@@ -233,7 +233,7 @@
      <x>0</x>
      <y>0</y>
      <width>1023</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -242,25 +242,25 @@
   <customwidget>
    <class>MainMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/user/MainMenuWidget.h</header>
+   <header location="global">src/ui/MainMenuWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>IncidentMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/user/IncidentMenuWidget.h</header>
+   <header location="global">src/ui/IncidentMenuWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>RecommendationsWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/user/RecommendationsWidget.h</header>
+   <header location="global">src/ui/RecommendationsWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>ScenarioMenuWidget</class>
    <extends>QWidget</extends>
-   <header location="global">src/ui/user/ScenarioMenuWidget.h</header>
+   <header location="global">src/ui/ScenarioMenuWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
