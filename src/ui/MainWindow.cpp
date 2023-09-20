@@ -9,6 +9,12 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    QPixmap bkgnd(":/../images/bg.jpg");
+    bkgnd = bkgnd.scaled(size(), Qt::IgnoreAspectRatio);
+    QPalette p = palette(); //copy current, not create new
+    p.setBrush(QPalette::Background, bkgnd);
+
+    this->setPalette(p);
     QObject::connect(this->ui->pushButton_admin, &QPushButton::clicked, this, &MainWindow::signalAdminButtonPressed);
     QObject::connect(this->ui->pushButton_reset, &QPushButton::clicked, this, &MainWindow::signalResetButtonPressed);
     QObject::connect(this->ui->pushButton_incidents, &QPushButton::clicked, this, &MainWindow::signalIncidentsButtonPressed);
@@ -21,6 +27,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     QObject::connect(this->ui->pushButton_edit, &QPushButton::clicked, this, &MainWindow::signalEditButtonPressed);
     QObject::connect(this->ui->pushButton_back, &QPushButton::clicked, this, &MainWindow::signalBackButtonPressed);
 }
+
+void MainWindow::resizeEvent(QResizeEvent *evt) {
+    QPixmap bkgnd(":/../images/bg.jpg");
+    bkgnd = bkgnd.scaled(size(), Qt::IgnoreAspectRatio);
+    QPalette p = palette(); //copy current, not create new
+    p.setBrush(QPalette::Background, bkgnd);
+    this->setPalette(p);
+
+    QMainWindow::resizeEvent(evt); //call base implementation
+}
+
 
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);

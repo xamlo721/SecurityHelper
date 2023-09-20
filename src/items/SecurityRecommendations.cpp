@@ -33,8 +33,6 @@ SecurityRecommendations::SecurityRecommendations(quint32 id, QString textContain
 SecurityRecommendations::SecurityRecommendations(const SecurityRecommendations& other)
     : QObject(other.parent()), id(other.id), textContainment(other.textContainment),
       textFixes(other.textFixes), textRestore(other.textRestore), scenaries(other.scenaries) {
-
-
 }
 
 /**

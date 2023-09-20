@@ -68,5 +68,9 @@ class MainWindow : public QMainWindow {
 
     private:
         Ui::MainWindow *ui;
+
+    protected:
+        virtual void resizeEvent(QResizeEvent *evt) override;
+
 };
 #endif // MAINWINDOW_H
