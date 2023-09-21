@@ -27,23 +27,11 @@ void MainWindowController::show() {
     w->showMaximized();
 }
 
-
-
 void MainWindowController::shutdown() {
     delete w;
 }
 
-
 void MainWindowController::onAdminButtonPressed() {
-    /*
-        TODO №1: создать класс Interface для управления контроллерами и разбить MainWindowController на несколько контроллеров.
-
-        TODO №2.5: добавить на тулбар админа кнопки:
-    д) сохранить ( сохранить изменения );
-
-        TODO №4: добавить отслеживание активного меню.
-
-    */
     emit signalResetButtonPressed();
     w->openAdminToolbar();
 }
@@ -51,13 +39,11 @@ void MainWindowController::onAdminButtonPressed() {
 void MainWindowController::onResetButtonPressed() {
     emit signalResetButtonPressed();
     this->w->openMainMenu();
-
 }
 
 void MainWindowController::onIncidentsButtonPressed() {
-    emit signalCalculateIncident(); //
+    emit signalCalculateIncident();
     this->w->openIncidentMenu();
-
 }
 
 void MainWindowController::onSettingsButtonPressed() {
@@ -66,7 +52,6 @@ void MainWindowController::onSettingsButtonPressed() {
 
 void MainWindowController::onExitButtonPressed() {
     this->w->close();
-
 }
 
 void MainWindowController::onUndoButtonPressed() {
@@ -89,7 +74,22 @@ void MainWindowController::onBackButtonPressed() {
     emit signalResetButtonPressed();
     w->openMainMenu();
     w->openUserToolbar();
+}
 
+void MainWindowController::onOpenScenarioMenu() {
+    this->w->openScenarioMenu();
+}
+
+void MainWindowController::onOpenRecommendationMenu() {
+    this->w->openRecommendationMenu();
+}
+
+void MainWindowController::setRecommendationWidget(RecommendationsWidget * widget) {
+    this->w->setRemmendationWidget(widget);
+}
+
+void MainWindowController::onClarifyEvents() {
+    this->w->openMainMenu();
 }
 
 MainWindowController::~MainWindowController() {

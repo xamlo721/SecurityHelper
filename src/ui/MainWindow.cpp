@@ -42,6 +42,14 @@ MainMenuWidget *MainWindow::getMainMenuWidget() {
     return this->ui->widget_main_menu;
 }
 
+IncidentMenuWidget *MainWindow::getIncidentMenuWidget() {
+    return this->ui->widget_incident_menu;
+}
+
+ScenarioMenuWidget *MainWindow::getScenarioMenuWidget() {
+    return this->ui->widget_scenario_menu;
+}
+
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
     this->ui->widget_main_menu->openMainMenu();
@@ -65,23 +73,6 @@ void MainWindow::openUserToolbar() {
 
 void MainWindow::openAdminToolbar() {
     this->ui->stackedWidget_toolbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
-}
-
-void MainWindow::clearIncidentList() {
-    this->ui->widget_incident_menu->clear();
-}
-
-void MainWindow::addIncidentWidget(IncidentWidget * widget) {
-    this->ui->widget_incident_menu->addcIncidentWidget(widget);
-}
-
-void MainWindow::clearScenarioList() {
-    this->ui->widget_scenario_menu->clear();
-}
-
-void MainWindow::addScenarioWidget(ScenarioWidget * widget) {
-    this->ui->widget_scenario_menu->addScenarioWidget(widget);
-
 }
 
 void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {

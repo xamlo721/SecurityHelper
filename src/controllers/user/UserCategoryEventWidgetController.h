@@ -22,6 +22,7 @@ class UserCategoryEventWidgetController : public QObject {
         void setEventList(QList<SecurityEvent> events);
 
         void onCalculateIncident();
+
         void clearWidget();
 
     private:
@@ -33,7 +34,6 @@ class UserCategoryEventWidgetController : public QObject {
     private slots:
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
-        //void onClarifyEvents();
 
     signals:
         void signalOpenCategory(quint32 id);

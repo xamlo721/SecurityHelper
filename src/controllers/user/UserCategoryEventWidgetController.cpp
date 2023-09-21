@@ -6,8 +6,6 @@ UserCategoryEventWidgetController::UserCategoryEventWidgetController(QObject *pa
 
 void UserCategoryEventWidgetController::init(MainMenuWidget *menuWidget) {
     mainMenuWidget = menuWidget;
-
-
 }
 
 void UserCategoryEventWidgetController::setCategoryList(QList<SecurityEventCategory> categories) {

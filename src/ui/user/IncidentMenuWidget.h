@@ -18,7 +18,7 @@ class IncidentMenuWidget : public QWidget {
         ~IncidentMenuWidget();
 
         void clear();
-        void addcIncidentWidget(IncidentWidget * widget);
+        void addIncidentWidget(IncidentWidget * widget);
 
     private:
         Ui::IncidentMenuWidget *ui;

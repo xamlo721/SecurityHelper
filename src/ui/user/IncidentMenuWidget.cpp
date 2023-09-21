@@ -18,7 +18,7 @@ void IncidentMenuWidget::clear() {
     }
 }
 
-void IncidentMenuWidget::addcIncidentWidget(IncidentWidget * widget) {
+void IncidentMenuWidget::addIncidentWidget(IncidentWidget * widget) {
     //FIXME: Починить баг отображения. Не скролятся виджеты!
     this->ui->scrollAreaWidgetContents->layout()->addWidget(widget);
 }

@@ -3,15 +3,10 @@
 
 #include <QMainWindow>
 
-#include "src/ui/user/EventCategoryWidget.h"
-#include "src/ui/user/EventWidget.h"
-#include "src/ui/user/IncidentWidget.h"
 #include "src/ui/user/MainMenuWidget.h"
-#include "src/ui/user/ScenarioWidget.h"
+#include "src/ui/user/IncidentMenuWidget.h"
+#include "src/ui/user/ScenarioMenuWidget.h"
 #include "src/ui/user/RecommendationsWidget.h"
-
-#include "src/ui/admin/EditableEventCategoryWidget.h"
-#include "src/ui/admin/EditableEventWidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +23,8 @@ class MainWindow : public QMainWindow {
         ~MainWindow();
 
         MainMenuWidget *getMainMenuWidget();
+        IncidentMenuWidget *getIncidentMenuWidget();
+        ScenarioMenuWidget *getScenarioMenuWidget();
 
         //TODO: Странная проектировка, возможно переписать
         void openMainMenu();
@@ -37,12 +34,6 @@ class MainWindow : public QMainWindow {
 
         void openUserToolbar();
         void openAdminToolbar();
-
-        void clearIncidentList();
-        void addIncidentWidget(IncidentWidget * widget);
-
-        void clearScenarioList();
-        void addScenarioWidget(ScenarioWidget * widget);
 
         void setRemmendationWidget(RecommendationsWidget * widget);
 

@@ -30,7 +30,9 @@ FORMS += ui/MainWindow.ui \
 
 HEADERS += \
     src/controllers/MainWindowController.h \
+    src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserCategoryEventWidgetController.h \
+    src/controllers/user/UserIncidentWidgetController.h \
     src/exception/Exception.h \
     src/exception/FileOperationException.h \
     src/exception/IllegalArgumentException.h \
@@ -61,8 +63,9 @@ HEADERS += \
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
-    src/controllers/MainWindowControllerSlots.cpp \
+    src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserCategoryEventWidgetController.cpp \
+    src/controllers/user/UserIncidentWidgetController.cpp \
     src/items/SecurityEvent.cpp \
     src/items/SecurityEventCategory.cpp \
     src/items/SecurityIncident.cpp \
