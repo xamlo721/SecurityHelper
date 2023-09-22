@@ -19,7 +19,7 @@
                                 <Scenario>0</Scenario>
 			</Recommendation>
                         <Recommendation>
-                                <id>0</id>
+                                <id>2</id>
                                 <TextContainment>Текст TextContainment</TextContainment>
                                 <TextFixes>Текст TextFixes</TextFixes>
                                 <TextRestore>Текст TextRestore</TextRestore>
@@ -27,7 +27,7 @@
                                 <Scenario>7</Scenario>
                         </Recommendation>
                         <Recommendation>
-                                <id>1</id>
+                                <id>3</id>
                                 <TextContainment>Другой Текст TextContainment</TextContainment>
                                 <TextFixes>Другой Текст TextFixes</TextFixes>
                                 <TextRestore>Другой Текст TextRestore</TextRestore>

@@ -4,19 +4,22 @@
 		<Incidents>
 			<Incident>
 				<id>0</id>
-                                <Text>Событие</Text>
+                                <Name>Событие11Name</Name>
+                                <Text>Событие1</Text>
                                 <events>2</events>
                                 <events>4</events>
                                 <events>6</events>
                         </Incident>
 			<Incident>
 				<id>1</id>
+                                <Name>Событие22Name</Name>
 				<Text>Другое событие</Text>
                                 <events>1</events>
                                 <events>0</events>
 			</Incident>
                         <Incident>
                                 <id>3</id>
+                                <Name>Событие33Name</Name>
                                 <Text>Событие</Text>
                                 <events>2</events>
                                 <events>4</events>
@@ -24,12 +27,14 @@
                         </Incident>
                         <Incident>
                                 <id>4</id>
+                                <Name>Событие44Name</Name>
                                 <Text>Другое событие</Text>
                                 <events>1</events>
                                 <events>0</events>
                         </Incident>
                         <Incident>
                                 <id>5</id>
+                                <Name>Событие55Name</Name>
                                 <Text>Событие</Text>
                                 <events>2</events>
                                 <events>4</events>
@@ -37,12 +42,14 @@
                         </Incident>
                         <Incident>
                                 <id>6</id>
+                                <Name>Событие66Name</Name>
                                 <Text>Другое событие</Text>
                                 <events>1</events>
                                 <events>0</events>
                         </Incident>
                         <Incident>
                                 <id>7</id>
+                                <Name>Событие77Name</Name>
                                 <Text>Событие</Text>
                                 <events>2</events>
                                 <events>4</events>
@@ -50,6 +57,7 @@
                         </Incident>
                         <Incident>
                                 <id>8</id>
+                                <Name>Событие88Name</Name>
                                 <Text>Другое событие</Text>
                                 <events>1</events>
                                 <events>0</events>

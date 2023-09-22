@@ -12,7 +12,7 @@ void UserIncidentWidgetController::setIncidentList(QList<SecurityIncident> incid
     this->incidentMenuWidget->clear();
 
     for (SecurityIncident inc : incidents) {
-        IncidentWidget * widget = new IncidentWidget(inc.getId(), inc.getText());
+        IncidentWidget * widget = new IncidentWidget(inc.getId(), inc.getText(), inc.getName());
         QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &UserIncidentWidgetController::signalOpenIncident);
         this->incidentMenuWidget->addIncidentWidget(widget);
     }

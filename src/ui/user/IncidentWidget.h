@@ -12,7 +12,7 @@ class IncidentWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit IncidentWidget(quint32 id, QString text, QWidget *parent = nullptr);
+        explicit IncidentWidget(quint32 id, QString text, QString name, QWidget *parent = nullptr);
         ~IncidentWidget();
 
     signals:

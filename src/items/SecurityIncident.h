@@ -16,6 +16,7 @@ class SecurityIncident : public QObject {
         quint32 id;
         ///Текстовое описании Инцидента ИБ, задаваемое администратором
         QString text;
+        QString name;
         ///Перечень SecurityEvent информационной безопасности, которые
         /// могут сигнализируют о наступлении этого инцидента
         QList<quint32> events;
@@ -42,7 +43,7 @@ class SecurityIncident : public QObject {
          * могут сигнализируют о наступлении этого инцидента
          * @param parent - родительский объект в иерархии Qt.
          */
-        SecurityIncident(quint32 id, QString text, QList<quint32> events, QObject *parent = nullptr);
+        SecurityIncident(quint32 id, QString text, QString name, QList<quint32> events, QObject *parent = nullptr);
 
         /**
          * @brief getId - Получить ID инцидента
@@ -55,6 +56,12 @@ class SecurityIncident : public QObject {
          * @return
          */
         QString getText();
+
+        /**
+         * @brief getName - Получить название инцидента
+         * @return
+         */
+        QString getName();
 
         /**
          * @brief getEventIds - Получить список событий ИБ,

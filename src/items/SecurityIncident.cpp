@@ -13,7 +13,7 @@ SecurityIncident::SecurityIncident() {
  * @param other - объект, используемый как источник данных
  */
 SecurityIncident::SecurityIncident(const SecurityIncident& other)
-    : QObject(other.parent()), id(other.id), text(other.text), events(other.events) {
+    : QObject(other.parent()), id(other.id), text(other.text), name(other.name), events(other.events) {
 
 }
 /**
@@ -24,9 +24,10 @@ SecurityIncident::SecurityIncident(const SecurityIncident& other)
  * могут сигнализируют о наступлении этого инцидента
  * @param parent - родительский объект в иерархии Qt.
  */
-SecurityIncident::SecurityIncident(quint32 id, QString text, QList<quint32> events, QObject *parent) : QObject(parent) {
+SecurityIncident::SecurityIncident(quint32 id, QString text, QString name, QList<quint32> events, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
+    this->name = name;
     this->events = events;
 }
 /**
@@ -42,6 +43,13 @@ quint32 SecurityIncident::getId() {
  */
 QString SecurityIncident::getText() {
     return this->text;
+}
+/**
+ * @brief getName - Получить название инцидента
+ * @return
+ */
+QString SecurityIncident::getName() {
+    return this->name;
 }
 /**
  * @brief getEventIds - Получить список событий ИБ,

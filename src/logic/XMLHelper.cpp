@@ -224,9 +224,10 @@ SecurityEventCategory XMLHelper::readSecurityEventCategory(QDomElement xmlDomEle
 
 SecurityIncident XMLHelper::readSecurityIncident(QDomElement xmlDomElement) {
     QString incidentTitle =XmlUtils::readText(xmlDomElement, "Text");
+    QString incidentName =XmlUtils::readText(xmlDomElement, "Name");
     quint32 incidentId = XmlUtils::readint(xmlDomElement, "id");
     QList<quint32> incidentEventIds = XmlUtils::readUints(xmlDomElement, "events");
-    return SecurityIncident(incidentId, incidentTitle, incidentEventIds);
+    return SecurityIncident(incidentId, incidentTitle, incidentName, incidentEventIds);
 }
 
 SecurityRecommendations XMLHelper::readSecurityRecommendations(QDomElement xmlDomElement) {
