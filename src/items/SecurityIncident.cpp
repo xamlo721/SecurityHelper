@@ -20,6 +20,7 @@ SecurityIncident::SecurityIncident(const SecurityIncident& other)
  * @brief SecurityIncident
  * @param id - Цифровой целочисленный ID для однозначной идентификации и учёта объекта
  * @param text - Текстовое описании Инцидента ИБ, задаваемое администратором
+ * @param text - Текстовое название инцидента
  * @param events - Перечень SecurityEvent информационной безопасности, которые
  * могут сигнализируют о наступлении этого инцидента
  * @param parent - родительский объект в иерархии Qt.

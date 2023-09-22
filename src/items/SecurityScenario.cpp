@@ -22,6 +22,7 @@ SecurityScenario::SecurityScenario(const SecurityScenario& other)
  * @brief SecurityScenario
  * @param id - Цифровой целочисленный ID для однозначной идентификации и учёта объекта
  * @param text - Текстовое описании Инцидента ИБ, задаваемое администратором
+ * @param name - Текстовое название сценария
  * @param incidents - Перечень SecurityIncident информационной безопасности, которые
  * могут  привести к указанному сценарию
  * @param parent
