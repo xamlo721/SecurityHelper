@@ -12,7 +12,7 @@ class ScenarioWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit ScenarioWidget(quint32 id, QString text, QWidget *parent = nullptr);
+        explicit ScenarioWidget(quint32 id, QString text, QString name, QWidget *parent = nullptr);
         ~ScenarioWidget();
 
     signals:

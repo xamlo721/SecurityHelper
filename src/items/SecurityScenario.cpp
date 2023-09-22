@@ -14,7 +14,7 @@ SecurityScenario::SecurityScenario() {
  * @param other - объект, используемый как источник данных
  */
 SecurityScenario::SecurityScenario(const SecurityScenario& other)
-    : QObject(other.parent()), id(other.id), text(other.text), incidents(other.incidents){
+    : QObject(other.parent()), id(other.id), text(other.text), name(other.name), incidents(other.incidents){
     //NO-OP
 }
 
@@ -26,9 +26,10 @@ SecurityScenario::SecurityScenario(const SecurityScenario& other)
  * могут  привести к указанному сценарию
  * @param parent
  */
-SecurityScenario::SecurityScenario(quint32 id, QString text, QList<quint32> incidents, QObject *parent) : QObject(parent) {
+SecurityScenario::SecurityScenario(quint32 id, QString text, QString name, QList<quint32> incidents, QObject *parent) : QObject(parent) {
     this->id = id;
     this->text = text;
+    this->name = name;
     this->incidents = incidents;
 }
 
@@ -46,6 +47,14 @@ quint32 SecurityScenario::getId() {
  */
 QString SecurityScenario::getText() {
     return this->text;
+}
+
+/**
+ * @brief getName - Получить название Сценария
+ * @return
+ */
+QString SecurityScenario::getName() {
+    return this->name;
 }
 
 /**

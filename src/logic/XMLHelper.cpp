@@ -241,7 +241,8 @@ SecurityRecommendations XMLHelper::readSecurityRecommendations(QDomElement xmlDo
 
 SecurityScenario XMLHelper::readSecurityScenario(QDomElement xmlDomElement) {
     QString scenarioTitle =XmlUtils::readText(xmlDomElement, "Text");
+    QString scenarioName =XmlUtils::readText(xmlDomElement, "Name");
     quint32 scenarioId = XmlUtils::readint(xmlDomElement, "id");
     QList<quint32> incidentIds = XmlUtils::readUints(xmlDomElement, "Incident");
-    return SecurityScenario(scenarioId, scenarioTitle, incidentIds);
+    return SecurityScenario(scenarioId, scenarioTitle, scenarioName, incidentIds);
 }

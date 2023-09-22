@@ -17,6 +17,7 @@ class SecurityScenario : public QObject {
         quint32 id;
         ///Текстовое описании Сценария ИБ, задаваемое администратором
         QString text;
+        QString name;
         ///Перечень SecurityIncident информационной безопасности, которые
         /// могут  привести к указанному сценарию
         QList<quint32> incidents;
@@ -42,7 +43,7 @@ class SecurityScenario : public QObject {
          * могут  привести к указанному сценарию
          * @param parent
          */
-        SecurityScenario(quint32 id, QString text, QList<quint32> incidents, QObject *parent = nullptr);
+        SecurityScenario(quint32 id, QString text, QString name, QList<quint32> incidents, QObject *parent = nullptr);
 
         /**
          * @brief getId - Получить ID сценария
@@ -55,6 +56,13 @@ class SecurityScenario : public QObject {
          * @return
          */
         QString getText();
+
+        /**
+         * @brief getName - Получить название Сценария
+         * @return
+         */
+        QString getName();
+
 
         /**
          * @brief getIncidents - Получить список инцидентов ИБ,

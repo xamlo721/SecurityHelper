@@ -4,33 +4,39 @@
 		<Scenaries>
 			<Scenary>
 				<id>0</id>
+                                <Name>Название сценария1</Name>
 				<Text>Текст сценария</Text>
                                 <Incident>2</Incident>
 			</Scenary>
 			<Scenary>
 				<id>1</id>
+                                <Name>Название сценария2</Name>
 				<Text>Другой Текст сценария</Text>
                                 <Incident>2</Incident>
                                 <Incident>3</Incident>
                         </Scenary>
                         <Scenary>
                                 <id>2</id>
+                                <Name>Название сценария3</Name>
                                 <Text>Текст сценария</Text>
                                 <Incident>2</Incident>
                         </Scenary>
                         <Scenary>
                                 <id>3</id>
+                                <Name>Название сценария4</Name>
                                 <Text>Другой Текст сценария</Text>
                                 <Incident>2</Incident>
                                 <Incident>0</Incident>
                         </Scenary>
                         <Scenary>
                                 <id>4</id>
+                                <Name>Название сценария5</Name>
                                 <Text>Текст сценария</Text>
                                 <Incident>2</Incident>
                         </Scenary>
                         <Scenary>
                                 <id>5</id>
+                                <Name>Название сценария6</Name>
                                 <Text>Другой Текст сценария</Text>
                                 <Incident>5</Incident>
                                 <Incident>3</Incident>

@@ -12,7 +12,7 @@ void UserScenarioRecommendationWidgetController::setScenariesList(QList<Security
     emit signalOpenScenarioMenu();
 
     for (SecurityScenario sc : scenaries) {
-        ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText());
+        ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText(), sc.getName());
         QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &UserScenarioRecommendationWidgetController::signalOpenScenario);
         QObject::connect(widget, &ScenarioWidget::signalClarify, this, &UserScenarioRecommendationWidgetController::signalOnClarifyEvents);
         this->scenarioMenuWidget->addScenarioWidget(widget);
