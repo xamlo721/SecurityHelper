@@ -33,6 +33,7 @@ void MainWindowController::shutdown() {
 
 void MainWindowController::onAdminButtonPressed() {
     emit signalResetButtonPressed();
+    w->openAdminEditMenu();
     w->openAdminToolbar();
 }
 

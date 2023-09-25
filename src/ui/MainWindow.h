@@ -8,6 +8,8 @@
 #include "src/ui/user/ScenarioMenuWidget.h"
 #include "src/ui/user/RecommendationsWidget.h"
 
+#include "src/ui/admin/AdminEditMenuWidget.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
     class MainWindow;
@@ -25,12 +27,15 @@ class MainWindow : public QMainWindow {
         MainMenuWidget *getMainMenuWidget();
         IncidentMenuWidget *getIncidentMenuWidget();
         ScenarioMenuWidget *getScenarioMenuWidget();
+        AdminEditMenuWidget *getEditMenuWidget();
 
         //TODO: Странная проектировка, возможно переписать
         void openMainMenu();
         void openIncidentMenu();
         void openScenarioMenu();
         void openRecommendationMenu();
+
+        void openAdminEditMenu();
 
         void openUserToolbar();
         void openAdminToolbar();

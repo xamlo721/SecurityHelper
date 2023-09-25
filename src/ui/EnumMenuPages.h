@@ -9,7 +9,9 @@ enum EnumMenuPages : int  {
 
     RecommendationMenu = 2,
 
-    ScenarioMenu = 3
+    ScenarioMenu = 3,
+
+    AdminEditMenu = 4
 
 };
 #endif // ENUMMENUPAGES_H

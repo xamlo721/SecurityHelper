@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,10 +48,17 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_5">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="AdminEditMenuWidget" name="widget_edit_menu" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QStackedWidget" name="stackedWidget_toolbar">
+     <widget class="QStackedWidget" name="stackedWidgetStatusbar">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -64,7 +71,7 @@
       <widget class="QWidget" name="page_7">
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QWidget" name="widget_user_toolbar" native="true">
+         <widget class="QWidget" name="widget_user_statusbar" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -145,7 +152,7 @@
       <widget class="QWidget" name="page_8">
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QWidget" name="widget_admin_toolbar" native="true">
+         <widget class="QWidget" name="widget_admin_statusbar" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -261,6 +268,12 @@
    <class>ScenarioMenuWidget</class>
    <extends>QWidget</extends>
    <header location="global">src/ui/user/ScenarioMenuWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AdminEditMenuWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">src/ui/admin/AdminEditMenuWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

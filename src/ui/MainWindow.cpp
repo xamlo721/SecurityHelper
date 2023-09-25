@@ -1,5 +1,5 @@
 #include "MainWindow.h"
-#include "src/ui/admin/EditableEventCategoryWidget.h"
+#include "src/ui/admin/categories/EditableEventCategoryWidget.h"
 #include "ui_MainWindow.h"
 #include <QStackedWidget>
 
@@ -50,6 +50,10 @@ ScenarioMenuWidget *MainWindow::getScenarioMenuWidget() {
     return this->ui->widget_scenario_menu;
 }
 
+AdminEditMenuWidget *MainWindow::getEditMenuWidget() {
+    return this->ui->widget_edit_menu;
+}
+
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
     this->ui->widget_main_menu->openMainMenu();
@@ -67,12 +71,16 @@ void MainWindow::openRecommendationMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::RecommendationMenu);
 }
 
+void MainWindow::openAdminEditMenu() {
+    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::AdminEditMenu);
+}
+
 void MainWindow::openUserToolbar() {
-    this->ui->stackedWidget_toolbar->setCurrentIndex(EnumToolbarPages::UserToolbar);
+    this->ui->stackedWidgetStatusbar->setCurrentIndex(EnumToolbarPages::UserToolbar);
 }
 
 void MainWindow::openAdminToolbar() {
-    this->ui->stackedWidget_toolbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
+    this->ui->stackedWidgetStatusbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
 }
 
 void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {

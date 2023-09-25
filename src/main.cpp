@@ -5,6 +5,8 @@
 #include "src/controllers/user/UserIncidentWidgetController.h"
 #include "src/controllers/user/UserScenarioRecommendationWidgetController.h"
 
+#include "src/controllers/admin/AdminEditMenuController.h"
+
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
 
@@ -26,7 +28,10 @@ int main(int argc, char *argv[]) {
 
     UserScenarioRecommendationWidgetController scenarioRecommendationController;
 
+    AdminEditMenuController editMenuController;
 
+
+    /// Блок инициализации связи сигналов/слотов для пользователя
     QObject::connect(&core, &CoreApp::signalOpenCategories, &categoryEventController, &UserCategoryEventWidgetController::setCategoryList);
     QObject::connect(&core, &CoreApp::signalOpenCategory, &categoryEventController, &UserCategoryEventWidgetController::setEventList);
     QObject::connect(&core, &CoreApp::signalOpenIncidents, &incidentController, &UserIncidentWidgetController::setIncidentList);
@@ -48,6 +53,11 @@ int main(int argc, char *argv[]) {
     QObject::connect(&scenarioRecommendationController, &UserScenarioRecommendationWidgetController::signalSetRecommentationWidget, &controller, &MainWindowController::setRecommendationWidget);
 
 
+    /// Блок инициализации связи сигналов/слотов для администратора
+    QObject::connect(&core, &CoreApp::signalAdminOpenCategories, &editMenuController, &AdminEditMenuController::setCategoryList);
+
+
+
     controller.init(mainWindow);
 
     categoryEventController.init(mainWindow->getMainMenuWidget());
@@ -55,6 +65,8 @@ int main(int argc, char *argv[]) {
     incidentController.init(mainWindow->getIncidentMenuWidget());
 
     scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
+
+    editMenuController.init(mainWindow->getEditMenuWidget());
 
     core.init();
 

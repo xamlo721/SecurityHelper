@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>EventCategoryWidget</class>
- <widget class="QWidget" name="EventCategoryWidget">
+ <class>EditableEventCategoryWidget</class>
+ <widget class="QWidget" name="EditableEventCategoryWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,13 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <item>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>Имя категории</string>
-     </property>
-    </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLineEdit" name="lineEdit_category"/>
    </item>
   </layout>
  </widget>

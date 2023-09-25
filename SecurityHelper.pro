@@ -17,8 +17,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 FORMS += ui/MainWindow.ui \
-    ui/admin/EditableEventCategoryWidget.ui \
-    ui/admin/EditableEventWidget.ui \
+    ui/admin/categories/UneditableEventCategoryWidget.ui \
+    ui/admin/AdminEditMenuWidget.ui \
+    ui/admin/categories/EditableEventCategoryWidget.ui \
+    ui/admin/categories/EditableEventWidget.ui \
     ui/user/EventWidget.ui \
     ui/user/IncidentCategoryWidget.ui \
     ui/user/IncidentMenuWidget.ui \
@@ -30,6 +32,7 @@ FORMS += ui/MainWindow.ui \
 
 HEADERS += \
     src/controllers/MainWindowController.h \
+    src/controllers/admin/AdminEditMenuController.h \
     src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserCategoryEventWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
@@ -50,8 +53,12 @@ HEADERS += \
     src/ui/EnumMenuPages.h \
     src/ui/EnumToolbarPages.h \
     src/ui/MainWindow.h \
-    src/ui/admin/EditableEventCategoryWidget.h \
-    src/ui/admin/EditableEventWidget.h \
+    src/ui/admin/AdminEditMenuWidget.h \
+    src/ui/admin/BaseItem.h \
+    src/ui/admin/UneditableItemMenu.h \
+    src/ui/admin/categories/EditableEventCategoryWidget.h \
+    src/ui/admin/categories/EditableEventWidget.h \
+    src/ui/admin/categories/UneditableEventCategoryWidget.h \
     src/ui/user/EventCategoryWidget.h \
     src/ui/user/EventWidget.h \
     src/ui/user/IncidentMenuWidget.h \
@@ -63,6 +70,7 @@ HEADERS += \
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
+    src/controllers/admin/AdminEditMenuController.cpp \
     src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
@@ -77,8 +85,11 @@ SOURCES += \
     src/logic/XmlUtils.cpp \
     src/main.cpp \
     src/ui/MainWindow.cpp \
-    src/ui/admin/EditableEventCategoryWidget.cpp \
-    src/ui/admin/EditableEventWidget.cpp \
+    src/ui/admin/AdminEditMenuWidget.cpp \
+    src/ui/admin/UneditableItemMenu.cpp \
+    src/ui/admin/categories/EditableEventCategoryWidget.cpp \
+    src/ui/admin/categories/EditableEventWidget.cpp \
+    src/ui/admin/categories/UneditableEventCategoryWidget.cpp \
     src/ui/user/EventCategoryWidget.cpp \
     src/ui/user/EventWidget.cpp \
     src/ui/user/IncidentMenuWidget.cpp \

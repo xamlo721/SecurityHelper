@@ -27,6 +27,8 @@ class CoreApp : public QObject {
         void signalOpenScenaries(QList<SecurityScenario> scenaries);
         void signalOpenRecommandations(QList<SecurityRecommendations> scenaries);
 
+        void signalAdminOpenCategories(QList<SecurityEventCategory> availableCategories);
+
     public slots:
         void onOpenCategory(quint32 categoryId);
         void onCalculateIncident(QList<SecurityEvent> selectedEvents);
