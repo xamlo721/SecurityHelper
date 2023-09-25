@@ -137,14 +137,17 @@ void XMLHelper::writeDatabase(QString path, Database database) {
         eventsFile.open(QFile::WriteOnly | QFile::Text);
         QDomDocument eventsDoc;
         XmlUtils::writeXMLHeader(&eventsDoc);
-        QDomElement root = eventsDoc.createElement("Events");
+        QDomElement root = eventsDoc.createElement("Database");
         eventsDoc.appendChild(root);
-        XmlUtils::writeUint(eventsDoc, root, "events", database.events.firstKey());
-        QTextStream out(&eventsFile);
-        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
-        out.setCodec(codec);
-        out << eventsDoc;
-        eventsFile.close();
+        QDomElement eventsElement  = eventsDoc.createElement("Events");
+        eventsDoc.appendChild(eventsElement);
+
+        for (SecurityEvent event : database.events.values()) {
+            QDomElement eventElement = eventsDoc.createElement("Event");
+            XmlUtils::writeUint(eventsDoc, eventsElement , "id", event.getId());
+            XmlUtils::writeText(eventsDoc, eventsElement , "Text", event.getText());
+            eventsElement.appendChild(eventElement);
+        }
     }
 
     {
@@ -152,14 +155,18 @@ void XMLHelper::writeDatabase(QString path, Database database) {
         categoriesFile.open(QFile::WriteOnly | QFile::Text);
         QDomDocument eventsDoc;
         XmlUtils::writeXMLHeader(&eventsDoc);
-        QDomElement root = eventsDoc.createElement("Categories");
+        QDomElement root = eventsDoc.createElement("Database");
         eventsDoc.appendChild(root);
-        XmlUtils::writeUint(eventsDoc, root, "categories", database.categories.firstKey());
-        QTextStream out(&categoriesFile);
-        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
-        out.setCodec(codec);
-        out << eventsDoc;
-        categoriesFile.close();
+        QDomElement categoriesElement  = eventsDoc.createElement("Categories");
+        eventsDoc.appendChild(categoriesElement);
+
+        for (SecurityEventCategory event : database.categories.values()) {
+            QDomElement eventElement = eventsDoc.createElement("Category");
+            XmlUtils::writeUint(eventsDoc, categoriesElement , "id", event.getId());
+            XmlUtils::writeText(eventsDoc, categoriesElement , "Text", event.getText());
+            XmlUtils::writeUints(eventsDoc, categoriesElement , "events", event.getEventIds());
+            categoriesElement.appendChild(eventElement);
+        }
     }
 
     {
@@ -167,14 +174,19 @@ void XMLHelper::writeDatabase(QString path, Database database) {
         incidentsFile.open(QFile::WriteOnly | QFile::Text);
         QDomDocument eventsDoc;
         XmlUtils::writeXMLHeader(&eventsDoc);
-        QDomElement root = eventsDoc.createElement("Incidents");
+        QDomElement root = eventsDoc.createElement("Database");
         eventsDoc.appendChild(root);
-        XmlUtils::writeUint(eventsDoc, root, "incidents", database.incidents.firstKey());
-        QTextStream out(&incidentsFile);
-        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
-        out.setCodec(codec);
-        out << eventsDoc;
-        incidentsFile.close();
+        QDomElement incidentsElement  = eventsDoc.createElement("Incidents");
+        eventsDoc.appendChild(incidentsElement);
+
+        for (SecurityIncident event : database.incidents.values()) {
+            QDomElement eventElement = eventsDoc.createElement("Incident");
+            XmlUtils::writeUint(eventsDoc, incidentsElement , "id", event.getId());
+            XmlUtils::writeText(eventsDoc, incidentsElement , "Name", event.getName());
+            XmlUtils::writeText(eventsDoc, incidentsElement , "Text", event.getText());
+            XmlUtils::writeUints(eventsDoc, incidentsElement , "events", event.getEventIds());
+            incidentsElement.appendChild(eventElement);
+        }
     }
 
     {
@@ -182,14 +194,20 @@ void XMLHelper::writeDatabase(QString path, Database database) {
         recommendationsFile.open(QFile::WriteOnly | QFile::Text);
         QDomDocument eventsDoc;
         XmlUtils::writeXMLHeader(&eventsDoc);
-        QDomElement root = eventsDoc.createElement("Recommendations");
+        QDomElement root = eventsDoc.createElement("Database");
         eventsDoc.appendChild(root);
-        XmlUtils::writeUint(eventsDoc, root, "recommendations", database.recommendations.firstKey());
-        QTextStream out(&recommendationsFile);
-        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
-        out.setCodec(codec);
-        out << eventsDoc;
-        recommendationsFile.close();
+        QDomElement recommendationsElement = eventsDoc.createElement("Recommendations");
+        eventsDoc.appendChild(recommendationsElement);
+
+        for (SecurityRecommendations event : database.recommendations.values()) {
+            QDomElement eventElement = eventsDoc.createElement("Recommendation");
+            XmlUtils::writeUint(eventsDoc, recommendationsElement , "id", event.getId());
+            XmlUtils::writeText(eventsDoc, recommendationsElement , "TextContainment", event.getTextContainment());
+            XmlUtils::writeText(eventsDoc, recommendationsElement , "TextFixes", event.getTextFixes());
+            XmlUtils::writeText(eventsDoc, recommendationsElement , "TextRestore", event.getTextRestore());
+            XmlUtils::writeUints(eventsDoc, recommendationsElement , "Scenario", event.getScenaries());
+            recommendationsElement.appendChild(eventElement);
+        }
     }
 
     {
@@ -197,14 +215,19 @@ void XMLHelper::writeDatabase(QString path, Database database) {
         scenariesFile.open(QFile::WriteOnly | QFile::Text);
         QDomDocument eventsDoc;
         XmlUtils::writeXMLHeader(&eventsDoc);
-        QDomElement root = eventsDoc.createElement("Scenaries");
+        QDomElement root = eventsDoc.createElement("Database");
         eventsDoc.appendChild(root);
-        XmlUtils::writeUint(eventsDoc, root, "scenaries", database.scenaries.firstKey());
-        QTextStream out(&scenariesFile);
-        QTextCodec* codec = QTextCodec::codecForName( "UTF-8" );
-        out.setCodec(codec);
-        out << eventsDoc;
-        scenariesFile.close();
+        QDomElement scenariesElement = eventsDoc.createElement("Scenaries");
+        eventsDoc.appendChild(scenariesElement);
+
+        for (SecurityScenario event : database.scenaries.values()) {
+            QDomElement eventElement = eventsDoc.createElement("Scenary");
+            XmlUtils::writeUint(eventsDoc, scenariesElement , "id", event.getId());
+            XmlUtils::writeText(eventsDoc, scenariesElement , "Name", event.getName());
+            XmlUtils::writeText(eventsDoc, scenariesElement , "Text", event.getText());
+            XmlUtils::writeUints(eventsDoc, scenariesElement , "Incident", event.getIncidents());
+            scenariesElement.appendChild(eventElement);
+        }
     }
 
 }
