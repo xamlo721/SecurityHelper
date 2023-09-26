@@ -35,7 +35,7 @@ void UneditableItemMenu::init() {
 }
 
 /**
- *      @brief call - публичный слот, который выплоняет вызов
+ *      @brief call - публичный слот, который выполняет вызов
  * кастомизированного меню по позиции курсора.
  */
 void UneditableItemMenu::call(QPoint mousePosition) {

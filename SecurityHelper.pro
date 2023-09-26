@@ -33,6 +33,7 @@ FORMS += ui/MainWindow.ui \
 HEADERS += \
     src/controllers/MainWindowController.h \
     src/controllers/admin/AdminEditMenuController.h \
+    src/controllers/admin/AdminEventCategoryBoxLayoutController.h \
     src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserCategoryEventWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
@@ -54,7 +55,8 @@ HEADERS += \
     src/ui/EnumToolbarPages.h \
     src/ui/MainWindow.h \
     src/ui/admin/AdminEditMenuWidget.h \
-    src/ui/admin/BaseItem.h \
+    src/items/BaseItem.h \
+    src/ui/admin/AdminEventCategoryBoxLayout.h \
     src/ui/admin/UneditableItemMenu.h \
     src/ui/admin/categories/EditableEventCategoryWidget.h \
     src/ui/admin/categories/EditableEventWidget.h \
@@ -71,6 +73,7 @@ HEADERS += \
 SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/controllers/admin/AdminEditMenuController.cpp \
+    src/controllers/admin/AdminEventCategoryBoxLayoutController.cpp \
     src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
@@ -86,6 +89,7 @@ SOURCES += \
     src/main.cpp \
     src/ui/MainWindow.cpp \
     src/ui/admin/AdminEditMenuWidget.cpp \
+    src/ui/admin/AdminEventCategoryBoxLayout.cpp \
     src/ui/admin/UneditableItemMenu.cpp \
     src/ui/admin/categories/EditableEventCategoryWidget.cpp \
     src/ui/admin/categories/EditableEventWidget.cpp \

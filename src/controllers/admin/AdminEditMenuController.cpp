@@ -1,37 +1,21 @@
 #include "AdminEditMenuController.h"
 
+/**
+*  @brief AdminEditMenuController - конструктор по умолчанию
+*  @param parent - родительский объект в иерархии Qt.
+*/
 AdminEditMenuController::AdminEditMenuController(QObject *parent) : QObject{parent} {
 
 }
 
+/**
+*  @brief init - метод инициализации меню редактирования
+*  @param editMenu - объект AdminEditMenuWidget, находящийся в MainWindow.
+*/
 void AdminEditMenuController::init(AdminEditMenuWidget *editMenu) {
+    /// Инициализируем объект меню редактирования в контроллере объектом из
+    /// MainWindow, чтобы управлять им
     editMenuWidget = editMenu;
-
-    /// Блок связи сигналов, поступающих в меню редактирования из не редактируемого виджета
-    QObject::connect(editMenuWidget, &AdminEditMenuWidget::signalEditCategory, this, &AdminEditMenuController::makeCategoryEditable);
-
-    /// Блок связи сигналов, поступающих в меню редактирования из редактируемого виджета
-    QObject::connect(editMenuWidget, &AdminEditMenuWidget::editingFinished, this, &AdminEditMenuController::makeCategoryUneditable);
-}
-
-void AdminEditMenuController::setCategoryList(QList<SecurityEventCategory> categories) {
-    this->categories = categories;
-    this->editMenuWidget->clearCategories();
-    for (SecurityEventCategory cat : categories) {
-        UneditableEventCategoryWidget *categoryWidget = new UneditableEventCategoryWidget(cat.getId(), cat.getText());
-        categories_number++;
-        active_categories.insert(categories_number, cat);
-
-        //QObject::connect(categoryWidget, &UneditableEventCategoryWidget::signalOpenIncident, this, &AdminEditMenuController::signalOpenCategory);
-
-        this->editMenuWidget->addCategory(categoryWidget);
-    }
-}
-
-void AdminEditMenuController::makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
-    this->editMenuWidget->makeCategoryEditable(uneditableCategory);
-}
-
-void AdminEditMenuController::makeCategoryUneditable(EditableEventCategoryWidget *editableCategory) {
-    this->editMenuWidget->makeCategoryUneditable(editableCategory);
+    /// Устанавливаем прокручиваемый список item'ов
+    editMenuWidget->setupScrollAreas();
 }

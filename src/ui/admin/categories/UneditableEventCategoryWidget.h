@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "src/ui/admin/BaseItem.h"
+#include "src/items/BaseItem.h"
 #include "src/ui/admin/UneditableItemMenu.h"
 
 namespace Ui {

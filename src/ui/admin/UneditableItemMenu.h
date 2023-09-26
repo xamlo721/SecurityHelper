@@ -18,9 +18,9 @@ class UneditableItemMenu : public QObject {
         /// Меню, которое кастомизируется под нужды виджета
         QMenu *menu;
 
-        /// Переменная, хранящая себе информацию о действии Редактировать
+        /// Переменная, хранящая в себе информацию о действии Редактировать
         QAction *editAction;
-        /// Переменная, хранящая себе информацию о действии Удалить
+        /// Переменная, хранящая в себе информацию о действии Удалить
         QAction *deleteAction;
 
     private slots:
@@ -47,7 +47,7 @@ class UneditableItemMenu : public QObject {
         void init();
     public slots:
         /**
-         *      @brief call - публичный слот, который выплоняет вызов
+         *      @brief call - публичный слот, который выполняет вызов
          * кастомизированного меню по позиции курсора.
          */
         void call(QPoint mousePosition);

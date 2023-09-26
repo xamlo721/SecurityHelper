@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QLineEdit>
 
-#include "src/ui/admin/BaseItem.h"
+#include "src/items/BaseItem.h"
 
 namespace Ui {
 class EditableEventCategoryWidget;

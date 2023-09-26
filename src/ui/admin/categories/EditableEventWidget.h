@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "../user/EventWidget.h"
+#include "src/ui/user/EventWidget.h"
 
 namespace Ui {
 class EditableEventWidget;
