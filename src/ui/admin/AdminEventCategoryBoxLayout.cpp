@@ -27,7 +27,7 @@ void AdminEventCategoryBoxLayout::init(QVBoxLayout *boxLayout) {
  */
 void AdminEventCategoryBoxLayout::initUneditableCategory(UneditableEventCategoryWidget *uneditableCategory) {
     QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalEditCategory, this, &AdminEventCategoryBoxLayout::signalEditCategory);
-    ///QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalDeleteCategory, this, &AdminEditMenuWidget::signalDeleteCategory);
+    QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalDeleteCategory, this, &AdminEventCategoryBoxLayout::signalDeleteCategory);
 }
 
 /**
@@ -37,8 +37,8 @@ void AdminEventCategoryBoxLayout::initUneditableCategory(UneditableEventCategory
  *  @param editableCategory - редактируемый виджет категории.
  */
 void AdminEventCategoryBoxLayout::initEditableCategory(EditableEventCategoryWidget *editableCategory) {
-    // TODO: Добавить сигнал об удалении, если при завершении редактирования виджет остался пуст
     QObject::connect(editableCategory, &EditableEventCategoryWidget::editingFinished, this, &AdminEventCategoryBoxLayout::editingFinished);
+    QObject::connect(editableCategory, &EditableEventCategoryWidget::emptyWidget, this, &AdminEventCategoryBoxLayout::emptyWidget);
 }
 
 /**
@@ -48,13 +48,25 @@ void AdminEventCategoryBoxLayout::initEditableCategory(EditableEventCategoryWidg
  *  интерфейс был более удобным и понятным, если администратор ранее использовал
  *  какие-либо программы редактирования.
  */
-void AdminEventCategoryBoxLayout::addCategory(UneditableEventCategoryWidget *uneditableCategory) {
+void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidget *uneditableCategory) {
     /// Инициализируем меню для виджета
     uneditableCategory->initMenu();
     /// Инициализируем связь сигналов виджета с данным классом
     this->initUneditableCategory(uneditableCategory);
     /// Добавляем виджет в boxLayout
     boxLayoutCategories->addWidget(uneditableCategory);
+}
+
+/**
+ *  @brief deleteCategoryWidget - Удаление виджета категории.
+ *  @param uneditableCategory - не редактируемый виджет категории, предназначенный
+ *  для удаления.
+ */
+void AdminEventCategoryBoxLayout::deleteCategoryWidget(UneditableEventCategoryWidget *uneditableCategory) {
+    /// Удаляем виджет из бокса
+    this->boxLayoutCategories->removeWidget(uneditableCategory);
+    /// Удаляем переменную виджета категории
+    uneditableCategory->deleteLater();
 }
 
 /**
@@ -77,7 +89,7 @@ void AdminEventCategoryBoxLayout::clearCategories() {
  *  для возможности изменения имени категории.
  *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить.
  */
-void AdminEventCategoryBoxLayout::makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
+EditableEventCategoryWidget *AdminEventCategoryBoxLayout::makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
     /// Берем номер позиции не редактируемого виджета
     quint32 widgetPosition = boxLayoutCategories->layout()->indexOf(uneditableCategory);
     /// Инициализируем редактируемый виджет из не редактируемого
@@ -86,12 +98,14 @@ void AdminEventCategoryBoxLayout::makeCategoryEditable(UneditableEventCategoryWi
     this->initEditableCategory(editableCategory);
 
 
-    ///     Удаляем не редактируемый виджет из box_layout и удаляем переменную
-    /// данного виджета, чтобы не было добавляющихся фантомных виджетов
+    /// Удаляем не редактируемый виджет из box_layout
     boxLayoutCategories->removeWidget(uneditableCategory);
-    delete uneditableCategory;
+    /// Удаляем сам виджет через deleteLater(), чтобы сохранился порядок указателей и не крашнулось приложение
+    uneditableCategory->deleteLater();
     /// Вставляем на ту же позицию редактируемый виджет
     boxLayoutCategories->insertWidget(widgetPosition, editableCategory);
+    /// Возвращаем измененный виджет
+    return editableCategory;
 }
 
 /**
@@ -99,7 +113,7 @@ void AdminEventCategoryBoxLayout::makeCategoryEditable(UneditableEventCategoryWi
  *  при завершении редактирования администратором.
  *  @param editableCategory - редактируемый виджет категории, который необходимо изменить.
  */
-void AdminEventCategoryBoxLayout::makeCategoryUneditable(EditableEventCategoryWidget *editableCategory) {
+UneditableEventCategoryWidget *AdminEventCategoryBoxLayout::makeCategoryUneditable(EditableEventCategoryWidget *editableCategory) {
     /// Берем номер позиции редактируемого виджета
     quint32 widgetPosition = boxLayoutCategories->layout()->indexOf(editableCategory);
     /// Инициализируем не редактируемый виджет из редактируемого
@@ -110,10 +124,12 @@ void AdminEventCategoryBoxLayout::makeCategoryUneditable(EditableEventCategoryWi
     this->initUneditableCategory(uneditableCategory);
 
 
-    ///     Удаляем редактируемый виджет из box_layout и удаляем переменную
-    /// данного виджета, чтобы не было добавляющихся фантомных виджетов
+    /// Удаляем редактируемый виджет из box_layout
     boxLayoutCategories->removeWidget(editableCategory);
-    delete editableCategory;
+    /// Удаляем сам виджет через deleteLater(), чтобы сохранился порядок указателей и не крашнулось приложение
+    editableCategory->deleteLater();
     /// Вставляем на ту же позицию не редактируемый виджет
     boxLayoutCategories->insertWidget(widgetPosition, uneditableCategory);
+    /// Возвращаем измененный виджет
+    return uneditableCategory;
 }

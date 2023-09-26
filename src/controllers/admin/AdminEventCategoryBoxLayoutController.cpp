@@ -1,5 +1,6 @@
 #include "AdminEventCategoryBoxLayoutController.h"
 
+
 /**
  *  @brief AdminEventCategoryBoxLayoutController - не изменяемый конструктор по умолчанию
  *  @param parent - родительский объект в иерархии Qt.
@@ -21,10 +22,11 @@ void AdminEventCategoryBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutC
     this->boxLayoutCategories->init(editMenuBoxLayoutCategories);
 
     /// Блок связи сигналов, поступающих в меню редактирования из не редактируемого виджета
-    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalEditCategory, this, &AdminEventCategoryBoxLayoutController::makeCategoryEditable);
-
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalEditCategory, this, &AdminEventCategoryBoxLayoutController::slotMakeCategoryEditable);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalDeleteCategory, this, &AdminEventCategoryBoxLayoutController::slotDeleteCategory);
     /// Блок связи сигналов, поступающих в меню редактирования из редактируемого виджета
-    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::editingFinished, this, &AdminEventCategoryBoxLayoutController::makeCategoryUneditable);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::editingFinished, this, &AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::emptyWidget, this, &AdminEventCategoryBoxLayoutController::slotEmptyWidget);
 }
 
 /**
@@ -44,7 +46,7 @@ void AdminEventCategoryBoxLayoutController::setCategoryList(QList<SecurityEventC
         UneditableEventCategoryWidget *categoryWidget = new UneditableEventCategoryWidget(cat.getId(), cat.getText());
         //QObject::connect(categoryWidget, &UneditableEventCategoryWidget::signalOpenIncident, this, &AdminEditMenuController::signalOpenCategory);
 
-        this->boxLayoutCategories->addCategory(categoryWidget);
+        this->boxLayoutCategories->addCategoryWidget(categoryWidget);
     }
 }
 
@@ -54,7 +56,7 @@ void AdminEventCategoryBoxLayoutController::setCategoryList(QList<SecurityEventC
  *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить.
  *      Срабатывает при получении сигнала от не редактируемого виджета о запросе администратора.
  */
-void AdminEventCategoryBoxLayoutController::makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
+void AdminEventCategoryBoxLayoutController::slotMakeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
     this->boxLayoutCategories->makeCategoryEditable(uneditableCategory);
 }
 
@@ -65,6 +67,52 @@ void AdminEventCategoryBoxLayoutController::makeCategoryEditable(UneditableEvent
  *      Срабатывает при получении сигнала от редактируемого виджета о завершении редактирования
  *    администратором .
  */
-void AdminEventCategoryBoxLayoutController::makeCategoryUneditable(EditableEventCategoryWidget *editableCategory) {
+void AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable(EditableEventCategoryWidget *editableCategory) {
     this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+}
+
+/**
+ *  @brief deleteCategory - метод для удаления категорий из списка контроллера
+ *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
+ *  нужно удалить из списка.
+ *      Внутренний метод, вызывается в slotEmptyWidget и slotDeleteCategory.
+ */
+void AdminEventCategoryBoxLayoutController::deleteCategory(UneditableEventCategoryWidget * uneditableCategory) {
+    /// Удаление из списка категорий контроллера необходимой категории
+    /// ( удаление не изменяет айди других категорий )
+    for(SecurityEventCategory category : categories) {
+        if(category.getId() == uneditableCategory->getId()) {
+            categories.removeOne(category);
+            category.deleteLater();
+        }
+    }
+}
+
+/**
+ *  @brief slotEmptyWidget - приватный слот для удаления пустого редактируемого виджета.
+ *  @param editableCategory - редактируемый виджет категории, который необходимо удалить.
+ *      Срабатывает при получении сигнала от редактируемого виджета о том, что при завершении
+ *     редактирования виджета он остался пустым.
+ */
+void AdminEventCategoryBoxLayoutController::slotEmptyWidget(EditableEventCategoryWidget * editableCategory) {
+    /// Превращаем виджет категории в не редактируемый
+    UneditableEventCategoryWidget *undetitableCategoryTemp = this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+    /// Удаляем категорию из списка контроллера
+    this->deleteCategory(undetitableCategoryTemp);
+    /// Удаляем виджет категории из бокса категорий
+    this->boxLayoutCategories->deleteCategoryWidget(undetitableCategoryTemp);
+}
+
+/**
+ *  @brief slotDeleteCategory - приватный слот для удаления не редактируемого виджета по
+ *  запросу администратора через контекстное меню.
+ *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
+ *      Срабатывает при получении сигнала от не редактируемого виджета о выборе действия Удалить в
+ *     контекстном меню.
+ */
+void AdminEventCategoryBoxLayoutController::slotDeleteCategory(UneditableEventCategoryWidget * uneditableCategory) {
+    /// Удаляем категорию из списка контроллера
+    this->deleteCategory(uneditableCategory);
+    /// Удаляем виджет из категории бокса категорий
+    this->boxLayoutCategories->deleteCategoryWidget(uneditableCategory);
 }

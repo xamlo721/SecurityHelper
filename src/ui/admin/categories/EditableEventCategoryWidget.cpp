@@ -27,12 +27,22 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
 
 /**
 *   @brief slotEditingFinished -  слот, который связывает сигнал editingFinished класса
-* QLineEdit с сигналом editingFinished данного класса, чтобы иметь возможность
-* передать себя в качестве параметра для дальнейшей эксплуатации.
+* QLineEdit с сигналами editingFinished или emptyWidget данного класса, в зависимости от того, что
+* необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
 */
-void EditableEventCategoryWidget::slotEditingFinished() {
+int EditableEventCategoryWidget::slotEditingFinished() {
+    /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
+    if(this->ui->lineEdit_category->text().isEmpty()) {
+        emit emptyWidget(this);
+        return 1;
+    }
+
+    /// Устанавливаем текстовое описание категории, полученное при завершении редактирования
+    this->text = this->ui->lineEdit_category->text();
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);
+
+    return 0;
 }
 
 /**
