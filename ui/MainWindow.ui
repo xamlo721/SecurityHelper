@@ -13,10 +13,33 @@
   <property name="windowTitle">
    <string>Инцидентор</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#centralwidget {
+         background- image: url(&quot;:/images/bg-firewall.jpg&quot;);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget {
+         background- image: url(&quot;:/images/bg-firewall.jpg&quot;);
+}
+
+</string>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">QWidget {
+		background-color : rgba(120, 200, 228, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QLabel {
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+      </property>
       <property name="currentIndex">
        <number>4</number>
       </property>
@@ -78,6 +101,22 @@
             <height>60</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+		background-color : rgba(120, 200, 228, 80);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QPushButton:hover {
+		background-color : rgba(120, 200, 228, 100);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+QPushButton:pressed {
+		background-color : rgba(120, 200, 228, 40);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+		color: rgb(255, 255, 255);
+}</string>
+          </property>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
             <widget class="QPushButton" name="pushButton_admin">
@@ -86,6 +125,9 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Администрирование</string>
@@ -100,6 +142,9 @@
                <height>40</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string>Сбросить</string>
              </property>
@@ -112,6 +157,9 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Подобрать инциденты</string>
@@ -126,6 +174,9 @@
                <height>40</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string>Настройки</string>
              </property>
@@ -138,6 +189,9 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Выйти</string>
@@ -159,6 +213,22 @@
             <height>60</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+		background-color : rgba(120, 200, 228, 80);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QPushButton:hover {
+		background-color : rgba(120, 200, 228, 100);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+QPushButton:pressed {
+		background-color : rgba(120, 200, 228, 40);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+		color: rgb(255, 255, 255);
+}</string>
+          </property>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="pushButton_undo">
@@ -167,6 +237,18 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>16</pointsize>
+               <weight>9</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Отменить</string>
@@ -181,6 +263,9 @@
                <height>40</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string>Повторить</string>
              </property>
@@ -193,6 +278,9 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Сбросить</string>
@@ -207,6 +295,9 @@
                <height>40</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
              <property name="text">
               <string>Редактирование</string>
              </property>
@@ -219,6 +310,18 @@
                <width>0</width>
                <height>40</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>MS Shell Dlg 2</family>
+               <pointsize>16</pointsize>
+               <weight>9</weight>
+               <italic>false</italic>
+               <bold>false</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="text">
               <string>Назад</string>
@@ -240,7 +343,7 @@
      <x>0</x>
      <y>0</y>
      <width>1023</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
