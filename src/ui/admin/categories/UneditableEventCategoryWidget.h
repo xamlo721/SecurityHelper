@@ -64,12 +64,27 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
         * передать себя в качестве параметра для дальнейшей эксплуатации.
         */
         void slotEditCategory();
+        /**
+        *       @brief slotDeleteCategory -  слот, который связывает сигнал signalDeleteCategory класса
+        * UneditableItemMenu с сигналом signalDeleteCategory данного класса, чтобы иметь возможность
+        * передать себя в качестве параметра для дальнейшей эксплуатации.
+        */
+        void slotDeleteCategory();
 
     signals:
-        /// Сигнал, сообщающий о вызове в контекстном меню действия Редактировать
+        /**
+         *  @brief signalEditCategory - сигнал, сообщающий о вызове в контекстном меню
+         *  действия Редактировать.
+         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить
+         *  для возможности редактирования.
+         */
         void signalEditCategory(UneditableEventCategoryWidget * uneditableCategory);
-        /// Сигнал, сообщающий о вызове в контекстном меню действия Удалить
-        void signalDeleteCategory();
+        /**
+         *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
+         *  действия Удалить.
+         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
+         */
+        void signalDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
 };
 
 #endif // UNEDITABLEEVENTCATEGORYWIDGET_H

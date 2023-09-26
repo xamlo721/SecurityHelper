@@ -21,7 +21,7 @@ class AdminEditMenuController : public QObject {
 
     public:
         /**
-        *  @brief AdminEditMenuController - конструктор по умолчанию
+        *  @brief AdminEditMenuController - не изменяемый конструктор по умолчанию
         *  @param parent - родительский объект в иерархии Qt.
         */
         explicit AdminEditMenuController(QObject *parent = nullptr);

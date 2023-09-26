@@ -33,7 +33,7 @@ void UneditableEventCategoryWidget::initMenu() {
 
     /// Инициализация связи сигналов кастомного меню и класса UneditableEventCategoryWidget
     QObject::connect(this->customMenu, &UneditableItemMenu::signalEditCategory, this, &UneditableEventCategoryWidget::slotEditCategory);
-    //QObject::connect(this->customMenu, &UneditableItemMenu::signalDeleteCategory, this, &UneditableEventCategoryWidget::signalDeleteCategory);
+    QObject::connect(this->customMenu, &UneditableItemMenu::signalDeleteCategory, this, &UneditableEventCategoryWidget::slotDeleteCategory);
 
     /// Инициализация связи сигналов класса QPushButton и класса UneditableEventCategoryWidget
     QObject::connect(this->ui->pushButton_category, &QPushButton::clicked, this, &UneditableEventCategoryWidget::slotEditCategory);
@@ -59,7 +59,18 @@ void UneditableEventCategoryWidget::callCustomMenu(QPoint mousePosition) {
 void UneditableEventCategoryWidget::slotEditCategory() {
     emit signalEditCategory(this);
 }
-
+/**
+*       @brief slotDeleteCategory -  слот, который связывает сигнал signalDeleteCategory класса
+* UneditableItemMenu с сигналом signalDeleteCategory данного класса, чтобы иметь возможность
+* передать себя в качестве параметра для дальнейшей эксплуатации.
+*/
+void UneditableEventCategoryWidget::slotDeleteCategory() {
+    emit signalDeleteCategory(this);
+}
+/**
+ *  @brief ~UneditableItemMenu - деструктор по умолчанию, используется для высвобождения
+ * памяти.
+ */
 UneditableEventCategoryWidget::~UneditableEventCategoryWidget() {
     delete ui;
     delete customMenu;

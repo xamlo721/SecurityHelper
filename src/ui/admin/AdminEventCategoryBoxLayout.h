@@ -47,6 +47,7 @@ class AdminEventCategoryBoxLayout : public QObject {
          */
         explicit AdminEventCategoryBoxLayout(QObject *parent = nullptr);
 
+
         /**
          *  @brief init - метод, инициализирующий бокс категорий в данном классе
          *  из бокса категорий уже находящегося в AdminEditMenuWidget.
@@ -55,13 +56,22 @@ class AdminEventCategoryBoxLayout : public QObject {
         void init(QVBoxLayout *boxLayout);
 
         /**
-         *  @brief addCategory - добавление категории событий в бокс категорий меню.
-         *  @param uneditableCategory - не редактируемый виджет категории.
+         *  @brief addCategoryWidget - добавление категории событий в бокс категорий меню.
+         *  @param uneditableCategory - не редактируемый виджет категории, предназначенный
+         *  для добавления.
          *      Добавляется категория в качестве не редактируемого виджета, чтобы
          *  интерфейс был более удобным и понятным, если администратор ранее использовал
          *  какие-либо программы редактирования.
          */
-        void addCategory(UneditableEventCategoryWidget *uneditableCategory);
+        void addCategoryWidget(UneditableEventCategoryWidget *uneditableCategory);
+
+        /**
+         *  @brief deleteCategoryWidget - Удаление виджета категории.
+         *  @param uneditableCategory - не редактируемый виджет категории, предназначенный
+         *  для удаления.
+         */
+        void deleteCategoryWidget(UneditableEventCategoryWidget *uneditableCategory);
+
         /**
          *  @brief clearCategories - очистка списка виджетов категорий.
          */
@@ -72,13 +82,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  для возможности изменения имени категории.
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить.
          */
-        void makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory);
+        EditableEventCategoryWidget *makeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory);
+
         /**
          *  @brief makeCategoryUneditable - изменение редактируемого виджета на не редактируемый
          *  при завершении редактирования администратором.
          *  @param editableCategory - редактируемый виджет категории, который необходимо изменить.
          */
-        void makeCategoryUneditable(EditableEventCategoryWidget *editableCategory);
+        UneditableEventCategoryWidget *makeCategoryUneditable(EditableEventCategoryWidget *editableCategory);
 
     signals:
         /**
@@ -88,12 +99,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  для возможности редактирования.
          */
         void signalEditCategory(UneditableEventCategoryWidget * uneditableCategory);
+
         /**
          *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
          *  действия Удалить.
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
          */
-        void signalDeleteCategory();
+        void signalDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+
 
         /**
          *  @brief editingFinished - сигнал, сообщающий о завершении редактирования виджета.
@@ -101,6 +114,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  завершено.
          */
         void editingFinished(EditableEventCategoryWidget * editableCategory);
+
+        /**
+         *  @brief emptyWidget- сигнал, сообщающий о том, что редактируемый виджет пуст и его
+         *  необходимо удалить.
+         *  @param editableCategory - редактируемый виджет категории, редактирование которого
+         *  завершено, а содержимое - пусто.
+         */
+        void emptyWidget(EditableEventCategoryWidget * editableCategory);
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUT_H

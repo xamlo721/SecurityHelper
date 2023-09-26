@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLineEdit>
+#include <QIntValidator>
 
 #include "src/items/BaseItem.h"
 
@@ -21,17 +22,17 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
 
     Q_OBJECT
 
-    private:
+    private:        
         /// Переменная, хранящая в себе данные интерфейса
         Ui::EditableEventCategoryWidget * ui;
 
     private slots:
         /**
         *   @brief slotEditingFinished -  слот, который связывает сигнал editingFinished класса
-        * QLineEdit с сигналом editingFinished данного класса, чтобы иметь возможность
-        * передать себя в качестве параметра для дальнейшей эксплуатации.
+        * QLineEdit с сигналами editingFinished или emptyWidget данного класса, в зависимости от того, что
+        * необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
         */
-        void slotEditingFinished();
+        int slotEditingFinished();
 
     public:
         /**
@@ -54,8 +55,19 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
     public slots:
 
     signals:
-        /// Сигнал, сообщающий о завершении редактирования виджета
+        /**
+         *  @brief signalEditCategory - сигнал, сообщающий о вызове в контекстном меню
+         *  действия Редактировать.
+         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить
+         *  для возможности редактирования.
+         */
         void editingFinished(EditableEventCategoryWidget * editableCategory);
+        /**
+         *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
+         *  действия Удалить.
+         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
+         */
+        void emptyWidget(EditableEventCategoryWidget * editableCategory);
 
 };
 
