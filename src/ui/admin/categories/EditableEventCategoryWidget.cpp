@@ -10,6 +10,7 @@
  * полей id и text ( см. класс BaseItem ), а так же связывание сигнала editingFinished класса
  * QLineEdit с со слотом slotEditingFinished данного класса.
  */
+
 EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventCategoryWidget) {
     ui->setupUi(this);
     /// Устанавливаем минимальный размер кнопки
@@ -17,7 +18,7 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
     /// Инициализируем поля класса
     this->id = id;
     this->text = title;
-    /// Устанавливаем доступность кнопки и её текст
+    /// Устанавливаем доступность строки редактирования и её текст
     this->ui->lineEdit_category->setEnabled(true);
     this->ui->lineEdit_category->setText(title);
 
@@ -39,9 +40,9 @@ int EditableEventCategoryWidget::slotEditingFinished() {
 
     /// Устанавливаем текстовое описание категории, полученное при завершении редактирования
     this->text = this->ui->lineEdit_category->text();
+
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);
-
     return 0;
 }
 
@@ -51,4 +52,18 @@ int EditableEventCategoryWidget::slotEditingFinished() {
  */
 EditableEventCategoryWidget::~EditableEventCategoryWidget() {
     delete ui;
+}
+
+/**
+ *  @brief setFocus - метод, устанавливающий фокус QLineEdit.
+ */
+void EditableEventCategoryWidget::setFocus() {
+    this->ui->lineEdit_category->setFocus();
+}
+
+/**
+ *  @brief hasFocus - метод, показывающий имеет ли QLineEdit фокус.
+ */
+bool EditableEventCategoryWidget::hasFocus() {
+    return this->ui->lineEdit_category->hasFocus();
 }

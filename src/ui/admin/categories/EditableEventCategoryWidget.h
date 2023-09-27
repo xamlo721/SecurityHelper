@@ -52,6 +52,17 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
          */
         ~EditableEventCategoryWidget();
 
+
+        /**
+         *  @brief setFocus - метод, устанавливающий фокус QLineEdit.
+         */
+        void setFocus();
+
+        /**
+         *  @brief hasFocus - метод, показывающий имеет ли QLineEdit фокус.
+         */
+        bool hasFocus();
+
     public slots:
 
     signals:

@@ -68,7 +68,18 @@ void AdminEventCategoryBoxLayoutController::slotMakeCategoryEditable(UneditableE
  *    администратором .
  */
 void AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable(EditableEventCategoryWidget *editableCategory) {
-    this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+    /// Делаем виджет не редактируемым
+    UneditableEventCategoryWidget *tempCategory = this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+    /// Переименовываем категорию в списке в соответствии с переименованием виджета администратором
+    this->renameCategory(tempCategory);
+}
+
+void AdminEventCategoryBoxLayoutController::addCategory() {
+    ///     Создаем новую категорию с id большим на 1, чем у последней категории, именем Новая категория и
+    /// пустым списком событий
+    SecurityEventCategory newCategory(categories.last().getId() + 1, "Новая категория", QList<quint32>());
+    /// Добавляем новую категорию в список категорий контроллера
+    categories.append(newCategory);
 }
 
 /**
@@ -80,10 +91,25 @@ void AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable(Edita
 void AdminEventCategoryBoxLayoutController::deleteCategory(UneditableEventCategoryWidget * uneditableCategory) {
     /// Удаление из списка категорий контроллера необходимой категории
     /// ( удаление не изменяет айди других категорий )
-    for(SecurityEventCategory category : categories) {
+    for(SecurityEventCategory &category : categories) {
         if(category.getId() == uneditableCategory->getId()) {
             categories.removeOne(category);
             category.deleteLater();
+        }
+    }
+}
+
+/**
+ *  @brief renameCategory - метод для переименования категорий из списка контроллера
+ *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
+ *  нужно переименовать в списке.
+ *      Внутренний метод, вызывается в slotMakeCategoryUneditable.
+ */
+void AdminEventCategoryBoxLayoutController::renameCategory(UneditableEventCategoryWidget * uneditableCategory) {
+    /// Переименование в списке контроллера необходимой категории
+    for(SecurityEventCategory &category : categories) {
+        if(category.getId() == uneditableCategory->getId()) {
+            category.setText(uneditableCategory->getText());
         }
     }
 }
@@ -115,4 +141,17 @@ void AdminEventCategoryBoxLayoutController::slotDeleteCategory(UneditableEventCa
     this->deleteCategory(uneditableCategory);
     /// Удаляем виджет из категории бокса категорий
     this->boxLayoutCategories->deleteCategoryWidget(uneditableCategory);
+}
+
+void AdminEventCategoryBoxLayoutController::slotAddCategoryButtonPressed() {
+    /// Добавляем в список категорий новую категорию
+    this->addCategory();
+    /// Создаем из неё виджет
+    UneditableEventCategoryWidget *newCategoryWidget = new UneditableEventCategoryWidget(categories.last().getId(), categories.last().getText());
+    /// Добавляем новый виджет в бокс
+    this->boxLayoutCategories->addCategoryWidget(newCategoryWidget);
+}
+
+void AdminEventCategoryBoxLayoutController::slotDeleteCategoryButtonPressed() {
+
 }

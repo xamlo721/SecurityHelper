@@ -8,6 +8,9 @@
  */
 AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::AdminEditMenuWidget) {
     this->ui->setupUi(this);
+
+    QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
+    QObject::connect(this->ui->pushButton_deleteCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteCategoryButtonPressed);
 }
 
 /**

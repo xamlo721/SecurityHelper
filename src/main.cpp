@@ -56,6 +56,9 @@ int main(int argc, char *argv[]) {
     QObject::connect(&core, &CoreApp::signalAdminOpenCategories, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::setCategoryList);
 
 
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalAddCategoryButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotAddCategoryButtonPressed);
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteCategoryButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotDeleteCategoryButtonPressed);
+
     /// Инициализация контроллеров пользовательского интерфейса
     controller.init(mainWindow);
 

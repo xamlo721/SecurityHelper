@@ -35,7 +35,9 @@ class AdminEditMenuController : public QObject {
     public slots:
 
     signals:
+        void signalAddCategoryButtonPressed();
 
+        void signalDeleteCategoryButtonPressed();
 };
 
 #endif // ADMINEDITMENUCONTROLLER_H

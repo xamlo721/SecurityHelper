@@ -104,6 +104,8 @@ EditableEventCategoryWidget *AdminEventCategoryBoxLayout::makeCategoryEditable(U
     uneditableCategory->deleteLater();
     /// Вставляем на ту же позицию редактируемый виджет
     boxLayoutCategories->insertWidget(widgetPosition, editableCategory);
+    /// Устанавливаем виджету фокус, чтобы активный редактируемый виджет был только один
+    editableCategory->setFocus();
     /// Возвращаем измененный виджет
     return editableCategory;
 }

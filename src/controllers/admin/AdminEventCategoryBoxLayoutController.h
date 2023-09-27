@@ -26,6 +26,9 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         /// Список категорий, полученных из ядра программы
         QList<SecurityEventCategory> categories;
 
+
+        void addCategory();
+
         /**
          *  @brief deleteCategory - метод для удаления категорий из списка контроллера
          *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
@@ -33,6 +36,14 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *      Внутренний метод, вызывается в slotEmptyWidget и slotDeleteCategory.
          */
         void deleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+
+        /**
+         *  @brief renameCategory - метод для переименования категорий из списка контроллера
+         *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
+         *  нужно переименовать в списке.
+         *      Внутренний метод, вызывается в slotMakeCategoryUneditable.
+         */
+        void renameCategory(UneditableEventCategoryWidget * uneditableCategory);
 
     private slots:
         /**
@@ -93,6 +104,9 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *    список категорий.
          */
         void setCategoryList(QList<SecurityEventCategory> categories);
+
+        void slotAddCategoryButtonPressed();
+        void slotDeleteCategoryButtonPressed();
 
     signals:
 

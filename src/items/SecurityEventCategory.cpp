@@ -57,6 +57,14 @@ QList<quint32> SecurityEventCategory::getEventIds() const {
 }
 
 /**
+ * @brief setText - Установить название категории
+ * @return
+ */
+void SecurityEventCategory::setText(QString const text) {
+    this->text = text;
+}
+
+/**
  * @brief operator =
  * @param other
  * @return

@@ -69,6 +69,9 @@ class AdminEditMenuWidget : public QWidget {
     public slots:
 
     signals:
+       void signalAddCategoryButtonPressed();
+
+       void signalDeleteCategoryButtonPressed();
 
 };
 

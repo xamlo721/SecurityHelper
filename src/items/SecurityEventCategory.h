@@ -67,6 +67,12 @@ class SecurityEventCategory : public QObject {
         QList<quint32> getEventIds() const;
 
         /**
+         * @brief setText - Установить название категории
+         * @return
+         */
+        void setText(QString const text);
+
+        /**
          * @brief operator =
          * @param other
          * @return
