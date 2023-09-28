@@ -9,6 +9,8 @@ void CoreApp::init() {
     //Отправим в UI список категорий
     emit signalOpenCategories(db.categories.values());
 
+    /// Отправление в UI администратора списка категорий
+    emit signalAdminOpenCategories(db.categories.values());
 }
 
 
