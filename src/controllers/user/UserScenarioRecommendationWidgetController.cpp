@@ -9,13 +9,16 @@ void UserScenarioRecommendationWidgetController::init(ScenarioMenuWidget *scenar
 }
 
 void UserScenarioRecommendationWidgetController::setScenariesList(QList<SecurityScenario> scenaries) {
+    closeShownScenariesWidget();
     emit signalOpenScenarioMenu();
-
     for (SecurityScenario sc : scenaries) {
-        ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText(), sc.getName());
-        QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &UserScenarioRecommendationWidgetController::signalOpenScenario);
-        QObject::connect(widget, &ScenarioWidget::signalClarify, this, &UserScenarioRecommendationWidgetController::signalOnClarifyEvents);
-        this->scenarioMenuWidget->addScenarioWidget(widget);
+            ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText(), sc.getName());
+            QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &UserScenarioRecommendationWidgetController::signalOpenScenario);
+            QObject::connect(widget, &ScenarioWidget::signalClarify, this, &UserScenarioRecommendationWidgetController::signalOnClarifyEvents);
+            if (!shownScenariesWidget.contains(widget)) {
+                shownScenariesWidget << widget;
+            }
+            scenarioMenuWidget->addScenarioWidget(widget);
     }
 }
 
@@ -25,3 +28,11 @@ void UserScenarioRecommendationWidgetController::setRecommendationsList(QList<Se
     RecommendationsWidget * widget = new RecommendationsWidget(rec.getTextContainment(), rec.getTextFixes(), rec.getTextRestore());
     emit signalSetRecommentationWidget(widget);
 }
+
+void UserScenarioRecommendationWidgetController::closeShownScenariesWidget() {
+    for (ScenarioWidget * widget : shownScenariesWidget) {
+        scenarioMenuWidget->closeScenarioWidget(widget);
+    }
+    shownScenariesWidget.clear();
+}
+

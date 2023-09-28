@@ -22,8 +22,11 @@ void CoreApp::onOpenCategory(quint32 categoryId) {
             //Бросить исключение
             continue;
         }
+        if (!categoryEvents.contains(db.events.value(eventid))) {
 
-        categoryEvents.append(db.events.value(eventid));
+            categoryEvents.append(db.events.value(eventid));
+
+        }
     }
 
     emit signalOpenCategory(categoryEvents);
@@ -88,7 +91,6 @@ void CoreApp::onOpenScenario(quint32 id) {
         }
 
     }
-
 
     //TODO: Удалить повторы
 

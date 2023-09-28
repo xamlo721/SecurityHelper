@@ -73,6 +73,7 @@ SecurityIncident& SecurityIncident::operator=(const SecurityIncident& other) {
     QObject::setParent(other.parent());
     id = other.id;
     text = other.text;
+    name = other.name;
     events = other.events;
 
     return *this;
@@ -86,6 +87,7 @@ SecurityIncident& SecurityIncident::operator=(const SecurityIncident& other) {
 bool SecurityIncident::operator==(const SecurityIncident& other) const {
     return (id == other.id
          && text == other.text
+         && name == other.name
          && events == other.events);
 }
 

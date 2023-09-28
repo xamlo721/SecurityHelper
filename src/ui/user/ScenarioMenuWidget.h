@@ -20,6 +20,8 @@ class ScenarioMenuWidget : public QWidget {
         void clear();
 
         void addScenarioWidget(ScenarioWidget * widget);
+        ///Закрывает определенный виджет
+        void closeScenarioWidget(ScenarioWidget * widget);
 
     private:
         Ui::ScenarioMenuWidget *ui;

@@ -24,6 +24,10 @@ class UserScenarioRecommendationWidgetController : public QObject {
 
     private:
         ScenarioMenuWidget *scenarioMenuWidget;
+        ///Лист с виджетами сценариев, которые уже показаны
+        QList<ScenarioWidget*> shownScenariesWidget;
+        ///Закрывает все виджеты сценариев из листа shownScenariesWidget
+        void closeShownScenariesWidget();
 
     private slots:
 
