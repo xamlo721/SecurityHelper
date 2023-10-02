@@ -7,6 +7,18 @@
  */
 UneditableItemMenu::UneditableItemMenu(QObject *parent) : QObject{parent} {
     menu = new QMenu();
+
+    QString  menuStyle(
+               "QMenu {"
+               "background-color: #85c7c7;"
+               "color: black;"
+               "}"
+               "QMenu::item:selected{"
+               "background-color: #aaffff;"
+               "color: black;"
+               "}"
+            );
+    this->menu->setStyleSheet(menuStyle);
 }
 
 /**

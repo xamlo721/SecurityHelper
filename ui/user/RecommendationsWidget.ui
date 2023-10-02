@@ -48,7 +48,11 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QTextEdit" name="textEdit_cont"/>
+          <widget class="QTextEdit" name="textEdit_cont">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -90,7 +94,11 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QTextEdit" name="textEdit_fixes"/>
+          <widget class="QTextEdit" name="textEdit_fixes">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -132,7 +140,11 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QTextEdit" name="textEdit_restore"/>
+          <widget class="QTextEdit" name="textEdit_restore">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
