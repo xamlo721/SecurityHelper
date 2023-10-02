@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QLineEdit>
-#include <QIntValidator>
 
 #include "src/items/BaseItem.h"
 
@@ -44,7 +43,7 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
          * полей id и text ( см. класс BaseItem ), а так же связывание сигнала editingFinished класса
          * QLineEdit с со слотом slotEditingFinished данного класса.
          */
-        explicit EditableEventCategoryWidget(quint32 id, QString title, QWidget * parent = nullptr);
+        explicit EditableEventCategoryWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
 
         /**
          *  @brief ~EditableItemMenu - деструктор по умолчанию, используется для
@@ -72,13 +71,13 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить
          *  для возможности редактирования.
          */
-        void editingFinished(EditableEventCategoryWidget * editableCategory);
+        void editingFinished(EditableEventCategoryWidget * editableWidget);
         /**
          *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
          *  действия Удалить.
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
          */
-        void emptyWidget(EditableEventCategoryWidget * editableCategory);
+        void emptyWidget(EditableEventCategoryWidget * editableWidget);
 
 };
 

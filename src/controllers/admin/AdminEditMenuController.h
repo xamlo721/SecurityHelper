@@ -34,13 +34,17 @@ class AdminEditMenuController : public QObject {
 
     public slots:
        void slotSetDeleteSelectedCategoriesButtonEnabled();
-
        void slotSetDeleteSelectedCategoriesButtonDisabled();
+
+       void slotSetDeleteSelectedEventsButtonEnabled();
+       void slotSetDeleteSelectedEventsButtonDisabled();
 
     signals:
         void signalAddCategoryButtonPressed();
-
         void signalDeleteSelectedCategoriesButtonPressed();
+
+        void signalAddEventButtonPressed();
+        void signalDeleteSelectedEventsButtonPressed();
 };
 
 #endif // ADMINEDITMENUCONTROLLER_H

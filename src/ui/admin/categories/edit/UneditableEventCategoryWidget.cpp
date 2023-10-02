@@ -9,7 +9,7 @@
  *  В данном конструкторе задается размер виджета, текст виджета и инициализация
  * полей id и text ( см. класс BaseItem ).
  */
-UneditableEventCategoryWidget::UneditableEventCategoryWidget(quint32 id, QString title, QWidget *parent) : QWidget(parent), ui(new Ui::UneditableEventCategoryWidget) {
+UneditableEventCategoryWidget::UneditableEventCategoryWidget(const quint32 id, const QString title, QWidget *parent) : QWidget(parent), ui(new Ui::UneditableEventCategoryWidget) {
     ui->setupUi(this);
     /// Задаем минимальный размер кнопки
     this->ui->pushButton_category->setMinimumSize(200, 60);
@@ -62,12 +62,12 @@ void UneditableEventCategoryWidget::initMenu() {
 /**
  * @brief callCustomMenu - метод вызова кастомного контекстного меню.
  */
-void UneditableEventCategoryWidget::callCustomMenu(QPoint mousePosition) {
+void UneditableEventCategoryWidget::callCustomMenu(const QPoint mousePosition) {
     /// Вызов кастомного контекстного меню по позиции курсора
     customMenu->call(this->ui->pushButton_category->mapToGlobal(mousePosition));
 }
 
-void UneditableEventCategoryWidget::setText(QString text) {
+void UneditableEventCategoryWidget::setText(const QString text) {
     this->text = text;
     this->ui->pushButton_category->setText(this->text);
 }

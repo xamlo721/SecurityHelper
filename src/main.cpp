@@ -7,6 +7,7 @@
 
 #include "src/controllers/admin/AdminEditMenuController.h"
 #include "src/controllers/admin/AdminEventCategoryBoxLayoutController.h"
+#include "src/controllers/admin/AdminEventBoxLayoutController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -29,6 +30,8 @@ int main(int argc, char *argv[]) {
     AdminEditMenuController editMenuController;
 
     AdminEventCategoryBoxLayoutController eventCategoryBoxContoller;
+
+    AdminEventBoxLayoutController eventBoxContoller;
 
     // Блок инициализации связи сигналов/слотов для пользователя
 
@@ -56,16 +59,28 @@ int main(int argc, char *argv[]) {
 
     // Блок инициализации связи сигналов/слотов для администратора
 
-
+    /// Блок связи сигналов для создания списков в администрировании
     QObject::connect(&core, &CoreApp::signalAdminOpenCategories, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::setCategoryList);
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoriesSet, &core, &CoreApp::formEvents);
+    QObject::connect(&core, &CoreApp::eventsFormed, &eventBoxContoller, &AdminEventBoxLayoutController::setEventList);
 
-    /// Блок связи сигналов о нажатии клавиш Добавить/Удалить
+
+    /// Блок связи сигналов о нажатии клавиш Добавить/Удалить выбранное в категориях
     QObject::connect(&editMenuController, &AdminEditMenuController::signalAddCategoryButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotAddCategoryButtonPressed);
     QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteSelectedCategoriesButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotDeleteSelectedCategoriesButtonPressed);
 
-    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выделенное
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранные категории
     QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonEnabled);
     QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled);
+
+
+    /// Блок связи сигналов о нажатии клавиш Добавить/Удалить выбранное в событиях
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalAddEventButtonPressed, &eventBoxContoller, &AdminEventBoxLayoutController::slotAddEventButtonPressed);
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteSelectedEventsButtonPressed, &eventBoxContoller, &AdminEventBoxLayoutController::slotDeleteSelectedEventsButtonPressed);
+
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранные события
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::signalSelectedEventsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedEventsButtonEnabled);
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::signalSelectedEventsEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedEventsButtonDisabled);
 
     // Инициализация контроллеров пользовательского интерфейса
     controller.init(mainWindow);
@@ -80,6 +95,8 @@ int main(int argc, char *argv[]) {
     editMenuController.init(mainWindow->getEditMenuWidget());
 
     eventCategoryBoxContoller.init(mainWindow->getEditMenuWidget()->getBoxLayoutCategories());
+
+    eventBoxContoller.init(mainWindow->getEditMenuWidget()->getBoxLayoutEvents());
 
     // Инициализация ядря
     core.init();

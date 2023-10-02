@@ -2,25 +2,41 @@
 #define EDITABLEEVENTWIDGET_H
 
 #include <QWidget>
+#include <QLineEdit>
 
-#include "src/ui/user/EventWidget.h"
+#include "src/items/BaseItem.h"
 
 namespace Ui {
 class EditableEventWidget;
 }
 
-// EditableEventWidget - класс для режима редактирования событий администратором
-class EditableEventWidget : public QWidget {
+
+class EditableEventWidget : public QWidget, public BaseItem {
 
     Q_OBJECT
+    private:
+        Ui::EditableEventWidget *ui;
 
-public:
-    explicit EditableEventWidget(EventWidget * eventWidget, QWidget * parent = nullptr);
-    ~EditableEventWidget();
+    private slots:
+        int slotEditingFinished();
 
-private:
-    quint32 id;
-    Ui::EditableEventWidget *ui;
+    public:
+        explicit EditableEventWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
+
+        ~EditableEventWidget();
+
+
+        void setFocus();
+
+        bool hasFocus();
+
+    public slots:
+
+    signals:
+
+        void editingFinished(EditableEventWidget * editableWidget);
+
+        void emptyWidget(EditableEventWidget * editableWidget);
 
 };
 

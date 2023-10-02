@@ -1,15 +1,15 @@
-#include "EventCategoryWidgetStorage.h"
+#include "EventWidgetStorage.h"
 
-EventCategoryWidgetStorage::EventCategoryWidgetStorage() {}
+EventWidgetStorage::EventWidgetStorage() {}
 
-void EventCategoryWidgetStorage::sortWidgetNumbers() {
+void EventWidgetStorage::sortWidgetNumbers() {
     this->widgetNumbers.clear();
 
     for(quint32 i = 0; i < uneditableWidgets.size(); i++)
         this->widgetNumbers.append(i + 1);
 }
 
-void EventCategoryWidgetStorage::appendWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget) {
+void EventWidgetStorage::appendWidget(UneditableEventWidget *uneditableWidget, EditableEventWidget *editableWidget) {
     /// Если у виджетов не одинаковое айди, бросаем исключение
     //if(uneditableWidget->getId() != editableWidget->getId())
         // throw
@@ -19,8 +19,8 @@ void EventCategoryWidgetStorage::appendWidget(UneditableEventCategoryWidget *une
     this->widgetNumbers.append(this->widgetNumbers.size() + 1);
 }
 
-void EventCategoryWidgetStorage::removeWidget(quint32 widgetID) {
-    for(UneditableEventCategoryWidget *uneditableWidget : uneditableWidgets) {
+void EventWidgetStorage::removeWidget(quint32 widgetID) {
+    for(UneditableEventWidget *uneditableWidget : uneditableWidgets) {
         if(uneditableWidget->getID() == widgetID) {
             quint32 widgetPosition = this->uneditableWidgets.indexOf(uneditableWidget);
 
@@ -33,16 +33,16 @@ void EventCategoryWidgetStorage::removeWidget(quint32 widgetID) {
     }
 }
 
-UneditableEventCategoryWidget *EventCategoryWidgetStorage::getUneditableWidget(quint32 widgetID) {
-    for(UneditableEventCategoryWidget *uneditableWidget : uneditableWidgets) {
+UneditableEventWidget *EventWidgetStorage::getUneditableWidget(quint32 widgetID) {
+    for(UneditableEventWidget *uneditableWidget : uneditableWidgets) {
         if(uneditableWidget->getID() == widgetID)
             return uneditableWidget;
     }
     return nullptr;
 }
 
-EditableEventCategoryWidget *EventCategoryWidgetStorage::getEditableWidget(quint32 widgetID) {
-    for(EditableEventCategoryWidget *editableWidget : editableWidgets) {
+EditableEventWidget *EventWidgetStorage::getEditableWidget(quint32 widgetID) {
+    for(EditableEventWidget *editableWidget : editableWidgets) {
         if(editableWidget->getID() == widgetID)
             return editableWidget;
     }

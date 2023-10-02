@@ -69,15 +69,19 @@ class AdminEditMenuWidget : public QWidget {
         QVBoxLayout *getBoxLayoutScenaries();
 
         void setDeleteSelectedCategoriesButtonEnabled();
-
         void setDeleteSelectedCategoriesButtonDisabled();
+
+        void setDeleteSelectedEventsButtonEnabled();
+        void setDeleteSelectedEventsButtonDisabled();
 
     public slots:
 
     signals:
         void signalAddCategoryButtonPressed();
-
         void signalDeleteSelectedCategoriesButtonPressed();
+
+        void signalAddEventButtonPressed();
+        void signalDeleteSelectedEventsButtonPressed();
 };
 
 #endif // ADMINEDITMENUWIDGET_H

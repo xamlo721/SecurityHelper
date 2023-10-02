@@ -11,7 +11,7 @@
  * QLineEdit с со слотом slotEditingFinished данного класса.
  */
 
-EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventCategoryWidget) {
+EditableEventCategoryWidget::EditableEventCategoryWidget(const quint32 id, const QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventCategoryWidget) {
     ui->setupUi(this);
     /// Устанавливаем минимальный размер кнопки
     this->ui->lineEdit_category->setMinimumSize(200, 60);

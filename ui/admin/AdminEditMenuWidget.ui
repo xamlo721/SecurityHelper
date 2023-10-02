@@ -68,7 +68,7 @@ QTabBar::tab:!selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="categories">
       <attribute name="title">
@@ -299,9 +299,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_deleteEvent">
+             <widget class="QPushButton" name="pushButton_deleteSelectedEvents">
               <property name="text">
-               <string>Удалить</string>
+               <string>Удалить выбранное</string>
               </property>
              </widget>
             </item>

@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include "qboxlayout.h"
-#include <QMap> //
 
 #include "UneditableEventCategoryWidget.h"
 #include "EditableEventCategoryWidget.h"
@@ -32,14 +31,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  администратором на редактирование или удаление категории.
          *  @param uneditableCategory - не редактируемый виджет категории.
          */
-        void initUneditableCategory(UneditableEventCategoryWidget *uneditableCategory);
+        void initUneditableWidget(UneditableEventCategoryWidget *uneditableWidget);
         /**
          *  @brief initEditableCategory - метод, инициализирующий связь сигналов
          *  редактируемого виджета категории с данным классом, для сообщения о завершении
          *  редактирования.
          *  @param editableCategory - редактируемый виджет категории.
          */
-        void initEditableCategory(EditableEventCategoryWidget *editableCategory);
+        void initEditableWidget(EditableEventCategoryWidget *editableWidget);
 
     private slots:
 
@@ -66,7 +65,7 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  @param uneditableCategory - не редактируемый виджет категории, предназначенный
          *  для удаления.
          */
-        void deleteCategoryWidget(UneditableEventCategoryWidget *uneditableCategory);
+        void deleteCategoryWidget(UneditableEventCategoryWidget *uneditableWidget);
 
         /**
          *  @brief clearCategories - очистка списка виджетов категорий.
@@ -111,8 +110,8 @@ class AdminEventCategoryBoxLayout : public QObject {
          */
         void emptyWidget(EditableEventCategoryWidget * editableCategory);
 
-        void signalCategorySelected(quint32 id);
-        void signalCategoryUnselected(quint32 id);
+        void signalCategorySelected(const quint32 categoryID);
+        void signalCategoryUnselected(const quint32 categoryID);
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUT_H

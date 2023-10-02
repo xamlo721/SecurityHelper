@@ -1,14 +1,10 @@
 #ifndef EVENTCATEGORYWIDGETSTORAGE_H
 #define EVENTCATEGORYWIDGETSTORAGE_H
 
-#include <QObject>
-
 #include "EditableEventCategoryWidget.h"
 #include "UneditableEventCategoryWidget.h"
 
-class EventCategoryWidgetStorage : public QObject {
-
-    Q_OBJECT
+class EventCategoryWidgetStorage{
 
     private:
         QList<UneditableEventCategoryWidget*> uneditableWidgets;
@@ -18,16 +14,13 @@ class EventCategoryWidgetStorage : public QObject {
         void sortWidgetNumbers();
 
     public:
-        explicit EventCategoryWidgetStorage(QObject *parent = nullptr);
+        explicit EventCategoryWidgetStorage();
 
         void appendWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget);
         void removeWidget(quint32 widgetID);
 
         UneditableEventCategoryWidget *getUneditableWidget(quint32 widgetID);
         EditableEventCategoryWidget *getEditableWidget(quint32 widgetID);
-
-    signals:
-
 };
 
 #endif // EVENTCATEGORYWIDGETSTORAGE_H

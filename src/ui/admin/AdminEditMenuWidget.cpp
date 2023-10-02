@@ -15,6 +15,9 @@ AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(
     QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
     QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
 
+    QObject::connect(this->ui->pushButton_addEvent, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddEventButtonPressed);
+    QObject::connect(this->ui->pushButton_deleteSelectedEvents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed);
+
     this->ui->pushButton_deleteSelectedCategories->setMouseTracking(true);
     this->ui->pushButton_deleteSelectedCategories->installEventFilter(this);
 
@@ -78,7 +81,7 @@ AdminEditMenuWidget::~AdminEditMenuWidget() {
 
 void AdminEditMenuWidget::setAllDeleteButtonsDisabled() {
     this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
-    this->ui->pushButton_deleteEvent->setEnabled(false);
+    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
     this->ui->pushButton_deleteIncident->setEnabled(false);
     this->ui->pushButton_deleteScenario->setEnabled(false);
     this->ui->pushButton_deleteRecommendation->setEnabled(false);
@@ -95,4 +98,12 @@ void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonEnabled() {
 
 void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonDisabled() {
     this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedEventsButtonEnabled() {
+    this->ui->pushButton_deleteSelectedEvents->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedEventsButtonDisabled() {
+    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
 }

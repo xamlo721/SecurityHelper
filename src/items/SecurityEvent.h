@@ -60,6 +60,12 @@ class SecurityEvent : public QObject {
         QString getText() const;
 
         /**
+         * @brief setText - Установить название события
+         * @return
+         */
+        void setText(QString const text);
+
+        /**
          * @brief operator =
          * @param other
          * @return

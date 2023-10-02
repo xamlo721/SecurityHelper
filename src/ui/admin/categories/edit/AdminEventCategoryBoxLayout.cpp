@@ -4,9 +4,7 @@
  *  @brief AdminEditMenuWidget - не изменяемый конструктор по умолчанию
  *  @param parent - родительский объект в иерархии Qt.
  */
-AdminEventCategoryBoxLayout::AdminEventCategoryBoxLayout(QObject *parent) : QObject{parent} {
-
-}
+AdminEventCategoryBoxLayout::AdminEventCategoryBoxLayout(QObject *parent) : QObject{parent} {}
 
 /**
  *  @brief init - метод, инициализирующий бокс категорий в данном классе
@@ -14,9 +12,9 @@ AdminEventCategoryBoxLayout::AdminEventCategoryBoxLayout(QObject *parent) : QObj
  *  @param boxLayout - бокс категорий, находящийся в AdminEditMenuWidget.
  */
 void AdminEventCategoryBoxLayout::init(QVBoxLayout *boxLayout) {
-    /// Инициализация бокса категорий данного класса боксом категорий из
+    ///  Инициализация бокса категорий данного класса боксом категорий из
     /// AdminMenuEditWidget, для управления им
-    boxLayoutCategories = boxLayout;
+    this->boxLayoutCategories = boxLayout;
 }
 
 /**
@@ -25,12 +23,12 @@ void AdminEventCategoryBoxLayout::init(QVBoxLayout *boxLayout) {
  *  администратором на редактирование или удаление категории.
  *  @param uneditableCategory - не редактируемый виджет категории.
  */
-void AdminEventCategoryBoxLayout::initUneditableCategory(UneditableEventCategoryWidget *uneditableCategory) {
-    QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalEditCategory, this, &AdminEventCategoryBoxLayout::signalEditCategory);
-    QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalDeleteCategory, this, &AdminEventCategoryBoxLayout::signalDeleteCategory);
+void AdminEventCategoryBoxLayout::initUneditableWidget(UneditableEventCategoryWidget *uneditableWidget) {
+    QObject::connect(uneditableWidget, &UneditableEventCategoryWidget::signalEditCategory, this, &AdminEventCategoryBoxLayout::signalEditCategory);
+    QObject::connect(uneditableWidget, &UneditableEventCategoryWidget::signalDeleteCategory, this, &AdminEventCategoryBoxLayout::signalDeleteCategory);
 
-    QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalCategorySelected, this, &AdminEventCategoryBoxLayout::signalCategorySelected);
-    QObject::connect(uneditableCategory, &UneditableEventCategoryWidget::signalCategoryUnselected, this, &AdminEventCategoryBoxLayout::signalCategoryUnselected);
+    QObject::connect(uneditableWidget, &UneditableEventCategoryWidget::signalCategorySelected, this, &AdminEventCategoryBoxLayout::signalCategorySelected);
+    QObject::connect(uneditableWidget, &UneditableEventCategoryWidget::signalCategoryUnselected, this, &AdminEventCategoryBoxLayout::signalCategoryUnselected);
 }
 
 /**
@@ -39,17 +37,17 @@ void AdminEventCategoryBoxLayout::initUneditableCategory(UneditableEventCategory
  *  редактирования.
  *  @param editableCategory - редактируемый виджет категории.
  */
-void AdminEventCategoryBoxLayout::initEditableCategory(EditableEventCategoryWidget *editableCategory) {
-    QObject::connect(editableCategory, &EditableEventCategoryWidget::editingFinished, this, &AdminEventCategoryBoxLayout::editingFinished);
-    QObject::connect(editableCategory, &EditableEventCategoryWidget::emptyWidget, this, &AdminEventCategoryBoxLayout::emptyWidget);
+void AdminEventCategoryBoxLayout::initEditableWidget(EditableEventCategoryWidget *editableWidget) {
+    QObject::connect(editableWidget, &EditableEventCategoryWidget::editingFinished, this, &AdminEventCategoryBoxLayout::editingFinished);
+    QObject::connect(editableWidget, &EditableEventCategoryWidget::emptyWidget, this, &AdminEventCategoryBoxLayout::emptyWidget);
 }
 
 void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget) {
     /// Инициализируем меню для не редактируемого виджета
     uneditableWidget->initMenu();
     /// Инициализируем связь сигналов виджетов с данным классом
-    this->initUneditableCategory(uneditableWidget);
-    this->initEditableCategory(editableWidget);
+    this->initUneditableWidget(uneditableWidget);
+    this->initEditableWidget(editableWidget);
 
     /// Создаем бокс для пар виджетов и добавляем в него виджеты
     QVBoxLayout *layout = new QVBoxLayout();
@@ -59,9 +57,9 @@ void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidge
     /// Скрываем редактируемый виджет
     editableWidget->hide();
     /// Добавляем в общий бокс бокс пар виджетов
-    boxLayoutCategories->addLayout(layout);
+    this->boxLayoutCategories->addLayout(layout);
     /// Добавляем в лист бокс пар виджетов
-    widgetBoxLayout.append(layout);
+    this->widgetBoxLayout.append(layout);
 }
 
 /**
@@ -90,9 +88,9 @@ void AdminEventCategoryBoxLayout::deleteCategoryWidget(UneditableEventCategoryWi
  */
 void AdminEventCategoryBoxLayout::clearCategories() {
     /// Проходимся по всем layout, которые не NULL и удаляем виджет вместе с итемом
-    if(boxLayoutCategories->layout() != NULL) {
+    if(this->boxLayoutCategories->layout() != NULL) {
         QLayoutItem* item;
-        while ( ( item = boxLayoutCategories->layout()->takeAt( 0 ) ) != NULL ) {
+        while ( ( item = this->boxLayoutCategories->layout()->takeAt( 0 ) ) != NULL ) {
             delete item->widget();
             delete item;
         }
