@@ -79,6 +79,7 @@ SecurityScenario& SecurityScenario::operator=(const SecurityScenario& other) {
     QObject::setParent(other.parent());
     id = other.id;
     text = other.text;
+    name = other.name;
     incidents = other.incidents;
 
     return *this;
@@ -92,6 +93,7 @@ SecurityScenario& SecurityScenario::operator=(const SecurityScenario& other) {
 bool SecurityScenario::operator==(const SecurityScenario& other) const {
     return (id == other.id
          && text == other.text
+         && name == other.name
          && incidents == other.incidents);
 }
 
