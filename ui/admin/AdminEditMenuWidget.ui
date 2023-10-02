@@ -120,9 +120,9 @@ QTabBar::tab:!selected {
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_deleteCategory">
+            <widget class="QPushButton" name="pushButton_deleteSelectedCategories">
              <property name="text">
-              <string>Удалить</string>
+              <string>Удалить выбранное</string>
              </property>
             </widget>
            </item>

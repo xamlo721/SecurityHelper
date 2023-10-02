@@ -24,6 +24,8 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
 
     /// Связываем сигнал editingFinished с slotEditingFinished
     QObject::connect(this->ui->lineEdit_category, &QLineEdit::editingFinished, this, &EditableEventCategoryWidget::slotEditingFinished);
+
+    this->ui->lineEdit_category->setFocusPolicy(Qt::StrongFocus);
 }
 
 /**
@@ -31,7 +33,11 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
 * QLineEdit с сигналами editingFinished или emptyWidget данного класса, в зависимости от того, что
 * необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
 */
-int EditableEventCategoryWidget::slotEditingFinished() {
+int EditableEventCategoryWidget::slotEditingFinished() {    
+    if(!this->ui->lineEdit_category->isModified())
+        return 1;
+    this->ui->lineEdit_category->setModified(false);
+
     /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
     if(this->ui->lineEdit_category->text().isEmpty()) {
         emit emptyWidget(this);

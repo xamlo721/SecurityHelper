@@ -33,11 +33,14 @@ class AdminEditMenuController : public QObject {
         void init(AdminEditMenuWidget *editMenu);
 
     public slots:
+       void slotSetDeleteSelectedCategoriesButtonEnabled();
+
+       void slotSetDeleteSelectedCategoriesButtonDisabled();
 
     signals:
         void signalAddCategoryButtonPressed();
 
-        void signalDeleteCategoryButtonPressed();
+        void signalDeleteSelectedCategoriesButtonPressed();
 };
 
 #endif // ADMINEDITMENUCONTROLLER_H

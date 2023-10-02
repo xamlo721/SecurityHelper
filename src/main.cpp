@@ -30,7 +30,9 @@ int main(int argc, char *argv[]) {
 
     AdminEventCategoryBoxLayoutController eventCategoryBoxContoller;
 
-    /// Блок инициализации связи сигналов/слотов для пользователя
+    // Блок инициализации связи сигналов/слотов для пользователя
+
+
     QObject::connect(&core, &CoreApp::signalOpenCategories, &categoryEventController, &UserCategoryEventWidgetController::setCategoryList);
     QObject::connect(&core, &CoreApp::signalOpenCategory, &categoryEventController, &UserCategoryEventWidgetController::setEventList);
     QObject::connect(&core, &CoreApp::signalOpenIncidents, &incidentController, &UserIncidentWidgetController::setIncidentList);
@@ -52,14 +54,20 @@ int main(int argc, char *argv[]) {
     QObject::connect(&scenarioRecommendationController, &UserScenarioRecommendationWidgetController::signalSetRecommentationWidget, &controller, &MainWindowController::setRecommendationWidget);
 
 
-    /// Блок инициализации связи сигналов/слотов для администратора
+    // Блок инициализации связи сигналов/слотов для администратора
+
+
     QObject::connect(&core, &CoreApp::signalAdminOpenCategories, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::setCategoryList);
 
-
+    /// Блок связи сигналов о нажатии клавиш Добавить/Удалить
     QObject::connect(&editMenuController, &AdminEditMenuController::signalAddCategoryButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotAddCategoryButtonPressed);
-    QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteCategoryButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotDeleteCategoryButtonPressed);
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteSelectedCategoriesButtonPressed, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::slotDeleteSelectedCategoriesButtonPressed);
 
-    /// Инициализация контроллеров пользовательского интерфейса
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выделенное
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonEnabled);
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled);
+
+    // Инициализация контроллеров пользовательского интерфейса
     controller.init(mainWindow);
 
     categoryEventController.init(mainWindow->getMainMenuWidget());
@@ -68,15 +76,15 @@ int main(int argc, char *argv[]) {
 
     scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
 
-    /// Инициализация контроллеров административного интерфейса
+    // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
 
     eventCategoryBoxContoller.init(mainWindow->getEditMenuWidget()->getBoxLayoutCategories());
 
-    /// Инициализация ядря
+    // Инициализация ядря
     core.init();
 
-    /// Старт пользовательского интерфейса
+    // Старт интерфейса
     controller.show();
 
     return a.exec();

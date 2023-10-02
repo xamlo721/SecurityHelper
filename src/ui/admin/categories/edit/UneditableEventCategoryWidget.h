@@ -29,6 +29,7 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
         Ui::UneditableEventCategoryWidget *ui;
 
     private slots:
+        void onCheckBoxClicked();
 
     public:
         /**
@@ -56,6 +57,8 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          * @brief callCustomMenu - метод вызова кастомного контекстного меню.
          */
         void callCustomMenu(QPoint mousePosition);
+
+        void setText(QString text) override;
 
     public slots:
         /**
@@ -85,6 +88,9 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
          */
         void signalDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+
+        void signalCategorySelected(quint32 id);
+        void signalCategoryUnselected(quint32 id);
 };
 
 #endif // UNEDITABLEEVENTCATEGORYWIDGET_H

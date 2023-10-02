@@ -6,7 +6,10 @@
 
 class BaseItem {
     public:
-        quint32 getId() { return this->id; }
+       virtual void setID(quint32 id) { this->id = id; }
+       virtual void setText(QString text) { this->text = text; }
+
+        quint32 getID() { return this->id; }
         QString getText() { return this->text; }
 
     protected:

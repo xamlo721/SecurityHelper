@@ -9,8 +9,15 @@
 AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::AdminEditMenuWidget) {
     this->ui->setupUi(this);
 
+    /// Блокируем все кнопки Удалить, т.к. каждой кнопке необходим свой активный виджет для возможности удаления виджета
+    this->setAllDeleteButtonsDisabled();
+
     QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
-    QObject::connect(this->ui->pushButton_deleteCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteCategoryButtonPressed);
+    QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
+
+    this->ui->pushButton_deleteSelectedCategories->setMouseTracking(true);
+    this->ui->pushButton_deleteSelectedCategories->installEventFilter(this);
+
 }
 
 /**
@@ -67,4 +74,25 @@ AdminEditMenuWidget::~AdminEditMenuWidget() {
     delete boxLayoutScenaries;
 
     delete ui;
+}
+
+void AdminEditMenuWidget::setAllDeleteButtonsDisabled() {
+    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
+    this->ui->pushButton_deleteEvent->setEnabled(false);
+    this->ui->pushButton_deleteIncident->setEnabled(false);
+    this->ui->pushButton_deleteScenario->setEnabled(false);
+    this->ui->pushButton_deleteRecommendation->setEnabled(false);
+
+    this->ui->pushButton_removeInCategoryEvent->setEnabled(false);
+    this->ui->pushButton_removeInIncidentEvent->setEnabled(false);
+    this->ui->pushButton_removeInScenarioIncident->setEnabled(false);
+
+}
+
+void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonEnabled() {
+    this->ui->pushButton_deleteSelectedCategories->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonDisabled() {
+    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
 }

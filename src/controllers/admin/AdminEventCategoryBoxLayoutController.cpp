@@ -22,10 +22,14 @@ void AdminEventCategoryBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutC
     this->boxLayoutCategories->init(editMenuBoxLayoutCategories);
 
     /// Блок связи сигналов, поступающих в меню редактирования из не редактируемого виджета
-    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalEditCategory, this, &AdminEventCategoryBoxLayoutController::slotMakeCategoryEditable);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalEditCategory, this, &AdminEventCategoryBoxLayoutController::slotShowEditableWidget);
     QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalDeleteCategory, this, &AdminEventCategoryBoxLayoutController::slotDeleteCategory);
+
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalCategorySelected, this, &AdminEventCategoryBoxLayoutController::onCategorySelected);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::signalCategoryUnselected, this, &AdminEventCategoryBoxLayoutController::onCategoryUnselected);
+
     /// Блок связи сигналов, поступающих в меню редактирования из редактируемого виджета
-    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::editingFinished, this, &AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable);
+    QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::editingFinished, this, &AdminEventCategoryBoxLayoutController::slotShowUneditableWidget);
     QObject::connect(this->boxLayoutCategories, &AdminEventCategoryBoxLayout::emptyWidget, this, &AdminEventCategoryBoxLayoutController::slotEmptyWidget);
 }
 
@@ -36,42 +40,41 @@ void AdminEventCategoryBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutC
  *      Срабатывает при получении сигнала от ядра программы, по которому передается
  *    список категорий.
  */
-void AdminEventCategoryBoxLayoutController::setCategoryList(QList<SecurityEventCategory> categories) {
+void AdminEventCategoryBoxLayoutController::setCategoryList(const QList<SecurityEventCategory> categories) {
     /// Сохраняем список категорий
     this->categories = categories;
     /// Очищаем список категорий в боксе для исключения неточностей
     this->boxLayoutCategories->clearCategories();
     /// Проходим по списку категорий, инициализируя и добавляя виджеты в бокс
     for (SecurityEventCategory cat : categories) {
-        UneditableEventCategoryWidget *categoryWidget = new UneditableEventCategoryWidget(cat.getId(), cat.getText());
+        UneditableEventCategoryWidget *uneditableWidget = new UneditableEventCategoryWidget(cat.getId(), cat.getText());
+        EditableEventCategoryWidget *editableWidget = new EditableEventCategoryWidget(cat.getId(), cat.getText());
+        this->widgetStorage.appendWidget(uneditableWidget, editableWidget);
         //QObject::connect(categoryWidget, &UneditableEventCategoryWidget::signalOpenIncident, this, &AdminEditMenuController::signalOpenCategory);
 
-        this->boxLayoutCategories->addCategoryWidget(categoryWidget);
+        this->boxLayoutCategories->addCategoryWidget(uneditableWidget, editableWidget);
     }
 }
 
-/**
- *  @brief makeCategoryEditable - приватный слот для изменения не редактируемого виджета на редактируемый
- *  для возможности изменения имени категории.
- *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить.
- *      Срабатывает при получении сигнала от не редактируемого виджета о запросе администратора.
- */
-void AdminEventCategoryBoxLayoutController::slotMakeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory) {
-    this->boxLayoutCategories->makeCategoryEditable(uneditableCategory);
+void AdminEventCategoryBoxLayoutController::slotShowEditableWidget(UneditableEventCategoryWidget *uneditableWidget) {
+    /// Берем редактируемый виджет из хранилища, по соответствующему ему не редактируемому виджету
+    EditableEventCategoryWidget *editableWidget = this->widgetStorage.getEditableWidget(uneditableWidget->getID());
+    /// Показываем редактируемый виджет
+    this->boxLayoutCategories->showEditableWidget(uneditableWidget, editableWidget);
 }
 
-/**
- *  @brief makeCategoryUneditable - приватный слот для изменения редактируемого виджета на не редактируемый
- *  при завершении редактирования администратором.
- *  @param editableCategory - редактируемый виджет категории, который необходимо изменить.
- *      Срабатывает при получении сигнала от редактируемого виджета о завершении редактирования
- *    администратором .
- */
-void AdminEventCategoryBoxLayoutController::slotMakeCategoryUneditableable(EditableEventCategoryWidget *editableCategory) {
-    /// Делаем виджет не редактируемым
-    UneditableEventCategoryWidget *tempCategory = this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+void AdminEventCategoryBoxLayoutController::slotShowUneditableWidget(EditableEventCategoryWidget *editableWidget) {
+    /// Берем не редактируемый виджет из хранилища, по соответствующему ему редактируемому виджету
+    UneditableEventCategoryWidget *uneditableWidget = this->widgetStorage.getUneditableWidget(editableWidget->getID());
+
     /// Переименовываем категорию в списке в соответствии с переименованием виджета администратором
-    this->renameCategory(tempCategory);
+    this->renameCategory(uneditableWidget->getID(), uneditableWidget->getText());
+
+    /// Устанавливаем измененное администратором имя не редактируемому виджету
+    uneditableWidget->setText(editableWidget->getText());
+
+    /// Показываем не редактируемый виджет
+    this->boxLayoutCategories->showUneditableWidget(editableWidget, uneditableWidget);
 }
 
 void AdminEventCategoryBoxLayoutController::addCategory() {
@@ -84,61 +87,60 @@ void AdminEventCategoryBoxLayoutController::addCategory() {
 
 /**
  *  @brief deleteCategory - метод для удаления категорий из списка контроллера
- *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
- *  нужно удалить из списка.
+ *  @param categoryID - id категории.
  *      Внутренний метод, вызывается в slotEmptyWidget и slotDeleteCategory.
  */
-void AdminEventCategoryBoxLayoutController::deleteCategory(UneditableEventCategoryWidget * uneditableCategory) {
+void AdminEventCategoryBoxLayoutController::deleteCategory(const quint32 categoryID) {
     /// Удаление из списка категорий контроллера необходимой категории
     /// ( удаление не изменяет айди других категорий )
     for(SecurityEventCategory &category : categories) {
-        if(category.getId() == uneditableCategory->getId()) {
+        if(category.getId() == categoryID) {
             categories.removeOne(category);
-            category.deleteLater();
         }
     }
 }
 
 /**
  *  @brief renameCategory - метод для переименования категорий из списка контроллера
- *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
- *  нужно переименовать в списке.
- *      Внутренний метод, вызывается в slotMakeCategoryUneditable.
+ *  @param widgetID - id виджета категории.
+ *  @param widgetText - текст виджета категории.
  */
-void AdminEventCategoryBoxLayoutController::renameCategory(UneditableEventCategoryWidget * uneditableCategory) {
+void AdminEventCategoryBoxLayoutController::renameCategory(const quint32 widgetID, const QString widgetText) {
     /// Переименование в списке контроллера необходимой категории
     for(SecurityEventCategory &category : categories) {
-        if(category.getId() == uneditableCategory->getId()) {
-            category.setText(uneditableCategory->getText());
+        if(category.getId() == widgetID) {
+            category.setText(widgetText);
         }
     }
 }
 
 /**
  *  @brief slotEmptyWidget - приватный слот для удаления пустого редактируемого виджета.
- *  @param editableCategory - редактируемый виджет категории, который необходимо удалить.
+ *  @param editableCategory - редактируемый виджет категории.
  *      Срабатывает при получении сигнала от редактируемого виджета о том, что при завершении
  *     редактирования виджета он остался пустым.
  */
-void AdminEventCategoryBoxLayoutController::slotEmptyWidget(EditableEventCategoryWidget * editableCategory) {
-    /// Превращаем виджет категории в не редактируемый
-    UneditableEventCategoryWidget *undetitableCategoryTemp = this->boxLayoutCategories->makeCategoryUneditable(editableCategory);
+void AdminEventCategoryBoxLayoutController::slotEmptyWidget(EditableEventCategoryWidget * editableWidget) {
+
+    UneditableEventCategoryWidget *uneditableEmptyWidget = this->widgetStorage.getUneditableWidget(editableWidget->getID());
     /// Удаляем категорию из списка контроллера
-    this->deleteCategory(undetitableCategoryTemp);
+    this->deleteCategory(uneditableEmptyWidget->getID());
+    /// Удаляем из виджет из хранилища
+    this->widgetStorage.removeWidget(uneditableEmptyWidget->getID());
     /// Удаляем виджет категории из бокса категорий
-    this->boxLayoutCategories->deleteCategoryWidget(undetitableCategoryTemp);
+    this->boxLayoutCategories->deleteCategoryWidget(uneditableEmptyWidget);
 }
 
 /**
  *  @brief slotDeleteCategory - приватный слот для удаления не редактируемого виджета по
  *  запросу администратора через контекстное меню.
- *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
+ *  @param uneditableCategory - не редактируемый виджет категории.
  *      Срабатывает при получении сигнала от не редактируемого виджета о выборе действия Удалить в
  *     контекстном меню.
  */
 void AdminEventCategoryBoxLayoutController::slotDeleteCategory(UneditableEventCategoryWidget * uneditableCategory) {
     /// Удаляем категорию из списка контроллера
-    this->deleteCategory(uneditableCategory);
+    this->deleteCategory(uneditableCategory->getID());
     /// Удаляем виджет из категории бокса категорий
     this->boxLayoutCategories->deleteCategoryWidget(uneditableCategory);
 }
@@ -147,11 +149,72 @@ void AdminEventCategoryBoxLayoutController::slotAddCategoryButtonPressed() {
     /// Добавляем в список категорий новую категорию
     this->addCategory();
     /// Создаем из неё виджет
-    UneditableEventCategoryWidget *newCategoryWidget = new UneditableEventCategoryWidget(categories.last().getId(), categories.last().getText());
+    UneditableEventCategoryWidget *newUneditableCategoryWidget = new UneditableEventCategoryWidget(categories.last().getId(), categories.last().getText());
+    EditableEventCategoryWidget *newEditableCategoryWidget = new EditableEventCategoryWidget(categories.last().getId(), categories.last().getText());
+    /// Добавляем новый виджет в хранилище
+    this->widgetStorage.appendWidget(newUneditableCategoryWidget, newEditableCategoryWidget);
     /// Добавляем новый виджет в бокс
-    this->boxLayoutCategories->addCategoryWidget(newCategoryWidget);
+    this->boxLayoutCategories->addCategoryWidget(newUneditableCategoryWidget, newEditableCategoryWidget);
 }
 
-void AdminEventCategoryBoxLayoutController::slotDeleteCategoryButtonPressed() {
+void AdminEventCategoryBoxLayoutController::slotDeleteSelectedCategoriesButtonPressed() {
+    /// Удаляем все выбранные категории
+    for(SecurityEventCategory &category : selectedCategories) {
 
+        /// Удаляем виджет категории из бокса
+        UneditableEventCategoryWidget *tempUneditableCategoryWidget = this->widgetStorage.getUneditableWidget(category.getId());
+        this->boxLayoutCategories->deleteCategoryWidget(tempUneditableCategoryWidget);
+
+        /// Удаляем виджет из хранилища
+        this->widgetStorage.removeWidget(category.getId());
+
+        /// Удаляем категорию из списка выбранных категорий контроллера
+        this->onCategoryUnselected(category.getId());
+        /// Удаляем категорию из списка категорий контроллера
+        this->deleteCategory(category.getId());
+
+    }
+}
+
+void AdminEventCategoryBoxLayoutController::onCategorySelected(const quint32 categoryID) {
+    /// Проверка, есть ли в списке категорий такая категория
+    quint32 categoriesChecked = 0;
+    for(SecurityEventCategory category : categories) {
+        if(category.getId() != categoryID)
+            categoriesChecked++;
+    }
+    //if(categoriesChecked == categories.size())
+        // throw
+
+    /// Находим и забрасываем категорию в список выбранных категорий
+    for(quint32 i = 0; i < categories.size(); i++) {
+        SecurityEventCategory category = this->categories.at(i);
+        if(category.getId() == categoryID) {
+            this->selectedCategories.append(category);
+            /// Отправляем сигнал, что можно разблокировать кнопку Удалить выбранное
+
+        }
+    }
+    if(!selectedCategories.isEmpty())
+        emit signalSelectedCategoriesNotEmpty();
+}
+
+void AdminEventCategoryBoxLayoutController::onCategoryUnselected(const quint32 categoryID) {
+    /// Проверка, есть ли в списке категорий такая категория
+    quint32 categoriesChecked = 0;
+    for(SecurityEventCategory category : categories) {
+        if(category.getId() != categoryID)
+            categoriesChecked++;
+    }
+    //if(categoriesChecked == categories.size())
+        // throw
+
+    /// Находим и удаляем категорию из списка выбранных категорий
+    for(quint32 i = 0; i < selectedCategories.size(); i++) {
+        SecurityEventCategory selectedCategory = this->selectedCategories.at(i);
+        if(selectedCategory.getId() == categoryID)
+            this->selectedCategories.removeOne(selectedCategory);
+    }
+    if(selectedCategories.isEmpty())
+        emit signalSelectedCategoriesEmpty();
 }

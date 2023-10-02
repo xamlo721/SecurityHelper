@@ -27,6 +27,8 @@ class AdminEditMenuWidget : public QWidget {
         /// Переменная, хранящая в себе данные интерфейса
         Ui::AdminEditMenuWidget *ui;
 
+        void setAllDeleteButtonsDisabled();
+
     private slots:
 
     public:
@@ -66,13 +68,16 @@ class AdminEditMenuWidget : public QWidget {
          */
         QVBoxLayout *getBoxLayoutScenaries();
 
+        void setDeleteSelectedCategoriesButtonEnabled();
+
+        void setDeleteSelectedCategoriesButtonDisabled();
+
     public slots:
 
     signals:
-       void signalAddCategoryButtonPressed();
+        void signalAddCategoryButtonPressed();
 
-       void signalDeleteCategoryButtonPressed();
-
+        void signalDeleteSelectedCategoriesButtonPressed();
 };
 
 #endif // ADMINEDITMENUWIDGET_H

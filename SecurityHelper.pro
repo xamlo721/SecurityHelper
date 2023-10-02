@@ -56,11 +56,12 @@ HEADERS += \
     src/ui/MainWindow.h \
     src/ui/admin/AdminEditMenuWidget.h \
     src/items/BaseItem.h \
-    src/ui/admin/AdminEventCategoryBoxLayout.h \
+    src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.h \
     src/ui/admin/UneditableItemMenu.h \
-    src/ui/admin/categories/EditableEventCategoryWidget.h \
-    src/ui/admin/categories/EditableEventWidget.h \
-    src/ui/admin/categories/UneditableEventCategoryWidget.h \
+    src/ui/admin/categories/edit/EditableEventCategoryWidget.h \
+    src/ui/admin/events/edit/EditableEventWidget.h \
+    src/ui/admin/categories/edit/EventCategoryWidgetStorage.h \
+    src/ui/admin/categories/edit/UneditableEventCategoryWidget.h \
     src/ui/user/EventCategoryWidget.h \
     src/ui/user/EventWidget.h \
     src/ui/user/IncidentMenuWidget.h \
@@ -89,11 +90,12 @@ SOURCES += \
     src/main.cpp \
     src/ui/MainWindow.cpp \
     src/ui/admin/AdminEditMenuWidget.cpp \
-    src/ui/admin/AdminEventCategoryBoxLayout.cpp \
+    src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.cpp \
     src/ui/admin/UneditableItemMenu.cpp \
-    src/ui/admin/categories/EditableEventCategoryWidget.cpp \
-    src/ui/admin/categories/EditableEventWidget.cpp \
-    src/ui/admin/categories/UneditableEventCategoryWidget.cpp \
+    src/ui/admin/categories/edit/EditableEventCategoryWidget.cpp \
+    src/ui/admin/events/edit/EditableEventWidget.cpp \
+    src/ui/admin/categories/edit/EventCategoryWidgetStorage.cpp \
+    src/ui/admin/categories/edit/UneditableEventCategoryWidget.cpp \
     src/ui/user/EventCategoryWidget.cpp \
     src/ui/user/EventWidget.cpp \
     src/ui/user/IncidentMenuWidget.cpp \

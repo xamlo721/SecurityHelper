@@ -18,8 +18,17 @@ void AdminEditMenuController::init(AdminEditMenuWidget *editMenu) {
     editMenuWidget = editMenu;
 
     QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalAddCategoryButtonPressed, this, &AdminEditMenuController::signalAddCategoryButtonPressed);
-    QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalDeleteCategoryButtonPressed, this, &AdminEditMenuController::signalDeleteCategoryButtonPressed);
+    QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed, this, &AdminEditMenuController::signalDeleteSelectedCategoriesButtonPressed);
 
     /// Устанавливаем прокручиваемый список item'ов
     editMenuWidget->setupScrollAreas();
+
+}
+
+void AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonEnabled() {
+    this->editMenuWidget->setDeleteSelectedCategoriesButtonEnabled();
+}
+
+void AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled() {
+    this->editMenuWidget->setDeleteSelectedCategoriesButtonDisabled();
 }

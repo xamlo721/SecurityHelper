@@ -16,9 +16,25 @@ UneditableEventCategoryWidget::UneditableEventCategoryWidget(quint32 id, QString
     /// Инициализируем поля класса
     this->id = id;
     this->text = title;
+    this->ui->checkBox->setChecked(false);
     /// Устанавливаем текст на кнопке
     this->ui->pushButton_category->setText(text);
 
+    QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &UneditableEventCategoryWidget::onCheckBoxClicked);
+}
+
+void UneditableEventCategoryWidget::onCheckBoxClicked() {
+    switch (this->ui->checkBox->isChecked()) {
+    case true:
+
+        emit signalCategorySelected(this->getID());
+        break;
+
+    case false:
+
+        emit signalCategoryUnselected(this->getID());
+        break;
+    }
 }
 
 /**
@@ -49,6 +65,11 @@ void UneditableEventCategoryWidget::initMenu() {
 void UneditableEventCategoryWidget::callCustomMenu(QPoint mousePosition) {
     /// Вызов кастомного контекстного меню по позиции курсора
     customMenu->call(this->ui->pushButton_category->mapToGlobal(mousePosition));
+}
+
+void UneditableEventCategoryWidget::setText(QString text) {
+    this->text = text;
+    this->ui->pushButton_category->setText(this->text);
 }
 
 /**

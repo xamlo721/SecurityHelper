@@ -5,11 +5,12 @@
 
 #include "src/items/SecurityEventCategory.h"
 
-#include "src/ui/admin/categories/UneditableEventCategoryWidget.h"
-#include "src/ui/admin/categories/EditableEventCategoryWidget.h"
+#include "src/ui/admin/categories/edit/UneditableEventCategoryWidget.h"
+#include "src/ui/admin/categories/edit/EditableEventCategoryWidget.h"
 
-#include "src/ui/admin/AdminEventCategoryBoxLayout.h"
+#include "src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.h"
 
+#include "src/ui/admin/categories/edit/EventCategoryWidgetStorage.h"
 /**
  * @brief AdminEventCategoryBoxLayoutController - контроллер бокса категорий событий.
  * Устанавливает список виджетов в боксе и изменением виджетов в соответствии с нуждами
@@ -25,17 +26,19 @@ class AdminEventCategoryBoxLayoutController : public QObject {
 
         /// Список категорий, полученных из ядра программы
         QList<SecurityEventCategory> categories;
-
+        /// Список выбранных администратором категорий
+        QList<SecurityEventCategory> selectedCategories;
+        /// Хранилище пар не редактирумого и редактируемого виджета
+        EventCategoryWidgetStorage widgetStorage;
 
         void addCategory();
 
         /**
          *  @brief deleteCategory - метод для удаления категорий из списка контроллера
-         *  @param uneditableCategory - не редактируемый виджет категории, категорию которого
-         *  нужно удалить из списка.
+         *  @param categoryID - id категории.
          *      Внутренний метод, вызывается в slotEmptyWidget и slotDeleteCategory.
          */
-        void deleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+        void deleteCategory(const quint32 categoryID);
 
         /**
          *  @brief renameCategory - метод для переименования категорий из списка контроллера
@@ -43,25 +46,12 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *  нужно переименовать в списке.
          *      Внутренний метод, вызывается в slotMakeCategoryUneditable.
          */
-        void renameCategory(UneditableEventCategoryWidget * uneditableCategory);
+        void renameCategory(const quint32 widgetID, const QString widgetText);
 
     private slots:
-        /**
-         *  @brief makeCategoryEditable - приватный слот для изменения не редактируемого виджета на редактируемый
-         *  для возможности изменения имени категории.
-         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить.
-         *      Срабатывает при получении сигнала от не редактируемого виджета о запросе администратора.
-         */
-        void slotMakeCategoryEditable(UneditableEventCategoryWidget *uneditableCategory);
+        void slotShowEditableWidget(UneditableEventCategoryWidget *uneditableCategory);
 
-        /**
-         *  @brief makeCategoryUneditable - приватный слот для изменения редактируемого виджета на не редактируемый
-         *  при завершении редактирования администратором.
-         *  @param editableCategory - редактируемый виджет категории, который необходимо изменить.
-         *      Срабатывает при получении сигнала от редактируемого виджета о завершении редактирования
-         *    администратором .
-         */
-        void slotMakeCategoryUneditableable(EditableEventCategoryWidget *editableCategory);
+        void slotShowUneditableWidget(EditableEventCategoryWidget *editableCategory);
 
         /**
          *  @brief slotEmptyWidget - приватный слот для удаления пустого редактируемого виджета.
@@ -79,6 +69,9 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *     контекстном меню.
          */
         void slotDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+
+        void onCategorySelected(const quint32 categoryID);
+        void onCategoryUnselected(const quint32 categoryID);
 
     public:
         /**
@@ -103,13 +96,14 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *      Срабатывает при получении сигнала от ядра программы, по которому передается
          *    список категорий.
          */
-        void setCategoryList(QList<SecurityEventCategory> categories);
+        void setCategoryList(const QList<SecurityEventCategory> categories);
 
         void slotAddCategoryButtonPressed();
-        void slotDeleteCategoryButtonPressed();
+        void slotDeleteSelectedCategoriesButtonPressed();
 
     signals:
-
+        void signalSelectedCategoriesNotEmpty();
+        void signalSelectedCategoriesEmpty();
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H
