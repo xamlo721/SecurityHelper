@@ -119,6 +119,11 @@ SOURCES += \
     src/ui/user/ScenarioWidget.cpp
 
 DISTFILES += \
+    rss/StockDatabase/Categories.xml \
+    rss/StockDatabase/Events.xml \
+    rss/StockDatabase/Incidents.xml \
+    rss/StockDatabase/Recommendations.xml \
+    rss/StockDatabase/Scenaries.xml \
     storage/Categories.xml \
     storage/Events.xml \
     storage/Incidents.xml \

@@ -8,22 +8,40 @@ XMLHelper::XMLHelper(QObject *parent) : QObject(parent) {
 
 Database XMLHelper::readDatabase(QString path) {
 
-    if (!XmlUtils::checkFile(path + "Events.xml")) {
-        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Events.xml!").toLocal8Bit().constData());
-    }
-    if (!XmlUtils::checkFile(path + "Categories.xml")) {
-        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Categories.xml!").toLocal8Bit().constData());
-    }
-    if (!XmlUtils::checkFile(path + "Incidents.xml")) {
-        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Incidents.xml!").toLocal8Bit().constData());
-    }
-    if (!XmlUtils::checkFile(path + "Recommendations.xml")) {
-        throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Recommendations.xml!").toLocal8Bit().constData());
-    }
-    if (!XmlUtils::checkFile(path + "Scenaries.xml")) {
-        throw std::runtime_error(QString("[XMLHelper] Erro!r Cannot load Scenaries.xml!").toLocal8Bit().constData());
-    }
+    QString pathToStockDatabase = "../SecurityHelper/rss/StockDatabase/";
 
+    { //Если не найдены файлы в основной базе, то запуск идет с резервной
+        if (!XmlUtils::checkFile(path + "Events.xml")) {
+            if (!XmlUtils::checkFile(pathToStockDatabase + "Events.xml")) {
+                throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Events.xml!").toLocal8Bit().constData());
+            }
+            return XMLHelper::readDatabase(pathToStockDatabase);
+        }
+        if (!XmlUtils::checkFile(path + "Categories.xml")) {
+            if (!XmlUtils::checkFile(pathToStockDatabase + "Categories.xml")) {
+                throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Categories.xml!").toLocal8Bit().constData());
+            }
+            return XMLHelper::readDatabase(pathToStockDatabase);
+        }
+        if (!XmlUtils::checkFile(path + "Incidents.xml")) {
+            if (!XmlUtils::checkFile(pathToStockDatabase + "Incidents.xml")) {
+                throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Incidents.xml!").toLocal8Bit().constData());
+            }
+            return XMLHelper::readDatabase(pathToStockDatabase);
+        }
+        if (!XmlUtils::checkFile(path + "Recommendations.xml")) {
+            if (!XmlUtils::checkFile(pathToStockDatabase + "Recommendations.xml")) {
+                throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Recommendations.xml!").toLocal8Bit().constData());
+            }
+            return XMLHelper::readDatabase(pathToStockDatabase);
+        }
+        if (!XmlUtils::checkFile(path + "Scenaries.xml")) {
+            if (!XmlUtils::checkFile(pathToStockDatabase + "Scenaries.xml")) {
+                throw std::runtime_error(QString("[XMLHelper] Error! Cannot load Scenaries.xml!").toLocal8Bit().constData());
+            }
+            return XMLHelper::readDatabase(pathToStockDatabase);
+        }
+    }
 
     QMap<quint32, SecurityEvent> events;
     QMap<quint32, SecurityEventCategory> categories;

@@ -124,6 +124,11 @@ class XmlUtils : public QObject {
      **/
     static void writeXMLHeader(QDomDocument *domDocument);
 
+    /**
+     * @brief writeXMLStructTree - функция выстраивает структуру в файле xmlDocument->Database->имя субэлемента
+     * @param domDocument - документ
+     * @param nameElement - имя субэлемента
+     **/
     static QDomElement writeXMLStructTree(QDomDocument *domDocument, QString nameElement);
 
     /**
