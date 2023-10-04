@@ -19,7 +19,7 @@ void CoreApp::onOpenCategory(quint32 categoryId) {
     QList<SecurityEvent> categoryEvents;
     SecurityEventCategory category = db.categories.value(categoryId);
     //Проходимся по списку всех событий в категории
-    for (int eventid : category.getEventIds()) {
+    for (quint32 eventid : category.getEventIds()) {
         if (!db.events.contains(eventid)) {
             //Бросить исключение
             continue;
@@ -31,6 +31,33 @@ void CoreApp::onOpenCategory(quint32 categoryId) {
         }
     }
     emit signalOpenCategory(categoryEvents);
+
+}
+#include <QDebug>
+void CoreApp::formEvents() {
+
+    QList<SecurityEvent> events;
+    QList<SecurityEventCategory> categories = db.categories.values();
+    qDebug() << "начало ";
+    for(auto category : categories) {
+        qDebug() << category.getText();
+    }
+    qDebug() << "конец ";
+
+    for(auto category : categories) {
+        for (quint32 eventid : category.getEventIds()) {
+            if (!db.events.contains(eventid)) {
+                //Бросить исключение
+                continue;
+            }
+            if (!events.contains(db.events.value(eventid))) {
+
+                events.append(db.events.value(eventid));
+
+            }
+        }
+    }
+    emit eventsFormed(events);
 
 }
 

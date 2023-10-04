@@ -51,6 +51,14 @@ QString SecurityEvent::getText()  const{
     return this->text;
 }
 
+/**
+ * @brief setText - Установить название события
+ * @return
+ */
+void SecurityEvent::setText(QString const text) {
+    this->text = text;
+}
+
 
 /**
  * @brief operator =

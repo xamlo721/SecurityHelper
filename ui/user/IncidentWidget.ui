@@ -44,7 +44,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="textEdit_incident_description"/>
+    <widget class="QTextEdit" name="textEdit_incident_description">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QPushButton" name="pushButton_openScenario">

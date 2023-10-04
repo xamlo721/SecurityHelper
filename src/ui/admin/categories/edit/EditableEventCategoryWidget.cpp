@@ -11,7 +11,7 @@
  * QLineEdit с со слотом slotEditingFinished данного класса.
  */
 
-EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventCategoryWidget) {
+EditableEventCategoryWidget::EditableEventCategoryWidget(const quint32 id, const QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventCategoryWidget) {
     ui->setupUi(this);
     /// Устанавливаем минимальный размер кнопки
     this->ui->lineEdit_category->setMinimumSize(200, 60);
@@ -23,9 +23,7 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
     this->ui->lineEdit_category->setText(title);
 
     /// Связываем сигнал editingFinished с slotEditingFinished
-    QObject::connect(this->ui->lineEdit_category, &QLineEdit::editingFinished, this, &EditableEventCategoryWidget::slotEditingFinished);
-
-    this->ui->lineEdit_category->setFocusPolicy(Qt::StrongFocus);
+    QObject::connect(this->ui->lineEdit_category, &QLineEdit::returnPressed, this, &EditableEventCategoryWidget::slotEditingFinished);
 }
 
 /**
@@ -34,10 +32,6 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(quint32 id, QString tit
 * необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
 */
 int EditableEventCategoryWidget::slotEditingFinished() {    
-    if(!this->ui->lineEdit_category->isModified())
-        return 1;
-    this->ui->lineEdit_category->setModified(false);
-
     /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
     if(this->ui->lineEdit_category->text().isEmpty()) {
         emit emptyWidget(this);

@@ -2,6 +2,7 @@
 #define ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H
 
 #include <QObject>
+#include <QMessageBox>
 
 #include "src/items/SecurityEventCategory.h"
 
@@ -48,10 +49,15 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          */
         void renameCategory(const quint32 widgetID, const QString widgetText);
 
-    private slots:
-        void slotShowEditableWidget(UneditableEventCategoryWidget *uneditableCategory);
+        void unselectAllCategories();
 
-        void slotShowUneditableWidget(EditableEventCategoryWidget *editableCategory);
+        void enableAllCategories();
+        void disableAllCategories();
+
+    private slots:
+        void slotShowEditableWidget(UneditableEventCategoryWidget *uneditableWidget);
+
+        void slotShowUneditableWidget(EditableEventCategoryWidget *editableWidget);
 
         /**
          *  @brief slotEmptyWidget - приватный слот для удаления пустого редактируемого виджета.
@@ -59,7 +65,7 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *      Срабатывает при получении сигнала от редактируемого виджета о том, что при завершении
          *     редактирования виджета он остался пустым.
          */
-        void slotEmptyWidget(EditableEventCategoryWidget * editableCategory);
+        void slotEmptyWidget(EditableEventCategoryWidget * editableWidget);
 
         /**
          *  @brief slotDeleteCategory - приватный слот для удаления не редактируемого виджета по
@@ -68,7 +74,7 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *      Срабатывает при получении сигнала от не редактируемого виджета о выборе действия Удалить в
          *     контекстном меню.
          */
-        void slotDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+        void slotDeleteCategory(UneditableEventCategoryWidget * uneditableWidget);
 
         void onCategorySelected(const quint32 categoryID);
         void onCategoryUnselected(const quint32 categoryID);
@@ -80,12 +86,6 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          */
         explicit AdminEventCategoryBoxLayoutController(QObject *parent = nullptr);
 
-        /**
-         *  @brief init - метод, инициализирующий бокс категорий в данном классе
-         *  из бокса категорий уже находящегося в AdminEditMenuWidget для его управления
-         *  данным классом.
-         *  @param boxLayout - бокс категорий, находящийся в AdminEditMenuWidget.
-         */
         void init(QVBoxLayout *editMenuBoxLayoutCategories);
 
     public slots:
@@ -104,6 +104,12 @@ class AdminEventCategoryBoxLayoutController : public QObject {
     signals:
         void signalSelectedCategoriesNotEmpty();
         void signalSelectedCategoriesEmpty();
+
+        void categoriesSet();
+
+        void categoryIsActive();
+        void categoryIsNotActive();
+
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H

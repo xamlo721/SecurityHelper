@@ -40,7 +40,7 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          *  В данном конструкторе задается размер виджета, текст виджета и инициализация
          * полей id и text ( см. класс BaseItem ).
          */
-        explicit UneditableEventCategoryWidget(quint32 id, QString title, QWidget *parent = nullptr);
+        explicit UneditableEventCategoryWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
 
         /**
          *  @brief ~UneditableItemMenu - деструктор по умолчанию, используется для высвобождения
@@ -56,9 +56,11 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
         /**
          * @brief callCustomMenu - метод вызова кастомного контекстного меню.
          */
-        void callCustomMenu(QPoint mousePosition);
+        void callCustomMenu(const QPoint mousePosition);
 
-        void setText(QString text) override;
+        void setText(const QString text) override;
+
+        void setUnselected();
 
     public slots:
         /**
@@ -89,8 +91,8 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          */
         void signalDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
 
-        void signalCategorySelected(quint32 id);
-        void signalCategoryUnselected(quint32 id);
+        void signalCategorySelected(const quint32 categoryID);
+        void signalCategoryUnselected(const quint32 categoryID);
 };
 
 #endif // UNEDITABLEEVENTCATEGORYWIDGET_H
