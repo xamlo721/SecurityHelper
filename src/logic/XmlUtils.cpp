@@ -341,6 +341,16 @@ void XmlUtils::writeXMLHeader(QDomDocument *domDocument) {
     domDocument->insertBefore(node,domDocument->firstChild());
 }
 
+QDomElement XmlUtils::writeXMLStructTree(QDomDocument *domDocument, QString nameElement) {
+    QDomElement root = domDocument->createElement("xmlDocument");
+    domDocument->appendChild(root);
+    QDomElement databaseElement = domDocument->createElement("Database");
+    root.appendChild(databaseElement);
+    QDomElement underElement = domDocument->createElement(nameElement);
+    databaseElement.appendChild(underElement);
+    return underElement;
+}
+
 bool XmlUtils::checkSingleNode(QDomElement element, QString searchElementName) {
     //Взять список всех дочерних, входящих в неё нод
     QDomNodeList childs = element.childNodes();
@@ -370,7 +380,6 @@ bool XmlUtils::checkSingleNode(QDomElement element, QString searchElementName) {
     }
     return 0;
 }
-
 
 QDomElement XmlUtils::readSingleNode(QDomElement element, QString searchElementName) {
     //Взять список всех дочерних, входящих в неё нод

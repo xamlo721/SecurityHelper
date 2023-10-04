@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QFile>
+#include <QList>
 #include <QTextStream>
 #include <QTextCodec>
 
+#include <QDebug>
 
 #include <QtXml/QDomElement>
 
@@ -23,11 +25,10 @@ class XMLHelper: public QObject {
     Q_OBJECT
 
     public:
+
         explicit XMLHelper(QObject *parent = nullptr);
 
         static Database readDatabase(QString path);
-
-        static void writeDatabase(QString path, Database database);
 
         static SecurityEvent readSecurityEvent(QDomElement xmlDomElement);
 
@@ -38,6 +39,14 @@ class XMLHelper: public QObject {
         static SecurityRecommendations readSecurityRecommendations(QDomElement xmlDomElement);
 
         static SecurityScenario readSecurityScenario(QDomElement xmlDomElement);
+
+        static void writeDatabase(QString path);
+
+        static bool writeToXMLFile(QFile* file, QDomDocument document, QString codec = "UTF-8");
+
+        static Database savedDatabase(/*QList<SecurityEvent> eventsList, QList<SecurityEventCategory> categoriesList, //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
+                              QList<SecurityIncident> incidentsList, QList<SecurityRecommendations> recommendationsList,
+                              QList<SecurityScenario> scenariesList*/);
 
     signals:
 

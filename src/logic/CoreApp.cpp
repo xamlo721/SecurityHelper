@@ -30,7 +30,6 @@ void CoreApp::onOpenCategory(quint32 categoryId) {
 
         }
     }
-
     emit signalOpenCategory(categoryEvents);
 
 }
@@ -93,8 +92,6 @@ void CoreApp::onOpenScenario(quint32 id) {
         }
 
     }
-
-    //TODO: Удалить повторы
 
     emit signalOpenRecommandations(recoms);
 }
