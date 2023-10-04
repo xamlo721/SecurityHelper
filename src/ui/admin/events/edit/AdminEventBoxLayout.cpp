@@ -70,14 +70,11 @@ void AdminEventBoxLayout::clearEvents() {
 }
 
 void AdminEventBoxLayout::showEditableWidget(UneditableEventWidget *uneditableWidget, EditableEventWidget *editableWidget) {
-    //  TODO: Исправить баг, с двойным срабатываем в EditableEventWidget сигнала editingFinished при потере виджетом фокуса
-
-
     /// Скрываем не редактируемый виджет
     uneditableWidget->hide();
     /// Показываем редактируемый виджет
     editableWidget->show();
-    /// Устанавливаем редактируемому виджету фокус
+    /// Устанавливаем фокус редактируемому виджету
     editableWidget->setFocus();
 }
 
@@ -86,4 +83,16 @@ void AdminEventBoxLayout::showUneditableWidget(EditableEventWidget *editableWidg
     editableWidget->hide();
     /// Показываем не редактируемый виджет
     uneditableWidget->show();
+}
+
+void AdminEventBoxLayout::unselectUneditableWidget(UneditableEventWidget *uneditableWidget) {
+    uneditableWidget->setUnselected();
+}
+
+void AdminEventBoxLayout::enableUneditableWidget(UneditableEventWidget *uneditableWidget) {
+    uneditableWidget->setEnabled(true);
+}
+
+void AdminEventBoxLayout::disableUneditableWidget(UneditableEventWidget *uneditableWidget) {
+    uneditableWidget->setEnabled(false);
 }

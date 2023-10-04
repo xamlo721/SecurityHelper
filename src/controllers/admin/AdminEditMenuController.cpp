@@ -28,12 +28,55 @@ void AdminEditMenuController::init(AdminEditMenuWidget *editMenu) {
 
 }
 
+
+void AdminEditMenuController::slotSetAllTabsEnable() {
+    this->editMenuWidget->setAllTabsEnable();
+}
+
+void AdminEditMenuController::slotSetCategoriesActive() {
+    this->editMenuWidget->setCategoriesActive();
+}
+
+void AdminEditMenuController::slotSetEventsActive() {
+    this->editMenuWidget->setEventsActive();
+}
+
+void AdminEditMenuController::slotSetIncidentsActive() {
+    this->editMenuWidget->setIncidentsActive();
+}
+
+void AdminEditMenuController::slotSetScenariesActive() {
+    this->editMenuWidget->setScenariesActive();
+}
+
+void AdminEditMenuController::slotSetRecommendtaionsActive() {
+    this->editMenuWidget->setRecommendtaionsActive();
+}
+
+// Блок управления кнопками категорий
+void AdminEditMenuController::slotSetAddCategoryButtonEnabled() {
+    this->editMenuWidget->setAddCategoryButtonEnabled();
+}
+
+void AdminEditMenuController::slotSetAddCategoryButtonDisabled() {
+    this->editMenuWidget->setAddCategoryButtonDisabled();
+}
+
 void AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonEnabled() {
     this->editMenuWidget->setDeleteSelectedCategoriesButtonEnabled();
 }
 
 void AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled() {
     this->editMenuWidget->setDeleteSelectedCategoriesButtonDisabled();
+}
+
+// Блок управления кнопками событий
+void AdminEditMenuController::slotSetAddEventButtonEnabled() {
+    this->editMenuWidget->setAddEventButtonEnabled();
+}
+
+void AdminEditMenuController::slotSetAddEventButtonDisabled() {
+    this->editMenuWidget->setAddEventButtonDisabled();
 }
 
 void AdminEditMenuController::slotSetDeleteSelectedEventsButtonEnabled() {

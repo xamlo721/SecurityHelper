@@ -13,16 +13,10 @@ EditableEventWidget::EditableEventWidget(const quint32 id, const QString title, 
     this->ui->lineEdit_event->setText(title);
 
     /// Связываем сигнал editingFinished с slotEditingFinished
-    QObject::connect(this->ui->lineEdit_event, &QLineEdit::editingFinished, this, &EditableEventWidget::slotEditingFinished);
-
-    this->ui->lineEdit_event->setFocusPolicy(Qt::StrongFocus);
+    QObject::connect(this->ui->lineEdit_event, &QLineEdit::returnPressed, this, &EditableEventWidget::slotEditingFinished);
 }
 
 int EditableEventWidget::slotEditingFinished() {
-    if(!this->ui->lineEdit_event->isModified())
-        return 1;
-    this->ui->lineEdit_event->setModified(false);
-
     /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
     if(this->ui->lineEdit_event->text().isEmpty()) {
         emit emptyWidget(this);

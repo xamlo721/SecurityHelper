@@ -57,6 +57,13 @@ void UneditableEventWidget::setText(const QString text) {
     this->ui->pushButton_event->setText(this->text);
 }
 
+void UneditableEventWidget::setUnselected() {
+    /// Делаем checkBox не выбранным
+    this->ui->checkBox->setChecked(false);
+    /// Отправляем сигнал о том, что выбор checkBox отменяется ( см. UneditableEventWidget::onCheckBoxClicked() )
+    emit this->ui->checkBox->clicked();
+}
+
 void UneditableEventWidget::slotEditCategory() {
     emit signalEditCategory(this);
 }

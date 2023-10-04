@@ -34,6 +34,8 @@ class UneditableEventWidget : public QWidget, public BaseItem {
 
         void setText(const QString text) override;
 
+        void setUnselected();
+
     public slots:
         void slotEditCategory();
 

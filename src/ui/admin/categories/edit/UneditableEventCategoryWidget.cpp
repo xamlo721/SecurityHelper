@@ -72,6 +72,13 @@ void UneditableEventCategoryWidget::setText(const QString text) {
     this->ui->pushButton_category->setText(this->text);
 }
 
+void UneditableEventCategoryWidget::setUnselected() {
+    /// Делаем checkBox не выбранным
+    this->ui->checkBox->setChecked(false);
+    /// Отправляем сигнал о том, что выбор checkBox отменяется ( см. UneditableEventCategoryWidget::onCheckBoxClicked() )
+    emit this->ui->checkBox->clicked();
+}
+
 /**
 *       @brief slotEditCategory -  слот, который связывает сигнал signalEditCategory класса
 * UneditableItemMenu с сигналом signalEditCategory данного класса, чтобы иметь возможность

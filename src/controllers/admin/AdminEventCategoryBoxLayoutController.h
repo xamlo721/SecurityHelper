@@ -2,6 +2,7 @@
 #define ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H
 
 #include <QObject>
+#include <QMessageBox>
 
 #include "src/items/SecurityEventCategory.h"
 
@@ -48,6 +49,11 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          */
         void renameCategory(const quint32 widgetID, const QString widgetText);
 
+        void unselectAllCategories();
+
+        void enableAllCategories();
+        void disableAllCategories();
+
     private slots:
         void slotShowEditableWidget(UneditableEventCategoryWidget *uneditableWidget);
 
@@ -80,12 +86,6 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          */
         explicit AdminEventCategoryBoxLayoutController(QObject *parent = nullptr);
 
-        /**
-         *  @brief init - метод, инициализирующий бокс категорий в данном классе
-         *  из бокса категорий уже находящегося в AdminEditMenuWidget для его управления
-         *  данным классом.
-         *  @param boxLayout - бокс категорий, находящийся в AdminEditMenuWidget.
-         */
         void init(QVBoxLayout *editMenuBoxLayoutCategories);
 
     public slots:
@@ -106,6 +106,10 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         void signalSelectedCategoriesEmpty();
 
         void categoriesSet();
+
+        void categoryIsActive();
+        void categoryIsNotActive();
+
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H

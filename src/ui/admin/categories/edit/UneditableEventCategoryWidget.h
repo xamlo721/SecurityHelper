@@ -60,6 +60,8 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
 
         void setText(const QString text) override;
 
+        void setUnselected();
+
     public slots:
         /**
         *       @brief slotEditCategory -  слот, который связывает сигнал signalEditCategory класса

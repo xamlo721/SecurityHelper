@@ -38,6 +38,11 @@ class AdminEventBoxLayout : public QObject {
         void showEditableWidget(UneditableEventWidget *uneditableWidget, EditableEventWidget *editableWidget);
         void showUneditableWidget(EditableEventWidget *editableWidget, UneditableEventWidget *uneditableWidget);
 
+        void unselectUneditableWidget(UneditableEventWidget *uneditableWidget);
+
+        void enableUneditableWidget(UneditableEventWidget *uneditableWidget);
+        void disableUneditableWidget(UneditableEventWidget *uneditableWidget);
+
     public slots:
 
     signals:

@@ -58,6 +58,9 @@ HEADERS += \
     src/ui/MainWindow.h \
     src/ui/admin/AdminEditMenuWidget.h \
     src/items/BaseItem.h \
+    src/ui/admin/EnumMessageBoxItemVariants.h \
+    src/ui/admin/EnumMessageBoxVariants.h \
+    src/ui/admin/ItemDeletionMessageBox.h \
     src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.h \
     src/ui/admin/UneditableItemMenu.h \
     src/ui/admin/categories/edit/EditableEventCategoryWidget.h \
@@ -96,6 +99,7 @@ SOURCES += \
     src/main.cpp \
     src/ui/MainWindow.cpp \
     src/ui/admin/AdminEditMenuWidget.cpp \
+    src/ui/admin/ItemDeletionMessageBox.cpp \
     src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.cpp \
     src/ui/admin/UneditableItemMenu.cpp \
     src/ui/admin/categories/edit/EditableEventCategoryWidget.cpp \

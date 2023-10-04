@@ -6,14 +6,8 @@
  */
 AdminEventCategoryBoxLayout::AdminEventCategoryBoxLayout(QObject *parent) : QObject{parent} {}
 
-/**
- *  @brief init - метод, инициализирующий бокс категорий в данном классе
- *  из бокса категорий уже находящегося в AdminEditMenuWidget.
- *  @param boxLayout - бокс категорий, находящийся в AdminEditMenuWidget.
- */
+
 void AdminEventCategoryBoxLayout::init(QVBoxLayout *boxLayout) {
-    ///  Инициализация бокса категорий данного класса боксом категорий из
-    /// AdminMenuEditWidget, для управления им
     this->boxLayoutCategories = boxLayout;
 }
 
@@ -59,7 +53,7 @@ void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidge
     /// Добавляем в общий бокс бокс пар виджетов
     this->boxLayoutCategories->addLayout(layout);
     /// Добавляем в лист бокс пар виджетов
-    this->widgetBoxLayout.append(layout);
+    this->widgetBoxLayouts.append(layout);
 }
 
 /**
@@ -69,14 +63,14 @@ void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidge
  */
 void AdminEventCategoryBoxLayout::deleteCategoryWidget(UneditableEventCategoryWidget *uneditableWidget) {
     /// Проходим по листу боксов пар виджетов и удаляем бокс, который содержит в себе uneditableWidget
-    for(QVBoxLayout *layout : widgetBoxLayout){
+    for(QVBoxLayout *layout : widgetBoxLayouts){
         if(layout->itemAt(0)->widget() == uneditableWidget) {
             QLayoutItem* item;
                 while ( ( item = layout->takeAt( 0 ) ) != NULL ) {
                     delete item->widget();
                     delete item;
                 }
-            this->widgetBoxLayout.removeOne(layout);
+            this->widgetBoxLayouts.removeOne(layout);
             this->boxLayoutCategories->removeItem(layout);
             layout->deleteLater();
         }
@@ -99,14 +93,11 @@ void AdminEventCategoryBoxLayout::clearCategories() {
 }
 
 void AdminEventCategoryBoxLayout::showEditableWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget) {
-    //  TODO: Исправить баг, с двойным срабатываем в EditableEventCategoryWidget сигнала editingFinished при потере виджетом фокуса
-
-
     /// Скрываем не редактируемый виджет
     uneditableWidget->hide();
     /// Показываем редактируемый виджет
     editableWidget->show();
-    /// Устанавливаем редактируемому виджету фокус
+    /// Устанавливаем фокус редактируемому виджету
     editableWidget->setFocus();
 }
 
@@ -115,4 +106,16 @@ void AdminEventCategoryBoxLayout::showUneditableWidget(EditableEventCategoryWidg
     editableWidget->hide();
     /// Показываем не редактируемый виджет
     uneditableWidget->show();
+}
+
+void AdminEventCategoryBoxLayout::unselectUneditableWidget(UneditableEventCategoryWidget *uneditableWidget) {
+    uneditableWidget->setUnselected();
+}
+
+void AdminEventCategoryBoxLayout::enableUneditableWidget(UneditableEventCategoryWidget *uneditableWidget) {
+    uneditableWidget->setEnabled(true);
+}
+
+void AdminEventCategoryBoxLayout::disableUneditableWidget(UneditableEventCategoryWidget *uneditableWidget) {
+    uneditableWidget->setEnabled(false);
 }

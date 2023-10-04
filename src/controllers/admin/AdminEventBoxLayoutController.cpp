@@ -1,11 +1,15 @@
 #include "AdminEventBoxLayoutController.h"
 
+#include "src/ui/admin/ItemDeletionMessageBox.h"
+#include "src/ui/admin/EnumMessageBoxVariants.h"
+#include "src/ui/admin/EnumMessageBoxItemVariants.h"
+
 AdminEventBoxLayoutController::AdminEventBoxLayoutController(QObject *parent) : QObject{parent} {}
 
 void AdminEventBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutEvents) {
-    /// Выделяем память под бокс категорий
+    /// Выделяем память под бокс событий
     this->boxLayoutEvents = new AdminEventBoxLayout();
-    /// Инициализируем бокс категорий тем боксом, который уже находится в AdminEditMenuWidget
+    /// Инициализируем бокс событий тем боксом, который уже находится в AdminEditMenuWidget
     this->boxLayoutEvents->init(editMenuBoxLayoutEvents);
 
     /// Блок связи сигналов, поступающих в меню редактирования из не редактируемого виджета
@@ -27,13 +31,15 @@ void AdminEventBoxLayoutController::setEventList(const QList<SecurityEvent> even
     this->boxLayoutEvents->clearEvents();
     /// Проходим по списку событий, инициализируя и добавляя виджеты в бокс
     for (SecurityEvent event : events) {
+
         UneditableEventWidget *uneditableWidget = new UneditableEventWidget(event.getId(), event.getText());
         EditableEventWidget *editableWidget = new EditableEventWidget(event.getId(), event.getText());
         this->widgetStorage.appendWidget(uneditableWidget, editableWidget);
-        //QObject::connect(categoryWidget, &UneditableEventCategoryWidget::signalOpenIncident, this, &AdminEditMenuController::signalOpenCategory);
 
         this->boxLayoutEvents->addEventWidget(uneditableWidget, editableWidget);
     }
+    /// Отправляем в ядро сигнал о завершении установки списка событий
+    ///
 }
 
 void AdminEventBoxLayoutController::slotShowEditableWidget(UneditableEventWidget *uneditableWidget) {
@@ -41,6 +47,14 @@ void AdminEventBoxLayoutController::slotShowEditableWidget(UneditableEventWidget
     EditableEventWidget *editableWidget = this->widgetStorage.getEditableWidget(uneditableWidget->getID());
     /// Показываем редактируемый виджет
     this->boxLayoutEvents->showEditableWidget(uneditableWidget, editableWidget);
+
+    /// Делаем все события не выбранными
+    this->unselectAllEvents();
+    /// Делаем все события не доступными
+    this->disableAllEvents();
+
+    /// Отправляем сигнал о том, что появилось активное событие
+    emit eventIsActive();
 }
 
 void AdminEventBoxLayoutController::slotShowUneditableWidget(EditableEventWidget *editableWidget) {
@@ -55,6 +69,11 @@ void AdminEventBoxLayoutController::slotShowUneditableWidget(EditableEventWidget
 
     /// Показываем не редактируемый виджет
     this->boxLayoutEvents->showUneditableWidget(editableWidget, uneditableWidget);
+
+    /// Делаем все события доступными
+    this->enableAllEvents();
+    /// Отправляем сигнал о том, что активного события больше нет
+    emit eventIsNotActive();
 }
 
 void AdminEventBoxLayoutController::addEvent() {
@@ -83,22 +102,63 @@ void AdminEventBoxLayoutController::renameEvent(const quint32 widgetID, const QS
     }
 }
 
-void AdminEventBoxLayoutController::slotEmptyWidget(EditableEventWidget * editableWidget) {
-
-    UneditableEventWidget *uneditableEmptyWidget = this->widgetStorage.getUneditableWidget(editableWidget->getID());
-    /// Удаляем событие из списка контроллера
-    this->deleteEvent(uneditableEmptyWidget->getID());
-    /// Удаляем виджет из хранилища
-    this->widgetStorage.removeWidget(uneditableEmptyWidget->getID());
-    /// Удаляем виджет из бокса событий
-    this->boxLayoutEvents->deleteEventWidget(uneditableEmptyWidget);
+void AdminEventBoxLayoutController::unselectAllEvents() {
+    for(SecurityEvent event : selectedEvents) {
+        /// Берем не редактируемый виджет из хранилища по ID категории и делаем его не выбранным
+        UneditableEventWidget *uneditableWidget = this->widgetStorage.getUneditableWidget(event.getId());
+        this->boxLayoutEvents->unselectUneditableWidget(uneditableWidget);
+    }
 }
 
-void AdminEventBoxLayoutController::slotDeleteEvent(UneditableEventWidget * uneditableWidget) {
-    /// Удаляем событие из списка контроллера
-    this->deleteEvent(uneditableWidget->getID());
-    /// Удаляем виджет из бокса событий
-    this->boxLayoutEvents->deleteEventWidget(uneditableWidget);
+void AdminEventBoxLayoutController::enableAllEvents() {
+    for(SecurityEvent event : events) {
+        /// Берем не редактируемый виджет из хранилища по ID категории и делаем его доступным
+        UneditableEventWidget *uneditableWidget = this->widgetStorage.getUneditableWidget(event.getId());
+        this->boxLayoutEvents->enableUneditableWidget(uneditableWidget);
+    }
+}
+
+void AdminEventBoxLayoutController::disableAllEvents() {
+    for(SecurityEvent event : events) {
+        /// Берем не редактируемый виджет из хранилища по ID категории и делаем его не доступным
+        UneditableEventWidget *uneditableWidget = this->widgetStorage.getUneditableWidget(event.getId());
+        this->boxLayoutEvents->disableUneditableWidget(uneditableWidget);
+    }
+}
+
+void AdminEventBoxLayoutController::slotEmptyWidget(EditableEventWidget * editableWidget) {
+    /// Создаем окно сообщений
+    ItemDeletionMessageBox messageBox;
+    /// Вызываем его в режиме предупреждения, если администратор нажмет Да, то удаляем событие
+    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionOneItem, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
+
+        UneditableEventWidget *uneditableEmptyWidget = this->widgetStorage.getUneditableWidget(editableWidget->getID());
+        /// Удаляем событие из списка контроллера
+        this->deleteEvent(uneditableEmptyWidget->getID());
+        /// Удаляем виджет из хранилища
+        this->widgetStorage.removeWidget(uneditableEmptyWidget->getID());
+        /// Удаляем виджет из бокса событий
+        this->boxLayoutEvents->deleteEventWidget(uneditableEmptyWidget);
+
+        /// Производим разблокировку интерфейса
+        this->enableAllEvents();
+        emit eventIsNotActive();
+    }
+}
+
+void AdminEventBoxLayoutController::slotDeleteEvent(UneditableEventWidget * uneditableWidget) {    
+    /// Создаем окно сообщений
+    ItemDeletionMessageBox messageBox;
+    /// Вызываем его в режиме предупреждения, если администратор нажмет Да, то удаляем событие
+    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionOneItem, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
+
+        /// Удаляем событие из списка контроллера
+        this->deleteEvent(uneditableWidget->getID());
+        /// Удаляем виджет из хранилища
+        this->widgetStorage.removeWidget(uneditableWidget->getID());
+        /// Удаляем виджет из бокса событий
+        this->boxLayoutEvents->deleteEventWidget(uneditableWidget);
+    }
 }
 
 void AdminEventBoxLayoutController::slotAddEventButtonPressed() {
@@ -114,21 +174,27 @@ void AdminEventBoxLayoutController::slotAddEventButtonPressed() {
 }
 
 void AdminEventBoxLayoutController::slotDeleteSelectedEventsButtonPressed() {
-    /// Удаляем все выбранные события
-    for(SecurityEvent &event : selectedEvents) {
+    /// Создаем окно сообщений
+    ItemDeletionMessageBox messageBox;
+    /// Вызываем его в режиме предупреждения, если администратор нажмет Да, то удаляем выбранные события
+    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionSeveralItems, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
 
-        /// Удаляем виджет события из бокса
-        UneditableEventWidget *tempUneditableEventWidget = this->widgetStorage.getUneditableWidget(event.getId());
-        this->boxLayoutEvents->deleteEventWidget(tempUneditableEventWidget);
+        /// Удаляем все выбранные события
+        for(SecurityEvent &event : selectedEvents) {
 
-        /// Удаляем виджет из хранилища
-        this->widgetStorage.removeWidget(event.getId());
+            /// Удаляем виджет события из бокса
+            UneditableEventWidget *tempUneditableEventWidget = this->widgetStorage.getUneditableWidget(event.getId());
+            this->boxLayoutEvents->deleteEventWidget(tempUneditableEventWidget);
 
-        /// Удаляем событие из списка выбранных событий контроллера
-        this->onEventUnselected(event.getId());
-        /// Удаляем событие из списка событий контроллера
-        this->deleteEvent(event.getId());
+            /// Удаляем виджет из хранилища
+            this->widgetStorage.removeWidget(event.getId());
 
+            /// Удаляем событие из списка выбранных событий контроллера
+            this->onEventUnselected(event.getId());
+            /// Удаляем событие из списка событий контроллера
+            this->deleteEvent(event.getId());
+
+        }
     }
 }
 

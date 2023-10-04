@@ -30,8 +30,8 @@ int main(int argc, char *argv[]) {
     AdminEditMenuController editMenuController;
 
     AdminEventCategoryBoxLayoutController eventCategoryBoxContoller;
-
     AdminEventBoxLayoutController eventBoxContoller;
+
 
     // Блок инициализации связи сигналов/слотов для пользователя
 
@@ -57,12 +57,23 @@ int main(int argc, char *argv[]) {
     QObject::connect(&scenarioRecommendationController, &UserScenarioRecommendationWidgetController::signalSetRecommentationWidget, &controller, &MainWindowController::setRecommendationWidget);
 
 
+
     // Блок инициализации связи сигналов/слотов для администратора
 
     /// Блок связи сигналов для создания списков в администрировании
     QObject::connect(&core, &CoreApp::signalAdminOpenCategories, &eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::setCategoryList);
     QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoriesSet, &core, &CoreApp::formEvents);
     QObject::connect(&core, &CoreApp::eventsFormed, &eventBoxContoller, &AdminEventBoxLayoutController::setEventList);
+
+
+
+
+    /// Блок связи сигналов о присутствии/отсутствии активной категории
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoryIsActive, &editMenuController, &AdminEditMenuController::slotSetCategoriesActive);
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoryIsActive, &editMenuController, &AdminEditMenuController::slotSetAddCategoryButtonDisabled);
+
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoryIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAllTabsEnable);
+    QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::categoryIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAddCategoryButtonEnabled);
 
 
     /// Блок связи сигналов о нажатии клавиш Добавить/Удалить выбранное в категориях
@@ -73,6 +84,15 @@ int main(int argc, char *argv[]) {
     QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonEnabled);
     QObject::connect(&eventCategoryBoxContoller, &AdminEventCategoryBoxLayoutController::signalSelectedCategoriesEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled);
 
+
+
+
+    /// Блок связи сигналов о присутствии/отсутствии активного события
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventIsActive, &editMenuController, &AdminEditMenuController::slotSetEventsActive);
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventIsActive, &editMenuController, &AdminEditMenuController::slotSetAddEventButtonDisabled);
+
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAllTabsEnable);
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAddEventButtonEnabled);
 
     /// Блок связи сигналов о нажатии клавиш Добавить/Удалить выбранное в событиях
     QObject::connect(&editMenuController, &AdminEditMenuController::signalAddEventButtonPressed, &eventBoxContoller, &AdminEventBoxLayoutController::slotAddEventButtonPressed);
@@ -86,16 +106,13 @@ int main(int argc, char *argv[]) {
     controller.init(mainWindow);
 
     categoryEventController.init(mainWindow->getMainMenuWidget());
-
     incidentController.init(mainWindow->getIncidentMenuWidget());
-
     scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
 
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
 
     eventCategoryBoxContoller.init(mainWindow->getEditMenuWidget()->getBoxLayoutCategories());
-
     eventBoxContoller.init(mainWindow->getEditMenuWidget()->getBoxLayoutEvents());
 
     // Инициализация ядря

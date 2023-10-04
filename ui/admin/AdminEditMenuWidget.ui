@@ -264,6 +264,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </layout>
      </widget>
      <widget class="QWidget" name="events">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <attribute name="title">
        <string>События</string>
       </attribute>
@@ -335,7 +338,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <widget class="QTextEdit" name="textEdit_instruction_2">
                <property name="enabled">
-                <bool>true</bool>
+                <bool>false</bool>
                </property>
                <property name="maximumSize">
                 <size>
@@ -727,7 +730,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="recommendations">
       <attribute name="title">
        <string>Рекомендации</string>
       </attribute>
