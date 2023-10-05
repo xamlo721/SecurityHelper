@@ -21,12 +21,23 @@ class AdminEditMenuWidget : public QWidget {
     private:
         /// Переменные боксов, в которых хранятся виджеты items
         QVBoxLayout *boxLayoutCategories;
+        QVBoxLayout *boxLayoutInCategoryFreeEvents;
+        QVBoxLayout *boxLayoutInCategoryContainedEvents;
+
         QVBoxLayout *boxLayoutEvents;
+
         QVBoxLayout *boxLayoutIncidents;
+        QVBoxLayout *boxLayoutInIncidentFreeEvents;
+        QVBoxLayout *boxLayoutInIncidentContainedEvents;
+
         QVBoxLayout *boxLayoutScenaries;
+        QVBoxLayout *boxLayoutInScenarioFreeIncidents;
+        QVBoxLayout *boxLayoutInScenarioContainedIncidents;
+
         /// Переменная, хранящая в себе данные интерфейса
         Ui::AdminEditMenuWidget *ui;
 
+        void setAllAddToButtonsDisabled();
         void setAllDeleteButtonsDisabled();
 
     private slots:
@@ -55,18 +66,28 @@ class AdminEditMenuWidget : public QWidget {
          *  @brief getBoxLayoutCategories - метод, позволяющий получить бокс категорий.
          */
         QVBoxLayout *getBoxLayoutCategories();
+        QVBoxLayout *getBoxLayoutInCategoryFreeEvents();
+        QVBoxLayout *getBoxLayoutInCategoryIncludedEvents();
+
         /**
          *  @brief getBoxLayoutEvents - метод, позволяющий получить бокс событий.
          */
         QVBoxLayout *getBoxLayoutEvents();
+
         /**
          *  @brief getBoxLayoutIncidents - метод, позволяющий получить бокс инцидентов.
          */
         QVBoxLayout *getBoxLayoutIncidents();
+        QVBoxLayout *getBoxLayoutInIncidentFreeEvents();
+        QVBoxLayout *getBoxLayoutInIncidentIncludedEvents();
+
         /**
          *  @brief getBoxLayoutScenaries - метод, позволяющий получить бокс сценариев.
          */
         QVBoxLayout *getBoxLayoutScenaries();
+        QVBoxLayout *getBoxLayoutInScenarioFreeIncidents ();
+        QVBoxLayout *getBoxLayoutInScenarioIncludedIncidents();
+
 
         void setAllTabsEnable();
 
@@ -83,6 +104,12 @@ class AdminEditMenuWidget : public QWidget {
         void setDeleteSelectedCategoriesButtonEnabled();
         void setDeleteSelectedCategoriesButtonDisabled();
 
+        void setAddToCategoryButtonEnabled();
+        void setAddToCategoryButtonDisabled();
+
+        void setRemoveFromCategoryButtonEnabled();
+        void setRemoveFromCategoryButtonDisabled();
+
 
         void setAddEventButtonEnabled();
         void setAddEventButtonDisabled();
@@ -95,6 +122,10 @@ class AdminEditMenuWidget : public QWidget {
     signals:
         void signalAddCategoryButtonPressed();
         void signalDeleteSelectedCategoriesButtonPressed();
+
+        void signalAddToCategoryButtonPressed();
+        void signalRemoveFromCategoryButtonPressed();
+
 
         void signalAddEventButtonPressed();
         void signalDeleteSelectedEventsButtonPressed();

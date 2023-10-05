@@ -20,6 +20,10 @@ void AdminEditMenuController::init(AdminEditMenuWidget *editMenu) {
     QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalAddCategoryButtonPressed, this, &AdminEditMenuController::signalAddCategoryButtonPressed);
     QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed, this, &AdminEditMenuController::signalDeleteSelectedCategoriesButtonPressed);
 
+    QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalAddToCategoryButtonPressed, this, &AdminEditMenuController::signalAddToCategoryButtonPressed);
+    QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalRemoveFromCategoryButtonPressed, this, &AdminEditMenuController::signalRemoveFromCategoryButtonPressed);
+
+
     QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalAddEventButtonPressed, this, &AdminEditMenuController::signalAddEventButtonPressed);
     QObject::connect(this->editMenuWidget, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed, this, &AdminEditMenuController::signalDeleteSelectedEventsButtonPressed);
 
@@ -53,7 +57,10 @@ void AdminEditMenuController::slotSetRecommendtaionsActive() {
     this->editMenuWidget->setRecommendtaionsActive();
 }
 
-// Блок управления кнопками категорий
+
+// Блок управления кнопками вкладки Категории событий
+
+/// Блок управления кнопками категорий событий
 void AdminEditMenuController::slotSetAddCategoryButtonEnabled() {
     this->editMenuWidget->setAddCategoryButtonEnabled();
 }
@@ -70,7 +77,25 @@ void AdminEditMenuController::slotSetDeleteSelectedCategoriesButtonDisabled() {
     this->editMenuWidget->setDeleteSelectedCategoriesButtonDisabled();
 }
 
-// Блок управления кнопками событий
+/// Блок управления кнопками событий в категориях событий
+void AdminEditMenuController::slotSetAddToCategoryButtonEnabled() {
+    this->editMenuWidget->setAddToCategoryButtonEnabled();
+}
+
+void AdminEditMenuController::slotSetAddToCategoryButtonDisabled() {
+    this->editMenuWidget->setAddToCategoryButtonDisabled();
+}
+
+void AdminEditMenuController::slotSetRemoveFromCategoryButtonEnabled() {
+    this->editMenuWidget->setRemoveFromCategoryButtonEnabled();
+}
+
+void AdminEditMenuController::slotSetRemoveFromCategoryButtonDisabled() {
+    this->editMenuWidget->setRemoveFromCategoryButtonDisabled();
+}
+
+
+// Блок управления кнопками вкладки События
 void AdminEditMenuController::slotSetAddEventButtonEnabled() {
     this->editMenuWidget->setAddEventButtonEnabled();
 }

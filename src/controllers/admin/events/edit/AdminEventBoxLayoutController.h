@@ -64,6 +64,10 @@ class AdminEventBoxLayoutController : public QObject {
 
         void eventIsActive();
         void eventIsNotActive();
+
+        void eventAdded(SecurityEvent newEvent);
+        void eventRenamed(const quint32 eventID, QString newEventTitle);
+        void eventDeleted(const quint32 eventID);
 };
 
 #endif // ADMINEVENTBOXLAYOUTCONTROLLER_H

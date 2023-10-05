@@ -67,6 +67,9 @@ void AdminEventCategoryBoxLayoutController::slotShowEditableWidget(UneditableEve
 
     /// Отправляем сигнал о том, что появилась активная категория
     emit categoryIsActive();
+
+    /// Отправляем сигнал о том, что категория открыта
+    emit categoryIsOpened(editableWidget->getID());
 }
 
 void AdminEventCategoryBoxLayoutController::slotShowUneditableWidget(EditableEventCategoryWidget *editableWidget) {
@@ -74,10 +77,10 @@ void AdminEventCategoryBoxLayoutController::slotShowUneditableWidget(EditableEve
     UneditableEventCategoryWidget *uneditableWidget = this->widgetStorage.getUneditableWidget(editableWidget->getID());
 
     /// Переименовываем категорию в списке в соответствии с переименованием виджета администратором
-    this->renameCategory(uneditableWidget->getID(), uneditableWidget->getText());
+    this->renameCategory(editableWidget->getID(), editableWidget->getTitle());
 
     /// Устанавливаем измененное администратором имя не редактируемому виджету
-    uneditableWidget->setText(editableWidget->getText());
+    uneditableWidget->setTitle(editableWidget->getTitle());
 
     /// Показываем не редактируемый виджет
     this->boxLayoutCategories->showUneditableWidget(editableWidget, uneditableWidget);
@@ -86,6 +89,9 @@ void AdminEventCategoryBoxLayoutController::slotShowUneditableWidget(EditableEve
     this->enableAllCategories();
     /// Отправляем сигнал о том, что активной категории больше нет
     emit categoryIsNotActive();
+
+    /// Отправляем сигнал о том, что категория закрыта
+    emit categoryIsClosed(editableWidget->getID());
 }
 
 void AdminEventCategoryBoxLayoutController::addCategory() {

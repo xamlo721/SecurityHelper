@@ -15,10 +15,10 @@ UneditableEventCategoryWidget::UneditableEventCategoryWidget(const quint32 id, c
     this->ui->pushButton_category->setMinimumSize(200, 60);
     /// Инициализируем поля класса
     this->id = id;
-    this->text = title;
+    this->title = title;
     this->ui->checkBox->setChecked(false);
     /// Устанавливаем текст на кнопке
-    this->ui->pushButton_category->setText(text);
+    this->ui->pushButton_category->setText(title);
 
     QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &UneditableEventCategoryWidget::onCheckBoxClicked);
 }
@@ -67,9 +67,9 @@ void UneditableEventCategoryWidget::callCustomMenu(const QPoint mousePosition) {
     customMenu->call(this->ui->pushButton_category->mapToGlobal(mousePosition));
 }
 
-void UneditableEventCategoryWidget::setText(const QString text) {
-    this->text = text;
-    this->ui->pushButton_category->setText(this->text);
+void UneditableEventCategoryWidget::setTitle(const QString title) {
+    this->title = title;
+    this->ui->pushButton_category->setText(this->title);
 }
 
 void UneditableEventCategoryWidget::setUnselected() {

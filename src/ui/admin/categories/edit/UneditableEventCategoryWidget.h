@@ -58,7 +58,7 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          */
         void callCustomMenu(const QPoint mousePosition);
 
-        void setText(const QString text) override;
+        void setTitle(const QString title) override;
 
         void setUnselected();
 

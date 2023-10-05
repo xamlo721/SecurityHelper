@@ -17,7 +17,7 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(const quint32 id, const
     this->ui->lineEdit_category->setMinimumSize(200, 60);
     /// Инициализируем поля класса
     this->id = id;
-    this->text = title;
+    this->title = title;
     /// Устанавливаем доступность строки редактирования и её текст
     this->ui->lineEdit_category->setEnabled(true);
     this->ui->lineEdit_category->setText(title);
@@ -39,7 +39,7 @@ int EditableEventCategoryWidget::slotEditingFinished() {
     }
 
     /// Устанавливаем текстовое описание категории, полученное при завершении редактирования
-    this->text = this->ui->lineEdit_category->text();
+    this->title = this->ui->lineEdit_category->text();
 
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);

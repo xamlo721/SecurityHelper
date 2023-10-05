@@ -32,22 +32,22 @@ class UneditableEventWidget : public QWidget, public BaseItem {
 
         void callCustomMenu(const QPoint mousePosition);
 
-        void setText(const QString text) override;
+        void setTitle(const QString title) override;
 
         void setUnselected();
 
     public slots:
-        void slotEditCategory();
+        void slotEditEvent();
 
-        void slotDeleteCategory();
+        void slotDeleteEvent();
 
     signals:
-        void signalEditCategory(UneditableEventWidget * uneditableCategory);
+        void signalEditEvent(UneditableEventWidget * uneditableWidget);
 
-        void signalDeleteCategory(UneditableEventWidget * uneditableCategory);
+        void signalDeleteEvent(UneditableEventWidget * uneditableWidget);
 
-        void signalCategorySelected(const quint32 categoryID);
-        void signalCategoryUnselected(const quint32 categoryID);
+        void signalEventSelected(const quint32 eventID);
+        void signalEventUnselected(const quint32 eventID);
 };
 
 #endif // UNEDITABLEEVENTWIDGET_H

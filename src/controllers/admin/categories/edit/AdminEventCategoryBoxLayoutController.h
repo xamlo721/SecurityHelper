@@ -110,6 +110,9 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         void categoryIsActive();
         void categoryIsNotActive();
 
+        void categoryIsOpened(quint32 categoryID, const bool isForAdminMode = true);
+        void categoryIsClosed(const quint32 categoryID);
+
 };
 
 #endif // ADMINEVENTCATEGORYBOXLAYOUTCONTROLLER_H

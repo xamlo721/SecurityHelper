@@ -14,7 +14,7 @@ void CoreApp::init() {
 }
 
 
-void CoreApp::onOpenCategory(quint32 categoryId) {
+void CoreApp::onOpenCategory(quint32 categoryId, bool isForAdminMode) {
 
     QList<SecurityEvent> categoryEvents;
     SecurityEventCategory category = db.categories.value(categoryId);
@@ -31,35 +31,45 @@ void CoreApp::onOpenCategory(quint32 categoryId) {
         }
     }
 
-    emit signalOpenCategory(categoryEvents);
+    if(isForAdminMode)
+        emit signalOpenAdminCategory(categoryEvents);
+    else
+        emit signalOpenCategory(categoryEvents);
 
 }
-#include <QDebug>
+
 void CoreApp::formEvents() {
+    /// Берем из базы данных события
+    QList<SecurityEvent> events = db.events.values();
+    /// Составляем лист свободных событий для вкладки Категории событий и отправляем их в неё
+    this->formFreeEvents();
+    /// Отправляем сигнал с событиями во вкладку События
+    emit eventsFormed(events);
+}
 
-    QList<SecurityEvent> events;
+void CoreApp::formFreeEvents() {
+    QList<SecurityEvent> freeEvents = db.events.values();
+
     QList<SecurityEventCategory> categories = db.categories.values();
-    qDebug() << "начало ";
-    for(auto category : categories) {
-        qDebug() << category.getText();
-    }
-    qDebug() << "конец ";
 
     for(auto category : categories) {
+
         for (quint32 eventid : category.getEventIds()) {
+
             if (!db.events.contains(eventid)) {
                 //Бросить исключение
                 continue;
             }
-            if (!events.contains(db.events.value(eventid))) {
+            /// Если лист свободных событий содержит событие, которое уже лежит в какой-то категории, то удаляем это событие из листа
+            if (freeEvents.contains(db.events.value(eventid))) {
 
-                events.append(db.events.value(eventid));
+                freeEvents.removeOne(db.events.value(eventid));
 
             }
         }
-    }
-    emit eventsFormed(events);
 
+    }
+    emit freeEventsFormed(freeEvents);
 }
 
 void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {

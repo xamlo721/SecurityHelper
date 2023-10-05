@@ -48,6 +48,12 @@ class AdminEditMenuController : public QObject {
         void slotSetDeleteSelectedCategoriesButtonEnabled();
         void slotSetDeleteSelectedCategoriesButtonDisabled();
 
+        void slotSetAddToCategoryButtonEnabled();
+        void slotSetAddToCategoryButtonDisabled();
+
+        void slotSetRemoveFromCategoryButtonEnabled();
+        void slotSetRemoveFromCategoryButtonDisabled();
+
 
         void slotSetAddEventButtonEnabled();
         void slotSetAddEventButtonDisabled();
@@ -58,6 +64,10 @@ class AdminEditMenuController : public QObject {
     signals:
         void signalAddCategoryButtonPressed();
         void signalDeleteSelectedCategoriesButtonPressed();
+
+        void signalAddToCategoryButtonPressed();
+        void signalRemoveFromCategoryButtonPressed();
+
 
         void signalAddEventButtonPressed();
         void signalDeleteSelectedEventsButtonPressed();

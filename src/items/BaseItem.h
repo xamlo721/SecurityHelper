@@ -7,14 +7,14 @@
 class BaseItem {
     public:
        virtual void setID(quint32 id) { this->id = id; }
-       virtual void setText(QString text) { this->text = text; }
+       virtual void setTitle(QString title) { this->title = title; }
 
         quint32 getID() { return this->id; }
-        QString getText() { return this->text; }
+        QString getTitle() { return this->title; }
 
     protected:
         quint32 id;
-        QString text;
+        QString title;
 };
 
 

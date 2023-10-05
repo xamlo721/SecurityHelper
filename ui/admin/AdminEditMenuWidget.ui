@@ -68,7 +68,7 @@ QTabBar::tab:!selected {
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="categories">
       <attribute name="title">
@@ -181,7 +181,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QScrollArea" name="scrollArea_categories_containedEventScrollArea">
+            <widget class="QScrollArea" name="scrollArea_categories_includedEvent">
              <property name="maximumSize">
               <size>
                <width>400</width>
@@ -194,7 +194,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
-             <widget class="QWidget" name="scrollAreaWidgetContents_containedEvents">
+             <widget class="QWidget" name="scrollAreaWidgetContents_categories_includedEvent">
               <property name="geometry">
                <rect>
                 <x>0</x>
@@ -207,9 +207,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_removeInCategoryEvent">
+            <widget class="QPushButton" name="pushButton_removeFromCategory">
              <property name="text">
-              <string>Удалить</string>
+              <string>Удалить выбранное из категории</string>
              </property>
             </widget>
            </item>
@@ -225,7 +225,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QScrollArea" name="scrollArea_categories_allEventsScrollArea">
+            <widget class="QScrollArea" name="scrollArea_categories_freeEvents">
              <property name="maximumSize">
               <size>
                <width>400</width>
@@ -238,7 +238,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <property name="widgetResizable">
               <bool>true</bool>
              </property>
-             <widget class="QWidget" name="scrollAreaWidgetContents_allEvents">
+             <widget class="QWidget" name="scrollAreaWidgetContents_categories_freeEvents">
               <property name="geometry">
                <rect>
                 <x>0</x>
@@ -251,9 +251,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_addInCategoryEvent">
+            <widget class="QPushButton" name="pushButton_addToCategory">
              <property name="text">
-              <string>Добавить</string>
+              <string>Добавить выбранное в категорию</string>
              </property>
             </widget>
            </item>
@@ -412,9 +412,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_deleteIncident">
+          <widget class="QPushButton" name="pushButton_deleteSelectedIncidents">
            <property name="text">
-            <string>Удалить</string>
+            <string>Удалить выбранное</string>
            </property>
           </widget>
          </item>
@@ -470,7 +470,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_categories_containedEventScrollArea_2">
+          <widget class="QScrollArea" name="scrollArea_incidents_includedEvent">
            <property name="maximumSize">
             <size>
              <width>400</width>
@@ -483,7 +483,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_containedEvents_2">
+           <widget class="QWidget" name="scrollAreaWidgetContents_incidents_includedEvent">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -496,9 +496,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_removeInIncidentEvent">
+          <widget class="QPushButton" name="pushButton_removeFromIncident">
            <property name="text">
-            <string>Удалить</string>
+            <string>Удалить выбранное из инцидента</string>
            </property>
           </widget>
          </item>
@@ -514,7 +514,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_categories_allEventsScrollArea_2">
+          <widget class="QScrollArea" name="scrollArea_incidents_freeEvents">
            <property name="maximumSize">
             <size>
              <width>400</width>
@@ -527,7 +527,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_allEvents_2">
+           <widget class="QWidget" name="scrollAreaWidgetContents_incidents_freeEvents">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -540,9 +540,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_addInIncidentEvent">
+          <widget class="QPushButton" name="pushButton_addToIncident">
            <property name="text">
-            <string>Добавить</string>
+            <string>Добавить выбранное в инцидент</string>
            </property>
           </widget>
          </item>
@@ -592,9 +592,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_deleteScenario">
+          <widget class="QPushButton" name="pushButton_deleteSelectedScenaries">
            <property name="text">
-            <string>Удалить</string>
+            <string>Удалить выбранное</string>
            </property>
           </widget>
          </item>
@@ -650,7 +650,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_categories_containedEventScrollArea_3">
+          <widget class="QScrollArea" name="scrollArea_scenaries_includedIncidents">
            <property name="maximumSize">
             <size>
              <width>400</width>
@@ -663,7 +663,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_containedEvents_3">
+           <widget class="QWidget" name="scrollAreaWidgetContents_scenaries_includedIncidents">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -676,9 +676,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_removeInScenarioIncident">
+          <widget class="QPushButton" name="pushButton_removeFromScenario">
            <property name="text">
-            <string>Удалить</string>
+            <string>Удалить выбранное из сценария</string>
            </property>
           </widget>
          </item>
@@ -694,7 +694,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_categories_allEventsScrollArea_3">
+          <widget class="QScrollArea" name="scrollArea_scenaries_freeIncidents">
            <property name="maximumSize">
             <size>
              <width>400</width>
@@ -707,7 +707,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_allEvents_3">
+           <widget class="QWidget" name="scrollAreaWidgetContents_scenaries_freeIncidents">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -720,9 +720,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_addInScenarioIncident">
+          <widget class="QPushButton" name="pushButton_addToScenario">
            <property name="text">
-            <string>Добавить</string>
+            <string>Добавить выбранное в сценарий</string>
            </property>
           </widget>
          </item>
@@ -745,14 +745,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item>
-          <widget class="QScrollArea" name="scrollArea_scenaries_2">
+          <widget class="QScrollArea" name="scrollArea_free_scenaries">
            <property name="layoutDirection">
             <enum>Qt::LeftToRight</enum>
            </property>
            <property name="widgetResizable">
             <bool>true</bool>
            </property>
-           <widget class="QWidget" name="scrollAreaWidgetContents_scenaries_2">
+           <widget class="QWidget" name="scrollAreaWidgetContents_free_scenaries">
             <property name="geometry">
              <rect>
               <x>0</x>

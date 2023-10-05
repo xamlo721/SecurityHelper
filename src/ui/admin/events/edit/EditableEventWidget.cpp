@@ -7,7 +7,7 @@ EditableEventWidget::EditableEventWidget(const quint32 id, const QString title, 
     this->ui->lineEdit_event->setMinimumSize(200, 60);
     /// Инициализируем поля класса
     this->id = id;
-    this->text = title;
+    this->title = title;
     /// Устанавливаем доступность строки редактирования и её текст
     this->ui->lineEdit_event->setEnabled(true);
     this->ui->lineEdit_event->setText(title);
@@ -23,7 +23,7 @@ int EditableEventWidget::slotEditingFinished() {
         return 1;
     }
 
-    this->text = this->ui->lineEdit_event->text();
+    this->title = this->ui->lineEdit_event->text();
 
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);

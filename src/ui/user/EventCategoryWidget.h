@@ -23,7 +23,7 @@ class EventCategoryWidget : public QWidget {
         void onOpenIncidentButtonClicked();
 
     signals:
-        void signalOpenIncident(quint32 incidentId);
+        void signalOpenIncident(quint32 incidentId, const bool isForAdminMode = false);
 
     private:
         quint32 id;

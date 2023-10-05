@@ -7,10 +7,11 @@ UneditableEventWidget::UneditableEventWidget(const quint32 id, const QString tit
     this->ui->pushButton_event->setMinimumSize(200, 60);
     /// Инициализируем поля класса
     this->id = id;
-    this->text = title;
+    this->title = title;
+
     this->ui->checkBox->setChecked(false);
     /// Устанавливаем текст на кнопке
-    this->ui->pushButton_event->setText(text);
+    this->ui->pushButton_event->setText(title);
 
     QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &UneditableEventWidget::onCheckBoxClicked);
 }
@@ -19,12 +20,12 @@ void UneditableEventWidget::onCheckBoxClicked() {
     switch (this->ui->checkBox->isChecked()) {
     case true:
 
-        emit signalCategorySelected(this->getID());
+        emit signalEventSelected(this->getID());
         break;
 
     case false:
 
-        emit signalCategoryUnselected(this->getID());
+        emit signalEventUnselected(this->getID());
         break;
     }
 }
@@ -36,10 +37,10 @@ void UneditableEventWidget::initMenu() {
     customMenu->setup();
     customMenu->init();
 
-    QObject::connect(this->customMenu, &UneditableItemMenu::signalEditCategory, this, &UneditableEventWidget::slotEditCategory);
-    QObject::connect(this->customMenu, &UneditableItemMenu::signalDeleteCategory, this, &UneditableEventWidget::slotDeleteCategory);
+    QObject::connect(this->customMenu, &UneditableItemMenu::signalEditCategory, this, &UneditableEventWidget::slotEditEvent);
+    QObject::connect(this->customMenu, &UneditableItemMenu::signalDeleteCategory, this, &UneditableEventWidget::slotDeleteEvent);
 
-    QObject::connect(this->ui->pushButton_event, &QPushButton::clicked, this, &UneditableEventWidget::slotEditCategory);
+    QObject::connect(this->ui->pushButton_event, &QPushButton::clicked, this, &UneditableEventWidget::slotEditEvent);
     QObject::connect(this->ui->pushButton_event, &QPushButton::customContextMenuRequested, this, &UneditableEventWidget::callCustomMenu);
 
     /// Установка политики меню, позволяющая показывать кастомное контекстное меню и использовать сигнал &QPushButton::customContextMenuRequested
@@ -52,9 +53,9 @@ void UneditableEventWidget::callCustomMenu(const QPoint mousePosition) {
     customMenu->call(this->ui->pushButton_event->mapToGlobal(mousePosition));
 }
 
-void UneditableEventWidget::setText(const QString text) {
-    this->text = text;
-    this->ui->pushButton_event->setText(this->text);
+void UneditableEventWidget::setTitle(const QString title) {
+    this->title = title;
+    this->ui->pushButton_event->setText(this->title);
 }
 
 void UneditableEventWidget::setUnselected() {
@@ -64,12 +65,12 @@ void UneditableEventWidget::setUnselected() {
     emit this->ui->checkBox->clicked();
 }
 
-void UneditableEventWidget::slotEditCategory() {
-    emit signalEditCategory(this);
+void UneditableEventWidget::slotEditEvent() {
+    emit signalEditEvent(this);
 }
 
-void UneditableEventWidget::slotDeleteCategory() {
-    emit signalDeleteCategory(this);
+void UneditableEventWidget::slotDeleteEvent() {
+    emit signalDeleteEvent(this);
 }
 
 UneditableEventWidget::~UneditableEventWidget() {

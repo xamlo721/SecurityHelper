@@ -9,11 +9,11 @@ void AdminEventBoxLayout::init(QVBoxLayout *boxLayout) {
 }
 
 void AdminEventBoxLayout::initUneditableWidget(UneditableEventWidget *uneditableWidget) {
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEditCategory, this, &AdminEventBoxLayout::signalEditEvent);
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalDeleteCategory, this, &AdminEventBoxLayout::signalDeleteEvent);
+    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEditEvent, this, &AdminEventBoxLayout::signalEditEvent);
+    QObject::connect(uneditableWidget, &UneditableEventWidget::signalDeleteEvent, this, &AdminEventBoxLayout::signalDeleteEvent);
 
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalCategorySelected, this, &AdminEventBoxLayout::signalEventSelected);
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalCategoryUnselected, this, &AdminEventBoxLayout::signalEventUnselected);
+    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEventSelected, this, &AdminEventBoxLayout::signalEventSelected);
+    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEventUnselected, this, &AdminEventBoxLayout::signalEventUnselected);
 }
 
 void AdminEventBoxLayout::initEditableWidget(EditableEventWidget *editableWidget) {

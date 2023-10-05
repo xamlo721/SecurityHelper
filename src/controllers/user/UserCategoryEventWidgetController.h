@@ -36,7 +36,7 @@ class UserCategoryEventWidgetController : public QObject {
         void onEventUnselected(quint32 eventID);
 
     signals:
-        void signalOpenCategory(quint32 id);
+        void signalOpenCategory(quint32 id, const bool isForAdminMode = false);
         void signalCalculateIncident(QList<SecurityEvent> activeEvents);
 
 };

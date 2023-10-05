@@ -53,7 +53,7 @@ class AdminEventBoxLayout : public QObject {
         void emptyWidget(EditableEventWidget * editableWidget);
 
         void signalEventSelected(const quint32 eventID);
-        void signalEventUnselected(const quint32 categoryID);
+        void signalEventUnselected(const quint32 eventID);
 };
 
 #endif // ADMINEVENTBOXLAYOUT_H

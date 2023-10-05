@@ -9,11 +9,17 @@
 AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::AdminEditMenuWidget) {
     this->ui->setupUi(this);
 
-    /// Блокируем все кнопки Удалить, т.к. каждой кнопке необходим свой активный виджет для возможности удаления виджета
+    /// Блокируем все кнопки Добавить выбранное в {item}, т.к. каждой кнопке необходим свой активный виджет для возможности добавления куда-либо
+    this->setAllAddToButtonsDisabled();
+    /// Блокируем все кнопки Удалить выбранное и Удалить выбранное из {item}, т.к. каждой кнопке необходим свой активный виджет для возможности удаления виджета
     this->setAllDeleteButtonsDisabled();
 
     QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
     QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
+
+    QObject::connect(this->ui->pushButton_addToCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToCategoryButtonPressed);
+    QObject::connect(this->ui->pushButton_removeFromCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromCategoryButtonPressed);
+
 
     QObject::connect(this->ui->pushButton_addEvent, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddEventButtonPressed);
     QObject::connect(this->ui->pushButton_deleteSelectedEvents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed);
@@ -29,16 +35,42 @@ AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(
  */
 void AdminEditMenuWidget::setupScrollAreas() {
     /// Инициализируем boxLayout для каждой scrollArea
+
+    /// Инициализируем boxLayout для вкладки Категории событий
     boxLayoutCategories = new QVBoxLayout();
+    boxLayoutInCategoryFreeEvents = new QVBoxLayout();
+    boxLayoutInCategoryContainedEvents = new QVBoxLayout();
+
+    /// Инициализируем boxLayout для вкладки События
     boxLayoutEvents = new QVBoxLayout();
+
+    /// Инициализируем boxLayout для вкладки Инциденты
     boxLayoutIncidents = new QVBoxLayout();
+    boxLayoutInIncidentFreeEvents = new QVBoxLayout();
+    boxLayoutInIncidentContainedEvents = new QVBoxLayout();
+
+    /// Инициализируем boxLayout для вкладки Сценарии
     boxLayoutScenaries = new QVBoxLayout();
+    boxLayoutInScenarioFreeIncidents = new QVBoxLayout();
+    boxLayoutInScenarioContainedIncidents = new QVBoxLayout();
+
 
     /// Устанавливаем во все scrollArea соответствущие boxLayout
     this->ui->scrollAreaWidgetContents_categories->setLayout(boxLayoutCategories);
+    this->ui->scrollAreaWidgetContents_categories_freeEvents->setLayout(boxLayoutInCategoryFreeEvents);
+    this->ui->scrollAreaWidgetContents_categories_includedEvent->setLayout(boxLayoutInCategoryContainedEvents);
+
+
     this->ui->scrollAreaWidgetContents_events->setLayout(boxLayoutEvents);
+
+
     this->ui->scrollAreaWidgetContents_incidents->setLayout(boxLayoutIncidents);
+    this->ui->scrollAreaWidgetContents_incidents_freeEvents->setLayout(boxLayoutInIncidentFreeEvents);
+    this->ui->scrollAreaWidgetContents_incidents_includedEvent->setLayout(boxLayoutInIncidentContainedEvents);
+
     this->ui->scrollAreaWidgetContents_scenaries->setLayout(boxLayoutScenaries);
+    this->ui->scrollAreaWidgetContents_scenaries_freeIncidents->setLayout(boxLayoutInScenarioFreeIncidents);
+    this->ui->scrollAreaWidgetContents_scenaries_includedIncidents->setLayout(boxLayoutInScenarioContainedIncidents);
 }
 
 
@@ -47,6 +79,14 @@ void AdminEditMenuWidget::setupScrollAreas() {
  */
 QVBoxLayout *AdminEditMenuWidget::getBoxLayoutCategories() {
     return this->boxLayoutCategories;
+}
+
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInCategoryFreeEvents() {
+    return this->boxLayoutInCategoryFreeEvents;
+}
+
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInCategoryIncludedEvents() {
+    return this->boxLayoutInCategoryContainedEvents;
 }
 
 /**
@@ -63,11 +103,27 @@ QVBoxLayout *AdminEditMenuWidget::getBoxLayoutIncidents() {
     return this->boxLayoutIncidents;
 }
 
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInIncidentFreeEvents() {
+    return this->boxLayoutInIncidentFreeEvents;
+}
+
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInIncidentIncludedEvents() {
+    return this->boxLayoutInIncidentContainedEvents;
+}
+
 /**
  *  @brief getBoxLayoutScenaries - метод, позволяющий получить бокс сценариев.
  */
 QVBoxLayout *AdminEditMenuWidget::getBoxLayoutScenaries() {
     return this->boxLayoutScenaries;
+}
+
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInScenarioFreeIncidents () {
+    return this->boxLayoutInScenarioFreeIncidents;
+}
+
+QVBoxLayout *AdminEditMenuWidget::getBoxLayoutInScenarioIncludedIncidents() {
+    return this->boxLayoutInScenarioContainedIncidents;
 }
 
 void AdminEditMenuWidget::setAllTabsEnable() {
@@ -132,21 +188,29 @@ AdminEditMenuWidget::~AdminEditMenuWidget() {
     delete ui;
 }
 
+void AdminEditMenuWidget::setAllAddToButtonsDisabled() {
+    this->ui->pushButton_addToCategory->setEnabled(false);
+    this->ui->pushButton_addToIncident->setEnabled(false);
+    this->ui->pushButton_addToScenario->setEnabled(false);
+}
+
 void AdminEditMenuWidget::setAllDeleteButtonsDisabled() {
     this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
     this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
-    this->ui->pushButton_deleteIncident->setEnabled(false);
-    this->ui->pushButton_deleteScenario->setEnabled(false);
+    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
+    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
     this->ui->pushButton_deleteRecommendation->setEnabled(false);
 
-    this->ui->pushButton_removeInCategoryEvent->setEnabled(false);
-    this->ui->pushButton_removeInIncidentEvent->setEnabled(false);
-    this->ui->pushButton_removeInScenarioIncident->setEnabled(false);
+    this->ui->pushButton_removeFromCategory->setEnabled(false);
+    this->ui->pushButton_removeFromIncident->setEnabled(false);
+    this->ui->pushButton_removeFromScenario->setEnabled(false);
 
 }
 
 
-// Блок управления кнопками категорий
+// Блок управления кнопками вкладки Категории событий
+
+/// Блок управления кнопками категорий событий
 void AdminEditMenuWidget::setAddCategoryButtonEnabled() {
     this->ui->pushButton_addCategory->setEnabled(true);
 }
@@ -163,8 +227,24 @@ void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonDisabled() {
     this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
 }
 
+/// Блок управления кнопками событий в категориях событий
+void AdminEditMenuWidget::setAddToCategoryButtonEnabled() {
+    this->ui->pushButton_addToCategory->setEnabled(true);
+}
 
-// Блок управления кнопками событий
+void AdminEditMenuWidget::setAddToCategoryButtonDisabled() {
+    this->ui->pushButton_addToCategory->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setRemoveFromCategoryButtonEnabled() {
+    this->ui->pushButton_removeFromCategory->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setRemoveFromCategoryButtonDisabled() {
+    this->ui->pushButton_removeFromCategory->setEnabled(false);
+}
+
+// Блок управления кнопками вкладки События
 void AdminEditMenuWidget::setAddEventButtonEnabled() {
     this->ui->pushButton_addEvent->setEnabled(true);
 }
