@@ -125,6 +125,13 @@ class XmlUtils : public QObject {
     static void writeXMLHeader(QDomDocument *domDocument);
 
     /**
+     * @brief writeXMLStructTree - функция выстраивает структуру в файле xmlDocument->Database->имя субэлемента
+     * @param domDocument - документ
+     * @param nameElement - имя субэлемента
+     **/
+    static QDomElement writeXMLStructTree(QDomDocument *domDocument, QString nameElement);
+
+    /**
      * @brief searchSingleNode - функция проверяет наличие указанной node в элементе
      * @param element - элемент дерева, в котором будет осуществлен node
      * @param searchElementName - тэг, элемент для поиска соответсвующей node
@@ -144,7 +151,6 @@ class XmlUtils : public QObject {
      * @param searchElementName - тэг, элемент для поиска соответсвующих node
      **/
     static QList<QDomElement> readMultiNode(QDomElement element, QString searchElementName);
-
 
 };
 
