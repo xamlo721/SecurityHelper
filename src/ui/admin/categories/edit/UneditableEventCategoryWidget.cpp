@@ -23,6 +23,16 @@ UneditableEventCategoryWidget::UneditableEventCategoryWidget(const quint32 id, c
     QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &UneditableEventCategoryWidget::onCheckBoxClicked);
 }
 
+/**
+ *  @brief ~UneditableItemMenu - деструктор по умолчанию, используется для высвобождения
+ * памяти.
+ */
+UneditableEventCategoryWidget::~UneditableEventCategoryWidget() {
+    delete ui;
+
+    delete customMenu;
+}
+
 void UneditableEventCategoryWidget::onCheckBoxClicked() {
     switch (this->ui->checkBox->isChecked()) {
     case true:
@@ -94,12 +104,4 @@ void UneditableEventCategoryWidget::slotEditCategory() {
 */
 void UneditableEventCategoryWidget::slotDeleteCategory() {
     emit signalDeleteCategory(this);
-}
-/**
- *  @brief ~UneditableItemMenu - деструктор по умолчанию, используется для высвобождения
- * памяти.
- */
-UneditableEventCategoryWidget::~UneditableEventCategoryWidget() {
-    delete ui;
-    delete customMenu;
 }

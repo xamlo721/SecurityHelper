@@ -38,6 +38,26 @@ void CoreApp::onOpenCategory(quint32 categoryId, bool isForAdminMode) {
 
 }
 
+void CoreApp::onOpenDeletedCategory(const quint32 categoryId) {
+
+    QList<SecurityEvent> categoryEvents;
+    SecurityEventCategory category = db.categories.value(categoryId);
+    //Проходимся по списку всех событий в категории
+    for (quint32 eventid : category.getEventIds()) {
+        if (!db.events.contains(eventid)) {
+            //Бросить исключение
+            continue;
+        }
+        if (!categoryEvents.contains(db.events.value(eventid))) {
+
+            categoryEvents.append(db.events.value(eventid));
+
+        }
+    }
+
+    emit signalOpenAdminDeletedCategory(categoryEvents);
+}
+
 void CoreApp::formEvents() {
     /// Берем из базы данных события
     QList<SecurityEvent> events = db.events.values();

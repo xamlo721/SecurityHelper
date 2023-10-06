@@ -24,9 +24,8 @@ class UneditableEventWidget : public QWidget, public BaseItem {
         void onCheckBoxClicked();
 
     public:
-        explicit UneditableEventWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
+        UneditableEventWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
         ~UneditableEventWidget();
-
 
         void initMenu();
 

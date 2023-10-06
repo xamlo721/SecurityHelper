@@ -21,8 +21,7 @@ class EditableEventWidget : public QWidget, public BaseItem {
         int slotEditingFinished();
 
     public:
-        explicit EditableEventWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
-
+        EditableEventWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
         ~EditableEventWidget();
 
 

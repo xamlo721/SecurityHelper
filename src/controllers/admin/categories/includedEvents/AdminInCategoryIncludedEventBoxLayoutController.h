@@ -25,7 +25,13 @@ class AdminInCategoryIncludedEventBoxLayoutController : public QObject {
 
         void clearSelectedIncludedEvents();
 
+        void deleteIncludedEvent(quint32 eventID);
+        void deleteIncludedEventWidget(quint32 eventID);
+
         void unselectAllIncludedEvents();
+
+        SecurityEvent addIncludedEvent(SecurityEvent event);
+        void addIncludedEventWidget(SecurityEvent event);
 
         void enableAllIncludedEvents();
         void disableAllIncludedEvents();
@@ -46,9 +52,9 @@ class AdminInCategoryIncludedEventBoxLayoutController : public QObject {
         void slotIncludeFreeEventsToCategory(QList<SecurityEvent> freeEvents);
         void slotRemoveSelectedEventsFromCategoryButtonPressed();
 
-        void addIncludedEvent(SecurityEvent event);
+        void slotAddIncludedEvent(quint32 eventID, QString eventTitle);
+        void slotDeleteIncludedEvent(quint32 eventID);
         void renameIncludedEvent(const quint32 eventID, QString newEventTitle);
-        void deleteIncludedEvent(quint32 eventID);
 
         void clearIncludedEventList(const quint32 categoryID);
 

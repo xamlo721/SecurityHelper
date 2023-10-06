@@ -43,7 +43,7 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
          * полей id и text ( см. класс BaseItem ), а так же связывание сигнала editingFinished класса
          * QLineEdit с со слотом slotEditingFinished данного класса.
          */
-        explicit EditableEventCategoryWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
+        EditableEventCategoryWidget(const quint32 id, const QString title, QWidget * parent = nullptr);
 
         /**
          *  @brief ~EditableItemMenu - деструктор по умолчанию, используется для

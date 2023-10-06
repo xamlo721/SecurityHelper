@@ -31,8 +31,8 @@ class UneditableItemMenu : public QObject {
          * в котором инициализируется меню.
          *  @param parent - родительский объект в иерархии Qt.
          */
-        explicit UneditableItemMenu(QObject *parent = nullptr);
-
+        UneditableItemMenu(QObject *parent = nullptr);
+        ~UneditableItemMenu();
         /**
          * @brief setup - метод, устанавливающий действия (QAction) в меню.
          */

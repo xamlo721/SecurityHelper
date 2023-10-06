@@ -16,6 +16,12 @@ UneditableEventWidget::UneditableEventWidget(const quint32 id, const QString tit
     QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &UneditableEventWidget::onCheckBoxClicked);
 }
 
+UneditableEventWidget::~UneditableEventWidget() {
+    delete ui;
+
+    delete customMenu;
+}
+
 void UneditableEventWidget::onCheckBoxClicked() {
     switch (this->ui->checkBox->isChecked()) {
     case true:
@@ -71,9 +77,4 @@ void UneditableEventWidget::slotEditEvent() {
 
 void UneditableEventWidget::slotDeleteEvent() {
     emit signalDeleteEvent(this);
-}
-
-UneditableEventWidget::~UneditableEventWidget() {
-    delete ui;
-    delete customMenu;
 }

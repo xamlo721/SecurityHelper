@@ -21,6 +21,13 @@ UneditableItemMenu::UneditableItemMenu(QObject *parent) : QObject{parent} {
     this->menu->setStyleSheet(menuStyle);
 }
 
+UneditableItemMenu::~UneditableItemMenu() {
+    delete menu;
+
+    delete editAction;
+    delete deleteAction;
+}
+
 /**
  *  @brief setup - метод, устанавливающий действия (QAction) в меню.
  */

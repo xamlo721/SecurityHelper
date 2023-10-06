@@ -27,8 +27,11 @@ class AdminEventBoxLayoutController : public QObject {
         /// Хранилище пар не редактирумого и редактируемого виджета
         EventWidgetStorage widgetStorage;
 
-        void addEvent();
+        SecurityEvent addEvent();
+        void addEventWidget(const SecurityEvent event);
+
         void deleteEvent(const quint32 eventID);
+        void deleteEventWidget(const quint32 eventID);
 
         void renameEvent(const quint32 widgetID, const QString widgetText);
 

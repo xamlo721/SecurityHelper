@@ -27,6 +27,14 @@ EditableEventCategoryWidget::EditableEventCategoryWidget(const quint32 id, const
 }
 
 /**
+ *  @brief ~EditableItemMenu - деструктор по умолчанию, используется для
+ * высвобождения памяти.
+ */
+EditableEventCategoryWidget::~EditableEventCategoryWidget() {
+    delete ui;
+}
+
+/**
 *   @brief slotEditingFinished -  слот, который связывает сигнал editingFinished класса
 * QLineEdit с сигналами editingFinished или emptyWidget данного класса, в зависимости от того, что
 * необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
@@ -44,14 +52,6 @@ int EditableEventCategoryWidget::slotEditingFinished() {
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);
     return 0;
-}
-
-/**
- *  @brief ~EditableItemMenu - деструктор по умолчанию, используется для
- * высвобождения памяти.
- */
-EditableEventCategoryWidget::~EditableEventCategoryWidget() {
-    delete ui;
 }
 
 /**

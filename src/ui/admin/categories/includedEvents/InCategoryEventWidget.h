@@ -20,7 +20,7 @@ class InCategoryEventWidget : public QWidget, public BaseItem {
         void onCheckBoxClicked();
 
     public:
-        explicit InCategoryEventWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
+        InCategoryEventWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
         ~InCategoryEventWidget();
 
         void setUnselected();

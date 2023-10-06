@@ -40,7 +40,7 @@ class UneditableEventCategoryWidget : public QWidget, public BaseItem {
          *  В данном конструкторе задается размер виджета, текст виджета и инициализация
          * полей id и text ( см. класс BaseItem ).
          */
-        explicit UneditableEventCategoryWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
+        UneditableEventCategoryWidget(const quint32 id, const QString title, QWidget *parent = nullptr);
 
         /**
          *  @brief ~UneditableItemMenu - деструктор по умолчанию, используется для высвобождения

@@ -16,6 +16,10 @@ EditableEventWidget::EditableEventWidget(const quint32 id, const QString title, 
     QObject::connect(this->ui->lineEdit_event, &QLineEdit::returnPressed, this, &EditableEventWidget::slotEditingFinished);
 }
 
+EditableEventWidget::~EditableEventWidget() {
+    delete ui;
+}
+
 int EditableEventWidget::slotEditingFinished() {
     /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
     if(this->ui->lineEdit_event->text().isEmpty()) {
@@ -28,10 +32,6 @@ int EditableEventWidget::slotEditingFinished() {
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);
     return 0;
-}
-
-EditableEventWidget::~EditableEventWidget() {
-    delete ui;
 }
 
 void EditableEventWidget::setFocus() {

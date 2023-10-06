@@ -97,7 +97,13 @@ int main(int argc, char *argv[]) {
 
     QObject::connect(&eventCategoryContoller, &AdminEventCategoryBoxLayoutController::categoryIsClosed, &inCategoryIncludedEventController, &AdminInCategoryIncludedEventBoxLayoutController::clearIncludedEventList);
     //QObject::connect(&inCategoryIncludedEventController, &AdminInCategoryIncludedEventBoxLayoutController::categoryEventsMustBeSaved, идет в бд или в ядро, где данные events сохраняются в категорию по categoryID);
+    QObject::connect(&eventCategoryContoller, &AdminEventCategoryBoxLayoutController::categoryIsNotActive, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::unselectAllFreeEvents);
     QObject::connect(&eventCategoryContoller, &AdminEventCategoryBoxLayoutController::categoryIsNotActive, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::disableAllFreeEvents);
+
+
+    /// Блок связи сигналов о появлении свободных событий при удалении категории
+    QObject::connect(&eventCategoryContoller, &AdminEventCategoryBoxLayoutController::categoryIsDeleted, &core, &CoreApp::onOpenDeletedCategory);
+    QObject::connect(&core, &CoreApp::signalOpenAdminDeletedCategory, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::addFreeEventsFromDeletedCategory);
 
 
     /// Блок связи сигналов о:  добавлении в категорию событий/удалении событий из категории
@@ -121,9 +127,9 @@ int main(int argc, char *argv[]) {
 
 
     /// Блок связи сигналов о добавлении/переименовании/удалении события для вкладки Категории событий
-    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventAdded, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::addFreeEvent);
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventAdded, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::addDisabledFreeEvent);
     QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventRenamed, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::renameFreeEvent);
-    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventDeleted, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::deleteFreeEvent);
+    QObject::connect(&eventBoxContoller, &AdminEventBoxLayoutController::eventDeleted, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::slotDeleteFreeEvent);
 
 
     /// Блок связи сигналов о доступности/недоступности кнопки Добавить выбранное в категорию

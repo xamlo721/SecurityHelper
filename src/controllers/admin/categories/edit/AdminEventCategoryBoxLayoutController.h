@@ -32,7 +32,9 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         /// Хранилище пар не редактирумого и редактируемого виджета
         EventCategoryWidgetStorage widgetStorage;
 
-        void addCategory();
+        SecurityEventCategory addCategory();
+
+        void addCategoryWidget(const SecurityEventCategory category);
 
         /**
          *  @brief deleteCategory - метод для удаления категорий из списка контроллера
@@ -40,6 +42,8 @@ class AdminEventCategoryBoxLayoutController : public QObject {
          *      Внутренний метод, вызывается в slotEmptyWidget и slotDeleteCategory.
          */
         void deleteCategory(const quint32 categoryID);
+
+        void deleteCategoryWidget(const quint32 categoryID);
 
         /**
          *  @brief renameCategory - метод для переименования категорий из списка контроллера
@@ -112,6 +116,8 @@ class AdminEventCategoryBoxLayoutController : public QObject {
 
         void categoryIsOpened(quint32 categoryID, const bool isForAdminMode = true);
         void categoryIsClosed(const quint32 categoryID);
+
+        void categoryIsDeleted(const quint32 categoryID);
 
 };
 

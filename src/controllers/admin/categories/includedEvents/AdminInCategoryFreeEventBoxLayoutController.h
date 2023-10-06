@@ -25,6 +25,12 @@ class AdminInCategoryFreeEventBoxLayoutController : public QObject {
 
         void clearSelectedFreeEvents();
 
+        SecurityEvent addFreeEvent(SecurityEvent event);
+        void addFreeEventWidget(SecurityEvent event);
+
+        void deleteFreeEvent(quint32 eventID);
+        void deleteFreeEventWidget(quint32 eventID);
+
     private slots:
         void onFreeEventSelected(const quint32 eventID);
         void onFreeEventUnselected(const quint32 eventID);
@@ -41,9 +47,13 @@ class AdminInCategoryFreeEventBoxLayoutController : public QObject {
         void slotUnincludeEventsFromCategory(QList<SecurityEvent> includedEvents);
         void slotAddSelectedEventsToCategoryButtonPressed();
 
-        void addFreeEvent(SecurityEvent event);
+        void slotAddFreeEvent(quint32 eventID, QString eventTitle);
+        void slotDeleteFreeEvent(quint32 eventID);
         void renameFreeEvent(const quint32 eventID, QString newEventTitle);
-        void deleteFreeEvent(quint32 eventID);
+
+        void addDisabledFreeEvent(SecurityEvent event);
+
+        void addFreeEventsFromDeletedCategory(const QList<SecurityEvent> newFreeEvents);
 
         void unselectAllFreeEvents();
 

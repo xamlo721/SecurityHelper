@@ -6,13 +6,35 @@ AdminInCategoryIncludedEventBoxLayoutController::~AdminInCategoryIncludedEventBo
     delete this->boxLayoutEvents;
 }
 
-void AdminInCategoryIncludedEventBoxLayoutController::addIncludedEvent(SecurityEvent event) {
+SecurityEvent AdminInCategoryIncludedEventBoxLayoutController::addIncludedEvent(SecurityEvent event) {
     includedEvents.append(event);
 
+    return event;
+}
+
+void AdminInCategoryIncludedEventBoxLayoutController::addIncludedEventWidget(SecurityEvent event) {
     InCategoryEventWidget *eventWidget = new InCategoryEventWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
+}
+
+void AdminInCategoryIncludedEventBoxLayoutController::deleteIncludedEvent(quint32 eventID) {
+
+    for(SecurityEvent &event : includedEvents) {
+        if(event.getId() == eventID) {
+            includedEvents.removeOne(event);
+        }
+    }
+
+    this->onIncludedEventUnselected(eventID);
+}
+
+void AdminInCategoryIncludedEventBoxLayoutController::deleteIncludedEventWidget(quint32 eventID) {
+    InCategoryEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
+
+    this->widgetStorage.removeWidget(eventID);
+    this->boxLayoutEvents->deleteEventWidget(tempWidget);
 }
 
 void AdminInCategoryIncludedEventBoxLayoutController::renameIncludedEvent(const quint32 eventID, QString newEventTitle) {
@@ -27,40 +49,24 @@ void AdminInCategoryIncludedEventBoxLayoutController::renameIncludedEvent(const 
     }
 }
 
-void AdminInCategoryIncludedEventBoxLayoutController::deleteIncludedEvent(quint32 eventID) {
-    this->boxLayoutEvents->deleteEventWidget(this->widgetStorage.getEventWidget(eventID));
-
-    this->widgetStorage.removeWidget(eventID);
-
-    this->onIncludedEventUnselected(eventID);
-
-    for(SecurityEvent &event : includedEvents) {
-        if(event.getId() == eventID) {
-            includedEvents.removeOne(event);
-        }
-    }
-}
-
 void AdminInCategoryIncludedEventBoxLayoutController::unselectAllIncludedEvents() {
     for(SecurityEvent event : selectedIncludedEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его не выбранным
-        InCategoryEventWidget *eventWidget = this->widgetStorage.getEventWidget(event.getId());
-        this->boxLayoutEvents->unselectEventWidget(eventWidget);
+        this->boxLayoutEvents->unselectEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInCategoryIncludedEventBoxLayoutController::enableAllIncludedEvents() {
     for(SecurityEvent event : includedEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его доступным
-        InCategoryEventWidget *eventWidget = this->widgetStorage.getEventWidget(event.getId());
-        this->boxLayoutEvents->enableEventWidget(eventWidget);
+        this->boxLayoutEvents->enableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
+
 void AdminInCategoryIncludedEventBoxLayoutController::disableAllIncludedEvents() {
     for(SecurityEvent event : includedEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его не доступным
-        InCategoryEventWidget *eventWidget = this->widgetStorage.getEventWidget(event.getId());
-        this->boxLayoutEvents->disableEventWidget(eventWidget);
+        this->boxLayoutEvents->disableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
@@ -71,17 +77,30 @@ void AdminInCategoryIncludedEventBoxLayoutController::onIncludedEventSelected(co
         if(event.getId() != eventID)
             eventsChecked++;
     }
-    //if(eventsChecked == events.size())
-        // throw
 
-    /// Находим и забрасываем событие в список выбранных
-    for(quint32 i = 0; i < includedEvents.size(); i++) {
-        SecurityEvent event = this->includedEvents.at(i);
-        if(event.getId() == eventID) {
-            this->selectedIncludedEvents.append(event);
+    /*if(eventsChecked == events.size()) {
+        throw
+    }*/
 
+
+    eventsChecked = 0;
+    for(SecurityEvent selectedIncludedEvent : selectedIncludedEvents) {
+        if(selectedIncludedEvent.getId() == eventID)
+            eventsChecked++;
+    }
+
+    if(eventsChecked != 1) {
+
+        /// Находим и забрасываем событие в список выбранных
+        for(quint32 i = 0; i < includedEvents.size(); i++) {
+            SecurityEvent event = this->includedEvents.at(i);
+            if(event.getId() == eventID) {
+                this->selectedIncludedEvents.append(event);
+
+            }
         }
     }
+
     if(!selectedIncludedEvents.isEmpty())
         emit signalSelectedIncludedEventsNotEmpty();
 }
@@ -93,15 +112,32 @@ void AdminInCategoryIncludedEventBoxLayoutController::onIncludedEventUnselected(
         if(event.getId() != eventID)
             eventsChecked++;
     }
-    //if(eventsChecked == events.size())
-        // throw
 
-    /// Находим и удаляем событие из списка выбранных событий
-    for(quint32 i = 0; i < selectedIncludedEvents.size(); i++) {
-        SecurityEvent selectedEvent = this->selectedIncludedEvents.at(i);
-        if(selectedEvent.getId() == eventID)
-            this->selectedIncludedEvents.removeOne(selectedEvent);
+    /*if(eventsChecked == events.size()) {
+        throw
+    }*/
+
+
+    eventsChecked = 0;
+    for(SecurityEvent selectedIncludedEvent : selectedIncludedEvents) {
+        if(selectedIncludedEvent.getId() == eventID)
+            eventsChecked++;
     }
+
+    if(eventsChecked != 1) {
+        //throw
+    }
+
+    else {
+
+        /// Находим и удаляем событие из списка выбранных событий
+        for(quint32 i = 0; i < selectedIncludedEvents.size(); i++) {
+            SecurityEvent selectedEvent = this->selectedIncludedEvents.at(i);
+            if(selectedEvent.getId() == eventID)
+                this->selectedIncludedEvents.removeOne(selectedEvent);
+        }
+    }
+
     if(selectedIncludedEvents.isEmpty())
         emit signalSelectedIncludedEventsEmpty();
 }
@@ -122,10 +158,7 @@ void AdminInCategoryIncludedEventBoxLayoutController::setIncludedEventList(const
 
     for (SecurityEvent event : events) {
 
-        InCategoryEventWidget *eventWidget = new InCategoryEventWidget(event.getId(), event.getText());
-
-        this->widgetStorage.appendWidget(eventWidget);
-        this->boxLayoutEvents->addEventWidget(eventWidget);
+        this->addIncludedEventWidget(event);
     }
 }
 
@@ -152,12 +185,29 @@ void AdminInCategoryIncludedEventBoxLayoutController::slotIncludeFreeEventsToCat
         //if(this->includedEvents.contains(freeEvent) || this->selectedIncludedEvents.contains(freeEvent))
             // throw
 
-        this->addIncludedEvent(freeEvent);
+        this->slotAddIncludedEvent(freeEvent.getId(), freeEvent.getText());
     }
+}
+
+void AdminInCategoryIncludedEventBoxLayoutController::slotDeleteIncludedEvent(quint32 eventID) {
+    this->deleteIncludedEventWidget(eventID);
+    this->deleteIncludedEvent(eventID);
+}
+
+void AdminInCategoryIncludedEventBoxLayoutController::slotAddIncludedEvent(quint32 eventID, QString eventTitle) {
+    SecurityEvent newEvent(eventID, eventTitle);
+
+    this->addIncludedEvent(newEvent);
+    this->addIncludedEventWidget(newEvent);
 }
 
 void AdminInCategoryIncludedEventBoxLayoutController::slotRemoveSelectedEventsFromCategoryButtonPressed() {
     emit eventsRemovedFromCategory(selectedIncludedEvents);
+
+    for(SecurityEvent selectedIncludedEvent : selectedIncludedEvents) {
+
+        this->slotDeleteIncludedEvent(selectedIncludedEvent.getId());
+    }
 
     this->clearSelectedIncludedEvents();
 }

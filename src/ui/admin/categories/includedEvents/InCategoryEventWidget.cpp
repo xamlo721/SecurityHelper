@@ -16,7 +16,6 @@ InCategoryEventWidget::InCategoryEventWidget(const quint32 id, const QString tit
     QObject::connect(this->ui->checkBox, &QCheckBox::clicked, this, &InCategoryEventWidget::onCheckBoxClicked);
 }
 
-
 InCategoryEventWidget::~InCategoryEventWidget() {
     delete ui;
 }
