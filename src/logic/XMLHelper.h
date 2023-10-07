@@ -44,7 +44,11 @@ class XMLHelper: public QObject {
          * @brief writeDatabase - функция сохранения данных в .xml формате
          * @param path - путь до папки сохранения
          **/
-        static void writeDatabase(QString path);
+        static void writeDatabase(QString path/*, QList<SecurityEvent> eventsList, //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
+                                 QList<SecurityEventCategory> categoriesList,
+                                 QList<SecurityIncident> incidentsList,
+                                 QList<SecurityRecommendations> recommendationsList,
+                                 QList<SecurityScenario> scenariesList*/);
 
         /**
          * @brief writeToXMLFile - функция непосредственной записи в файл
@@ -56,6 +60,7 @@ class XMLHelper: public QObject {
 
         /**
          * @brief savedDatabase - функция преобразования QList-ов с данными в Database
+         * @brief этот метод вызывает savedDatabaseEvent, savedDatabaseCategory, savedDatabaseIncident, savedDatabaseRecommendations, savedDatabaseScenario
          * @param QList<SecurityEvent> eventsList - лист с ивентами
          * @param QList<SecurityEventCategory> categoriesList - лист с категориями
          * @param QList<SecurityIncident> incidentsList - лист с инцидентами
@@ -65,6 +70,18 @@ class XMLHelper: public QObject {
         static Database savedDatabase(/*QList<SecurityEvent> eventsList, QList<SecurityEventCategory> categoriesList, //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
                               QList<SecurityIncident> incidentsList, QList<SecurityRecommendations> recommendationsList,
                               QList<SecurityScenario> scenariesList*/);
+        ///savedDatabaseEvent - функция преобразования QList с ивентами в QMap
+        static QMap<quint32, SecurityEvent> savedDatabaseEvent(QList<SecurityEvent> eventsList);
+        ///savedDatabaseCategory - функция преобразования QList с категориями в QMap
+        static QMap<quint32, SecurityEventCategory> savedDatabaseCategory(QList<SecurityEventCategory> categoriesList);
+        ///savedDatabaseIncident - функция преобразования QList с инцидентами в QMap
+        static QMap<quint32, SecurityIncident> savedDatabaseIncident(QList<SecurityIncident> incidentsList);
+        ///savedDatabaseRecommendations - функция преобразования QList с ркомендациями в QMap
+        static QMap<quint32, SecurityRecommendations> savedDatabaseRecommendations(QList<SecurityRecommendations> recommendationsList);
+        ///savedDatabaseScenario - функция преобразования QList со сценариями в QMap
+        static QMap<quint32, SecurityScenario> savedDatabaseScenario(QList<SecurityScenario> scenariesList);
+
+
 
     signals:
 

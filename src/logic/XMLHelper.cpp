@@ -132,9 +132,17 @@ Database XMLHelper::readDatabase(QString path) {
     return Database(events, categories, incidents, recommendations, scenaries);
 }
 
-void XMLHelper::writeDatabase(QString path) {
+void XMLHelper::writeDatabase(QString path/*, QList<SecurityEvent> eventsList, //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
+                                 QList<SecurityEventCategory> categoriesList,
+                                 QList<SecurityIncident> incidentsList,
+                                 QList<SecurityRecommendations> recommendationsList,
+                                 QList<SecurityScenario> scenariesList*/) {
 
-    Database database = XMLHelper::savedDatabase();
+    Database database = XMLHelper::savedDatabase(/*QList<SecurityEvent> eventsList, //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
+                                 QList<SecurityEventCategory> categoriesList,
+                                 QList<SecurityIncident> incidentsList,
+                                 QList<SecurityRecommendations> recommendationsList,
+                                 QList<SecurityScenario> scenariesList*/);
 
     {
         QFile eventsFile(path + "Events.xml");
@@ -244,34 +252,55 @@ Database XMLHelper::savedDatabase(/*QList<SecurityEvent> eventsList, //Зако�
     Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");
 
 
-    /*QMap<quint32, SecurityEvent> events; //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
-    QMap<quint32, SecurityEventCategory> categories;
-    QMap<quint32, SecurityIncident> incidents;
-    QMap<quint32, SecurityRecommendations> recommendations;
-    QMap<quint32, SecurityScenario> scenaries;
+    /* //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
+    QMap<quint32, SecurityEvent> events = XMLHelper::savedDatabaseEvent(eventsList);
+    QMap<quint32, SecurityEventCategory> categories = XMLHelper::savedDatabaseCategory;
+    QMap<quint32, SecurityIncident> incidents = XMLHelper::savedDatabaseIncident;
+    QMap<quint32, SecurityRecommendations> recommendations = XMLHelper::savedDatabaseRecommendations;
+    QMap<quint32, SecurityScenario> scenaries = XMLHelper::savedDatabaseScenario;
 
+    return dataBase(events, categories, incidents, recommendations, scenaries); */
+    return db;
+}
+
+QMap<quint32, SecurityEvent> XMLHelper::savedDatabaseEvent(QList<SecurityEvent> eventsList) {
+    QMap<quint32, SecurityEvent> events;
     for(SecurityEvent event : eventsList) {
         events.insert(event.getId(), event);
     }
+    return events;
+}
 
+QMap<quint32, SecurityEventCategory> XMLHelper::savedDatabaseCategory(QList<SecurityEventCategory> categoriesList) {
+    QMap<quint32, SecurityEventCategory> categories;
     for(SecurityEventCategory category : categoriesList) {
         categories.insert(category.getId(), category);
     }
+    return categories;
+}
 
+QMap<quint32, SecurityIncident> XMLHelper::savedDatabaseIncident(QList<SecurityIncident> incidentsList) {
+    QMap<quint32, SecurityIncident> incidents;
     for(SecurityIncident incident : incidentsList) {
         incidents.insert(incident.getId(), incident);
     }
+    return incidents;
+}
 
+QMap<quint32, SecurityRecommendations> XMLHelper::savedDatabaseRecommendations(QList<SecurityRecommendations> recommendationsList) {
+    QMap<quint32, SecurityRecommendations> recommendations;
     for(SecurityRecommendations recommendation : recommendationsList) {
         recommendations.insert(recommendation.getId(), recommendation);
     }
+    return recommendations;
+}
 
+QMap<quint32, SecurityScenario> XMLHelper::savedDatabaseScenario(QList<SecurityScenario> scenariesList) {
+    QMap<quint32, SecurityScenario> scenaries;
     for(SecurityScenario scenary : scenariesList) {
         scenaries.insert(scenary.getId(), scenary);
-    }*/
-    return db;
-    //this->writeDatabase("../SecurityHelper/storage/", db); //Закомитил так как нет еще приходящих данных, сказать Krock если они появятся :^)
-    //this->writeDatabase("../SecurityHelper/storage/", Database(events, categories, incidents, recommendations, scenaries));
+    }
+    return scenaries;
 }
 
 bool XMLHelper::writeToXMLFile(QFile* file, QDomDocument document, QString codec) {
