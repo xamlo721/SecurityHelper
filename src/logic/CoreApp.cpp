@@ -34,6 +34,7 @@ void CoreApp::onOpenCategory(quint32 categoryId, bool isForAdminMode) {
     if(isForAdminMode)
         emit signalOpenAdminCategory(categoryEvents);
     else
+        XMLHelper::writeDatabase("../SecurityHelper/storage/new/");
         emit signalOpenCategory(categoryEvents);
 
 }

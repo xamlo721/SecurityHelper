@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+    <Database>
+        <Categories>
+            <Category>
+                <id>0</id>
+                <Text>Я категориЯ</Text>
+                <events>5</events>
+                <events>2</events>
+                <events>4</events>
+                <events>6</events>
+                <events>1</events>
+                <events>0</events>
+            </Category>
+            <Category>
+                <id>1</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>2</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>3</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>4</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>5</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>6</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>7</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>8</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>9</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>10</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>11</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>12</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>13</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>14</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+            <Category>
+                <id>15</id>
+                <Text>Я категориЯ</Text>
+                <events>7</events>
+            </Category>
+        </Categories>
+    </Database>
+</xmlDocument>

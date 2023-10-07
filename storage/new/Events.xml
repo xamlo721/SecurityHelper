@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+    <Database>
+        <Events>
+            <Event>
+                <id>0</id>
+                <Text>Событие</Text>
+            </Event>
+            <Event>
+                <id>1</id>
+                <Text>Другое 1234</Text>
+            </Event>
+            <Event>
+                <id>2</id>
+                <Text>52345 событие</Text>
+            </Event>
+            <Event>
+                <id>3</id>
+                <Text>sfg событие</Text>
+            </Event>
+            <Event>
+                <id>4</id>
+                <Text>2345 событие</Text>
+            </Event>
+            <Event>
+                <id>5</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>6</id>
+                <Text>Другое sdf</Text>
+            </Event>
+            <Event>
+                <id>7</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>8</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>9</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>10</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>11</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>12</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>13</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>14</id>
+                <Text>Другое событие</Text>
+            </Event>
+            <Event>
+                <id>15</id>
+                <Text>Другое событие</Text>
+            </Event>
+        </Events>
+    </Database>
+</xmlDocument>

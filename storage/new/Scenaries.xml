@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+    <Database>
+        <Scenaries>
+            <Scenary>
+                <id>0</id>
+                <Name></Name>
+                <Text>Текст сценария</Text>
+                <Incident>2</Incident>
+            </Scenary>
+            <Scenary>
+                <id>1</id>
+                <Name></Name>
+                <Text>Другой Текст сценария</Text>
+                <Incident>2</Incident>
+                <Incident>3</Incident>
+            </Scenary>
+            <Scenary>
+                <id>2</id>
+                <Name></Name>
+                <Text>Текст сценария</Text>
+                <Incident>2</Incident>
+            </Scenary>
+            <Scenary>
+                <id>3</id>
+                <Name></Name>
+                <Text>Другой Текст сценария</Text>
+                <Incident>2</Incident>
+                <Incident>0</Incident>
+            </Scenary>
+            <Scenary>
+                <id>4</id>
+                <Name></Name>
+                <Text>Текст сценария</Text>
+                <Incident>2</Incident>
+            </Scenary>
+            <Scenary>
+                <id>5</id>
+                <Name></Name>
+                <Text>Другой Текст сценария</Text>
+                <Incident>5</Incident>
+                <Incident>3</Incident>
+            </Scenary>
+        </Scenaries>
+    </Database>
+</xmlDocument>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlDocument>
+    <Database>
+        <Incidents>
+            <Incident>
+                <id>0</id>
+                <Name>Название</Name>
+                <Text>Событие</Text>
+                <events>2</events>
+                <events>4</events>
+                <events>6</events>
+            </Incident>
+            <Incident>
+                <id>1</id>
+                <Name></Name>
+                <Text>Другое событие</Text>
+                <events>1</events>
+                <events>0</events>
+            </Incident>
+            <Incident>
+                <id>3</id>
+                <Name></Name>
+                <Text>Событие</Text>
+                <events>2</events>
+                <events>4</events>
+                <events>6</events>
+            </Incident>
+            <Incident>
+                <id>4</id>
+                <Name></Name>
+                <Text>Другое событие</Text>
+                <events>1</events>
+                <events>0</events>
+            </Incident>
+            <Incident>
+                <id>5</id>
+                <Name></Name>
+                <Text>Событие</Text>
+                <events>2</events>
+                <events>4</events>
+                <events>6</events>
+            </Incident>
+            <Incident>
+                <id>6</id>
+                <Name></Name>
+                <Text>Другое событие</Text>
+                <events>1</events>
+                <events>0</events>
+            </Incident>
+            <Incident>
+                <id>7</id>
+                <Name></Name>
+                <Text>Событие</Text>
+                <events>2</events>
+                <events>4</events>
+                <events>6</events>
+            </Incident>
+            <Incident>
+                <id>8</id>
+                <Name></Name>
+                <Text>Другое событие</Text>
+                <events>1</events>
+                <events>0</events>
+            </Incident>
+        </Incidents>
+    </Database>
+</xmlDocument>
