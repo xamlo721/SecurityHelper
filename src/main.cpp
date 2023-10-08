@@ -230,12 +230,6 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::signalSelectedIncidentsEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedIncidentsButtonDisabled);
 
 
-    /// Блок связи сигналов о добавлении/переименовании/удалении события для вкладки Категории событий
-    QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventAdded, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::addDisabledFreeEvent);
-    QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventRenamed, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::renameFreeEvent);
-    QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventDeleted, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::slotDeleteFreeEvent);
-
-
     /// Блок связи сигналов о доступности/недоступности кнопки Добавить выбранное в категорию
     QObject::connect(&inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::signalSelectedFreeEventsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToIncidentButtonEnabled);
     QObject::connect(&inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::signalSelectedFreeEventsEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToIncidentButtonDisabled);
