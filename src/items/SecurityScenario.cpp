@@ -68,6 +68,38 @@ QList<quint32> SecurityScenario::getIncidents() {
 }
 
 /**
+ * @brief setText - Установить текст сценария
+ * @return
+ */
+void SecurityScenario::setText(QString const text) {
+    this->text = text;
+}
+
+/**
+ * @brief setName - Установить название сценария
+ * @return
+ */
+void SecurityScenario::setName(QString const name) {
+    this->name = name;
+}
+
+/**
+ * @brief setID - Установить ID сценария
+ * @return
+ */
+void SecurityScenario::setID(quint32 const id) {
+    this->id = id;
+}
+
+/**
+ * @brief setIncidents - Установить ID сценариев
+ * @return
+ */
+void SecurityScenario::setIncidents(QList<quint32> const incidents) {
+    this->incidents = incidents;
+}
+
+/**
  * @brief operator =
  * @param other
  * @return

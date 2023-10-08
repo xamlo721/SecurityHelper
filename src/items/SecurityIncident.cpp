@@ -62,6 +62,38 @@ QList<quint32> SecurityIncident::getEventIds() {
 }
 
 /**
+ * @brief setText - Установить текст инцидента
+ * @return
+ */
+void SecurityIncident::setText(QString const text) {
+    this->text = text;
+}
+
+/**
+ * @brief setName - Установить название инцидента
+ * @return
+ */
+void SecurityIncident::setName(QString const name) {
+    this->name = name;
+}
+
+/**
+ * @brief setID - Установить ID инцидента
+ * @return
+ */
+void SecurityIncident::setID(quint32 const id) {
+    this->id = id;
+}
+
+/**
+ * @brief setIDEvents - Установить ID ивентов
+ * @return
+ */
+void SecurityIncident::setIDEvents(QList<quint32> const events) {
+    this->events = events;
+}
+
+/**
  * @brief operator =
  * @param other
  * @return

@@ -65,6 +65,22 @@ void SecurityEventCategory::setText(QString const text) {
 }
 
 /**
+ * @brief setID - Установить ID категории
+ * @return
+ */
+void SecurityEventCategory::setID(quint32 const id) {
+    this->id = id;
+}
+
+/**
+ * @brief setIDEvents - Установить ID категории
+ * @return
+ */
+void SecurityEventCategory::setIDEvents(QList<quint32> const events) {
+    this->events = events;
+}
+
+/**
  * @brief operator =
  * @param other
  * @return

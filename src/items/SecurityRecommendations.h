@@ -55,25 +55,25 @@ class SecurityRecommendations : public QObject {
         SecurityRecommendations(quint32 id, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent = nullptr);
 
         /**
-         * @brief getId - Получить ID рекомендации
+         * @brief getId - получить ID рекомендации
          * @return
          */
         quint32 getId();
 
         /**
-         * @brief getTextContainment - Получить текст рекомендации для сдерживания
+         * @brief getTextContainment - получить текст рекомендации для сдерживания
          * @return
          */
         QString getTextContainment();
 
         /**
-         * @brief getTextFixes - Получить текст рекомендации для устранения
+         * @brief getTextFixes - получить текст рекомендации для устранения
          * @return
          */
         QString getTextFixes();
 
         /**
-         * @brief getTextRestore - Получить текст рекомендации для восстановления
+         * @brief getTextRestore - получить текст рекомендации для восстановления
          * @return
          */
         QString getTextRestore();
@@ -83,6 +83,36 @@ class SecurityRecommendations : public QObject {
          * @return
          */
         QList<quint32> getScenaries();
+
+        /**
+         * @brief setId - установить ID рекомендации
+         * @return
+         */
+        void setId(quint32 const id);
+
+        /**
+         * @brief setTextContainment - установить текст рекомендации для сдерживания
+         * @return
+         */
+        void setTextContainment(QString const textContainment);
+
+        /**
+         * @brief setTextFixes - установить текст рекомендации для устранения
+         * @return
+         */
+        void setTextFixes(QString const textFixes);
+
+        /**
+         * @brief setTextRestore - установить текст рекомендации для восстановления
+         * @return
+         */
+        void setTextRestore(QString const textRestore);
+
+        /**
+         * @brief setScenaries - установить перечень возможных сценариев
+         * @return
+         */
+        void setScenaries(QList<quint32> const scenaries);
 
         /**
          * @brief operator =

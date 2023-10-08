@@ -76,6 +76,46 @@ QList<quint32> SecurityRecommendations::getScenaries() {
 }
 
 /**
+ * @brief setId - Установить ID инцидента
+ * @return
+ */
+void SecurityRecommendations::setId(quint32 const id) {
+    this->id = id;
+}
+
+/**
+ * @brief setTextContainment - установить текст рекомендации для сдерживания
+ * @return
+ */
+void SecurityRecommendations::setTextContainment(QString const textContainment) {
+    this->textContainment = textContainment;
+}
+
+/**
+ * @brief setTextFixes - установить текст рекомендации для устранения
+ * @return
+ */
+void SecurityRecommendations::setTextFixes(QString const textFixes) {
+    this->textFixes = textFixes;
+}
+
+/**
+ * @brief setTextRestore - установить текст рекомендации для восстановления
+ * @return
+ */
+void SecurityRecommendations::setTextRestore(QString const textRestore) {
+    this->textRestore = textRestore;
+}
+
+/**
+ * @brief setScenaries - установить перечень возможных сценариев
+ * @return
+ */
+void SecurityRecommendations::setScenaries(QList<quint32> const scenaries) {
+    this->scenaries = scenaries;
+}
+
+/**
  * @brief operator =
  * @param other
  * @return

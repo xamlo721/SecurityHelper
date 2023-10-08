@@ -72,6 +72,29 @@ class SecurityScenario : public QObject {
          */
         QList<quint32> getIncidents();
 
+        /**
+         * @brief setText - Установить текст сценария
+         * @return
+         */
+        void setText(QString const text);
+
+        /**
+         * @brief setName - Установить название сценария
+         * @return
+         */
+        void setName(QString const name);
+
+        /**
+         * @brief setID - Установить ID сценария
+         * @return
+         */
+        void setID(quint32 const id);
+
+        /**
+         * @brief setIncidents - Установить ID сценариев
+         * @return
+         */
+        void setIncidents(QList<quint32> const incidents);
 
         /**
          * @brief operator =

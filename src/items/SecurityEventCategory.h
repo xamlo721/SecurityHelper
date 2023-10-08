@@ -73,6 +73,18 @@ class SecurityEventCategory : public QObject {
         void setText(QString const text);
 
         /**
+         * @brief setID - Установить ID категории
+         * @return
+         */
+        void setID(quint32 const id);
+
+        /**
+         * @brief setIDEvents - Установить ID категории
+         * @return
+         */
+        void setIDEvents(QList<quint32> const events);
+
+        /**
          * @brief operator =
          * @param other
          * @return

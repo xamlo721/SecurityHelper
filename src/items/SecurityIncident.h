@@ -72,6 +72,30 @@ class SecurityIncident : public QObject {
         QList<quint32> getEventIds();
 
         /**
+         * @brief setText - Установить текст инцидента
+         * @return
+         */
+        void setText(QString const text);
+
+        /**
+         * @brief setName - Установить название инцидента
+         * @return
+         */
+        void setName(QString const name);
+
+        /**
+         * @brief setID - Установить ID инцидента
+         * @return
+         */
+        void setID(quint32 const id);
+
+        /**
+         * @brief setIDEvents - Установить ID ивентов
+         * @return
+         */
+        void setIDEvents(QList<quint32> const events);
+
+        /**
          * @brief operator =
          * @param other
          * @return
