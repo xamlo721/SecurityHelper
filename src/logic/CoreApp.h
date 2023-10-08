@@ -29,21 +29,37 @@ class CoreApp : public QObject {
 
         void signalAdminOpenCategories(QList<SecurityEventCategory> availableCategories);
 
+
         void eventsFormed(QList<SecurityEvent> events);
         void freeEventsFormed(QList<SecurityEvent> freeEvents);
+        void freeEventsForIncidentFormed(QList<SecurityEvent> freeEvents);
+
+        void incidentsFormed(QList<SecurityIncident> incidents);
+        void freeIncidentsFormed(QList<SecurityIncident> freeIncidents);
+
 
         void signalOpenAdminCategory(const QList<SecurityEvent> categoryEvents);
         void signalOpenAdminDeletedCategory(const QList<SecurityEvent> categoryEvents);
 
+        void signalOpenAdminIncident(const QList<SecurityEvent> incidentEvents);
+
     public slots:
         void onOpenCategory(quint32 categoryId, bool isForAdminMode = false);
         void onOpenDeletedCategory(const quint32 categoryId);
+
         void onCalculateIncident(QList<SecurityEvent> selectedEvents);
-        void onOpenIncident(quint32 id);
+
+        void onOpenIncident(quint32 incidentId);
+        void onOpenAdminIncident(quint32 incidentId);
+
         void onOpenScenario(quint32 id);
 
         void formEvents();
         void formFreeEvents();
+        void formFreeEventsForIncident(const quint32 incidentID);
+
+        void formIncidents();
+        void formFreeIncidents();
 
     private:
         Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");

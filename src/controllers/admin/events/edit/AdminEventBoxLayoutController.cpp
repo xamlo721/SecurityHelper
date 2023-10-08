@@ -21,7 +21,6 @@ void AdminEventBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutEvents) {
 
     /// Блок связи сигналов, поступающих в меню редактирования из редактируемого виджета
     QObject::connect(this->boxLayoutEvents, &AdminEventBoxLayout::editingFinished, this, &AdminEventBoxLayoutController::slotShowUneditableWidget);
-    QObject::connect(this->boxLayoutEvents, &AdminEventBoxLayout::emptyWidget, this, &AdminEventBoxLayoutController::slotEmptyWidget);
 }
 
 void AdminEventBoxLayoutController::setEventList(const QList<SecurityEvent> events) {
@@ -34,6 +33,8 @@ void AdminEventBoxLayoutController::setEventList(const QList<SecurityEvent> even
 
         this->addEventWidget(event);
     }
+
+    emit eventListSet();
 }
 
 void AdminEventBoxLayoutController::slotShowEditableWidget(UneditableEventWidget *uneditableWidget) {
@@ -61,6 +62,8 @@ void AdminEventBoxLayoutController::slotShowUneditableWidget(EditableEventWidget
     /// Устанавливаем измененное администратором имя не редактируемому виджету
     uneditableWidget->setTitle(editableWidget->getTitle());
 
+    emit eventsMustBeSaved(this->events);
+
     /// Показываем не редактируемый виджет
     this->boxLayoutEvents->showUneditableWidget(editableWidget, uneditableWidget);
 
@@ -71,8 +74,15 @@ void AdminEventBoxLayoutController::slotShowUneditableWidget(EditableEventWidget
 }
 
 SecurityEvent AdminEventBoxLayoutController::addEvent() {
+    quint32 newEventId = 0;
+    for(SecurityEvent event : events) {
+        if(newEventId < event.getId())
+            newEventId = event.getId();
+    }
+    newEventId += 1;
+
     ///     Создаем новое событие с id большим на 1, чем у последнего события и именем Новое событие
-    SecurityEvent newEvent(events.last().getId() + 1, "Новое событие");
+    SecurityEvent newEvent(newEventId, "Новое событие");
     /// Добавляем новое событие в список событий контроллера
     events.append(newEvent);
 
@@ -151,21 +161,6 @@ void AdminEventBoxLayoutController::disableAllEvents() {
     for(SecurityEvent event : events) {
 
         this->boxLayoutEvents->disableUneditableWidget(this->widgetStorage.getUneditableWidget(event.getId()));
-    }
-}
-
-void AdminEventBoxLayoutController::slotEmptyWidget(EditableEventWidget * editableWidget) {
-    /// Создаем окно сообщений
-    ItemDeletionMessageBox messageBox;
-    /// Вызываем его в режиме предупреждения, если администратор нажмет Да, то удаляем событие
-    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionOneItem, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
-
-        this->deleteEventWidget(editableWidget->getID());
-        this->deleteEvent(editableWidget->getID());
-
-        /// Производим разблокировку интерфейса
-        this->enableAllEvents();
-        emit eventIsNotActive();
     }
 }
 

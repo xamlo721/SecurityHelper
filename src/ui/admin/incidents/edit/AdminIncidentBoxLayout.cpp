@@ -1,26 +1,26 @@
-#include "AdminEventBoxLayout.h"
+#include "AdminIncidentBoxLayout.h"
 
-AdminEventBoxLayout::AdminEventBoxLayout(QObject *parent) : QObject{parent} {}
+AdminIncidentBoxLayout::AdminIncidentBoxLayout(QObject *parent) : QObject{parent} {}
 
-void AdminEventBoxLayout::init(QVBoxLayout *boxLayout) {
+void AdminIncidentBoxLayout::init(QVBoxLayout *boxLayout) {
     ///  Инициализация бокса категорий данного класса боксом категорий из
     /// AdminMenuEditWidget, для управления им
-    this->boxLayoutEvents = boxLayout;
+    this->boxLayoutIncidents = boxLayout;
 }
 
-void AdminEventBoxLayout::initUneditableWidget(UneditableEventWidget *uneditableWidget) {
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEditEvent, this, &AdminEventBoxLayout::signalEditEvent);
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalDeleteEvent, this, &AdminEventBoxLayout::signalDeleteEvent);
+void AdminIncidentBoxLayout::initUneditableWidget(UneditableIncidentWidget *uneditableWidget) {
+    QObject::connect(uneditableWidget, &UneditableIncidentWidget::signalEditIncident, this, &AdminIncidentBoxLayout::signalEditIncident);
+    QObject::connect(uneditableWidget, &UneditableIncidentWidget::signalDeleteIncident, this, &AdminIncidentBoxLayout::signalDeleteIncident);
 
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEventSelected, this, &AdminEventBoxLayout::signalEventSelected);
-    QObject::connect(uneditableWidget, &UneditableEventWidget::signalEventUnselected, this, &AdminEventBoxLayout::signalEventUnselected);
+    QObject::connect(uneditableWidget, &UneditableIncidentWidget::signalIncidentSelected, this, &AdminIncidentBoxLayout::signalIncidentSelected);
+    QObject::connect(uneditableWidget, &UneditableIncidentWidget::signalIncidentUnselected, this, &AdminIncidentBoxLayout::signalIncidentUnselected);
 }
 
-void AdminEventBoxLayout::initEditableWidget(EditableEventWidget *editableWidget) {
-    QObject::connect(editableWidget, &EditableEventWidget::editingFinished, this, &AdminEventBoxLayout::editingFinished);
+void AdminIncidentBoxLayout::initEditableWidget(EditableIncidentWidget *editableWidget) {
+    QObject::connect(editableWidget, &EditableIncidentWidget::editingFinished, this, &AdminIncidentBoxLayout::editingFinished);
 }
 
-void AdminEventBoxLayout::addEventWidget(UneditableEventWidget *uneditableWidget, EditableEventWidget *editableWidget) {
+void AdminIncidentBoxLayout::addIncidentWidget(UneditableIncidentWidget *uneditableWidget, EditableIncidentWidget *editableWidget) {
     /// Инициализируем меню для не редактируемого виджета
     uneditableWidget->initMenu();
     /// Инициализируем связь сигналов виджетов с данным классом
@@ -35,12 +35,12 @@ void AdminEventBoxLayout::addEventWidget(UneditableEventWidget *uneditableWidget
     /// Скрываем редактируемый виджет
     editableWidget->hide();
     /// Добавляем в общий бокс бокс пар виджетов
-    this->boxLayoutEvents->addLayout(layout);
+    this->boxLayoutIncidents->addLayout(layout);
     /// Добавляем в лист бокс пар виджетов
     this->widgetBoxLayout.append(layout);
 }
 
-void AdminEventBoxLayout::deleteEventWidget(UneditableEventWidget *uneditableWidget) {
+void AdminIncidentBoxLayout::deleteIncidentWidget(UneditableIncidentWidget *uneditableWidget) {
     /// Проходим по листу боксов пар виджетов и удаляем бокс, который содержит в себе uneditableWidget
     for(QVBoxLayout *layout : widgetBoxLayout){
         if(layout->itemAt(0)->widget() == uneditableWidget) {
@@ -50,17 +50,17 @@ void AdminEventBoxLayout::deleteEventWidget(UneditableEventWidget *uneditableWid
                     delete item;
                 }
             this->widgetBoxLayout.removeOne(layout);
-            this->boxLayoutEvents->removeItem(layout);
+            this->boxLayoutIncidents->removeItem(layout);
             layout->deleteLater();
         }
     }
 }
 
-void AdminEventBoxLayout::clearEvents() {
+void AdminIncidentBoxLayout::clearIncidents() {
     /// Проходимся по всем layout, которые не NULL и удаляем виджет вместе с итемом
-    if(this->boxLayoutEvents->layout() != NULL) {
+    if(this->boxLayoutIncidents->layout() != NULL) {
         QLayoutItem* item;
-        while ( ( item = this->boxLayoutEvents->layout()->takeAt( 0 ) ) != NULL ) {
+        while ( ( item = this->boxLayoutIncidents->layout()->takeAt( 0 ) ) != NULL ) {
             delete item->widget();
             delete item;
         }
@@ -68,7 +68,7 @@ void AdminEventBoxLayout::clearEvents() {
 
 }
 
-void AdminEventBoxLayout::showEditableWidget(UneditableEventWidget *uneditableWidget, EditableEventWidget *editableWidget) {
+void AdminIncidentBoxLayout::showEditableWidget(UneditableIncidentWidget *uneditableWidget, EditableIncidentWidget *editableWidget) {
     /// Скрываем не редактируемый виджет
     uneditableWidget->hide();
     /// Показываем редактируемый виджет
@@ -77,21 +77,21 @@ void AdminEventBoxLayout::showEditableWidget(UneditableEventWidget *uneditableWi
     editableWidget->setFocus();
 }
 
-void AdminEventBoxLayout::showUneditableWidget(EditableEventWidget *editableWidget, UneditableEventWidget *uneditableWidget) {
+void AdminIncidentBoxLayout::showUneditableWidget(EditableIncidentWidget *editableWidget, UneditableIncidentWidget *uneditableWidget) {
     /// Скрываем не редактируемый виджет
     editableWidget->hide();
     /// Показываем не редактируемый виджет
     uneditableWidget->show();
 }
 
-void AdminEventBoxLayout::unselectUneditableWidget(UneditableEventWidget *uneditableWidget) {
+void AdminIncidentBoxLayout::unselectUneditableWidget(UneditableIncidentWidget *uneditableWidget) {
     uneditableWidget->setUnselected();
 }
 
-void AdminEventBoxLayout::enableUneditableWidget(UneditableEventWidget *uneditableWidget) {
+void AdminIncidentBoxLayout::enableUneditableWidget(UneditableIncidentWidget *uneditableWidget) {
     uneditableWidget->setEnabled(true);
 }
 
-void AdminEventBoxLayout::disableUneditableWidget(UneditableEventWidget *uneditableWidget) {
+void AdminIncidentBoxLayout::disableUneditableWidget(UneditableIncidentWidget *uneditableWidget) {
     uneditableWidget->setEnabled(false);
 }

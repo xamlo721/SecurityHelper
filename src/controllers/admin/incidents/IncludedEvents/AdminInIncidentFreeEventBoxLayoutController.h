@@ -1,27 +1,27 @@
-#ifndef ADMININCATEGORYFREEEVENTBOXLAYOUTCONTROLLER_H
-#define ADMININCATEGORYFREEEVENTBOXLAYOUTCONTROLLER_H
+#ifndef ADMINININCIDENTFREEEVENTBOXLAYOUTCONTROLLER_H
+#define ADMINININCIDENTFREEEVENTBOXLAYOUTCONTROLLER_H
 
 #include <QObject>
 
 #include "src/items/SecurityEvent.h"
 
-#include "src/ui/admin/categories/includedEvents/InCategoryEventWidget.h"
+#include "src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h"
 
-#include "src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.h"
+#include "src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h"
 
-#include "src/ui/admin/categories/includedEvents/InCategoryEventWidgetStorage.h"
+#include "src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.h"
 
-class AdminInCategoryFreeEventBoxLayoutController : public QObject {
+class AdminInIncidentFreeEventBoxLayoutController : public QObject {
 
     Q_OBJECT
 
     private:
-        AdminInCategoryEventBoxLayout *boxLayoutEvents;
+        AdminInIncidentEventBoxLayout *boxLayoutEvents;
 
         QList<SecurityEvent> freeEvents;
         QList<SecurityEvent> selectedFreeEvents;
 
-        InCategoryEventWidgetStorage widgetStorage;
+        InIncidentEventWidgetStorage widgetStorage;
 
         SecurityEvent addFreeEvent(SecurityEvent event);
         void addFreeEventWidget(SecurityEvent event);
@@ -34,16 +34,16 @@ class AdminInCategoryFreeEventBoxLayoutController : public QObject {
         void onFreeEventUnselected(const quint32 eventID);
 
     public:
-        explicit AdminInCategoryFreeEventBoxLayoutController(QObject *parent = nullptr);
-        ~AdminInCategoryFreeEventBoxLayoutController();
+        explicit AdminInIncidentFreeEventBoxLayoutController(QObject *parent = nullptr);
+        ~AdminInIncidentFreeEventBoxLayoutController();
 
         void init(QVBoxLayout *editMenuBoxLayoutInCategoryFreeEvents);
 
     public slots:
         void setFreeEventList(const QList<SecurityEvent> events);
 
-        void slotUnincludeEventsFromCategory(QList<SecurityEvent> includedEvents);
-        void slotAddSelectedEventsToCategoryButtonPressed();
+        void slotUnincludeEventsFromIncident(QList<SecurityEvent> includedEvents);
+        void slotAddSelectedEventsToIncidentButtonPressed();
 
         void slotAddFreeEvent(quint32 eventID, QString eventTitle);
         void slotDeleteFreeEvent(quint32 eventID);
@@ -51,20 +51,20 @@ class AdminInCategoryFreeEventBoxLayoutController : public QObject {
 
         void addDisabledFreeEvent(SecurityEvent event);
 
-        void addFreeEventsFromDeletedCategory(const QList<SecurityEvent> newFreeEvents);
-
         void unselectAllFreeEvents();
 
         void disableAllFreeEvents();
 
         void enableAllFreeEvents();
 
+        void clearFreeEventList(const quint32 incidentID);
+
     signals:
         void signalSelectedFreeEventsNotEmpty();
         void signalSelectedFreeEventsEmpty();
 
-        void freeEventsIncludedInCategory(const QList<SecurityEvent> includedEvents);
+        void freeEventsIncludedInIncident(const QList<SecurityEvent> includedEvents);
 
 };
 
-#endif // ADMININCATEGORYFREEEVENTBOXLAYOUTCONTROLLER_H
+#endif // ADMINININCIDENTFREEEVENTBOXLAYOUTCONTROLLER_H

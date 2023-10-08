@@ -33,7 +33,6 @@ void AdminEventCategoryBoxLayout::initUneditableWidget(UneditableEventCategoryWi
  */
 void AdminEventCategoryBoxLayout::initEditableWidget(EditableEventCategoryWidget *editableWidget) {
     QObject::connect(editableWidget, &EditableEventCategoryWidget::editingFinished, this, &AdminEventCategoryBoxLayout::editingFinished);
-    QObject::connect(editableWidget, &EditableEventCategoryWidget::emptyWidget, this, &AdminEventCategoryBoxLayout::emptyWidget);
 }
 
 void AdminEventCategoryBoxLayout::addCategoryWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget) {

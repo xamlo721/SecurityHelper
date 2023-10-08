@@ -42,6 +42,7 @@ class AdminEditMenuController : public QObject {
         void slotSetRecommendtaionsActive();
 
 
+
         void slotSetAddCategoryButtonEnabled();
         void slotSetAddCategoryButtonDisabled();
 
@@ -55,11 +56,41 @@ class AdminEditMenuController : public QObject {
         void slotSetRemoveFromCategoryButtonDisabled();
 
 
+
         void slotSetAddEventButtonEnabled();
         void slotSetAddEventButtonDisabled();
 
         void slotSetDeleteSelectedEventsButtonEnabled();
         void slotSetDeleteSelectedEventsButtonDisabled();
+
+
+
+        void slotSetAddIncidentButtonEnabled();
+        void slotSetAddIncidentButtonDisabled();
+
+        void slotSetDeleteSelectedIncidentsButtonEnabled();
+        void slotSetDeleteSelectedIncidentsButtonDisabled();
+
+        void slotSetAddToIncidentButtonEnabled();
+        void slotSetAddToIncidentButtonDisabled();
+
+        void slotSetRemoveFromIncidentButtonEnabled();
+        void slotSetRemoveFromIncidentButtonDisabled();
+
+
+
+        void slotSetAddScenarioButtonEnabled();
+        void slotSetAddScenarioButtonDisabled();
+
+        void slotSetDeleteSelectedScenariesButtonEnabled();
+        void slotSetDeleteSelectedScenariesButtonDisabled();
+
+        void slotSetAddToScenarioButtonEnabled();
+        void slotSetAddToScenarioButtonDisabled();
+
+        void slotSetRemoveFromScenarioButtonEnabled();
+        void slotSetRemoveFromScenarioButtonDisabled();
+
 
     signals:
         void signalAddCategoryButtonPressed();
@@ -69,8 +100,26 @@ class AdminEditMenuController : public QObject {
         void signalRemoveFromCategoryButtonPressed();
 
 
+
         void signalAddEventButtonPressed();
         void signalDeleteSelectedEventsButtonPressed();
+
+
+
+        void signalAddIncidentButtonPressed();
+        void signalDeleteSelectedIncidentsButtonPressed();
+
+        void signalAddToIncidentButtonPressed();
+        void signalRemoveFromIncidentButtonPressed();
+
+
+
+        void signalAddScenarioButtonPressed();
+        void signalDeleteSelectedScenariesButtonPressed();
+
+        void signalAddToScenarioButtonPressed();
+        void signalRemoveFromScenarioButtonPressed();
+
 };
 
 #endif // ADMINEDITMENUCONTROLLER_H

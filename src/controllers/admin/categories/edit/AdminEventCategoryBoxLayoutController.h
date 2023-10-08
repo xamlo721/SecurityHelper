@@ -64,14 +64,6 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         void slotShowUneditableWidget(EditableEventCategoryWidget *editableWidget);
 
         /**
-         *  @brief slotEmptyWidget - приватный слот для удаления пустого редактируемого виджета.
-         *  @param editableCategory - редактируемый виджет категории, который необходимо удалить.
-         *      Срабатывает при получении сигнала от редактируемого виджета о том, что при завершении
-         *     редактирования виджета он остался пустым.
-         */
-        void slotEmptyWidget(EditableEventCategoryWidget * editableWidget);
-
-        /**
          *  @brief slotDeleteCategory - приватный слот для удаления не редактируемого виджета по
          *  запросу администратора через контекстное меню.
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
@@ -109,7 +101,7 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         void signalSelectedCategoriesNotEmpty();
         void signalSelectedCategoriesEmpty();
 
-        void categoriesSet();
+        void categoryListSet();
 
         void categoryIsActive();
         void categoryIsNotActive();
@@ -118,6 +110,8 @@ class AdminEventCategoryBoxLayoutController : public QObject {
         void categoryIsClosed(const quint32 categoryID);
 
         void categoryIsDeleted(const quint32 categoryID);
+
+        void categoriesMustBeSaved(const QList<SecurityEventCategory> categories);
 
 };
 

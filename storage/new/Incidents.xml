@@ -4,7 +4,7 @@
         <Incidents>
             <Incident>
                 <id>0</id>
-                <Name>Название</Name>
+                <Name></Name>
                 <Text>Событие</Text>
                 <events>2</events>
                 <events>4</events>

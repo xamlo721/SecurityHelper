@@ -1,28 +1,28 @@
-#include "AdminInCategoryFreeEventBoxLayoutController.h"
+#include "AdminInIncidentFreeEventBoxLayoutController.h"
 
-AdminInCategoryFreeEventBoxLayoutController::AdminInCategoryFreeEventBoxLayoutController(QObject *parent) : QObject{parent} {}
+AdminInIncidentFreeEventBoxLayoutController::AdminInIncidentFreeEventBoxLayoutController(QObject *parent) : QObject{parent} {}
 
-AdminInCategoryFreeEventBoxLayoutController::~AdminInCategoryFreeEventBoxLayoutController() {
+AdminInIncidentFreeEventBoxLayoutController::~AdminInIncidentFreeEventBoxLayoutController() {
     delete this->boxLayoutEvents;
 }
 
-SecurityEvent AdminInCategoryFreeEventBoxLayoutController::addFreeEvent(SecurityEvent event) {
+SecurityEvent AdminInIncidentFreeEventBoxLayoutController::addFreeEvent(SecurityEvent event) {
     freeEvents.append(event);
 
     return event;
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::addFreeEventWidget(SecurityEvent event) {
-    InCategoryEventWidget *eventWidget = new InCategoryEventWidget(event.getId(), event.getText());
+void AdminInIncidentFreeEventBoxLayoutController::addFreeEventWidget(SecurityEvent event) {
+    InIncidentEventWidget *eventWidget = new InIncidentEventWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::addDisabledFreeEvent(SecurityEvent event) {
+void AdminInIncidentFreeEventBoxLayoutController::addDisabledFreeEvent(SecurityEvent event) {
     freeEvents.append(event);
 
-    InCategoryEventWidget *eventWidget = new InCategoryEventWidget(event.getId(), event.getText());
+    InIncidentEventWidget *eventWidget = new InIncidentEventWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
@@ -30,7 +30,7 @@ void AdminInCategoryFreeEventBoxLayoutController::addDisabledFreeEvent(SecurityE
     eventWidget->setEnabled(false);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::deleteFreeEvent(quint32 eventID) {
+void AdminInIncidentFreeEventBoxLayoutController::deleteFreeEvent(quint32 eventID) {
     for(SecurityEvent &event : freeEvents) {
         if(event.getId() == eventID) {
             freeEvents.removeOne(event);
@@ -40,14 +40,14 @@ void AdminInCategoryFreeEventBoxLayoutController::deleteFreeEvent(quint32 eventI
     this->onFreeEventUnselected(eventID);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::deleteFreeEventWidget(quint32 eventID) {
-    InCategoryEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
+void AdminInIncidentFreeEventBoxLayoutController::deleteFreeEventWidget(quint32 eventID) {
+    InIncidentEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
 
     this->widgetStorage.removeWidget(eventID);
     this->boxLayoutEvents->deleteEventWidget(tempWidget);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::renameFreeEvent(const quint32 eventID, QString newEventTitle) {
+void AdminInIncidentFreeEventBoxLayoutController::renameFreeEvent(const quint32 eventID, QString newEventTitle) {
     for(SecurityEvent &event : freeEvents) {
         if(event.getId() == eventID) {
 
@@ -59,35 +59,28 @@ void AdminInCategoryFreeEventBoxLayoutController::renameFreeEvent(const quint32 
     }
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::addFreeEventsFromDeletedCategory(const QList<SecurityEvent> newFreeEvents) {
-    for(SecurityEvent newFreeEvent : newFreeEvents)
-        this->slotAddFreeEvent(newFreeEvent.getId(), newFreeEvent.getText());
-
-    this->unselectAllFreeEvents();
-    this->disableAllFreeEvents();
-}
-
-void AdminInCategoryFreeEventBoxLayoutController::unselectAllFreeEvents() {
+void AdminInIncidentFreeEventBoxLayoutController::unselectAllFreeEvents() {
     for(SecurityEvent event : selectedFreeEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его не выбранным
         this->boxLayoutEvents->unselectEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::enableAllFreeEvents() {
+void AdminInIncidentFreeEventBoxLayoutController::enableAllFreeEvents() {
     for(SecurityEvent event : freeEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его доступным
         this->boxLayoutEvents->enableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
-void AdminInCategoryFreeEventBoxLayoutController::disableAllFreeEvents() {
+
+void AdminInIncidentFreeEventBoxLayoutController::disableAllFreeEvents() {
     for(SecurityEvent event : freeEvents) {
         /// Берем не редактируемый виджет из хранилища по ID события и делаем его не доступным
         this->boxLayoutEvents->disableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::onFreeEventSelected(const quint32 eventID) {
+void AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected(const quint32 eventID) {
     // Проверка, есть ли в списке событий такое событие
     quint32 eventsChecked = 0;
     for(SecurityEvent event : freeEvents) {
@@ -124,7 +117,7 @@ void AdminInCategoryFreeEventBoxLayoutController::onFreeEventSelected(const quin
         emit signalSelectedFreeEventsNotEmpty();
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::onFreeEventUnselected(const quint32 eventID) {
+void AdminInIncidentFreeEventBoxLayoutController::onFreeEventUnselected(const quint32 eventID) {
     // Проверка, есть ли в списке событий такое событие
     quint32 eventsChecked = 0;
     for(SecurityEvent event : freeEvents) {
@@ -159,16 +152,16 @@ void AdminInCategoryFreeEventBoxLayoutController::onFreeEventUnselected(const qu
 }
 
 
-void AdminInCategoryFreeEventBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutInCategoryEvents) {
-    this->boxLayoutEvents = new AdminInCategoryEventBoxLayout();
+void AdminInIncidentFreeEventBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutInCategoryEvents) {
+    this->boxLayoutEvents = new AdminInIncidentEventBoxLayout();
     this->boxLayoutEvents->init(editMenuBoxLayoutInCategoryEvents);
 
-    QObject::connect(this->boxLayoutEvents, &AdminInCategoryEventBoxLayout::signalEventSelected, this, &AdminInCategoryFreeEventBoxLayoutController::onFreeEventSelected);
-    QObject::connect(this->boxLayoutEvents, &AdminInCategoryEventBoxLayout::signalEventUnselected, this, &AdminInCategoryFreeEventBoxLayoutController::onFreeEventUnselected);
+    QObject::connect(this->boxLayoutEvents, &AdminInIncidentEventBoxLayout::signalEventSelected, this, &AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected);
+    QObject::connect(this->boxLayoutEvents, &AdminInIncidentEventBoxLayout::signalEventUnselected, this, &AdminInIncidentFreeEventBoxLayoutController::onFreeEventUnselected);
 
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::setFreeEventList(const QList<SecurityEvent> events) {
+void AdminInIncidentFreeEventBoxLayoutController::setFreeEventList(const QList<SecurityEvent> events) {
     this->freeEvents = events;
     this->boxLayoutEvents->clearEvents();
 
@@ -176,12 +169,9 @@ void AdminInCategoryFreeEventBoxLayoutController::setFreeEventList(const QList<S
 
         this->addFreeEventWidget(event);
     }
-
-    this->unselectAllFreeEvents();
-    this->disableAllFreeEvents();
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::slotUnincludeEventsFromCategory(QList<SecurityEvent> includedEvents) {
+void AdminInIncidentFreeEventBoxLayoutController::slotUnincludeEventsFromIncident(QList<SecurityEvent> includedEvents) {
     for(SecurityEvent includedEvent : includedEvents) {
 
         //if(this->freeEvents.contains(includedEvent) || this->selectedFreeEvents.contains(includedEvent))
@@ -191,23 +181,33 @@ void AdminInCategoryFreeEventBoxLayoutController::slotUnincludeEventsFromCategor
     }
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::slotAddFreeEvent(quint32 eventID, QString eventTitle) {
+void AdminInIncidentFreeEventBoxLayoutController::slotAddFreeEvent(quint32 eventID, QString eventTitle) {
     SecurityEvent newEvent(eventID, eventTitle);
 
     this->addFreeEvent(newEvent);
     this->addFreeEventWidget(newEvent);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::slotDeleteFreeEvent(quint32 eventID) {
+void AdminInIncidentFreeEventBoxLayoutController::slotDeleteFreeEvent(quint32 eventID) {
     this->deleteFreeEventWidget(eventID);
     this->deleteFreeEvent(eventID);
 }
 
-void AdminInCategoryFreeEventBoxLayoutController::slotAddSelectedEventsToCategoryButtonPressed() {
-    emit freeEventsIncludedInCategory(selectedFreeEvents);
+void AdminInIncidentFreeEventBoxLayoutController::slotAddSelectedEventsToIncidentButtonPressed() {
+    emit freeEventsIncludedInIncident(selectedFreeEvents);
 
     for(SecurityEvent selectedFreeEvent : selectedFreeEvents) {
 
         this->slotDeleteFreeEvent(selectedFreeEvent.getId());
     }
+}
+
+void AdminInIncidentFreeEventBoxLayoutController::clearFreeEventList(const quint32 categoryID) {
+    this->freeEvents.clear();
+
+    this->unselectAllFreeEvents();
+    this->selectedFreeEvents.clear();
+
+    this->boxLayoutEvents->clearEvents();
+    this->widgetStorage.clear();
 }

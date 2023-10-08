@@ -103,14 +103,6 @@ class AdminEventCategoryBoxLayout : public QObject {
          */
         void editingFinished(EditableEventCategoryWidget * editableCategory);
 
-        /**
-         *  @brief emptyWidget- сигнал, сообщающий о том, что редактируемый виджет пуст и его
-         *  необходимо удалить.
-         *  @param editableCategory - редактируемый виджет категории, редактирование которого
-         *  завершено, а содержимое - пусто.
-         */
-        void emptyWidget(EditableEventCategoryWidget * editableCategory);
-
         void signalCategorySelected(const quint32 categoryID);
         void signalCategoryUnselected(const quint32 categoryID);
 };

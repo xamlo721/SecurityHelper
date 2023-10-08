@@ -44,7 +44,6 @@ class AdminEventBoxLayoutController : public QObject {
         void slotShowEditableWidget(UneditableEventWidget *uneditableWidget);
         void slotShowUneditableWidget(EditableEventWidget *editableWidget);
 
-        void slotEmptyWidget(EditableEventWidget * editableWidget);
         void slotDeleteEvent(UneditableEventWidget * uneditableWidget);
 
         void onEventSelected(const quint32 eventID);
@@ -65,12 +64,16 @@ class AdminEventBoxLayoutController : public QObject {
         void signalSelectedEventsNotEmpty();
         void signalSelectedEventsEmpty();
 
+        void eventListSet();
+
         void eventIsActive();
         void eventIsNotActive();
 
         void eventAdded(SecurityEvent newEvent);
         void eventRenamed(const quint32 eventID, QString newEventTitle);
         void eventDeleted(const quint32 eventID);
+
+        void eventsMustBeSaved(const QList<SecurityEvent> events);
 };
 
 #endif // ADMINEVENTBOXLAYOUTCONTROLLER_H

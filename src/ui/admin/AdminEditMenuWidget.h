@@ -98,6 +98,7 @@ class AdminEditMenuWidget : public QWidget {
         void setRecommendtaionsActive();
 
 
+
         void setAddCategoryButtonEnabled();
         void setAddCategoryButtonDisabled();
 
@@ -111,11 +112,40 @@ class AdminEditMenuWidget : public QWidget {
         void setRemoveFromCategoryButtonDisabled();
 
 
+
         void setAddEventButtonEnabled();
         void setAddEventButtonDisabled();
 
         void setDeleteSelectedEventsButtonEnabled();
-        void setDeleteSelectedEventsButtonDisabled();                        
+        void setDeleteSelectedEventsButtonDisabled();
+
+
+
+        void setAddIncidentButtonEnabled();
+        void setAddIncidentButtonDisabled();
+
+        void setDeleteSelectedIncidentsButtonEnabled();
+        void setDeleteSelectedIncidentsButtonDisabled();
+
+        void setAddToIncidentButtonEnabled();
+        void setAddToIncidentButtonDisabled();
+
+        void setRemoveFromIncidentButtonEnabled();
+        void setRemoveFromIncidentButtonDisabled();
+
+
+
+        void setAddScenarioButtonEnabled();
+        void setAddScenarioButtonDisabled();
+
+        void setDeleteSelectedScenariesButtonEnabled();
+        void setDeleteSelectedScenariesButtonDisabled();
+
+        void setAddToScenarioButtonEnabled();
+        void setAddToScenarioButtonDisabled();
+
+        void setRemoveFromScenarioButtonEnabled();
+        void setRemoveFromScenarioButtonDisabled();
 
     public slots:
 
@@ -127,8 +157,25 @@ class AdminEditMenuWidget : public QWidget {
         void signalRemoveFromCategoryButtonPressed();
 
 
+
         void signalAddEventButtonPressed();
         void signalDeleteSelectedEventsButtonPressed();
+
+
+
+        void signalAddIncidentButtonPressed();
+        void signalDeleteSelectedIncidentsButtonPressed();
+
+        void signalAddToIncidentButtonPressed();
+        void signalRemoveFromIncidentButtonPressed();
+
+
+
+        void signalAddScenarioButtonPressed();
+        void signalDeleteSelectedScenariesButtonPressed();
+
+        void signalAddToScenarioButtonPressed();
+        void signalRemoveFromScenarioButtonPressed();
 };
 
 #endif // ADMINEDITMENUWIDGET_H

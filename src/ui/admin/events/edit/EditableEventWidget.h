@@ -14,6 +14,7 @@ class EditableEventWidget;
 class EditableEventWidget : public QWidget, public BaseItem {
 
     Q_OBJECT
+
     private:
         Ui::EditableEventWidget *ui;
 
@@ -34,8 +35,6 @@ class EditableEventWidget : public QWidget, public BaseItem {
     signals:
 
         void editingFinished(EditableEventWidget * editableWidget);
-
-        void emptyWidget(EditableEventWidget * editableWidget);
 
 };
 

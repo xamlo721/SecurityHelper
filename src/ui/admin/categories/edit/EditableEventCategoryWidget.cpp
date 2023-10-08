@@ -40,14 +40,10 @@ EditableEventCategoryWidget::~EditableEventCategoryWidget() {
 * необходимо сделать с объектом: редактировать или удалить т.к. он пустой.
 */
 int EditableEventCategoryWidget::slotEditingFinished() {    
-    /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
-    if(this->ui->lineEdit_category->text().isEmpty()) {
-        emit emptyWidget(this);
-        return 1;
-    }
 
-    /// Устанавливаем текстовое описание категории, полученное при завершении редактирования
-    this->title = this->ui->lineEdit_category->text();
+    if(!this->ui->lineEdit_category->text().isEmpty())
+        this->title = this->ui->lineEdit_category->text();
+
 
     /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);

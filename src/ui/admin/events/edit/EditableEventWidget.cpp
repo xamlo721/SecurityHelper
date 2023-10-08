@@ -21,15 +21,9 @@ EditableEventWidget::~EditableEventWidget() {
 }
 
 int EditableEventWidget::slotEditingFinished() {
-    /// Если виджет пустой, то запускаем процесс удаления и завершаем метод
-    if(this->ui->lineEdit_event->text().isEmpty()) {
-        emit emptyWidget(this);
-        return 1;
-    }
+    if(!this->ui->lineEdit_event->text().isEmpty())
+        this->title = this->ui->lineEdit_event->text();
 
-    this->title = this->ui->lineEdit_event->text();
-
-    /// Отправляем сигнал о завершении редактирования с указателем на данный редактируемый виджет
     emit editingFinished(this);
     return 0;
 }

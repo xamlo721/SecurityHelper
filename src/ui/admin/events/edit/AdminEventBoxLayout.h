@@ -50,7 +50,6 @@ class AdminEventBoxLayout : public QObject {
         void editingFinished(EditableEventWidget * editableWidget);
 
         void signalDeleteEvent(UneditableEventWidget * uneditableWidget);
-        void emptyWidget(EditableEventWidget * editableWidget);
 
         void signalEventSelected(const quint32 eventID);
         void signalEventUnselected(const quint32 eventID);

@@ -47,6 +47,7 @@ class UneditableEventWidget : public QWidget, public BaseItem {
 
         void signalEventSelected(const quint32 eventID);
         void signalEventUnselected(const quint32 eventID);
+
 };
 
 #endif // UNEDITABLEEVENTWIDGET_H

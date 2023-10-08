@@ -17,6 +17,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 FORMS += ui/MainWindow.ui \
+    ui/admin/incidents/includedEvents/InIncidentEventWidget.ui \
+    ui/admin/incidents/edit/EditableIncidentWidget.ui \
+    ui/admin/incidents/edit/UneditableIncidentWidget.ui \
     ui/admin/categories/includedEvents/InCategoryEventWidget.ui \
     ui/admin/events/edit/UneditableEventWidget.ui \
     ui/admin/categories/edit/UneditableEventCategoryWidget.ui \
@@ -39,6 +42,9 @@ HEADERS += \
     src/controllers/admin/categories/includedEvents/AdminInCategoryIncludedEventBoxLayoutController.h \
     src/controllers/admin/events/edit/AdminEventBoxLayoutController.h \
     src/controllers/admin/categories/edit/AdminEventCategoryBoxLayoutController.h \
+    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentFreeEventBoxLayoutController.h \
+    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentIncludedEventBoxLayoutController.h \
+    src/controllers/admin/incidents/edit/AdminIncidentBoxLayoutController.h \
     src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserCategoryEventWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
@@ -76,6 +82,13 @@ HEADERS += \
     src/ui/admin/categories/edit/UneditableEventCategoryWidget.h \
     src/ui/admin/events/edit/EventWidgetStorage.h \
     src/ui/admin/events/edit/UneditableEventWidget.h \
+    src/ui/admin/incidents/edit/AdminIncidentBoxLayout.h \
+    src/ui/admin/incidents/edit/EditableIncidentWidget.h \
+    src/ui/admin/incidents/edit/IncidentWidgetStorage.h \
+    src/ui/admin/incidents/edit/UneditableIncidentWidget.h \
+    src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h \
+    src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h \
+    src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.h \
     src/ui/user/EventCategoryWidget.h \
     src/ui/user/EventWidget.h \
     src/ui/user/IncidentMenuWidget.h \
@@ -92,6 +105,9 @@ SOURCES += \
     src/controllers/admin/categories/includedEvents/AdminInCategoryIncludedEventBoxLayoutController.cpp \
     src/controllers/admin/events/edit/AdminEventBoxLayoutController.cpp \
     src/controllers/admin/categories/edit/AdminEventCategoryBoxLayoutController.cpp \
+    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentFreeEventBoxLayoutController.cpp \
+    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentIncludedEventBoxLayoutController.cpp \
+    src/controllers/admin/incidents/edit/AdminIncidentBoxLayoutController.cpp \
     src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
@@ -120,6 +136,13 @@ SOURCES += \
     src/ui/admin/categories/edit/UneditableEventCategoryWidget.cpp \
     src/ui/admin/events/edit/EventWidgetStorage.cpp \
     src/ui/admin/events/edit/UneditableEventWidget.cpp \
+    src/ui/admin/incidents/edit/AdminIncidentBoxLayout.cpp \
+    src/ui/admin/incidents/edit/EditableIncidentWidget.cpp \
+    src/ui/admin/incidents/edit/IncidentWidgetStorage.cpp \
+    src/ui/admin/incidents/edit/UneditableIncidentWidget.cpp \
+    src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.cpp \
+    src/ui/admin/incidents/includedEvents/InIncidentEventWidget.cpp \
+    src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.cpp \
     src/ui/user/EventCategoryWidget.cpp \
     src/ui/user/EventWidget.cpp \
     src/ui/user/IncidentMenuWidget.cpp \

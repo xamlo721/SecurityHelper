@@ -14,6 +14,8 @@ AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(
     /// Блокируем все кнопки Удалить выбранное и Удалить выбранное из {item}, т.к. каждой кнопке необходим свой активный виджет для возможности удаления виджета
     this->setAllDeleteButtonsDisabled();
 
+
+
     QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
     QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
 
@@ -21,8 +23,27 @@ AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(
     QObject::connect(this->ui->pushButton_removeFromCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromCategoryButtonPressed);
 
 
+
     QObject::connect(this->ui->pushButton_addEvent, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddEventButtonPressed);
     QObject::connect(this->ui->pushButton_deleteSelectedEvents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed);
+
+
+
+    QObject::connect(this->ui->pushButton_addIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddIncidentButtonPressed);
+    QObject::connect(this->ui->pushButton_deleteSelectedIncidents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedIncidentsButtonPressed);
+
+    QObject::connect(this->ui->pushButton_addToIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToIncidentButtonPressed);
+    QObject::connect(this->ui->pushButton_removeFromIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromIncidentButtonPressed);
+
+
+
+    QObject::connect(this->ui->pushButton_addScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddScenarioButtonPressed);
+    QObject::connect(this->ui->pushButton_deleteSelectedScenaries, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedScenariesButtonPressed);
+
+    QObject::connect(this->ui->pushButton_addToScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToScenarioButtonPressed);
+    QObject::connect(this->ui->pushButton_removeFromScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromScenarioButtonPressed);
+
+
 
     this->ui->pushButton_deleteSelectedCategories->setMouseTracking(true);
     this->ui->pushButton_deleteSelectedCategories->installEventFilter(this);
@@ -244,6 +265,7 @@ void AdminEditMenuWidget::setRemoveFromCategoryButtonDisabled() {
     this->ui->pushButton_removeFromCategory->setEnabled(false);
 }
 
+
 // Блок управления кнопками вкладки События
 void AdminEditMenuWidget::setAddEventButtonEnabled() {
     this->ui->pushButton_addEvent->setEnabled(true);
@@ -259,4 +281,78 @@ void AdminEditMenuWidget::setDeleteSelectedEventsButtonEnabled() {
 
 void AdminEditMenuWidget::setDeleteSelectedEventsButtonDisabled() {
     this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
+}
+
+
+// Блок управления кнопками вкладки Инциденты
+
+/// Блок управления кнопками инцидентов
+void AdminEditMenuWidget::setAddIncidentButtonEnabled() {
+    this->ui->pushButton_addIncident->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setAddIncidentButtonDisabled() {
+    this->ui->pushButton_addIncident->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedIncidentsButtonEnabled() {
+    this->ui->pushButton_deleteSelectedIncidents->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedIncidentsButtonDisabled() {
+    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
+}
+
+/// Блок управления кнопками событий в инцидентах
+void AdminEditMenuWidget::setAddToIncidentButtonEnabled() {
+    this->ui->pushButton_addToIncident->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setAddToIncidentButtonDisabled() {
+    this->ui->pushButton_addToIncident->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setRemoveFromIncidentButtonEnabled() {
+    this->ui->pushButton_removeFromIncident->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setRemoveFromIncidentButtonDisabled() {
+    this->ui->pushButton_removeFromIncident->setEnabled(false);
+}
+
+
+// Блок управления кнопками вкладки Сценарии
+
+/// Блок управления кнопками сценариев
+void AdminEditMenuWidget::setAddScenarioButtonEnabled() {
+    this->ui->pushButton_addScenario->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setAddScenarioButtonDisabled() {
+    this->ui->pushButton_addScenario->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedScenariesButtonEnabled() {
+    this->ui->pushButton_deleteSelectedScenaries->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setDeleteSelectedScenariesButtonDisabled() {
+    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
+}
+
+/// Блок управления кнопками инцидентов в сценариях
+void AdminEditMenuWidget::setAddToScenarioButtonEnabled() {
+    this->ui->pushButton_addToScenario->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setAddToScenarioButtonDisabled() {
+    this->ui->pushButton_addToScenario->setEnabled(false);
+}
+
+void AdminEditMenuWidget::setRemoveFromScenarioButtonEnabled() {
+    this->ui->pushButton_removeFromScenario->setEnabled(true);
+}
+
+void AdminEditMenuWidget::setRemoveFromScenarioButtonDisabled() {
+    this->ui->pushButton_removeFromScenario->setEnabled(false);
 }

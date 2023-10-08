@@ -72,12 +72,6 @@ class EditableEventCategoryWidget : public QWidget, public BaseItem {
          *  для возможности редактирования.
          */
         void editingFinished(EditableEventCategoryWidget * editableWidget);
-        /**
-         *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
-         *  действия Удалить.
-         *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
-         */
-        void emptyWidget(EditableEventCategoryWidget * editableWidget);
 
 };
 

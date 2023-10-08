@@ -5,7 +5,7 @@
 
 #include "src/items/SecurityEvent.h"
 
-#include "src/ui/admin/categories//includedEvents/InCategoryEventWidget.h"
+#include "src/ui/admin/categories/includedEvents/InCategoryEventWidget.h"
 
 #include "src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.h"
 
@@ -22,8 +22,6 @@ class AdminInCategoryIncludedEventBoxLayoutController : public QObject {
         QList<SecurityEvent> selectedIncludedEvents;
 
         InCategoryEventWidgetStorage widgetStorage;
-
-        void clearSelectedIncludedEvents();
 
         void deleteIncludedEvent(quint32 eventID);
         void deleteIncludedEventWidget(quint32 eventID);
