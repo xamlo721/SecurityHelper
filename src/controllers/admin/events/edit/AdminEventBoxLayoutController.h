@@ -17,15 +17,15 @@ class AdminEventBoxLayoutController : public QObject {
     Q_OBJECT
 
     private:
-        /// Управляемый бокс событий
+
         AdminEventBoxLayout *boxLayoutEvents;
 
-        /// Список событий, полученных из ядра программы
         QList<SecurityEvent> events;
-        /// Список выбранных администратором событий
+
         QList<SecurityEvent> selectedEvents;
-        /// Хранилище пар не редактирумого и редактируемого виджета
+
         EventWidgetStorage widgetStorage;
+
 
         SecurityEvent addEvent();
         void addEventWidget(const SecurityEvent event);

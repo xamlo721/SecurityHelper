@@ -13,7 +13,7 @@ class AdminIncidentBoxLayout : public QObject {
 
     private:
         QVBoxLayout *boxLayoutIncidents;
-        /// Лист с боксами пар виджетов
+
         QList<QVBoxLayout*> widgetBoxLayout;
 
 
