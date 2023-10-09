@@ -3,16 +3,16 @@
 
 EditableEventWidget::EditableEventWidget(const quint32 id, const QString title, QWidget * parent) : QWidget(parent), ui(new Ui::EditableEventWidget) {
     ui->setupUi(this);
-    /// Устанавливаем минимальный размер кнопки
+
     this->ui->lineEdit_event->setMinimumSize(200, 60);
-    /// Инициализируем поля класса
+
     this->id = id;
     this->title = title;
-    /// Устанавливаем доступность строки редактирования и её текст
+
     this->ui->lineEdit_event->setEnabled(true);
     this->ui->lineEdit_event->setText(title);
 
-    /// Связываем сигнал editingFinished с slotEditingFinished
+
     QObject::connect(this->ui->lineEdit_event, &QLineEdit::returnPressed, this, &EditableEventWidget::slotEditingFinished);
 }
 

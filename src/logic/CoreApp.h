@@ -37,11 +37,15 @@ class CoreApp : public QObject {
         void incidentsFormed(QList<SecurityIncident> incidents);
         void freeIncidentsFormed(QList<SecurityIncident> freeIncidents);
 
+        void scenariesFormed(QList<SecurityScenario> scenaries);
+        void freeIncidentsForScenarioFormed(QList<SecurityIncident> freeIncidents);
 
         void signalOpenAdminCategory(const QList<SecurityEvent> categoryEvents);
         void signalOpenAdminDeletedCategory(const QList<SecurityEvent> categoryEvents);
 
         void signalOpenAdminIncident(const QList<SecurityEvent> incidentEvents);
+
+        void signalOpenAdminScenario(const QList<SecurityIncident> scenarioIncidents);
 
     public slots:
         void onOpenCategory(quint32 categoryId, bool isForAdminMode = false);
@@ -53,6 +57,7 @@ class CoreApp : public QObject {
         void onOpenAdminIncident(quint32 incidentId);
 
         void onOpenScenario(quint32 id);
+        void onOpenAdminScenario(quint32 scenarioID);
 
         void formEvents();
         void formFreeEvents();
@@ -60,6 +65,9 @@ class CoreApp : public QObject {
 
         void formIncidents();
         void formFreeIncidents();
+
+        void formScenaries();
+        void formFreeIncidentsForScenario(const quint32 scenarioID);
 
     private:
         Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");

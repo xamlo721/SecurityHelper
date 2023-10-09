@@ -17,15 +17,15 @@ class AdminIncidentBoxLayoutController : public QObject {
     Q_OBJECT
 
     private:
-        /// Управляемый бокс событий
+
         AdminIncidentBoxLayout *boxLayoutIncidents;
 
-        /// Список событий, полученных из ядра программы
         QList<SecurityIncident> incidents;
-        /// Список выбранных администратором событий
+
         QList<SecurityIncident> selectedIncidents;
-        /// Хранилище пар не редактирумого и редактируемого виджета
+
         IncidentWidgetStorage widgetStorage;
+
 
         SecurityIncident addIncident();
         void addIncidentWidget(SecurityIncident incident);
@@ -63,6 +63,8 @@ class AdminIncidentBoxLayoutController : public QObject {
     signals:
         void signalSelectedIncidentsNotEmpty();
         void signalSelectedIncidentsEmpty();
+
+        void incidentListSet();
 
         void incidentIsActive();
         void incidentIsNotActive();

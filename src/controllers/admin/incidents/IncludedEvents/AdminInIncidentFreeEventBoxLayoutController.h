@@ -23,6 +23,7 @@ class AdminInIncidentFreeEventBoxLayoutController : public QObject {
 
         InIncidentEventWidgetStorage widgetStorage;
 
+
         SecurityEvent addFreeEvent(SecurityEvent event);
         void addFreeEventWidget(SecurityEvent event);
 

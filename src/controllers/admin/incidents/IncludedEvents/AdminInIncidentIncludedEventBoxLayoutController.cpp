@@ -41,9 +41,8 @@ void AdminInIncidentIncludedEventBoxLayoutController::renameIncludedEvent(const 
     for(SecurityEvent &event : includedEvents) {
         if(event.getId() == eventID) {
 
-            /// Изменяем имя события
             event.setText(newEventTitle);
-            /// Изменяем имя виджета этого события
+
             this->widgetStorage.getEventWidget(eventID)->setTitle(newEventTitle);
         }
     }
@@ -51,27 +50,27 @@ void AdminInIncidentIncludedEventBoxLayoutController::renameIncludedEvent(const 
 
 void AdminInIncidentIncludedEventBoxLayoutController::unselectAllIncludedEvents() {
     for(SecurityEvent event : selectedIncludedEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его не выбранным
+
         this->boxLayoutEvents->unselectEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::enableAllIncludedEvents() {
     for(SecurityEvent event : includedEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его доступным
+
         this->boxLayoutEvents->enableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::disableAllIncludedEvents() {
     for(SecurityEvent event : includedEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его не доступным
+
         this->boxLayoutEvents->disableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventSelected(const quint32 eventID) {
-    // Проверка, есть ли в списке событий такое событие
+
     quint32 eventsChecked = 0;
     for(SecurityEvent event : includedEvents) {
         if(event.getId() != eventID)
@@ -91,7 +90,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventSelected(co
 
     if(eventsChecked != 1) {
 
-        /// Находим и забрасываем событие в список выбранных
+
         for(quint32 i = 0; i < includedEvents.size(); i++) {
             SecurityEvent event = this->includedEvents.at(i);
             if(event.getId() == eventID) {
@@ -106,7 +105,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventSelected(co
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventUnselected(const quint32 eventID) {
-    // Проверка, есть ли в списке событий такое событие
+
     quint32 eventsChecked = 0;
     for(SecurityEvent event : includedEvents) {
         if(event.getId() != eventID)
@@ -130,7 +129,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventUnselected(
 
     else {
 
-        /// Находим и удаляем событие из списка выбранных событий
+
         for(quint32 i = 0; i < selectedIncludedEvents.size(); i++) {
             SecurityEvent selectedEvent = this->selectedIncludedEvents.at(i);
             if(selectedEvent.getId() == eventID)
@@ -162,9 +161,9 @@ void AdminInIncidentIncludedEventBoxLayoutController::setIncludedEventList(const
     }
 }
 
-void AdminInIncidentIncludedEventBoxLayoutController::clearIncludedEventList(const quint32 categoryID) {
-    /// Отправляем сигнал о принудительном сохранении в базу данных событий в категорию
-    emit incidentEventsMustBeSaved(categoryID, this->includedEvents);
+void AdminInIncidentIncludedEventBoxLayoutController::clearIncludedEventList(const quint32 incidentID) {
+
+    emit incidentEventsMustBeSaved(incidentID, this->includedEvents);
 
     this->includedEvents.clear();
 

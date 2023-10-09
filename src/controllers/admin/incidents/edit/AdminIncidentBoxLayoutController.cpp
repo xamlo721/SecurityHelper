@@ -6,11 +6,11 @@
 
 AdminIncidentBoxLayoutController::AdminIncidentBoxLayoutController(QObject *parent) : QObject{parent} {}
 
-void AdminIncidentBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutEvents) {
+void AdminIncidentBoxLayoutController::init(QVBoxLayout *editMenuBoxLayoutIncidents) {
 
     this->boxLayoutIncidents = new AdminIncidentBoxLayout();
 
-    this->boxLayoutIncidents->init(editMenuBoxLayoutEvents);
+    this->boxLayoutIncidents->init(editMenuBoxLayoutIncidents);
 
 
     QObject::connect(this->boxLayoutIncidents, &AdminIncidentBoxLayout::signalEditIncident, this, &AdminIncidentBoxLayoutController::slotShowEditableWidget);
@@ -33,6 +33,7 @@ void AdminIncidentBoxLayoutController::setIncidentList(const QList<SecurityIncid
 
         this->addIncidentWidget(incident);
     }
+    emit incidentListSet();
 }
 
 void AdminIncidentBoxLayoutController::slotShowEditableWidget(UneditableIncidentWidget *uneditableWidget) {
@@ -80,7 +81,7 @@ SecurityIncident AdminIncidentBoxLayoutController::addIncident() {
     }
     newIncidentId += 1;
 
-    SecurityIncident newIncident(newIncidentId, "Пустое описание", "Новое событие", QList<quint32>());
+    SecurityIncident newIncident(newIncidentId, "Здесь должно быть описание инцидента", "Новый инцидент", QList<quint32>());
     incidents.append(newIncident);
 
 
@@ -163,7 +164,7 @@ void AdminIncidentBoxLayoutController::slotDeleteIncident(UneditableIncidentWidg
 
     ItemDeletionMessageBox messageBox;
 
-    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionOneItem, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
+    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionOneItem, EnumMessageBoxItemVariants::Incident) == ItemDeletionMessageBox::Yes) {
 
         this->deleteIncidentWidget(uneditableWidget->getID());
         this->deleteIncident(uneditableWidget->getID());
@@ -181,7 +182,7 @@ void AdminIncidentBoxLayoutController::slotDeleteSelectedIncidentsButtonPressed(
 
     ItemDeletionMessageBox messageBox;
 
-    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionSeveralItems, EnumMessageBoxItemVariants::Event) == ItemDeletionMessageBox::Yes) {
+    if(messageBox.openWarning(EnumMessageBoxVariants::DeletionSeveralItems, EnumMessageBoxItemVariants::Incident) == ItemDeletionMessageBox::Yes) {
 
 
         for(SecurityIncident &incident : selectedIncidents) {

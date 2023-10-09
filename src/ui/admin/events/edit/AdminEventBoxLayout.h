@@ -12,9 +12,9 @@ class AdminEventBoxLayout : public QObject {
     Q_OBJECT
 
     private:
-        /// Бокс категорий, над которым производятся действия
+
         QVBoxLayout *boxLayoutEvents;
-        /// Лист с боксами пар виджетов
+
         QList<QVBoxLayout*> widgetBoxLayout;
 
 

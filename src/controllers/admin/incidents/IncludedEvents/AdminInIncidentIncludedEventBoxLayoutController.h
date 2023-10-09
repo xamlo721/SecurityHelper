@@ -23,6 +23,7 @@ class AdminInIncidentIncludedEventBoxLayoutController : public QObject {
 
         InIncidentEventWidgetStorage widgetStorage;
 
+
         void deleteIncludedEvent(quint32 eventID);
         void deleteIncludedEventWidget(quint32 eventID);
 
@@ -62,7 +63,7 @@ class AdminInIncidentIncludedEventBoxLayoutController : public QObject {
 
         void eventsRemovedFromIncident(const QList<SecurityEvent> removedEvents);
 
-        /// Сигнал о принудительном сохранении в базу данных событий, входящих в данный инцидент при его закрытии
+
         void incidentEventsMustBeSaved(const quint32 incidentID, QList<SecurityEvent> incidentEvents);
 
 };

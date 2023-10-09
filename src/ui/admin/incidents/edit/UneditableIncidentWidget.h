@@ -15,9 +15,9 @@ class UneditableIncidentWidget : public QWidget, public BaseItem {
     Q_OBJECT
 
     private:
-        /// Переменная кастомизированного контекстного меню
+
         UneditableItemMenu *customMenu;
-        /// Переменная, хранящая в себе данные интерфейса
+
         Ui::UneditableIncidentWidget *ui;
 
     private slots:

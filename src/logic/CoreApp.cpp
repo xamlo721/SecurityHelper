@@ -119,8 +119,6 @@ void CoreApp::formIncidents() {
 
     QList<SecurityIncident> incidents = db.incidents.values();
 
-    this->formFreeIncidents();
-
     emit incidentsFormed(incidents);
 }
 
@@ -147,6 +145,12 @@ void CoreApp::formFreeIncidents() {
 
     }
     emit freeIncidentsFormed(freeIncidents);
+}
+
+void CoreApp::formScenaries() {
+    QList<SecurityScenario> scenaries = db.scenaries.values();
+
+    emit scenariesFormed(scenaries);
 }
 
 void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
@@ -235,3 +239,45 @@ void CoreApp::onOpenScenario(quint32 id) {
     emit signalOpenRecommandations(recoms);
 }
 
+void CoreApp::onOpenAdminScenario(quint32 scenarioID) {
+
+    QList<SecurityIncident> scenarioIncidents;
+    SecurityScenario scenario = db.scenaries.value(scenarioID);
+
+    for (quint32 incidentID : scenario.getIncidents()) {
+        if (!db.incidents.contains(incidentID)) {
+            //Бросить исключение
+            continue;
+        }
+        if (!scenarioIncidents.contains(db.incidents.value(incidentID))) {
+
+            scenarioIncidents.append(db.incidents.value(incidentID));
+
+        }
+    }
+
+    emit signalOpenAdminScenario(scenarioIncidents);
+
+    this->formFreeIncidentsForScenario(scenarioID);
+}
+
+void CoreApp::formFreeIncidentsForScenario(const quint32 scenarioID) {
+    QList<SecurityIncident> freeIncidents = db.incidents.values();
+
+    SecurityScenario scenario = db.scenaries.value(scenarioID);
+
+    for (SecurityIncident incident : this->db.incidents.values()) {
+
+        if (!db.incidents.contains(incident.getId())) {
+            //Бросить исключение
+            continue;
+        }
+
+        if (scenario.getIncidents().contains(incident.getId()))
+
+            freeIncidents.removeOne(db.incidents.value(incident.getId()));
+
+    }
+
+    emit freeIncidentsForScenarioFormed(freeIncidents);
+}

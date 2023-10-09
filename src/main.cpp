@@ -18,6 +18,10 @@
 #include "src/controllers/admin/incidents/IncludedEvents/AdminInIncidentFreeEventBoxLayoutController.h"
 #include "src/controllers/admin/incidents/IncludedEvents/AdminInIncidentIncludedEventBoxLayoutController.h"
 
+#include "src/controllers/admin/scenaries/edit/AdminScenarioBoxLayoutController.h"
+#include "src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioFreeIncidentBoxLayoutController.h"
+#include "src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioIncludedIncidentBoxLayoutController.h"
+
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
 
@@ -47,6 +51,10 @@ int main(int argc, char *argv[]) {
     AdminIncidentBoxLayoutController adminIncidentController;
     AdminInIncidentFreeEventBoxLayoutController inIncidentFreeEventController;
     AdminInIncidentIncludedEventBoxLayoutController inIncidentIncludedEventController;
+
+    AdminScenarioBoxLayoutController adminScenarioController;
+    AdminInScenarioFreeIncidentBoxLayoutController inScenarioFreeIncidentController;
+    AdminInScenarioIncludedIncidentBoxLayoutController inScenarioIncludedIncidentController;
 
     // Блок инициализации связи сигналов/слотов для пользователя
 
@@ -86,7 +94,8 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventListSet, &core, &CoreApp::formIncidents);
     QObject::connect(&core, &CoreApp::incidentsFormed, &adminIncidentController, &AdminIncidentBoxLayoutController::setIncidentList);
 
-
+    QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentListSet, &core, &CoreApp::formScenaries);
+    QObject::connect(&core, &CoreApp::scenariesFormed, &adminScenarioController, &AdminScenarioBoxLayoutController::setScenarioList);
 
     // Блок связи сигналов для вкладки Категории событий
 
@@ -186,7 +195,7 @@ int main(int argc, char *argv[]) {
 
     // Блок связи сигналов для вкладки Инциденты
 
-    /// Блок связи сигналов о присутствии/отсутствии активной категории
+    /// Блок связи сигналов о присутствии/отсутствии активного инцидента
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentIsActive, &editMenuController, &AdminEditMenuController::slotSetIncidentsActive);
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentIsActive, &editMenuController, &AdminEditMenuController::slotSetAddIncidentButtonDisabled);
 
@@ -198,7 +207,7 @@ int main(int argc, char *argv[]) {
     //QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentsMustBeSaved, ...);
 
 
-    /// Блок связи сигналов об установке/очистке списка открытой категории
+    /// Блок связи сигналов об установке/очистке списка открытого инцидента
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentIsOpened, &core, &CoreApp::onOpenAdminIncident);
     QObject::connect(&core, &CoreApp::signalOpenAdminIncident, &inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::setIncludedEventList);
     QObject::connect(&core, &CoreApp::freeEventsForIncidentFormed, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::setFreeEventList);
@@ -210,34 +219,91 @@ int main(int argc, char *argv[]) {
     //QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::incidentEventsMustBeSaved, идет в бд или в ядро, где данные events сохраняются в категорию по incidentID);
 
 
-    /// Блок связи сигналов о:  добавлении в категорию событий/удалении событий из категории
+    /// Блок связи сигналов о добавлении в инцидент событий/удалении событий из инцидента
     QObject::connect(&inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::freeEventsIncludedInIncident, &inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::slotIncludeFreeEventsToIncident);
     QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::eventsRemovedFromIncident, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::slotUnincludeEventsFromIncident);
 
 
-    /// Блок связи сигналов о нажатии кнопок Добавить/Удалить выбранное в категориях
+    /// Блок связи сигналов о нажатии кнопок Добавить/Удалить выбранное в инцидентах
     QObject::connect(&editMenuController, &AdminEditMenuController::signalAddIncidentButtonPressed, &adminIncidentController, &AdminIncidentBoxLayoutController::slotAddIncidentButtonPressed);
     QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteSelectedIncidentsButtonPressed, &adminIncidentController, &AdminIncidentBoxLayoutController::slotDeleteSelectedIncidentsButtonPressed);
 
 
-    /// Блок связи сигналов о нажатии кнопок Добавить выбранное в категорию/Удалить выбранное из категории
+    /// Блок связи сигналов о нажатии кнопок Добавить выбранное в инцидент/Удалить выбранное из инцидента
     QObject::connect(&editMenuController, &AdminEditMenuController::signalAddToIncidentButtonPressed, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::slotAddSelectedEventsToIncidentButtonPressed);
     QObject::connect(&editMenuController, &AdminEditMenuController::signalRemoveFromIncidentButtonPressed, &inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::slotRemoveSelectedEventsFromIncidentButtonPressed);
 
 
-    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранные категории
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранные инциденты
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::signalSelectedIncidentsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedIncidentsButtonEnabled);
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::signalSelectedIncidentsEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedIncidentsButtonDisabled);
 
 
-    /// Блок связи сигналов о доступности/недоступности кнопки Добавить выбранное в категорию
+    /// Блок связи сигналов о доступности/недоступности кнопки Добавить выбранное в инцидент
     QObject::connect(&inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::signalSelectedFreeEventsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToIncidentButtonEnabled);
     QObject::connect(&inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::signalSelectedFreeEventsEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToIncidentButtonDisabled);
 
 
-    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранное из категории
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранное из инцидента
     QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::signalSelectedIncludedEventsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetRemoveFromIncidentButtonEnabled);
     QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::signalSelectedIncludedEventsEmpty, &editMenuController, &AdminEditMenuController::slotSetRemoveFromIncidentButtonDisabled);
+
+
+
+    // Блок связи сигналов для вкладки Сценарии
+
+    /// Блок связи сигналов о присутствии/отсутствии активного сценария
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsActive, &editMenuController, &AdminEditMenuController::slotSetScenariesActive);
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsActive, &editMenuController, &AdminEditMenuController::slotSetAddScenarioButtonDisabled);
+
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAllTabsEnable);
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAddScenarioButtonEnabled);
+
+
+    /// Блок связи сохранения категории в бд
+    //QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenariesMustBeSaved, ...);
+
+
+    /// Блок связи сигналов об установке/очистке списка открытого сценария
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsOpened, &core, &CoreApp::onOpenAdminScenario);
+    QObject::connect(&core, &CoreApp::signalOpenAdminScenario, &inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::setIncludedIncidentList);
+    QObject::connect(&core, &CoreApp::freeIncidentsForScenarioFormed, &inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::setFreeIncidentList);
+
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsClosed, &inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::clearIncludedIncidentList);
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::scenarioIsClosed, &inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::clearFreeIncidentList);
+
+    /// Блок связи записи событий в инцидент и сохранение в базу данных
+    //QObject::connect(&inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::scenarioIncidentMustBeSaved, идет в бд или в ядро, где данные events сохраняются в категорию по incidentID);
+
+
+    /// Блок связи сигналов о добавлении в сценарий инцидентов/удалении инцидентов из сценария
+    QObject::connect(&inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::freeIncidentsIncludedInScenario, &inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::slotIncludeFreeIncidentsToScenario);
+    QObject::connect(&inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::incidentsRemovedFromScenario, &inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::slotUnincludeIncidentsFromScenario);
+
+
+    /// Блок связи сигналов о нажатии кнопок Добавить/Удалить выбранное в сценариях
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalAddScenarioButtonPressed, &adminScenarioController, &AdminScenarioBoxLayoutController::slotAddScenarioButtonPressed);
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalDeleteSelectedScenariesButtonPressed, &adminScenarioController, &AdminScenarioBoxLayoutController::slotDeleteSelectedScenariesButtonPressed);
+
+
+    /// Блок связи сигналов о нажатии кнопок Добавить выбранное в сценарий/Удалить выбранное из сценария
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalAddToScenarioButtonPressed, &inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::slotAddSelectedIncidentsToScenarioButtonPressed);
+    QObject::connect(&editMenuController, &AdminEditMenuController::signalRemoveFromScenarioButtonPressed, &inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::slotRemoveSelectedIncidentsFromScenarioButtonPressed);
+
+
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранные сценарии
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::signalSelectedScenariesNotEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedScenariesButtonEnabled);
+    QObject::connect(&adminScenarioController, &AdminScenarioBoxLayoutController::signalSelectedScenariesEmpty, &editMenuController, &AdminEditMenuController::slotSetDeleteSelectedScenariesButtonDisabled);
+
+
+    /// Блок связи сигналов о доступности/недоступности кнопки Добавить выбранное в сценарий
+    QObject::connect(&inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::signalSelectedFreeIncidentsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToScenarioButtonEnabled);
+    QObject::connect(&inScenarioFreeIncidentController, &AdminInScenarioFreeIncidentBoxLayoutController::signalSelectedFreeIncidentsEmpty, &editMenuController, &AdminEditMenuController::slotSetAddToScenarioButtonDisabled);
+
+
+    /// Блок связи сигналов о доступности/недоступности кнопки Удалить выбранное из сценария
+    QObject::connect(&inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::signalSelectedIncludedIncidentsNotEmpty, &editMenuController, &AdminEditMenuController::slotSetRemoveFromScenarioButtonEnabled);
+    QObject::connect(&inScenarioIncludedIncidentController, &AdminInScenarioIncludedIncidentBoxLayoutController::signalSelectedIncludedIncidentsEmpty, &editMenuController, &AdminEditMenuController::slotSetRemoveFromScenarioButtonDisabled);
 
 
 
@@ -260,6 +326,10 @@ int main(int argc, char *argv[]) {
     adminIncidentController.init(mainWindow->getEditMenuWidget()->getBoxLayoutIncidents());
     inIncidentFreeEventController.init(mainWindow->getEditMenuWidget()->getBoxLayoutInIncidentFreeEvents());
     inIncidentIncludedEventController.init(mainWindow->getEditMenuWidget()->getBoxLayoutInIncidentIncludedEvents());
+
+    adminScenarioController.init(mainWindow->getEditMenuWidget()->getBoxLayoutScenaries());
+    inScenarioFreeIncidentController.init(mainWindow->getEditMenuWidget()->getBoxLayoutInScenarioFreeIncidents());
+    inScenarioIncludedIncidentController.init(mainWindow->getEditMenuWidget()->getBoxLayoutInScenarioIncludedIncidents());
 
     // Инициализация ядря
     core.init();

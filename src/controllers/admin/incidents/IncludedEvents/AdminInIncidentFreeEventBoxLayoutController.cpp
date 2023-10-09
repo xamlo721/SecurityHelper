@@ -51,9 +51,9 @@ void AdminInIncidentFreeEventBoxLayoutController::renameFreeEvent(const quint32 
     for(SecurityEvent &event : freeEvents) {
         if(event.getId() == eventID) {
 
-            /// Изменяем имя события
+
             event.setText(newEventTitle);
-            /// Изменяем имя виджета этого события
+
             this->widgetStorage.getEventWidget(eventID)->setTitle(newEventTitle);
         }
     }
@@ -61,27 +61,27 @@ void AdminInIncidentFreeEventBoxLayoutController::renameFreeEvent(const quint32 
 
 void AdminInIncidentFreeEventBoxLayoutController::unselectAllFreeEvents() {
     for(SecurityEvent event : selectedFreeEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его не выбранным
+
         this->boxLayoutEvents->unselectEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::enableAllFreeEvents() {
     for(SecurityEvent event : freeEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его доступным
+
         this->boxLayoutEvents->enableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::disableAllFreeEvents() {
     for(SecurityEvent event : freeEvents) {
-        /// Берем не редактируемый виджет из хранилища по ID события и делаем его не доступным
+
         this->boxLayoutEvents->disableEventWidget(this->widgetStorage.getEventWidget(event.getId()));
     }
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected(const quint32 eventID) {
-    // Проверка, есть ли в списке событий такое событие
+
     quint32 eventsChecked = 0;
     for(SecurityEvent event : freeEvents) {
         if(event.getId() != eventID)
@@ -101,7 +101,6 @@ void AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected(const quin
 
     if(eventsChecked != 1) {
 
-        /// Находим и забрасываем событие в список выбранных
         for(quint32 i = 0; i < freeEvents.size(); i++) {
             SecurityEvent event = this->freeEvents.at(i);
             if(event.getId() == eventID) {
@@ -118,7 +117,7 @@ void AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected(const quin
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::onFreeEventUnselected(const quint32 eventID) {
-    // Проверка, есть ли в списке событий такое событие
+
     quint32 eventsChecked = 0;
     for(SecurityEvent event : freeEvents) {
         if(event.getId() != eventID)
@@ -139,7 +138,7 @@ void AdminInIncidentFreeEventBoxLayoutController::onFreeEventUnselected(const qu
     }
 
     else {
-        /// Находим и удаляем событие из списка выбранных событий
+
         for(quint32 i = 0; i < selectedFreeEvents.size(); i++) {
             SecurityEvent selectedEvent = this->selectedFreeEvents.at(i);
             if(selectedEvent.getId() == eventID)
@@ -202,7 +201,7 @@ void AdminInIncidentFreeEventBoxLayoutController::slotAddSelectedEventsToInciden
     }
 }
 
-void AdminInIncidentFreeEventBoxLayoutController::clearFreeEventList(const quint32 categoryID) {
+void AdminInIncidentFreeEventBoxLayoutController::clearFreeEventList(const quint32 eventID) {
     this->freeEvents.clear();
 
     this->unselectAllFreeEvents();
