@@ -13,6 +13,70 @@ void CoreApp::init() {
     emit signalAdminOpenCategories(db.categories.values());
 }
 
+QList<SecurityEventCategory> CoreApp::categoriesToList(QMap<quint32, SecurityEventCategory> qMapCategories) {
+    QList<SecurityEventCategory> qListCategories;
+    for(quint32 i = 0; i < qMapCategories.size(); i++ ) {
+        qListCategories.append(qMapCategories[i]);
+    }
+    return qListCategories;
+}
+
+QList<SecurityIncident> CoreApp::incidentsToList(QMap<quint32, SecurityIncident> qMapIncidents) {
+    QList<SecurityIncident> qListIncidents;
+    for(quint32 i = 0; i < qMapIncidents.size(); i++ ) {
+        qListIncidents.append(qMapIncidents[i]);
+    }
+    return qListIncidents;
+}
+
+QList<SecurityEvent> CoreApp::eventToList(QMap<quint32, SecurityEvent> qMapEvents) {
+    QList<SecurityEvent> qListEvents;
+    for(quint32 i = 0; i < qMapEvents.size(); i++ ) {
+        qListEvents.append(qMapEvents[i]);
+    }
+    return qListEvents;
+}
+
+void CoreApp::acceptCategoriesForSaving(const QList<SecurityEventCategory> categories) {
+    categoriesSaved = categories;
+}
+
+void CoreApp::acceptIncidentsForSaving(const QList<SecurityIncident> incidents) {
+    incidentsSaved = incidents;
+}
+
+void CoreApp::acceptEventCategoryForSaving(const quint32 categoryID, QList<SecurityEvent> categoryEvents) {
+    QList<quint32> events;
+    for(SecurityEvent securityEvent : categoryEvents) {
+        events.append(securityEvent.getId());
+    }
+    categoriesSaved[categoryID].setIDEvents(events);
+    QMap<quint32, SecurityEventCategory> readyToSaveCategories;
+    for(SecurityEventCategory category : categoriesSaved) {
+        readyToSaveCategories.insert(category.getId(), category);
+    }
+    XMLHelper::writeDatabaseCategory("../SecurityHelper/storage/", readyToSaveCategories);
+}
+void CoreApp::acceptEventIncidentsForSaving(const quint32 incidentID, QList<SecurityEvent> incidentEvents) {
+    QList<quint32> events;
+    for(SecurityEvent securityEvent : incidentEvents) {
+        events.append(securityEvent.getId());
+    }
+    incidentsSaved[incidentID].setIDEvents(events);
+    QMap<quint32, SecurityIncident> readyToSaveIncident;
+    for(SecurityIncident incident : incidentsSaved) {
+        readyToSaveIncident.insert(incident.getId(), incident);
+    }
+    XMLHelper::writeDatabaseIncidents("../SecurityHelper/storage/", readyToSaveIncident);
+}
+
+void CoreApp::acceptEventForSaving(QList<SecurityEvent> events) {
+    QMap<quint32, SecurityEvent> readyToSaveEvents;
+    for(SecurityEvent event : events) {
+        readyToSaveEvents.insert(event.getId(), event);
+    }
+    XMLHelper::writeDatabaseEvent("../SecurityHelper/storage/", readyToSaveEvents);
+}
 
 void CoreApp::onOpenCategory(quint32 categoryId, bool isForAdminMode) {
 

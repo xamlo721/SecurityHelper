@@ -20,6 +20,17 @@ class CoreApp : public QObject {
 
         void init();
 
+        QList<SecurityEvent> eventsSaved = CoreApp::eventToList(XMLHelper::readDatabase("../SecurityHelper/storage/").events);
+        QList<SecurityEventCategory> categoriesSaved = CoreApp::categoriesToList(XMLHelper::readDatabase("../SecurityHelper/storage/").categories);
+        QList<SecurityIncident> incidentsSaved = CoreApp::incidentsToList(XMLHelper::readDatabase("../SecurityHelper/storage/").incidents);
+
+        QList<SecurityEventCategory> categoriesToList(QMap<quint32, SecurityEventCategory> qMapCategories);
+        QList<SecurityIncident> incidentsToList(QMap<quint32, SecurityIncident> qMapIncidents);
+        QList<SecurityEvent> eventToList(QMap<quint32, SecurityEvent> qMapEvents);
+
+        //QMap<quint32, SecurityEventCategory> categoriesQListToQMap(const quint32 categoryID, QList<SecurityEvent> categoryEvents);
+        //QMap<quint32, SecurityEventCategory> categoriesQListToQMap(const quint32 categoryID, QList<SecurityEvent> categoryEvents);
+
     signals:
         void signalOpenCategory(QList<SecurityEvent> categoryEvents);
         void signalOpenCategories(QList<SecurityEventCategory> availableCategories);
@@ -44,6 +55,13 @@ class CoreApp : public QObject {
         void signalOpenAdminIncident(const QList<SecurityEvent> incidentEvents);
 
     public slots:
+        void acceptCategoriesForSaving(const QList<SecurityEventCategory> categories);
+        void acceptIncidentsForSaving(const QList<SecurityIncident> incidents);
+
+        void acceptEventCategoryForSaving(const quint32 categoryID, QList<SecurityEvent> categoryEvents);
+        void acceptEventIncidentsForSaving(const quint32 incidentID, QList<SecurityEvent> incidentEvents);
+        void acceptEventForSaving(QList<SecurityEvent> events);
+
         void onOpenCategory(quint32 categoryId, bool isForAdminMode = false);
         void onOpenDeletedCategory(const quint32 categoryId);
 

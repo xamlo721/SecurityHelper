@@ -128,7 +128,6 @@ Database XMLHelper::readDatabase(QString path) {
         }
         scenariesFile.close();
     }
-
     return Database(events, categories, incidents, recommendations, scenaries);
 }
 
@@ -144,18 +143,18 @@ void XMLHelper::writeDatabase(QString path/*, QList<SecurityEvent> eventsList, /
                                  QList<SecurityRecommendations> recommendationsList,
                                  QList<SecurityScenario> scenariesList*/);
 
-    XMLHelper::writeDatabaseEvent(path, database);
+    XMLHelper::writeDatabaseEvent(path, database.events);
 
-    XMLHelper::writeDatabaseCategory(path, database);
+    XMLHelper::writeDatabaseCategory(path, database.categories);
 
-    XMLHelper::writeDatabaseIncidents(path, database);
+    XMLHelper::writeDatabaseIncidents(path, database.incidents);
 
-    XMLHelper::writeDatabaseRecommendation(path, database);
+    XMLHelper::writeDatabaseRecommendation(path, database.recommendations);
 
-    XMLHelper::writeDatabaseScenaries(path, database);
+    XMLHelper::writeDatabaseScenaries(path, database.scenaries);
 }
 
-void XMLHelper::writeDatabaseEvent(QString path, Database database) {
+void XMLHelper::writeDatabaseEvent(QString path, QMap<quint32, SecurityEvent> events) {
     QFile eventsFile(path + "Events.xml");
     eventsFile.open(QFile::WriteOnly | QFile::Text);
     QDomDocument eventsDoc;
@@ -163,7 +162,7 @@ void XMLHelper::writeDatabaseEvent(QString path, Database database) {
 
     QDomElement eventsElement = XmlUtils::writeXMLStructTree(&eventsDoc, "Events");
 
-    for (SecurityEvent event : database.events.values()) {
+    for (SecurityEvent event : events.values()) {
         QDomElement eventElement = eventsDoc.createElement("Event");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
         XmlUtils::writeText(eventsDoc, eventElement , "Text", event.getText());
@@ -173,7 +172,7 @@ void XMLHelper::writeDatabaseEvent(QString path, Database database) {
     eventsFile.close();
 }
 
-void XMLHelper::writeDatabaseCategory(QString path, Database database) {
+void XMLHelper::writeDatabaseCategory(QString path, QMap<quint32, SecurityEventCategory> categories) {
     QFile categoriesFile(path + "Categories.xml");
     categoriesFile.open(QFile::WriteOnly | QFile::Text);
     QDomDocument eventsDoc;
@@ -181,7 +180,7 @@ void XMLHelper::writeDatabaseCategory(QString path, Database database) {
 
     QDomElement categoriesElement = XmlUtils::writeXMLStructTree(&eventsDoc, "Categories");
 
-    for (SecurityEventCategory event : database.categories.values()) {
+    for (SecurityEventCategory event : categories.values()) {
         QDomElement eventElement = eventsDoc.createElement("Category");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
         XmlUtils::writeText(eventsDoc, eventElement , "Text", event.getText());
@@ -192,7 +191,7 @@ void XMLHelper::writeDatabaseCategory(QString path, Database database) {
     categoriesFile.close();
 }
 
-void XMLHelper::writeDatabaseIncidents(QString path, Database database) {
+void XMLHelper::writeDatabaseIncidents(QString path, QMap<quint32, SecurityIncident> incidents) {
     QFile incidentsFile(path + "Incidents.xml");
     incidentsFile.open(QFile::WriteOnly | QFile::Text);
     QDomDocument eventsDoc;
@@ -200,7 +199,7 @@ void XMLHelper::writeDatabaseIncidents(QString path, Database database) {
 
     QDomElement incidentsElement = XmlUtils::writeXMLStructTree(&eventsDoc, "Incidents");
 
-    for (SecurityIncident event : database.incidents.values()) {
+    for (SecurityIncident event : incidents.values()) {
         QDomElement eventElement = eventsDoc.createElement("Incident");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
         XmlUtils::writeText(eventsDoc, eventElement , "Name", event.getName());
@@ -212,7 +211,7 @@ void XMLHelper::writeDatabaseIncidents(QString path, Database database) {
     incidentsFile.close();
 }
 
-void XMLHelper::writeDatabaseRecommendation(QString path, Database database) {
+void XMLHelper::writeDatabaseRecommendation(QString path, QMap<quint32, SecurityRecommendations> recommendations) {
     QFile recommendationsFile(path + "Recommendations.xml");
     recommendationsFile.open(QFile::WriteOnly | QFile::Text);
     QDomDocument eventsDoc;
@@ -220,7 +219,7 @@ void XMLHelper::writeDatabaseRecommendation(QString path, Database database) {
 
     QDomElement recommendationsElement = XmlUtils::writeXMLStructTree(&eventsDoc, "Recommendations");
 
-    for (SecurityRecommendations event : database.recommendations.values()) {
+    for (SecurityRecommendations event : recommendations.values()) {
         QDomElement eventElement = eventsDoc.createElement("Recommendation");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
         XmlUtils::writeText(eventsDoc, eventElement , "TextContainment", event.getTextContainment());
@@ -233,7 +232,7 @@ void XMLHelper::writeDatabaseRecommendation(QString path, Database database) {
     recommendationsFile.close();
 }
 
-void XMLHelper::writeDatabaseScenaries(QString path, Database database) {
+void XMLHelper::writeDatabaseScenaries(QString path, QMap<quint32, SecurityScenario> scenaries) {
     QFile scenariesFile(path + "Scenaries.xml");
     scenariesFile.open(QFile::WriteOnly | QFile::Text);
     QDomDocument eventsDoc;
@@ -241,7 +240,7 @@ void XMLHelper::writeDatabaseScenaries(QString path, Database database) {
 
     QDomElement scenariesElement = XmlUtils::writeXMLStructTree(&eventsDoc, "Scenaries");
 
-    for (SecurityScenario event : database.scenaries.values()) {
+    for (SecurityScenario event : scenaries.values()) {
         QDomElement eventElement = eventsDoc.createElement("Scenary");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
         XmlUtils::writeText(eventsDoc, eventElement , "Name", event.getName());
@@ -362,3 +361,5 @@ SecurityScenario XMLHelper::readSecurityScenario(QDomElement xmlDomElement) {
     QList<quint32> incidentIds = XmlUtils::readUints(xmlDomElement, "Incident");
     return SecurityScenario(scenarioId, scenarioTitle, scenarioName, incidentIds);
 }
+
+

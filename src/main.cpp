@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
 
 
     /// Блок связи сохранения категории в бд
-    //QObject::connect(&adminEventCategoryController, &AdminEventCategoryBoxLayoutController::categoriesMustBeSaved, ...);
+    QObject::connect(&adminEventCategoryController, &AdminEventCategoryBoxLayoutController::categoriesMustBeSaved, &core, &CoreApp::acceptCategoriesForSaving);
 
     /// Блок связи сигналов об установке/очистке списка открытой категории
     QObject::connect(&adminEventCategoryController, &AdminEventCategoryBoxLayoutController::categoryIsOpened, &core, &CoreApp::onOpenCategory);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminEventCategoryController, &AdminEventCategoryBoxLayoutController::categoryIsClosed, &inCategoryIncludedEventController, &AdminInCategoryIncludedEventBoxLayoutController::clearIncludedEventList);
 
     /// Блок связи записи событий в категорию и сохранение в базу данных
-    //QObject::connect(&inCategoryIncludedEventController, &AdminInCategoryIncludedEventBoxLayoutController::categoryEventsMustBeSaved, идет в бд или в ядро, где данные events сохраняются в категорию по categoryID);
+    QObject::connect(&inCategoryIncludedEventController, &AdminInCategoryIncludedEventBoxLayoutController::categoryEventsMustBeSaved, &core, &CoreApp::acceptEventCategoryForSaving);
 
 
     QObject::connect(&adminEventCategoryController, &AdminEventCategoryBoxLayoutController::categoryIsNotActive, &inCategoryFreeEventController, &AdminInCategoryFreeEventBoxLayoutController::unselectAllFreeEvents);
@@ -166,7 +166,7 @@ int main(int argc, char *argv[]) {
 
 
     /// Блок связи сохранения категории в бд
-    //QObject::connect(&adminEventController, &AdminEventBoxLayoutController::eventsMustBeSaved, ...);
+    QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventsMustBeSaved, &core, &CoreApp::acceptEventForSaving);
 
 
     QObject::connect(&adminEventContoller, &AdminEventBoxLayoutController::eventIsNotActive, &editMenuController, &AdminEditMenuController::slotSetAllTabsEnable);
@@ -195,7 +195,7 @@ int main(int argc, char *argv[]) {
 
 
     /// Блок связи сохранения категории в бд
-    //QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentsMustBeSaved, ...);
+    QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentsMustBeSaved, &core, &CoreApp::acceptIncidentsForSaving);
 
 
     /// Блок связи сигналов об установке/очистке списка открытой категории
@@ -207,7 +207,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminIncidentController, &AdminIncidentBoxLayoutController::incidentIsClosed, &inIncidentFreeEventController, &AdminInIncidentFreeEventBoxLayoutController::clearFreeEventList);
 
     /// Блок связи записи событий в инцидент и сохранение в базу данных
-    //QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::incidentEventsMustBeSaved, идет в бд или в ядро, где данные events сохраняются в категорию по incidentID);
+    QObject::connect(&inIncidentIncludedEventController, &AdminInIncidentIncludedEventBoxLayoutController::incidentEventsMustBeSaved, &core, &CoreApp::acceptEventIncidentsForSaving);/////
 
 
     /// Блок связи сигналов о:  добавлении в категорию событий/удалении событий из категории

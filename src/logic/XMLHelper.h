@@ -49,16 +49,16 @@ class XMLHelper: public QObject {
                                  QList<SecurityIncident> incidentsList,
                                  QList<SecurityRecommendations> recommendationsList,
                                  QList<SecurityScenario> scenariesList*/);
-        ///writeDatabaseEvent - функция записи в определенный и конкретный файл(Events.xml) ///Переделать чтоб параметр был не Database а итем!
-        static void writeDatabaseEvent(QString path, Database database);
+        ///writeDatabaseEvent - функция записи в определенный и конкретный файл(Events.xml)
+        static void writeDatabaseEvent(QString path, QMap<quint32, SecurityEvent> events);
         ///writeDatabaseCategory - функция записи в определенный и конкретный файл(Categories.xml)
-        static void writeDatabaseCategory(QString path, Database database);
+        static void writeDatabaseCategory(QString path, QMap<quint32, SecurityEventCategory> categories);
         ///writeDatabaseIncidents - функция записи в определенный и конкретный файл(Incidents.xml)
-        static void writeDatabaseIncidents(QString path, Database database);
+        static void writeDatabaseIncidents(QString path, QMap<quint32, SecurityIncident> incidents);
         ///writeDatabaseRecommendation - функция записи в определенный и конкретный файл(Recommendations.xml)
-        static void writeDatabaseRecommendation(QString path, Database database);
+        static void writeDatabaseRecommendation(QString path, QMap<quint32, SecurityRecommendations> recommendations);
         ///writeDatabaseScenaries - функция записи в определенный и конкретный файл(Scenaries.xml)
-        static void writeDatabaseScenaries(QString path, Database database);
+        static void writeDatabaseScenaries(QString path, QMap<quint32, SecurityScenario> scenaries);
 
         /**
          * @brief writeToXMLFile - функция непосредственной записи в файл
