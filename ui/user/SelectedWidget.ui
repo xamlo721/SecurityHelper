@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
-		background-color : rgba(200, 200, 228, 80);
+		background-color : rgba(200, 200, 228, 150);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 }</string>
   </property>
