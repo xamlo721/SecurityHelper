@@ -8,6 +8,8 @@ MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Ma
     ui->scrollAreaWidgetContents_categories->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_events->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_selectes_eventes->setLayout(new QVBoxLayout());
+    ui->scrollAreaWidgetContents_selectes_eventes->layout()->setAlignment(Qt::AlignTop);
+    //ui->scrollAreaWidgetContents_selectes_eventes->setSizePolicy();
 }
 
 void MainMenuWidget::clearCategories() {
@@ -22,7 +24,7 @@ void MainMenuWidget::clearCategories() {
     }
 }
 
-void MainMenuWidget::addCategory(EventCategoryWidget * category) {
+void MainMenuWidget::addCategory(SelectedWidget * category) {
     QLayout * layout = this->ui->scrollAreaWidgetContents_categories->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
     layout->addWidget(category);
 }
@@ -39,7 +41,7 @@ void MainMenuWidget::clearAvailableEvents() {
     }
 }
 
-void MainMenuWidget::addEvent(EventWidget * event) {
+void MainMenuWidget::addEvent(SelectedWidget * event) {
     QLayout * layout = this->ui->scrollAreaWidgetContents_events->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
     layout->addWidget(event);
 }
@@ -56,7 +58,7 @@ void MainMenuWidget::clearSelectedEvents() {
     }
 }
 
-void MainMenuWidget::addSelectedEvent(EventWidget * event) {
+void MainMenuWidget::addSelectedEvent(SelectedWidget * event) {
     QLayout * layout = this->ui->scrollAreaWidgetContents_selectes_eventes->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
     layout->addWidget(event);
 }

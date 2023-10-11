@@ -1,5 +1,7 @@
 #include "UserCategoryEventWidgetController.h"
 
+#include "src/ui/SelectedWidget.h"
+
 UserCategoryEventWidgetController::UserCategoryEventWidgetController(QObject *parent) : QObject{parent} {
 
 }
@@ -12,8 +14,8 @@ void UserCategoryEventWidgetController::setCategoryList(QList<SecurityEventCateg
     this->categories = categories;
     this->mainMenuWidget->clearCategories();
     for (SecurityEventCategory cat : categories) {
-        EventCategoryWidget * categoryWidget = new EventCategoryWidget(cat.getId(), cat.getText());
-        QObject::connect(categoryWidget, &EventCategoryWidget::signalOpenIncident, this, &UserCategoryEventWidgetController::signalOpenCategory);
+        SelectedWidget * categoryWidget = new SelectedWidget(cat.getId(), cat.getText());
+        QObject::connect(categoryWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::signalOpenCategory);
 
         this->mainMenuWidget->addCategory(categoryWidget);
     }
@@ -26,8 +28,8 @@ void UserCategoryEventWidgetController::setEventList(QList<SecurityEvent> events
     this->mainMenuWidget->clearAvailableEvents();
 
     for (SecurityEvent event : events) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
-        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &UserCategoryEventWidgetController::onEventSelected);
+        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), false);
+        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::onEventSelected);
 
         this->mainMenuWidget->addEvent(eventWidget);
     }
@@ -51,16 +53,16 @@ void UserCategoryEventWidgetController::onEventSelected(quint32 eventID) {
     //TODO: Вычесть те, которые уже отображены
     this->mainMenuWidget->clearAvailableEvents();
     for (SecurityEvent event : availableEvents) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
-        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &UserCategoryEventWidgetController::onEventSelected);
+        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), false);
+        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::onEventSelected);
         this->mainMenuWidget->addEvent(eventWidget);
     }
 
     ///3) обновить выбранные ивенты
     this->mainMenuWidget->clearSelectedEvents();
     for (SecurityEvent event : activeEvents) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), true);
-        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &UserCategoryEventWidgetController::onEventUnselected);
+        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), true);
+        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::onEventUnselected);
         this->mainMenuWidget->addSelectedEvent(eventWidget);
     }
 
@@ -85,8 +87,8 @@ void UserCategoryEventWidgetController::onEventUnselected(quint32 eventID) {
     //TODO: Вычесть те, которые уже отображены
     this->mainMenuWidget->clearAvailableEvents();
     for (SecurityEvent event : availableEvents) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), false);
-        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &UserCategoryEventWidgetController::onEventSelected);
+        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), false);
+        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::onEventSelected);
         this->mainMenuWidget->addEvent(eventWidget);
     }
 
@@ -94,8 +96,8 @@ void UserCategoryEventWidgetController::onEventUnselected(quint32 eventID) {
     ///3) обновить выбранные ивенты
     this->mainMenuWidget->clearSelectedEvents();
     for (SecurityEvent event : activeEvents) {
-        EventWidget * eventWidget = new EventWidget(event.getId(), event.getText(), true);
-        QObject::connect(eventWidget, &EventWidget::signalEventSelected, this, &UserCategoryEventWidgetController::onEventUnselected);
+        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), true);
+        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserCategoryEventWidgetController::onEventUnselected);
         this->mainMenuWidget->addSelectedEvent(eventWidget);
     }
 

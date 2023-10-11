@@ -29,14 +29,13 @@ FORMS += ui/MainWindow.ui \
     ui/admin/AdminEditMenuWidget.ui \
     ui/admin/categories/edit/EditableEventCategoryWidget.ui \
     ui/admin/events/edit/EditableEventWidget.ui \
-    ui/user/EventWidget.ui \
-    ui/user/IncidentCategoryWidget.ui \
     ui/user/IncidentMenuWidget.ui \
     ui/user/IncidentWidget.ui \
     ui/user/MainMenuWidget.ui \
     ui/user/RecommendationsWidget.ui \
     ui/user/ScenarioMenuWidget.ui \
-    ui/user/ScenarioWidget.ui
+    ui/user/ScenarioWidget.ui \
+    ui/user/SelectedWidget.ui
 
 HEADERS += \
     src/controllers/MainWindowController.h \
@@ -71,6 +70,7 @@ HEADERS += \
     src/ui/EnumMenuPages.h \
     src/ui/EnumToolbarPages.h \
     src/ui/MainWindow.h \
+    src/ui/SelectedWidget.h \
     src/ui/admin/AdminEditMenuWidget.h \
     src/items/BaseItem.h \
     src/ui/admin/EnumMessageBoxItemVariants.h \
@@ -102,8 +102,6 @@ HEADERS += \
     src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.h \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.h \
-    src/ui/user/EventCategoryWidget.h \
-    src/ui/user/EventWidget.h \
     src/ui/user/IncidentMenuWidget.h \
     src/ui/user/IncidentWidget.h \
     src/ui/user/MainMenuWidget.h \
@@ -138,6 +136,7 @@ SOURCES += \
     src/logic/XmlUtils.cpp \
     src/main.cpp \
     src/ui/MainWindow.cpp \
+    src/ui/SelectedWidget.cpp \
     src/ui/admin/AdminEditMenuWidget.cpp \
     src/ui/admin/ItemDeletionMessageBox.cpp \
     src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.cpp \
@@ -166,8 +165,6 @@ SOURCES += \
     src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.cpp \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.cpp \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.cpp \
-    src/ui/user/EventCategoryWidget.cpp \
-    src/ui/user/EventWidget.cpp \
     src/ui/user/IncidentMenuWidget.cpp \
     src/ui/user/IncidentWidget.cpp \
     src/ui/user/MainMenuWidget.cpp \

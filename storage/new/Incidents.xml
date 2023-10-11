@@ -5,10 +5,10 @@
             <Incident>
                 <id>0</id>
                 <Name></Name>
-                <Text>Событие</Text>
+                <Text>Событи</Text>
                 <events>2</events>
-                <events>4</events>
-                <events>6</events>
+                <events>0</events>
+                <events>11</events>
             </Incident>
             <Incident>
                 <id>1</id>
