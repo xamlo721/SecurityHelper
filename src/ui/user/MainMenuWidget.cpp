@@ -9,6 +9,7 @@ MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Ma
     ui->scrollAreaWidgetContents_events->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_selectes_eventes->setLayout(new QVBoxLayout());
     ui->scrollAreaWidgetContents_selectes_eventes->layout()->setAlignment(Qt::AlignTop);
+    ui->scrollAreaWidgetContents_events->layout()->setAlignment(Qt::AlignTop);
     //ui->scrollAreaWidgetContents_selectes_eventes->setSizePolicy();
 }
 
