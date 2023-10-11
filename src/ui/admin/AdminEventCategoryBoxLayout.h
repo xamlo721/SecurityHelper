@@ -4,8 +4,7 @@
 #include <QObject>
 #include "qboxlayout.h"
 
-#include "UneditableEventCategoryWidget.h"
-#include "EditableEventCategoryWidget.h"
+#include "src/ui/SelectedWidget.h" //Почему-то нормально не инклюдит
 
 /**
  * @brief AdminEventCategoryBoxLayout - класс-виджет бокса, хранящего в себе
@@ -31,14 +30,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  администратором на редактирование или удаление категории.
          *  @param uneditableCategory - не редактируемый виджет категории.
          */
-        void initUneditableWidget(UneditableEventCategoryWidget *uneditableWidget);
+        void initUneditableWidget(SelectedWidget *uneditableWidget);
         /**
          *  @brief initEditableCategory - метод, инициализирующий связь сигналов
          *  редактируемого виджета категории с данным классом, для сообщения о завершении
          *  редактирования.
          *  @param editableCategory - редактируемый виджет категории.
          */
-        void initEditableWidget(EditableEventCategoryWidget *editableWidget);
+        //void initEditableWidget(EditableEventCategoryWidget *editableWidget);
 
     private slots:
 
@@ -54,28 +53,28 @@ class AdminEventCategoryBoxLayout : public QObject {
 
         void init(QVBoxLayout *boxLayout);
 
-        void addCategoryWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget);
+        //void addCategoryWidget(SelectedWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget);
 
         /**
          *  @brief deleteCategoryWidget - Удаление виджета категории.
          *  @param uneditableCategory - не редактируемый виджет категории, предназначенный
          *  для удаления.
          */
-        void deleteCategoryWidget(UneditableEventCategoryWidget *uneditableWidget);
+        void deleteCategoryWidget(SelectedWidget *uneditableWidget);
 
         /**
          *  @brief clearCategories - очистка списка виджетов категорий.
          */
         void clearCategories();
 
-        void showEditableWidget(UneditableEventCategoryWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget);
+       // void showEditableWidget(SelectedWidget *uneditableWidget, EditableEventCategoryWidget *editableWidget);
 
-        void showUneditableWidget(EditableEventCategoryWidget *editableWidget, UneditableEventCategoryWidget *uneditableWidget);
+        //void showUneditableWidget(EditableEventCategoryWidget *editableWidget, SelectedWidget *uneditableWidget);
 
-        void unselectUneditableWidget(UneditableEventCategoryWidget *uneditableWidget);
+        void unselectUneditableWidget(SelectedWidget *uneditableWidget);
 
-        void enableUneditableWidget(UneditableEventCategoryWidget *uneditableWidget);
-        void disableUneditableWidget(UneditableEventCategoryWidget *uneditableWidget);
+        void enableUneditableWidget(SelectedWidget *uneditableWidget);
+        void disableUneditableWidget(SelectedWidget *uneditableWidget);
 
     public slots:
 
@@ -86,14 +85,14 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо изменить
          *  для возможности редактирования.
          */
-        void signalEditCategory(UneditableEventCategoryWidget * uneditableCategory);
+        void signalEditCategory(SelectedWidget * uneditableCategory);
 
         /**
          *  @brief signalDeleteCategory - сигнал, сообщающий о вызове в контекстном меню
          *  действия Удалить.
          *  @param uneditableCategory - не редактируемый виджет категории, который необходимо удалить.
          */
-        void signalDeleteCategory(UneditableEventCategoryWidget * uneditableCategory);
+        void signalDeleteCategory(SelectedWidget * uneditableCategory);
 
 
         /**
@@ -101,7 +100,7 @@ class AdminEventCategoryBoxLayout : public QObject {
          *  @param editableCategory - редактируемый виджет категории, редактирование которого
          *  завершено.
          */
-        void editingFinished(EditableEventCategoryWidget * editableCategory);
+        //void editingFinished(EditableEventCategoryWidget * editableCategory);
 
         void signalCategorySelected(const quint32 categoryID);
         void signalCategoryUnselected(const quint32 categoryID);

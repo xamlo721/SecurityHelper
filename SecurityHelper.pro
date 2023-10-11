@@ -17,15 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 FORMS += ui/MainWindow.ui \
-    ui/admin/scenaries/EditableScenarioWidget.ui \
-    ui/admin/scenaries/UneditableScenarioWidget.ui \
-    ui/admin/incidents/EditableIncidentWidget.ui \
-    ui/admin/incidents/UneditableIncidentWidget.ui \
-    ui/admin/events/UneditableEventWidget.ui \
-    ui/admin/categories//UneditableEventCategoryWidget.ui \
+    ui/admin/AdminCategoriesWidget.ui \
     ui/admin/AdminEditMenuWidget.ui \
-    ui/admin/categories/EditableEventCategoryWidget.ui \
-    ui/admin/events/EditableEventWidget.ui \
+    ui/admin/AdminEventsWidget.ui \
+    ui/admin/AdminIncidentsWidget.ui \
+    ui/admin/AdminRecommendationWidget.ui \
+    ui/admin/AdminScenariesWidget.ui \
     ui/user/IncidentMenuWidget.ui \
     ui/user/IncidentWidget.ui \
     ui/user/MainMenuWidget.ui \
@@ -37,16 +34,10 @@ FORMS += ui/MainWindow.ui \
 HEADERS += \
     src/controllers/MainWindowController.h \
     src/controllers/admin/AdminEditMenuController.h \
-    src/controllers/admin/categories/includedEvents/AdminInCategoryFreeEventBoxLayoutController.h \
-    src/controllers/admin/categories/includedEvents/AdminInCategoryIncludedEventBoxLayoutController.h \
-    src/controllers/admin/events/edit/AdminEventBoxLayoutController.h \
-    src/controllers/admin/categories/edit/AdminEventCategoryBoxLayoutController.h \
-    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentFreeEventBoxLayoutController.h \
-    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentIncludedEventBoxLayoutController.h \
-    src/controllers/admin/incidents/edit/AdminIncidentBoxLayoutController.h \
-    src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioFreeIncidentBoxLayoutController.h \
-    src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioIncludedIncidentBoxLayoutController.h \
-    src/controllers/admin/scenaries/edit/AdminScenarioBoxLayoutController.h \
+    src/controllers/admin/SelectedWidgetStorage.h \
+    src/controllers/admin/categories/CategoryController.h \
+    src/controllers/admin/incidents/IncidentController.h \
+    src/controllers/admin/scenaries/ScenariesController.h \
     src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserCategoryEventWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
@@ -73,49 +64,26 @@ HEADERS += \
     src/ui/admin/EnumMessageBoxItemVariants.h \
     src/ui/admin/EnumMessageBoxVariants.h \
     src/ui/admin/ItemDeletionMessageBox.h \
-    src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.h \
-    src/ui/admin/UneditableItemMenu.h \
-    src/ui/admin/categories/edit/EditableEventCategoryWidget.h \
-    src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.h \
-    src/ui/admin/categories/includedEvents/InCategoryEventWidgetStorage.h \
-    src/ui/admin/events/edit/AdminEventBoxLayout.h \
-    src/ui/admin/events/edit/EditableEventWidget.h \
-    src/ui/admin/categories/edit/EventCategoryWidgetStorage.h \
-    src/ui/admin/categories/edit/UneditableEventCategoryWidget.h \
-    src/ui/admin/events/edit/EventWidgetStorage.h \
-    src/ui/admin/events/edit/UneditableEventWidget.h \
-    src/ui/admin/incidents/edit/AdminIncidentBoxLayout.h \
-    src/ui/admin/incidents/edit/EditableIncidentWidget.h \
-    src/ui/admin/incidents/edit/IncidentWidgetStorage.h \
-    src/ui/admin/incidents/edit/UneditableIncidentWidget.h \
-    src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h \
-    src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.h \
-    src/ui/admin/scenaries/edit/AdminScenarioBoxLayout.h \
-    src/ui/admin/scenaries/edit/EditableScenarioWidget.h \
-    src/ui/admin/scenaries/edit/ScenarioWidgetStorage.h \
-    src/ui/admin/scenaries/edit/UneditableScenarioWidget.h \
-    src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.h \
-    src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.h \
+    src/ui/admin/AdminEventCategoryBoxLayout.h \
     src/ui/user/IncidentMenuWidget.h \
     src/ui/user/IncidentWidget.h \
     src/ui/user/MainMenuWidget.h \
     src/ui/user/RecommendationsWidget.h \
     src/ui/user/ScenarioMenuWidget.h \
-    src/ui/user/ScenarioWidget.h
+    src/ui/user/ScenarioWidget.h \
+    src/ui/admin/AdminCategoriesWidget.h \
+    src/ui/admin/AdminEventsWidget.h \
+    src/ui/admin/AdminIncidentsWidget.h \
+    src/ui/admin/AdminRecommendationWidget.h \
+    src/ui/admin/AdminScenariesWidget.h
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/controllers/admin/AdminEditMenuController.cpp \
-    src/controllers/admin/categories/includedEvents/AdminInCategoryFreeEventBoxLayoutController.cpp \
-    src/controllers/admin/categories/includedEvents/AdminInCategoryIncludedEventBoxLayoutController.cpp \
-    src/controllers/admin/events/edit/AdminEventBoxLayoutController.cpp \
-    src/controllers/admin/categories/edit/AdminEventCategoryBoxLayoutController.cpp \
-    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentFreeEventBoxLayoutController.cpp \
-    src/controllers/admin/incidents/IncludedEvents/AdminInIncidentIncludedEventBoxLayoutController.cpp \
-    src/controllers/admin/incidents/edit/AdminIncidentBoxLayoutController.cpp \
-    src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioFreeIncidentBoxLayoutController.cpp \
-    src/controllers/admin/scenaries/IncludedIncidents/AdminInScenarioIncludedIncidentBoxLayoutController.cpp \
-    src/controllers/admin/scenaries/edit/AdminScenarioBoxLayoutController.cpp \
+    src/controllers/admin/SelectedWidgetStorage.cpp \
+    src/controllers/admin/categories/CategoryController.cpp \
+    src/controllers/admin/incidents/IncidentController.cpp \
+    src/controllers/admin/scenaries/ScenariesController.cpp \
     src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
@@ -133,35 +101,18 @@ SOURCES += \
     src/ui/SelectedWidget.cpp \
     src/ui/admin/AdminEditMenuWidget.cpp \
     src/ui/admin/ItemDeletionMessageBox.cpp \
-    src/ui/admin/categories/edit/AdminEventCategoryBoxLayout.cpp \
-    src/ui/admin/UneditableItemMenu.cpp \
-    src/ui/admin/categories/edit/EditableEventCategoryWidget.cpp \
-    src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.cpp \
-    src/ui/admin/categories/includedEvents/InCategoryEventWidgetStorage.cpp \
-    src/ui/admin/events/edit/AdminEventBoxLayout.cpp \
-    src/ui/admin/events/edit/EditableEventWidget.cpp \
-    src/ui/admin/categories/edit/EventCategoryWidgetStorage.cpp \
-    src/ui/admin/categories/edit/UneditableEventCategoryWidget.cpp \
-    src/ui/admin/events/edit/EventWidgetStorage.cpp \
-    src/ui/admin/events/edit/UneditableEventWidget.cpp \
-    src/ui/admin/incidents/edit/AdminIncidentBoxLayout.cpp \
-    src/ui/admin/incidents/edit/EditableIncidentWidget.cpp \
-    src/ui/admin/incidents/edit/IncidentWidgetStorage.cpp \
-    src/ui/admin/incidents/edit/UneditableIncidentWidget.cpp \
-    src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.cpp \
-    src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.cpp \
-    src/ui/admin/scenaries/edit/AdminScenarioBoxLayout.cpp \
-    src/ui/admin/scenaries/edit/EditableScenarioWidget.cpp \
-    src/ui/admin/scenaries/edit/ScenarioWidgetStorage.cpp \
-    src/ui/admin/scenaries/edit/UneditableScenarioWidget.cpp \
-    src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.cpp \
-    src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.cpp \
+    src/ui/admin/AdminEventCategoryBoxLayout.cpp \
     src/ui/user/IncidentMenuWidget.cpp \
     src/ui/user/IncidentWidget.cpp \
     src/ui/user/MainMenuWidget.cpp \
     src/ui/user/RecommendationsWidget.cpp \
     src/ui/user/ScenarioMenuWidget.cpp \
-    src/ui/user/ScenarioWidget.cpp
+    src/ui/user/ScenarioWidget.cpp \
+    src/ui/admin/AdminCategoriesWidget.cpp \
+    src/ui/admin/AdminEventsWidget.cpp \
+    src/ui/admin/AdminIncidentsWidget.cpp \
+    src/ui/admin/AdminRecommendationWidget.cpp \
+    src/ui/admin/AdminScenariesWidget.cpp
 
 DISTFILES += \
     rss/StockDatabase/Categories.xml \

@@ -16,37 +16,37 @@ AdminEditMenuWidget::AdminEditMenuWidget(QWidget *parent) : QWidget(parent), ui(
 
 
 
-    QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
-    QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
+//    QObject::connect(this->ui->pushButton_addCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddCategoryButtonPressed);
+//    QObject::connect(this->ui->pushButton_deleteSelectedCategories, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedCategoriesButtonPressed);
 
-    QObject::connect(this->ui->pushButton_addToCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToCategoryButtonPressed);
-    QObject::connect(this->ui->pushButton_removeFromCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromCategoryButtonPressed);
-
-
-
-    QObject::connect(this->ui->pushButton_addEvent, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddEventButtonPressed);
-    QObject::connect(this->ui->pushButton_deleteSelectedEvents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed);
+//    QObject::connect(this->ui->pushButton_addToCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToCategoryButtonPressed);
+//    QObject::connect(this->ui->pushButton_removeFromCategory, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromCategoryButtonPressed);
 
 
 
-    QObject::connect(this->ui->pushButton_addIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddIncidentButtonPressed);
-    QObject::connect(this->ui->pushButton_deleteSelectedIncidents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedIncidentsButtonPressed);
-
-    QObject::connect(this->ui->pushButton_addToIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToIncidentButtonPressed);
-    QObject::connect(this->ui->pushButton_removeFromIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromIncidentButtonPressed);
+//    QObject::connect(this->ui->pushButton_addEvent, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddEventButtonPressed);
+//    QObject::connect(this->ui->pushButton_deleteSelectedEvents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedEventsButtonPressed);
 
 
 
-    QObject::connect(this->ui->pushButton_addScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddScenarioButtonPressed);
-    QObject::connect(this->ui->pushButton_deleteSelectedScenaries, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedScenariesButtonPressed);
+//    QObject::connect(this->ui->pushButton_addIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddIncidentButtonPressed);
+//    QObject::connect(this->ui->pushButton_deleteSelectedIncidents, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedIncidentsButtonPressed);
 
-    QObject::connect(this->ui->pushButton_addToScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToScenarioButtonPressed);
-    QObject::connect(this->ui->pushButton_removeFromScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromScenarioButtonPressed);
+//    QObject::connect(this->ui->pushButton_addToIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToIncidentButtonPressed);
+//    QObject::connect(this->ui->pushButton_removeFromIncident, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromIncidentButtonPressed);
 
 
 
-    this->ui->pushButton_deleteSelectedCategories->setMouseTracking(true);
-    this->ui->pushButton_deleteSelectedCategories->installEventFilter(this);
+//    QObject::connect(this->ui->pushButton_addScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddScenarioButtonPressed);
+//    QObject::connect(this->ui->pushButton_deleteSelectedScenaries, &QPushButton::clicked, this, &AdminEditMenuWidget::signalDeleteSelectedScenariesButtonPressed);
+
+//    QObject::connect(this->ui->pushButton_addToScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalAddToScenarioButtonPressed);
+//    QObject::connect(this->ui->pushButton_removeFromScenario, &QPushButton::clicked, this, &AdminEditMenuWidget::signalRemoveFromScenarioButtonPressed);
+
+
+
+//    this->ui->pushButton_deleteSelectedCategories->setMouseTracking(true);
+//    this->ui->pushButton_deleteSelectedCategories->installEventFilter(this);
 }
 
 /**
@@ -77,21 +77,21 @@ void AdminEditMenuWidget::setupScrollAreas() {
 
 
     /// Устанавливаем во все scrollArea соответствущие boxLayout
-    this->ui->scrollAreaWidgetContents_categories->setLayout(boxLayoutCategories);
-    this->ui->scrollAreaWidgetContents_categories_freeEvents->setLayout(boxLayoutInCategoryFreeEvents);
-    this->ui->scrollAreaWidgetContents_categories_includedEvent->setLayout(boxLayoutInCategoryContainedEvents);
+//    this->ui->scrollAreaWidgetContents_categories->setLayout(boxLayoutCategories);
+//    this->ui->scrollAreaWidgetContents_categories_freeEvents->setLayout(boxLayoutInCategoryFreeEvents);
+//    this->ui->scrollAreaWidgetContents_categories_includedEvent->setLayout(boxLayoutInCategoryContainedEvents);
 
 
-    this->ui->scrollAreaWidgetContents_events->setLayout(boxLayoutEvents);
+//    this->ui->scrollAreaWidgetContents_events->setLayout(boxLayoutEvents);
 
 
-    this->ui->scrollAreaWidgetContents_incidents->setLayout(boxLayoutIncidents);
-    this->ui->scrollAreaWidgetContents_incidents_freeEvents->setLayout(boxLayoutInIncidentFreeEvents);
-    this->ui->scrollAreaWidgetContents_incidents_includedEvent->setLayout(boxLayoutInIncidentContainedEvents);
+//    this->ui->scrollAreaWidgetContents_incidents->setLayout(boxLayoutIncidents);
+//    this->ui->scrollAreaWidgetContents_incidents_freeEvents->setLayout(boxLayoutInIncidentFreeEvents);
+//    this->ui->scrollAreaWidgetContents_incidents_includedEvent->setLayout(boxLayoutInIncidentContainedEvents);
 
-    this->ui->scrollAreaWidgetContents_scenaries->setLayout(boxLayoutScenaries);
-    this->ui->scrollAreaWidgetContents_scenaries_freeIncidents->setLayout(boxLayoutInScenarioFreeIncidents);
-    this->ui->scrollAreaWidgetContents_scenaries_includedIncidents->setLayout(boxLayoutInScenarioContainedIncidents);
+//    this->ui->scrollAreaWidgetContents_scenaries->setLayout(boxLayoutScenaries);
+//    this->ui->scrollAreaWidgetContents_scenaries_freeIncidents->setLayout(boxLayoutInScenarioFreeIncidents);
+//    this->ui->scrollAreaWidgetContents_scenaries_includedIncidents->setLayout(boxLayoutInScenarioContainedIncidents);
 }
 
 
@@ -210,21 +210,21 @@ AdminEditMenuWidget::~AdminEditMenuWidget() {
 }
 
 void AdminEditMenuWidget::setAllAddToButtonsDisabled() {
-    this->ui->pushButton_addToCategory->setEnabled(false);
-    this->ui->pushButton_addToIncident->setEnabled(false);
-    this->ui->pushButton_addToScenario->setEnabled(false);
+//    this->ui->pushButton_addToCategory->setEnabled(false);
+//    this->ui->pushButton_addToIncident->setEnabled(false);
+//    this->ui->pushButton_addToScenario->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setAllDeleteButtonsDisabled() {
-    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
-    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
-    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
-    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
-    this->ui->pushButton_deleteRecommendation->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
+//    this->ui->pushButton_deleteRecommendation->setEnabled(false);
 
-    this->ui->pushButton_removeFromCategory->setEnabled(false);
-    this->ui->pushButton_removeFromIncident->setEnabled(false);
-    this->ui->pushButton_removeFromScenario->setEnabled(false);
+//    this->ui->pushButton_removeFromCategory->setEnabled(false);
+//    this->ui->pushButton_removeFromIncident->setEnabled(false);
+//    this->ui->pushButton_removeFromScenario->setEnabled(false);
 
 }
 
@@ -233,54 +233,54 @@ void AdminEditMenuWidget::setAllDeleteButtonsDisabled() {
 
 /// Блок управления кнопками категорий событий
 void AdminEditMenuWidget::setAddCategoryButtonEnabled() {
-    this->ui->pushButton_addCategory->setEnabled(true);
+//    this->ui->pushButton_addCategory->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddCategoryButtonDisabled() {
-    this->ui->pushButton_addCategory->setEnabled(false);
+//    this->ui->pushButton_addCategory->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonEnabled() {
-    this->ui->pushButton_deleteSelectedCategories->setEnabled(true);
+//    this->ui->pushButton_deleteSelectedCategories->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedCategoriesButtonDisabled() {
-    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
 }
 
 /// Блок управления кнопками событий в категориях событий
 void AdminEditMenuWidget::setAddToCategoryButtonEnabled() {
-    this->ui->pushButton_addToCategory->setEnabled(true);
+//    this->ui->pushButton_addToCategory->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddToCategoryButtonDisabled() {
-    this->ui->pushButton_addToCategory->setEnabled(false);
+//    this->ui->pushButton_addToCategory->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setRemoveFromCategoryButtonEnabled() {
-    this->ui->pushButton_removeFromCategory->setEnabled(true);
+//    this->ui->pushButton_removeFromCategory->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setRemoveFromCategoryButtonDisabled() {
-    this->ui->pushButton_removeFromCategory->setEnabled(false);
+//    this->ui->pushButton_removeFromCategory->setEnabled(false);
 }
 
 
 // Блок управления кнопками вкладки События
 void AdminEditMenuWidget::setAddEventButtonEnabled() {
-    this->ui->pushButton_addEvent->setEnabled(true);
+//    this->ui->pushButton_addEvent->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddEventButtonDisabled() {
-    this->ui->pushButton_addEvent->setEnabled(false);
+//    this->ui->pushButton_addEvent->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedEventsButtonEnabled() {
-    this->ui->pushButton_deleteSelectedEvents->setEnabled(true);
+//    this->ui->pushButton_deleteSelectedEvents->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedEventsButtonDisabled() {
-    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedEvents->setEnabled(false);
 }
 
 
@@ -288,36 +288,36 @@ void AdminEditMenuWidget::setDeleteSelectedEventsButtonDisabled() {
 
 /// Блок управления кнопками инцидентов
 void AdminEditMenuWidget::setAddIncidentButtonEnabled() {
-    this->ui->pushButton_addIncident->setEnabled(true);
+//    this->ui->pushButton_addIncident->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddIncidentButtonDisabled() {
-    this->ui->pushButton_addIncident->setEnabled(false);
+//    this->ui->pushButton_addIncident->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedIncidentsButtonEnabled() {
-    this->ui->pushButton_deleteSelectedIncidents->setEnabled(true);
+//    this->ui->pushButton_deleteSelectedIncidents->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedIncidentsButtonDisabled() {
-    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedIncidents->setEnabled(false);
 }
 
 /// Блок управления кнопками событий в инцидентах
 void AdminEditMenuWidget::setAddToIncidentButtonEnabled() {
-    this->ui->pushButton_addToIncident->setEnabled(true);
+//    this->ui->pushButton_addToIncident->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddToIncidentButtonDisabled() {
-    this->ui->pushButton_addToIncident->setEnabled(false);
+//    this->ui->pushButton_addToIncident->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setRemoveFromIncidentButtonEnabled() {
-    this->ui->pushButton_removeFromIncident->setEnabled(true);
+//    this->ui->pushButton_removeFromIncident->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setRemoveFromIncidentButtonDisabled() {
-    this->ui->pushButton_removeFromIncident->setEnabled(false);
+//    this->ui->pushButton_removeFromIncident->setEnabled(false);
 }
 
 
@@ -325,34 +325,34 @@ void AdminEditMenuWidget::setRemoveFromIncidentButtonDisabled() {
 
 /// Блок управления кнопками сценариев
 void AdminEditMenuWidget::setAddScenarioButtonEnabled() {
-    this->ui->pushButton_addScenario->setEnabled(true);
+//    this->ui->pushButton_addScenario->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddScenarioButtonDisabled() {
-    this->ui->pushButton_addScenario->setEnabled(false);
+//    this->ui->pushButton_addScenario->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedScenariesButtonEnabled() {
-    this->ui->pushButton_deleteSelectedScenaries->setEnabled(true);
+//    this->ui->pushButton_deleteSelectedScenaries->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setDeleteSelectedScenariesButtonDisabled() {
-    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
+//    this->ui->pushButton_deleteSelectedScenaries->setEnabled(false);
 }
 
 /// Блок управления кнопками инцидентов в сценариях
 void AdminEditMenuWidget::setAddToScenarioButtonEnabled() {
-    this->ui->pushButton_addToScenario->setEnabled(true);
+//    this->ui->pushButton_addToScenario->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setAddToScenarioButtonDisabled() {
-    this->ui->pushButton_addToScenario->setEnabled(false);
+//    this->ui->pushButton_addToScenario->setEnabled(false);
 }
 
 void AdminEditMenuWidget::setRemoveFromScenarioButtonEnabled() {
-    this->ui->pushButton_removeFromScenario->setEnabled(true);
+//    this->ui->pushButton_removeFromScenario->setEnabled(true);
 }
 
 void AdminEditMenuWidget::setRemoveFromScenarioButtonDisabled() {
-    this->ui->pushButton_removeFromScenario->setEnabled(false);
+//    this->ui->pushButton_removeFromScenario->setEnabled(false);
 }

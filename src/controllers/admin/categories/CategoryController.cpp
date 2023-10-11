@@ -1,6 +1,5 @@
 #include "CategoryController.h"
 
-CategoryController::CategoryController(QObject *parent) : QObject(parent)
-{
+CategoryController::CategoryController(QObject *parent) : QObject(parent) {
 
 }

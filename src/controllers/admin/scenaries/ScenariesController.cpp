@@ -1,6 +1,5 @@
 #include "ScenariesController.h"
 
-ScenariesController::ScenariesController(QObject *parent) : QObject(parent)
-{
+ScenariesController::ScenariesController(QObject *parent) : QObject(parent) {
 
 }

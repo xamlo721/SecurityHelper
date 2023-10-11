@@ -13,6 +13,11 @@ class SelectedWidget : public QWidget {
 
     Q_OBJECT
 
+    protected:
+        quint32 id;
+        QString text;
+        Ui::SelectedWidget *ui;
+
     public:
         SelectedWidget(quint32 id, QString title, QWidget *parent = nullptr);
 
@@ -36,11 +41,6 @@ class SelectedWidget : public QWidget {
     signals:
         void signalSelected(quint32 incidentId, const bool isForAdminMode = false);
         void signalUnselected(quint32 incidentId, const bool isForAdminMode = false);
-
-    private:
-        quint32 id;
-        QString text;
-        Ui::SelectedWidget *ui;
 
 };
 
