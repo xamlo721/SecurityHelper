@@ -13,7 +13,7 @@ SecurityIncident AdminInScenarioFreeIncidentBoxLayoutController::addFreeIncident
 }
 
 void AdminInScenarioFreeIncidentBoxLayoutController::addFreeIncidentWidget(SecurityIncident incident) {
-    InScenarioIncidentWidget *incidentWidget = new InScenarioIncidentWidget(incident.getId(), incident.getText(), incident.getName());
+    SelectedWidget *incidentWidget = new SelectedWidget(incident.getId(), incident.getName()); // incident.getText(),
 
     this->widgetStorage.appendWidget(incidentWidget);
     this->boxLayoutIncidents->addIncidentWidget(incidentWidget);
@@ -22,7 +22,7 @@ void AdminInScenarioFreeIncidentBoxLayoutController::addFreeIncidentWidget(Secur
 void AdminInScenarioFreeIncidentBoxLayoutController::addDisabledFreeIncident(SecurityIncident incident) {
     freeIncidents.append(incident);
 
-    InScenarioIncidentWidget *incidentWidget = new InScenarioIncidentWidget(incident.getId(), incident.getText(), incident.getName());
+    SelectedWidget *incidentWidget = new SelectedWidget(incident.getId(),  incident.getName()); //incident.getText(),
 
     this->widgetStorage.appendWidget(incidentWidget);
     this->boxLayoutIncidents->addIncidentWidget(incidentWidget);
@@ -41,7 +41,7 @@ void AdminInScenarioFreeIncidentBoxLayoutController::deleteFreeIncident(quint32 
 }
 
 void AdminInScenarioFreeIncidentBoxLayoutController::deleteFreeIncidentWidget(quint32 incidentID) {
-    InScenarioIncidentWidget *tempWidget = this->widgetStorage.getIncidentWidget(incidentID);
+    SelectedWidget *tempWidget = this->widgetStorage.getIncidentWidget(incidentID);
 
     this->widgetStorage.removeWidget(incidentID);
     this->boxLayoutIncidents->deleteIncidentWidget(tempWidget);
@@ -53,7 +53,7 @@ void AdminInScenarioFreeIncidentBoxLayoutController::renameFreeIncident(const qu
 
             incident.setText(newIncidentTitle);
 
-            this->widgetStorage.getIncidentWidget(incidentID)->setTitle(newIncidentTitle);
+            this->widgetStorage.getIncidentWidget(incidentID)->setText(newIncidentTitle);
         }
     }
 }
@@ -101,7 +101,7 @@ void AdminInScenarioFreeIncidentBoxLayoutController::onFreeIncidentSelected(cons
     if(incidentsChecked != 1) {
 
 
-        for(quint32 i = 0; i < freeIncidents.size(); i++) {
+        for(qint32 i = 0; i < freeIncidents.size(); i++) {
             SecurityIncident incident = this->freeIncidents.at(i);
             if(incident.getId() == incidentID) {
                 this->selectedFreeIncidents.append(incident);
@@ -139,7 +139,7 @@ void AdminInScenarioFreeIncidentBoxLayoutController::onFreeIncidentUnselected(co
 
     else {
 
-        for(quint32 i = 0; i < selectedFreeIncidents.size(); i++) {
+        for(qint32 i = 0; i < selectedFreeIncidents.size(); i++) {
             SecurityIncident selectedIncident = this->selectedFreeIncidents.at(i);
             if(selectedIncident.getId() == incidentID)
                 this->selectedFreeIncidents.removeOne(selectedIncident);

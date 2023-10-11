@@ -17,18 +17,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 FORMS += ui/MainWindow.ui \
-    ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.ui \
-    ui/admin/scenaries/edit/EditableScenarioWidget.ui \
-    ui/admin/scenaries/edit/UneditableScenarioWidget.ui \
-    ui/admin/incidents/includedEvents/InIncidentEventWidget.ui \
-    ui/admin/incidents/edit/EditableIncidentWidget.ui \
-    ui/admin/incidents/edit/UneditableIncidentWidget.ui \
-    ui/admin/categories/includedEvents/InCategoryEventWidget.ui \
-    ui/admin/events/edit/UneditableEventWidget.ui \
-    ui/admin/categories/edit/UneditableEventCategoryWidget.ui \
+    ui/admin/scenaries/EditableScenarioWidget.ui \
+    ui/admin/scenaries/UneditableScenarioWidget.ui \
+    ui/admin/incidents/EditableIncidentWidget.ui \
+    ui/admin/incidents/UneditableIncidentWidget.ui \
+    ui/admin/events/UneditableEventWidget.ui \
+    ui/admin/categories//UneditableEventCategoryWidget.ui \
     ui/admin/AdminEditMenuWidget.ui \
-    ui/admin/categories/edit/EditableEventCategoryWidget.ui \
-    ui/admin/events/edit/EditableEventWidget.ui \
+    ui/admin/categories/EditableEventCategoryWidget.ui \
+    ui/admin/events/EditableEventWidget.ui \
     ui/user/IncidentMenuWidget.ui \
     ui/user/IncidentWidget.ui \
     ui/user/MainMenuWidget.ui \
@@ -80,7 +77,6 @@ HEADERS += \
     src/ui/admin/UneditableItemMenu.h \
     src/ui/admin/categories/edit/EditableEventCategoryWidget.h \
     src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.h \
-    src/ui/admin/categories/includedEvents/InCategoryEventWidget.h \
     src/ui/admin/categories/includedEvents/InCategoryEventWidgetStorage.h \
     src/ui/admin/events/edit/AdminEventBoxLayout.h \
     src/ui/admin/events/edit/EditableEventWidget.h \
@@ -93,14 +89,12 @@ HEADERS += \
     src/ui/admin/incidents/edit/IncidentWidgetStorage.h \
     src/ui/admin/incidents/edit/UneditableIncidentWidget.h \
     src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h \
-    src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h \
     src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.h \
     src/ui/admin/scenaries/edit/AdminScenarioBoxLayout.h \
     src/ui/admin/scenaries/edit/EditableScenarioWidget.h \
     src/ui/admin/scenaries/edit/ScenarioWidgetStorage.h \
     src/ui/admin/scenaries/edit/UneditableScenarioWidget.h \
     src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.h \
-    src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.h \
     src/ui/user/IncidentMenuWidget.h \
     src/ui/user/IncidentWidget.h \
@@ -143,7 +137,6 @@ SOURCES += \
     src/ui/admin/UneditableItemMenu.cpp \
     src/ui/admin/categories/edit/EditableEventCategoryWidget.cpp \
     src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.cpp \
-    src/ui/admin/categories/includedEvents/InCategoryEventWidget.cpp \
     src/ui/admin/categories/includedEvents/InCategoryEventWidgetStorage.cpp \
     src/ui/admin/events/edit/AdminEventBoxLayout.cpp \
     src/ui/admin/events/edit/EditableEventWidget.cpp \
@@ -156,14 +149,12 @@ SOURCES += \
     src/ui/admin/incidents/edit/IncidentWidgetStorage.cpp \
     src/ui/admin/incidents/edit/UneditableIncidentWidget.cpp \
     src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.cpp \
-    src/ui/admin/incidents/includedEvents/InIncidentEventWidget.cpp \
     src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.cpp \
     src/ui/admin/scenaries/edit/AdminScenarioBoxLayout.cpp \
     src/ui/admin/scenaries/edit/EditableScenarioWidget.cpp \
     src/ui/admin/scenaries/edit/ScenarioWidgetStorage.cpp \
     src/ui/admin/scenaries/edit/UneditableScenarioWidget.cpp \
     src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.cpp \
-    src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.cpp \
     src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidgetStorage.cpp \
     src/ui/user/IncidentMenuWidget.cpp \
     src/ui/user/IncidentWidget.cpp \

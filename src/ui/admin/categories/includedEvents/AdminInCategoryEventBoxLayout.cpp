@@ -6,7 +6,7 @@ void AdminInCategoryEventBoxLayout::init(QVBoxLayout *boxLayout) {
     this->boxLayoutEvents = boxLayout;
 }
 
-void AdminInCategoryEventBoxLayout::addEventWidget(InCategoryEventWidget *eventWidget) {
+void AdminInCategoryEventBoxLayout::addEventWidget(SelectedWidget *eventWidget) {
     this->initEventWidget(eventWidget);
 
     QVBoxLayout *layout = new QVBoxLayout();
@@ -16,7 +16,7 @@ void AdminInCategoryEventBoxLayout::addEventWidget(InCategoryEventWidget *eventW
     this->widgetBoxLayout.append(layout);
 }
 
-void AdminInCategoryEventBoxLayout::renameEventWidget(InCategoryEventWidget *eventWidget) {
+void AdminInCategoryEventBoxLayout::renameEventWidget(SelectedWidget *eventWidget) {
     for(QVBoxLayout *layout : widgetBoxLayout){
         if(layout->itemAt(0)->widget() == eventWidget) {
             layout->itemAt(0)->widget()->repaint();
@@ -24,7 +24,7 @@ void AdminInCategoryEventBoxLayout::renameEventWidget(InCategoryEventWidget *eve
     }
 }
 
-void AdminInCategoryEventBoxLayout::deleteEventWidget(InCategoryEventWidget *eventWidget) {
+void AdminInCategoryEventBoxLayout::deleteEventWidget(SelectedWidget *eventWidget) {
     for(QVBoxLayout *layout : widgetBoxLayout){
         if(layout->itemAt(0)->widget() == eventWidget) {
             QLayoutItem* item;
@@ -54,18 +54,18 @@ void AdminInCategoryEventBoxLayout::clearEvents() {
     }
 }
 
-void AdminInCategoryEventBoxLayout::unselectEventWidget(InCategoryEventWidget *eventWidget) {
-    eventWidget->setUnselected();
+void AdminInCategoryEventBoxLayout::unselectEventWidget(SelectedWidget *eventWidget) {
+    eventWidget->unselect();
 }
 
-void AdminInCategoryEventBoxLayout::enableEventWidget(InCategoryEventWidget *eventWidget) {
+void AdminInCategoryEventBoxLayout::enableEventWidget(SelectedWidget *eventWidget) {
     eventWidget->setEnabled(true);
 }
-void AdminInCategoryEventBoxLayout::disableEventWidget(InCategoryEventWidget *eventWidget) {
+void AdminInCategoryEventBoxLayout::disableEventWidget(SelectedWidget *eventWidget) {
     eventWidget->setEnabled(false);
 }
 
-void AdminInCategoryEventBoxLayout::initEventWidget(InCategoryEventWidget *eventWidget) {
-    QObject::connect(eventWidget, &InCategoryEventWidget::signalEventSelected, this, &AdminInCategoryEventBoxLayout::signalEventSelected);
-    QObject::connect(eventWidget, &InCategoryEventWidget::signalEventUnselected, this, &AdminInCategoryEventBoxLayout::signalEventUnselected);
+void AdminInCategoryEventBoxLayout::initEventWidget(SelectedWidget *eventWidget) {
+    QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &AdminInCategoryEventBoxLayout::signalEventSelected);
+    QObject::connect(eventWidget, &SelectedWidget::signalUnselected, this, &AdminInCategoryEventBoxLayout::signalEventUnselected);
 }

@@ -13,7 +13,7 @@ SecurityEvent AdminInIncidentIncludedEventBoxLayoutController::addIncludedEvent(
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::addIncludedEventWidget(SecurityEvent event) {
-    InIncidentEventWidget *eventWidget = new InIncidentEventWidget(event.getId(), event.getText());
+    SelectedWidget *eventWidget = new SelectedWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
@@ -31,7 +31,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::deleteIncludedEvent(quint3
 }
 
 void AdminInIncidentIncludedEventBoxLayoutController::deleteIncludedEventWidget(quint32 eventID) {
-    InIncidentEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
+    SelectedWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
 
     this->widgetStorage.removeWidget(eventID);
     this->boxLayoutEvents->deleteEventWidget(tempWidget);
@@ -43,7 +43,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::renameIncludedEvent(const 
 
             event.setText(newEventTitle);
 
-            this->widgetStorage.getEventWidget(eventID)->setTitle(newEventTitle);
+            this->widgetStorage.getEventWidget(eventID)->setText(newEventTitle);
         }
     }
 }
@@ -91,7 +91,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventSelected(co
     if(eventsChecked != 1) {
 
 
-        for(quint32 i = 0; i < includedEvents.size(); i++) {
+        for(qint32 i = 0; i < includedEvents.size(); i++) {
             SecurityEvent event = this->includedEvents.at(i);
             if(event.getId() == eventID) {
                 this->selectedIncludedEvents.append(event);
@@ -130,7 +130,7 @@ void AdminInIncidentIncludedEventBoxLayoutController::onIncludedEventUnselected(
     else {
 
 
-        for(quint32 i = 0; i < selectedIncludedEvents.size(); i++) {
+        for(qint32 i = 0; i < selectedIncludedEvents.size(); i++) {
             SecurityEvent selectedEvent = this->selectedIncludedEvents.at(i);
             if(selectedEvent.getId() == eventID)
                 this->selectedIncludedEvents.removeOne(selectedEvent);

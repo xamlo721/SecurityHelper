@@ -24,6 +24,8 @@ class SelectedWidget : public QWidget {
 
         QString getText();
 
+        void setText(QString title);
+
         void select();
 
         void unselect();
@@ -33,6 +35,7 @@ class SelectedWidget : public QWidget {
 
     signals:
         void signalSelected(quint32 incidentId, const bool isForAdminMode = false);
+        void signalUnselected(quint32 incidentId, const bool isForAdminMode = false);
 
     private:
         quint32 id;

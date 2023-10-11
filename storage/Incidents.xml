@@ -4,8 +4,9 @@
         <Incidents>
             <Incident>
                 <id>0</id>
-                <Name></Name>
-                <Text>Событи</Text>
+                <Name>1234</Name>
+                <Text>Событи
+</Text>
                 <events>2</events>
                 <events>0</events>
                 <events>11</events>

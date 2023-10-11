@@ -13,7 +13,7 @@ SecurityEvent AdminInCategoryIncludedEventBoxLayoutController::addIncludedEvent(
 }
 
 void AdminInCategoryIncludedEventBoxLayoutController::addIncludedEventWidget(SecurityEvent event) {
-    InCategoryEventWidget *eventWidget = new InCategoryEventWidget(event.getId(), event.getText());
+    SelectedWidget *eventWidget = new SelectedWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
@@ -31,7 +31,7 @@ void AdminInCategoryIncludedEventBoxLayoutController::deleteIncludedEvent(quint3
 }
 
 void AdminInCategoryIncludedEventBoxLayoutController::deleteIncludedEventWidget(quint32 eventID) {
-    InCategoryEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
+    SelectedWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
 
     this->widgetStorage.removeWidget(eventID);
     this->boxLayoutEvents->deleteEventWidget(tempWidget);
@@ -44,7 +44,7 @@ void AdminInCategoryIncludedEventBoxLayoutController::renameIncludedEvent(const 
             /// Изменяем имя события
             event.setText(newEventTitle);
             /// Изменяем имя виджета этого события
-            this->widgetStorage.getEventWidget(eventID)->setTitle(newEventTitle);
+            this->widgetStorage.getEventWidget(eventID)->setText(newEventTitle);
         }
     }
 }

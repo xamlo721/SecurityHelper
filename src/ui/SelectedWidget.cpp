@@ -29,6 +29,10 @@ QString SelectedWidget::getText() {
     return this->text;
 }
 
+void SelectedWidget::setText(QString title) {
+    this->ui->pushButton->setText(title);
+}
+
 void SelectedWidget::select() {
     this->ui->pushButton->setDown(true);
 }
@@ -38,7 +42,13 @@ void SelectedWidget::unselect() {
 }
 
 void SelectedWidget::onOpenIncidentButtonClicked() {
-    emit signalSelected(this->id);
+
+    if (this->ui->pushButton->isDown()) {
+        emit signalSelected(this->id);
+    } else {
+        emit signalUnselected(this->id);
+    }
+
 }
 
 SelectedWidget::~SelectedWidget() {

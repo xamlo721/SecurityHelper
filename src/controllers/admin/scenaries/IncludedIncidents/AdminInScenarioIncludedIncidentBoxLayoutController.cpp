@@ -13,7 +13,7 @@ SecurityIncident AdminInScenarioIncludedIncidentBoxLayoutController::addIncluded
 }
 
 void AdminInScenarioIncludedIncidentBoxLayoutController::addIncludedIncidentWidget(SecurityIncident incident) {
-    InScenarioIncidentWidget *incidentWidget = new InScenarioIncidentWidget(incident.getId(), incident.getText(), incident.getName());
+    SelectedWidget *incidentWidget = new SelectedWidget(incident.getId(), incident.getText());//, incident.getName()
 
     this->widgetStorage.appendWidget(incidentWidget);
     this->boxLayoutIncidents->addIncidentWidget(incidentWidget);
@@ -31,7 +31,7 @@ void AdminInScenarioIncludedIncidentBoxLayoutController::deleteIncludedIncident(
 }
 
 void AdminInScenarioIncludedIncidentBoxLayoutController::deleteIncludedIncidentWidget(quint32 incidentID) {
-    InScenarioIncidentWidget *tempWidget = this->widgetStorage.getIncidentWidget(incidentID);
+    SelectedWidget *tempWidget = this->widgetStorage.getIncidentWidget(incidentID);
 
     this->widgetStorage.removeWidget(incidentID);
     this->boxLayoutIncidents->deleteIncidentWidget(tempWidget);
@@ -44,7 +44,7 @@ void AdminInScenarioIncludedIncidentBoxLayoutController::renameIncludedIncident(
 
             incident.setText(newIncidentTitle);
 
-            this->widgetStorage.getIncidentWidget(incidentID)->setTitle(newIncidentTitle);
+            this->widgetStorage.getIncidentWidget(incidentID)->setText(newIncidentTitle);
         }
     }
 }

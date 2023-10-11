@@ -1,12 +1,12 @@
 #ifndef INSCENARIOINCIDENTWIDGETSTORAGE_H
 #define INSCENARIOINCIDENTWIDGETSTORAGE_H
 
-#include "src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h"
+#include "src/ui/SelectedWidget.h"
 
 class InScenarioIncidentWidgetStorage {
 
     private:
-        QList<InScenarioIncidentWidget*> incidentWidgets;
+        QList<SelectedWidget*> incidentWidgets;
         QList<quint32> widgetNumbers;
 
         void sortWidgetNumbers();
@@ -14,12 +14,12 @@ class InScenarioIncidentWidgetStorage {
     public:
         InScenarioIncidentWidgetStorage();
 
-        void appendWidget(InScenarioIncidentWidget *incidentWidget);
+        void appendWidget(SelectedWidget *incidentWidget);
         void removeWidget(quint32 widgetID);
 
         void clear();
 
-        InScenarioIncidentWidget *getIncidentWidget(quint32 widgetID);
+        SelectedWidget *getIncidentWidget(quint32 widgetID);
 
 };
 

@@ -4,7 +4,7 @@
 #include <QObject>
 #include "qboxlayout.h"
 
-#include "src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h"
+#include "src/ui/SelectedWidget.h"
 
 class AdminInIncidentEventBoxLayout : public QObject {
 
@@ -16,7 +16,7 @@ class AdminInIncidentEventBoxLayout : public QObject {
         QList<QVBoxLayout*> widgetBoxLayout;
 
 
-        void initEventWidget(InIncidentEventWidget *eventWidget);
+        void initEventWidget(SelectedWidget *eventWidget);
 
     private slots:
 
@@ -26,16 +26,16 @@ class AdminInIncidentEventBoxLayout : public QObject {
 
         void init(QVBoxLayout *boxLayout);
 
-        void addEventWidget(InIncidentEventWidget *eventWidget);
-        void renameEventWidget(InIncidentEventWidget *eventWidget);
-        void deleteEventWidget(InIncidentEventWidget *eventWidget);
+        void addEventWidget(SelectedWidget *eventWidget);
+        void renameEventWidget(SelectedWidget *eventWidget);
+        void deleteEventWidget(SelectedWidget *eventWidget);
 
         void clearEvents();
 
-        void unselectEventWidget(InIncidentEventWidget *eventWidget);
+        void unselectEventWidget(SelectedWidget *eventWidget);
 
-        void enableEventWidget(InIncidentEventWidget *eventWidget);
-        void disableEventWidget(InIncidentEventWidget *eventWidget);
+        void enableEventWidget(SelectedWidget *eventWidget);
+        void disableEventWidget(SelectedWidget *eventWidget);
 
     public slots:
 

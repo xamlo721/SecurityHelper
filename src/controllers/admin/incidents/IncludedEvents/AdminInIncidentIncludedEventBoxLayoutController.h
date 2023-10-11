@@ -5,7 +5,6 @@
 
 #include "src/items/SecurityEvent.h"
 
-#include "src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h"
 
 #include "src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h"
 

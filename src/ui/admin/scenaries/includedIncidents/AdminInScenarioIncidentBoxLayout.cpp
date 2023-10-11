@@ -6,7 +6,7 @@ void AdminInScenarioIncidentBoxLayout::init(QVBoxLayout *boxLayout) {
     this->boxLayoutIncidents = boxLayout;
 }
 
-void AdminInScenarioIncidentBoxLayout::addIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
+void AdminInScenarioIncidentBoxLayout::addIncidentWidget(SelectedWidget *incidentWidget) {
     this->initEventWidget(incidentWidget);
 
     QVBoxLayout *layout = new QVBoxLayout();
@@ -16,7 +16,7 @@ void AdminInScenarioIncidentBoxLayout::addIncidentWidget(InScenarioIncidentWidge
     this->widgetBoxLayout.append(layout);
 }
 
-void AdminInScenarioIncidentBoxLayout::renameIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
+void AdminInScenarioIncidentBoxLayout::renameIncidentWidget(SelectedWidget *incidentWidget) {
     for(QVBoxLayout *layout : widgetBoxLayout){
         if(layout->itemAt(0)->widget() == incidentWidget) {
             layout->itemAt(0)->widget()->repaint();
@@ -24,7 +24,7 @@ void AdminInScenarioIncidentBoxLayout::renameIncidentWidget(InScenarioIncidentWi
     }
 }
 
-void AdminInScenarioIncidentBoxLayout::deleteIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
+void AdminInScenarioIncidentBoxLayout::deleteIncidentWidget(SelectedWidget *incidentWidget) {
     for(QVBoxLayout *layout : widgetBoxLayout){
         if(layout->itemAt(0)->widget() == incidentWidget) {
             QLayoutItem* item;
@@ -54,18 +54,18 @@ void AdminInScenarioIncidentBoxLayout::clearIncidents() {
     }
 }
 
-void AdminInScenarioIncidentBoxLayout::unselectIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
-    incidentWidget->setUnselected();
+void AdminInScenarioIncidentBoxLayout::unselectIncidentWidget(SelectedWidget *incidentWidget) {
+    incidentWidget->unselect();
 }
 
-void AdminInScenarioIncidentBoxLayout::enableIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
+void AdminInScenarioIncidentBoxLayout::enableIncidentWidget(SelectedWidget *incidentWidget) {
     incidentWidget->setEnabled(true);
 }
-void AdminInScenarioIncidentBoxLayout::disableIncidentWidget(InScenarioIncidentWidget *incidentWidget) {
+void AdminInScenarioIncidentBoxLayout::disableIncidentWidget(SelectedWidget *incidentWidget) {
     incidentWidget->setEnabled(false);
 }
 
-void AdminInScenarioIncidentBoxLayout::initEventWidget(InScenarioIncidentWidget *incidentWidget) {
-    QObject::connect(incidentWidget, &InScenarioIncidentWidget::signalIncidentSelected, this, &AdminInScenarioIncidentBoxLayout::signalIncidentSelected);
-    QObject::connect(incidentWidget, &InScenarioIncidentWidget::signalIncidentUnselected, this, &AdminInScenarioIncidentBoxLayout::signalIncidentUnselected);
+void AdminInScenarioIncidentBoxLayout::initEventWidget(SelectedWidget *incidentWidget) {
+    QObject::connect(incidentWidget, &SelectedWidget::signalSelected, this, &AdminInScenarioIncidentBoxLayout::signalIncidentSelected);
+    QObject::connect(incidentWidget, &SelectedWidget::signalUnselected, this, &AdminInScenarioIncidentBoxLayout::signalIncidentUnselected);
 }

@@ -13,7 +13,7 @@ SecurityEvent AdminInIncidentFreeEventBoxLayoutController::addFreeEvent(Security
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::addFreeEventWidget(SecurityEvent event) {
-    InIncidentEventWidget *eventWidget = new InIncidentEventWidget(event.getId(), event.getText());
+    SelectedWidget *eventWidget = new SelectedWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
@@ -22,7 +22,7 @@ void AdminInIncidentFreeEventBoxLayoutController::addFreeEventWidget(SecurityEve
 void AdminInIncidentFreeEventBoxLayoutController::addDisabledFreeEvent(SecurityEvent event) {
     freeEvents.append(event);
 
-    InIncidentEventWidget *eventWidget = new InIncidentEventWidget(event.getId(), event.getText());
+    SelectedWidget *eventWidget = new SelectedWidget(event.getId(), event.getText());
 
     this->widgetStorage.appendWidget(eventWidget);
     this->boxLayoutEvents->addEventWidget(eventWidget);
@@ -41,7 +41,7 @@ void AdminInIncidentFreeEventBoxLayoutController::deleteFreeEvent(quint32 eventI
 }
 
 void AdminInIncidentFreeEventBoxLayoutController::deleteFreeEventWidget(quint32 eventID) {
-    InIncidentEventWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
+    SelectedWidget *tempWidget = this->widgetStorage.getEventWidget(eventID);
 
     this->widgetStorage.removeWidget(eventID);
     this->boxLayoutEvents->deleteEventWidget(tempWidget);
@@ -54,7 +54,7 @@ void AdminInIncidentFreeEventBoxLayoutController::renameFreeEvent(const quint32 
 
             event.setText(newEventTitle);
 
-            this->widgetStorage.getEventWidget(eventID)->setTitle(newEventTitle);
+            this->widgetStorage.getEventWidget(eventID)->setText(newEventTitle);
         }
     }
 }
@@ -101,7 +101,7 @@ void AdminInIncidentFreeEventBoxLayoutController::onFreeEventSelected(const quin
 
     if(eventsChecked != 1) {
 
-        for(quint32 i = 0; i < freeEvents.size(); i++) {
+        for(qint32 i = 0; i < freeEvents.size(); i++) {
             SecurityEvent event = this->freeEvents.at(i);
             if(event.getId() == eventID) {
                 this->selectedFreeEvents.append(event);
@@ -139,7 +139,7 @@ void AdminInIncidentFreeEventBoxLayoutController::onFreeEventUnselected(const qu
 
     else {
 
-        for(quint32 i = 0; i < selectedFreeEvents.size(); i++) {
+        for(qint32 i = 0; i < selectedFreeEvents.size(); i++) {
             SecurityEvent selectedEvent = this->selectedFreeEvents.at(i);
             if(selectedEvent.getId() == eventID)
                 this->selectedFreeEvents.removeOne(selectedEvent);

@@ -5,18 +5,18 @@ InIncidentEventWidgetStorage::InIncidentEventWidgetStorage() {}
 void InIncidentEventWidgetStorage::sortWidgetNumbers() {
     this->widgetNumbers.clear();
 
-    for(quint32 i = 0; i < eventWidgets.size(); i++)
+    for(qint32 i = 0; i < eventWidgets.size(); i++)
         this->widgetNumbers.append(i + 1);
 }
 
-void InIncidentEventWidgetStorage::appendWidget(InIncidentEventWidget *eventWidget) {
+void InIncidentEventWidgetStorage::appendWidget(SelectedWidget *eventWidget) {
     this->eventWidgets.append(eventWidget);
     this->widgetNumbers.append(this->widgetNumbers.size() + 1);
 }
 
 void InIncidentEventWidgetStorage::removeWidget(quint32 widgetID) {
-    for(InIncidentEventWidget *eventWidget : eventWidgets) {
-        if(eventWidget->getID() == widgetID) {
+    for(SelectedWidget *eventWidget : eventWidgets) {
+        if(eventWidget->getId() == widgetID) {
 
             quint32 widgetPosition = this->eventWidgets.indexOf(eventWidget);
 
@@ -33,9 +33,9 @@ void InIncidentEventWidgetStorage::clear() {
     this->widgetNumbers.clear();
 }
 
-InIncidentEventWidget *InIncidentEventWidgetStorage::getEventWidget(quint32 widgetID) {
-    for(InIncidentEventWidget *eventWidget : eventWidgets) {
-        if(eventWidget->getID() == widgetID)
+SelectedWidget *InIncidentEventWidgetStorage::getEventWidget(quint32 widgetID) {
+    for(SelectedWidget *eventWidget : eventWidgets) {
+        if(eventWidget->getId() == widgetID)
             return eventWidget;
     }
     return nullptr;

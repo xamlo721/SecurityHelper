@@ -66,6 +66,14 @@
                 <id>15</id>
                 <Text>Другое событие</Text>
             </Event>
+            <Event>
+                <id>16</id>
+                <Text>Новое событие</Text>
+            </Event>
+            <Event>
+                <id>17</id>
+                <Text>Новое событие</Text>
+            </Event>
         </Events>
     </Database>
 </xmlDocument>

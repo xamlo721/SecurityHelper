@@ -5,15 +5,13 @@
 
 #include "src/items/SecurityEvent.h"
 
-#include "src/ui/admin/incidents/includedEvents/InIncidentEventWidget.h"
+#include "src/ui/SelectedWidget.h"
 
 #include "src/ui/admin/incidents/includedEvents/AdminInIncidentEventBoxLayout.h"
 
 #include "src/ui/admin/incidents/includedEvents/InIncidentEventWidgetStorage.h"
 
 #include "src/items/SecurityIncident.h"
-
-#include "src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h"
 
 #include "src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.h"
 

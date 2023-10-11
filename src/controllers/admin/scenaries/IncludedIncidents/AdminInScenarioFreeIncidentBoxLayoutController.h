@@ -5,7 +5,7 @@
 
 #include "src/items/SecurityIncident.h"
 
-#include "src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h"
+#include "src/ui/SelectedWidget.h"
 
 #include "src/ui/admin/scenaries/includedIncidents/AdminInScenarioIncidentBoxLayout.h"
 

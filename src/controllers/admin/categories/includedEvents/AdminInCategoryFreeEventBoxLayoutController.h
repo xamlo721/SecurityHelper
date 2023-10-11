@@ -5,7 +5,6 @@
 
 #include "src/items/SecurityEvent.h"
 
-#include "src/ui/admin/categories/includedEvents/InCategoryEventWidget.h"
 
 #include "src/ui/admin/categories/includedEvents/AdminInCategoryEventBoxLayout.h"
 

@@ -4,7 +4,7 @@
 #include <QObject>
 #include "qboxlayout.h"
 
-#include "src/ui/admin/scenaries/includedIncidents/InScenarioIncidentWidget.h"
+#include "src/ui/SelectedWidget.h"
 
 class AdminInScenarioIncidentBoxLayout : public QObject {
 
@@ -16,7 +16,7 @@ class AdminInScenarioIncidentBoxLayout : public QObject {
         QList<QVBoxLayout*> widgetBoxLayout;
 
 
-        void initEventWidget(InScenarioIncidentWidget *incidentWidget);
+        void initEventWidget(SelectedWidget *incidentWidget);
 
     private slots:
 
@@ -26,16 +26,16 @@ class AdminInScenarioIncidentBoxLayout : public QObject {
 
         void init(QVBoxLayout *boxLayout);
 
-        void addIncidentWidget(InScenarioIncidentWidget *incidentWidget);
-        void renameIncidentWidget(InScenarioIncidentWidget *incidentWidget);
-        void deleteIncidentWidget(InScenarioIncidentWidget *incidentWidget);
+        void addIncidentWidget(SelectedWidget *incidentWidget);
+        void renameIncidentWidget(SelectedWidget *incidentWidget);
+        void deleteIncidentWidget(SelectedWidget *incidentWidget);
 
         void clearIncidents();
 
-        void unselectIncidentWidget(InScenarioIncidentWidget *incidentWidget);
+        void unselectIncidentWidget(SelectedWidget *incidentWidget);
 
-        void enableIncidentWidget(InScenarioIncidentWidget *incidentWidget);
-        void disableIncidentWidget(InScenarioIncidentWidget *incidentWidget);
+        void enableIncidentWidget(SelectedWidget *incidentWidget);
+        void disableIncidentWidget(SelectedWidget *incidentWidget);
 
     public slots:
 
