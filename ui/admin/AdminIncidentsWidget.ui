@@ -24,23 +24,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_incidents">
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
+      <widget class="MenuSelectedWidget" name="scrollArea_incidents" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_incidents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>189</width>
-          <height>622</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </item>
      <item>
@@ -106,29 +96,13 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_incidents_includedEvent">
-       <property name="maximumSize">
-        <size>
-         <width>400</width>
-         <height>16777215</height>
-        </size>
+      <widget class="MenuSelectedWidget" name="scrollArea_incidents_includedEvent" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_incidents_includedEvent">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>198</width>
-          <height>649</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </item>
      <item>
@@ -150,29 +124,13 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <widget class="QScrollArea" name="scrollArea_incidents_freeEvents">
-       <property name="maximumSize">
-        <size>
-         <width>400</width>
-         <height>16777215</height>
-        </size>
+      <widget class="MenuSelectedWidget" name="scrollArea_incidents_freeEvents" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="scrollAreaWidgetContents_incidents_freeEvents">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>188</width>
-          <height>649</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
      </item>
      <item>
@@ -186,6 +144,14 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MenuSelectedWidget</class>
+   <extends>QWidget</extends>
+   <header>src/ui/MenuSelectedWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

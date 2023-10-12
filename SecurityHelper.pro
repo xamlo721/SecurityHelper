@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 FORMS += ui/MainWindow.ui \
+    ui/MenuSelectedWidget.ui \
     ui/admin/AdminCategoriesWidget.ui \
     ui/admin/AdminEditMenuWidget.ui \
     ui/admin/AdminEventsWidget.ui \
@@ -29,7 +30,7 @@ FORMS += ui/MainWindow.ui \
     ui/user/RecommendationsWidget.ui \
     ui/user/ScenarioMenuWidget.ui \
     ui/user/ScenarioWidget.ui \
-    ui/user/SelectedWidget.ui
+    ui/SelectedWidget.ui
 
 HEADERS += \
     src/controllers/MainWindowController.h \
@@ -75,7 +76,8 @@ HEADERS += \
     src/ui/admin/AdminEventsWidget.h \
     src/ui/admin/AdminIncidentsWidget.h \
     src/ui/admin/AdminRecommendationWidget.h \
-    src/ui/admin/AdminScenariesWidget.h
+    src/ui/admin/AdminScenariesWidget.h \
+    src/ui/MenuSelectedWidget.h
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
@@ -112,7 +114,8 @@ SOURCES += \
     src/ui/admin/AdminEventsWidget.cpp \
     src/ui/admin/AdminIncidentsWidget.cpp \
     src/ui/admin/AdminRecommendationWidget.cpp \
-    src/ui/admin/AdminScenariesWidget.cpp
+    src/ui/admin/AdminScenariesWidget.cpp \
+    src/ui/MenuSelectedWidget.cpp
 
 DISTFILES += \
     rss/StockDatabase/Categories.xml \

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1023</width>
-    <height>547</height>
+    <width>1600</width>
+    <height>920</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,12 @@
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1600</width>
+     <height>900</height>
+    </size>
+   </property>
    <property name="styleSheet">
     <string notr="true">QWidget#centralwidget {
          background- image: url(&quot;:/images/bg-firewall.jpg&quot;);
@@ -30,6 +36,12 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="styleSheet">
        <string notr="true">QWidget {
 		background-color : rgba(120, 200, 228, 20);
@@ -41,7 +53,7 @@ QLabel {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -89,7 +101,7 @@ QLabel {
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_7">
        <layout class="QGridLayout" name="gridLayout_2">
@@ -103,16 +115,16 @@ QLabel {
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-		background-color : rgba(120, 200, 228, 80);
+		background-color : rgba(120, 200, 228, 160);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 }
 
 QPushButton:hover {
-		background-color : rgba(120, 200, 228, 100);
+		background-color : rgba(120, 200, 228, 200);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 }
 QPushButton:pressed {
-		background-color : rgba(120, 200, 228, 40);
+		background-color : rgba(120, 200, 228, 120);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 		color: rgb(255, 255, 255);
 }</string>
@@ -215,16 +227,16 @@ QPushButton:pressed {
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-		background-color : rgba(120, 200, 228, 80);
+		background-color : rgba(120, 200, 228, 160);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 }
 
 QPushButton:hover {
-		background-color : rgba(120, 200, 228, 100);
+		background-color : rgba(120, 200, 228, 200);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 }
 QPushButton:pressed {
-		background-color : rgba(120, 200, 228, 40);
+		background-color : rgba(120, 200, 228, 120);
 		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
 		color: rgb(255, 255, 255);
 }</string>
@@ -342,7 +354,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1023</width>
+     <width>1600</width>
      <height>20</height>
     </rect>
    </property>

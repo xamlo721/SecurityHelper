@@ -27,23 +27,13 @@
          </widget>
         </item>
         <item>
-         <widget class="QScrollArea" name="scrollArea_events">
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
+         <widget class="MenuSelectedWidget" name="scrollArea_events" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="widgetResizable">
-           <bool>true</bool>
-          </property>
-          <widget class="QWidget" name="scrollAreaWidgetContents_events">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>511</width>
-             <height>493</height>
-            </rect>
-           </property>
-          </widget>
          </widget>
         </item>
         <item>
@@ -105,11 +95,32 @@ p, li { white-space: pre-wrap; }
         </layout>
        </widget>
       </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MenuSelectedWidget</class>
+   <extends>QWidget</extends>
+   <header>src/ui/MenuSelectedWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
