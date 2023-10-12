@@ -3,64 +3,34 @@
 
 #include "../EnumMenuPages.h"
 
-MainMenuWidget::MainMenuWidget(QWidget *parent) : QWidget(parent), ui(new Ui::MainMenuWidget) {
+MainMenuWidget::MainMenuWidget(QWidget *parent)
+    : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);
-    ui->scrollArea_categories->setLayout(new QVBoxLayout());
-    ui->scrollArea_categories->layout()->setAlignment(Qt::AlignTop);
-    ui->scrollArea_events->setLayout(new QVBoxLayout());
-    ui->scrollArea_events->layout()->setAlignment(Qt::AlignTop);
-    ui->scrollArea_selectes_eventes->setLayout(new QVBoxLayout());
-    ui->scrollArea_selectes_eventes->layout()->setAlignment(Qt::AlignTop);
 }
 
 void MainMenuWidget::clearCategories() {
-    QWidget * m_view = this->ui->scrollArea_categories;
-    if ( m_view->layout() != NULL ) {
-        QLayoutItem* item;
-        while ( ( item = m_view->layout()->takeAt( 0 ) ) != NULL ) {
-            delete item->widget();
-            delete item;
-        }
-        //delete m_view->layout();
-    }
+    this->ui->scrollArea_categories->clear();
 }
 
 void MainMenuWidget::addCategory(SelectedWidget * category) {
-    QLayout * layout = this->ui->scrollArea_categories->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(category);
+    this->ui->scrollArea_categories->addWidget(category->getId(), category);
 }
 
 void MainMenuWidget::clearAvailableEvents() {
-    QWidget * m_view = this->ui->scrollArea_events;
-    if ( m_view->layout() != NULL ) {
-        QLayoutItem* item;
-        while ( ( item = m_view->layout()->takeAt( 0 ) ) != NULL ) {
-            delete item->widget();
-            delete item;
-        }
-        //delete m_view->layout();
-    }
+    this->ui->scrollArea_events->clear();
 }
 
 void MainMenuWidget::addEvent(SelectedWidget * event) {
-    QLayout * layout = this->ui->scrollArea_events->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
-    layout->addWidget(event);
+    this->ui->scrollArea_events->addWidget(event->getId(), event);
 }
 
 void MainMenuWidget::clearSelectedEvents() {
-    QWidget * m_view = this->ui->scrollArea_selectes_eventes;
-    if ( m_view->layout() != NULL ) {
-        QLayoutItem* item;
-        while ( ( item = m_view->layout()->takeAt( 0 ) ) != NULL ) {
-            delete item->widget();
-            delete item;
-        }
-        //delete m_view->layout();
-    }
+    this->ui->scrollArea_selectes_eventes->clear();
+
 }
 
 void MainMenuWidget::addSelectedEvent(SelectedWidget * event) {
-    QLayout * layout = this->ui->scrollArea_selectes_eventes->layout(); //->addScrollBarWidget(category, Qt::AlignTop);
+    QLayout * layout = this->ui->scrollArea_selectes_eventes->layout();
     layout->addWidget(event);
 }
 

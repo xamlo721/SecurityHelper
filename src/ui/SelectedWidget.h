@@ -38,6 +38,7 @@ class SelectedWidget : public QWidget {
     public slots:
         void onOpenIncidentButtonClicked();
 
+
     signals:
         void signalSelected(quint32 incidentId, const bool isForAdminMode = false);
         void signalUnselected(quint32 incidentId, const bool isForAdminMode = false);

@@ -1,14 +1,70 @@
 #include "MenuSelectedWidget.h"
 #include "ui_MenuSelectedWidget.h"
 
-MenuSelectedWidget::MenuSelectedWidget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::MenuSelectedWidget)
-{
+MenuSelectedWidget::MenuSelectedWidget(QWidget *parent)
+    : QWidget(parent), ui(new Ui::MenuSelectedWidget) {
     ui->setupUi(this);
+    this->selectedID = -1;
+
+    ui->scrollArea_selectedWidgets->setLayout(new QVBoxLayout());
+    ui->scrollArea_selectedWidgets->layout()->setAlignment(Qt::AlignTop);
 }
 
-MenuSelectedWidget::~MenuSelectedWidget()
-{
+void MenuSelectedWidget::addWidgets(QList<SelectedWidget *> widgets) {
+    for (SelectedWidget * w : widgets) {
+        this->widgets.insert(w->getId(), w);
+        this->ui->scrollArea_selectedWidgets->layout()->addWidget(w);
+        QObject::connect(w, &SelectedWidget::signalSelected, this, &MenuSelectedWidget::onWidgetSelected);
+        QObject::connect(w, &SelectedWidget::signalUnselected, this, &MenuSelectedWidget::onWidgetUnselected);
+    }
+}
+
+
+void MenuSelectedWidget::addWidget(qint32 widgetID,  SelectedWidget * widget) {
+    this->widgets.insert(widgetID, widget);
+    this->ui->scrollArea_selectedWidgets->layout()->addWidget(widget);
+    QObject::connect(widget, &SelectedWidget::signalSelected, this, &MenuSelectedWidget::onWidgetSelected);
+    QObject::connect(widget, &SelectedWidget::signalUnselected, this, &MenuSelectedWidget::onWidgetUnselected);
+}
+
+SelectedWidget * MenuSelectedWidget::getSelectedWidget() {
+    return this->widgets.values().at(this->selectedID);
+}
+
+quint32 MenuSelectedWidget::getSelectedWidgetID() {
+    return this->selectedID;
+}
+
+
+void MenuSelectedWidget::removeWidget(qint32 widgetID) {
+    //TODO: вынуть из виджета
+    this->widgets.remove(widgetID);
+    //TODO: disconnect
+}
+
+void MenuSelectedWidget::clear() {
+    QWidget * m_view = this->ui->scrollArea_selectedWidgets;
+    if ( m_view->layout() != NULL ) {
+        QLayoutItem* item;
+        while ( ( item = m_view->layout()->takeAt( 0 ) ) != NULL ) {
+            //TODO: disconnect
+            delete item->widget();
+            delete item;
+        }
+        //delete m_view->layout();
+    }
+}
+
+void MenuSelectedWidget::onWidgetSelected(qint32 widgetID) {
+    this->selectedID = widgetID;
+    emit signalOnWidgetSelected(widgetID);
+}
+
+void MenuSelectedWidget::onWidgetUnselected(qint32 widgetID) {
+    this->selectedID = -1;
+    emit signalOnWidgetUnselected(widgetID);
+}
+
+MenuSelectedWidget::~MenuSelectedWidget() {
     delete ui;
 }
