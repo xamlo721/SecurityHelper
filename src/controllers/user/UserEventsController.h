@@ -8,18 +8,18 @@
 
 #include "src/ui/user/MainMenuWidget.h"
 
-class UserCategoryEventWidgetController : public QObject {
+class UserEventsController : public QObject {
 
     Q_OBJECT
 
     public:
-        explicit UserCategoryEventWidgetController(QObject *parent = nullptr);
+        explicit UserEventsController(QObject *parent = nullptr);
 
         void init(MainMenuWidget *menuWidget);
 
     public slots:
-        void setCategoryList(QList<SecurityEventCategory> categories);
-        void setEventList(QList<SecurityEvent> events);
+        void setCategoryList(QMap<quint32, SecurityEventCategory> categories);
+        void setEventList(QMap<quint32, SecurityEvent> events);
 
         void onCalculateIncident();
 
@@ -27,17 +27,19 @@ class UserCategoryEventWidgetController : public QObject {
 
     private:
         MainMenuWidget *mainMenuWidget;
-        QList<SecurityEventCategory> categories;
+        QMap<quint32, SecurityEventCategory> categories;
+        QMap<quint32, SecurityEvent> allEvents;
         QList<SecurityEvent> availableEvents;
-        QList<SecurityEvent> activeEvents;
+        QList<SecurityEvent> selectedEvents;
 
     private slots:
+        void onCetegorySelected(quint32 categoryID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
 
     signals:
         void signalOpenCategory(quint32 id, const bool isForAdminMode = false);
-        void signalCalculateIncident(QList<SecurityEvent> activeEvents);
+        void signalCalculateIncident(QList<SecurityEvent> selectedEvents);
 
 };
 

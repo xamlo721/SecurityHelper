@@ -39,8 +39,8 @@ HEADERS += \
     src/controllers/admin/categories/CategoryController.h \
     src/controllers/admin/incidents/IncidentController.h \
     src/controllers/admin/scenaries/ScenariesController.h \
+    src/controllers/user/UserEventsController.h \
     src/controllers/user/UserScenarioRecommendationWidgetController.h \
-    src/controllers/user/UserCategoryEventWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
     src/exception/Exception.h \
     src/exception/FileOperationException.h \
@@ -86,8 +86,8 @@ SOURCES += \
     src/controllers/admin/categories/CategoryController.cpp \
     src/controllers/admin/incidents/IncidentController.cpp \
     src/controllers/admin/scenaries/ScenariesController.cpp \
+    src/controllers/user/UserEventsController.cpp \
     src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
-    src/controllers/user/UserCategoryEventWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
     src/items/SecurityEvent.cpp \
     src/items/SecurityEventCategory.cpp \

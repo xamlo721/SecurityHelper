@@ -38,8 +38,27 @@ quint32 MenuSelectedWidget::getSelectedWidgetID() {
 
 void MenuSelectedWidget::removeWidget(qint32 widgetID) {
     //TODO: вынуть из виджета
+
+    SelectedWidget * widget = this->widgets.values().at(widgetID);
     this->widgets.remove(widgetID);
-    //TODO: disconnect
+
+    QObject::disconnect(widget, &SelectedWidget::signalSelected, this, &MenuSelectedWidget::onWidgetSelected);
+    QObject::disconnect(widget, &SelectedWidget::signalUnselected, this, &MenuSelectedWidget::onWidgetUnselected);
+
+
+    QWidget * m_view = this->ui->scrollArea_selectedWidgets;
+    if ( m_view->layout() != NULL ) {
+        QLayoutItem* item;
+        for (int i = 0; i < m_view->layout()->count(); i++) {
+
+        }
+        while ( ( item = m_view->layout()->takeAt( 0 ) ) != NULL ) {
+            //TODO: disconnect
+            delete item->widget();
+            delete item;
+        }
+        //delete m_view->layout();
+    }
 }
 
 void MenuSelectedWidget::clear() {
@@ -57,7 +76,14 @@ void MenuSelectedWidget::clear() {
 
 void MenuSelectedWidget::onWidgetSelected(qint32 widgetID) {
     this->selectedID = widgetID;
+
+    for (SelectedWidget * w : this->widgets) {
+        if (w->getId() != widgetID) {
+            w->unselect();
+        }
+    }
     emit signalOnWidgetSelected(widgetID);
+
 }
 
 void MenuSelectedWidget::onWidgetUnselected(qint32 widgetID) {

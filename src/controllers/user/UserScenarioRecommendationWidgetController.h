@@ -9,12 +9,12 @@
 #include "src/items/SecurityScenario.h"
 #include "src/items/SecurityRecommendations.h"
 
-class UserScenarioRecommendationWidgetController : public QObject {
+class UserRecommendationController : public QObject {
 
     Q_OBJECT
 
     public:
-        explicit UserScenarioRecommendationWidgetController(QObject *parent = nullptr);
+        explicit UserRecommendationController(QObject *parent = nullptr);
 
         void init(ScenarioMenuWidget *scenarioWidget);
 

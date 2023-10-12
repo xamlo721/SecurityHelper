@@ -6,12 +6,12 @@
 #include "src/ui/user/IncidentMenuWidget.h"
 #include "src/items/SecurityIncident.h"
 
-class UserIncidentWidgetController : public QObject {
+class UserIncidentController : public QObject {
 
     Q_OBJECT
 
     public:
-        explicit UserIncidentWidgetController(QObject *parent = nullptr);
+        explicit UserIncidentController(QObject *parent = nullptr);
 
 
         void init(IncidentMenuWidget *incidentWidget);

@@ -33,7 +33,7 @@ class MainMenuWidget : public QWidget {
         //void onCategoryClicked(int categoryId);
 
     signals:
-        //void signalCategoryClicked(int categoryId);
+        void signalCategoryClicked(int categoryId);
 
         void signalAddCategoryButtonPressed();
         void signalDeleteCategoriesButtonPressed();

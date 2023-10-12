@@ -34,16 +34,16 @@ void SelectedWidget::setText(QString title) {
 }
 
 void SelectedWidget::select() {
-    this->ui->pushButton->setDown(true);
+    this->ui->pushButton->setChecked(true);
 }
 
 void SelectedWidget::unselect() {
-    this->ui->pushButton->setDown(false);
+    this->ui->pushButton->setChecked(false);
 }
 
 void SelectedWidget::onOpenIncidentButtonClicked() {
 
-    if (this->ui->pushButton->isDown()) {
+    if (this->ui->pushButton->isChecked()) {
         emit signalSelected(this->id);
     } else {
         emit signalUnselected(this->id);

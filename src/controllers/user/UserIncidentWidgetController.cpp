@@ -1,19 +1,19 @@
 #include "UserIncidentWidgetController.h"
 
-UserIncidentWidgetController::UserIncidentWidgetController(QObject *parent) : QObject{parent} {
+UserIncidentController::UserIncidentController(QObject *parent) : QObject{parent} {
 
 }
 
-void UserIncidentWidgetController::init(IncidentMenuWidget *incidentWidget) {
+void UserIncidentController::init(IncidentMenuWidget *incidentWidget) {
     incidentMenuWidget = incidentWidget;
 }
 
-void UserIncidentWidgetController::setIncidentList(QList<SecurityIncident> incidents) {
+void UserIncidentController::setIncidentList(QList<SecurityIncident> incidents) {
     this->incidentMenuWidget->clear();
 
     for (SecurityIncident inc : incidents) {
         IncidentWidget * widget = new IncidentWidget(inc.getId(), inc.getText(), inc.getName());
-        QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &UserIncidentWidgetController::signalOpenIncident);
+        QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &UserIncidentController::signalOpenIncident);
         this->incidentMenuWidget->addIncidentWidget(widget);
     }
 

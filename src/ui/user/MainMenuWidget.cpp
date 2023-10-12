@@ -6,6 +6,7 @@
 MainMenuWidget::MainMenuWidget(QWidget *parent)
     : QWidget(parent), ui(new Ui::MainMenuWidget) {
     ui->setupUi(this);
+    QObject::connect(this->ui->scrollArea_categories, &MenuSelectedWidget::signalOnWidgetSelected, this, &MainMenuWidget::signalCategoryClicked);
 }
 
 void MainMenuWidget::clearCategories() {
