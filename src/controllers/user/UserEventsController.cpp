@@ -9,6 +9,8 @@ UserEventsController::UserEventsController(QObject *parent) : QObject{parent} {
 void UserEventsController::init(MainMenuWidget *menuWidget) {
     mainMenuWidget = menuWidget;
     QObject::connect(menuWidget, &MainMenuWidget::signalCategoryClicked, this, &UserEventsController::onCetegorySelected);
+    QObject::connect(menuWidget, &MainMenuWidget::signaAvailableEventClicked, this, &UserEventsController::onEventSelected);
+    QObject::connect(menuWidget, &MainMenuWidget::signalSelectedEventClicked, this, &UserEventsController::onEventUnselected);
 }
 
 void UserEventsController::setCategoryList(QMap< quint32, SecurityEventCategory> categories) {
@@ -18,7 +20,6 @@ void UserEventsController::setCategoryList(QMap< quint32, SecurityEventCategory>
     this->mainMenuWidget->clearCategories();
     for (SecurityEventCategory cat : categories) {
         SelectedWidget * categoryWidget = new SelectedWidget(cat.getId(), cat.getText());
-        QObject::connect(categoryWidget, &SelectedWidget::signalSelected, this, &UserEventsController::onCetegorySelected);
 
         this->mainMenuWidget->addCategory(categoryWidget);
     }
@@ -57,7 +58,7 @@ void UserEventsController::onCetegorySelected(quint32 categoryID) {
     }
 
     for (SecurityEvent event : eventsInCetegory) {
-        this->mainMenuWidget->addEvent(new SelectedWidget(event.getId(), event.getText()));
+        this->mainMenuWidget->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
     }
 }
 
@@ -72,7 +73,7 @@ void UserEventsController::onEventSelected(quint32 eventID) {
     //TODO: Вычесть те, которые уже отображены
     this->mainMenuWidget->clearAvailableEvents();
     for (SecurityEvent event : availableEvents) {
-        this->mainMenuWidget->addEvent(new SelectedWidget(event.getId(), event.getText()));
+        this->mainMenuWidget->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
     }
 
     ///3) обновить выбранные ивенты
@@ -94,7 +95,7 @@ void UserEventsController::onEventUnselected(quint32 eventID) {
     //TODO: Вычесть те, которые уже отображены
     this->mainMenuWidget->clearAvailableEvents();
     for (SecurityEvent event : availableEvents) {
-        this->mainMenuWidget->addEvent(new SelectedWidget(event.getId(), event.getText()));
+        this->mainMenuWidget->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
     }
 
 

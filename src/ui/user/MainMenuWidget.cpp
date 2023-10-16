@@ -14,6 +14,7 @@ void MainMenuWidget::clearCategories() {
 }
 
 void MainMenuWidget::addCategory(SelectedWidget * category) {
+    QObject::connect(category, &SelectedWidget::signalSelected, this, &MainMenuWidget::signalCategoryClicked);
     this->ui->scrollArea_categories->addWidget(category->getId(), category);
 }
 
@@ -21,7 +22,8 @@ void MainMenuWidget::clearAvailableEvents() {
     this->ui->scrollArea_events->clear();
 }
 
-void MainMenuWidget::addEvent(SelectedWidget * event) {
+void MainMenuWidget::addAvalilableEvent(SelectedWidget * event) {
+    QObject::connect(event, &SelectedWidget::signalSelected, this, &MainMenuWidget::signaAvailableEventClicked);
     this->ui->scrollArea_events->addWidget(event->getId(), event);
 }
 
@@ -31,8 +33,9 @@ void MainMenuWidget::clearSelectedEvents() {
 }
 
 void MainMenuWidget::addSelectedEvent(SelectedWidget * event) {
-    QLayout * layout = this->ui->scrollArea_selectes_eventes->layout();
-    layout->addWidget(event);
+    QObject::connect(event, &SelectedWidget::signalSelected, this, &MainMenuWidget::signalSelectedEventClicked);
+    this->ui->scrollArea_selectes_eventes->addWidget(event->getId(), event);
+
 }
 
 void MainMenuWidget::openMainMenu() {
