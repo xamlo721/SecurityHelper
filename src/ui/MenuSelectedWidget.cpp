@@ -61,6 +61,14 @@ void MenuSelectedWidget::removeWidget(qint32 widgetID) {
     }
 }
 
+void MenuSelectedWidget::unselect() {
+    this->selectedID = -1;
+
+    for (SelectedWidget * w : this->widgets) {
+        w->unselect();
+    }
+}
+
 void MenuSelectedWidget::clear() {
     QWidget * m_view = this->ui->scrollArea_selectedWidgets;
     if ( m_view->layout() != NULL ) {
