@@ -7,6 +7,7 @@
 
 
 #include "src/controllers/admin/AdminEditMenuController.h"
+#include "src/controllers/admin/categories/CategoryController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -17,17 +18,35 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
+    //Logic
     CoreApp core;
 
+    //Windows
     MainWindow *mainWindow = new MainWindow();
+
+    //Controllers
     MainWindowController controller;
 
+    ///User
     UserEventsController categoryEventController;
-
     UserIncidentController incidentController;
     UserRecommendationController scenarioRecommendationController;
 
+    ///Admin
     AdminEditMenuController editMenuController;
+    CategoryController adminCategoryController;
+
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
+
+
+
+
+
+
+
+
+
+
 
     // Блок инициализации связи сигналов/слотов для пользователя
 
@@ -52,18 +71,17 @@ int main(int argc, char *argv[]) {
     controller.init(mainWindow);
 
     categoryEventController.init(mainWindow->getMainMenuWidget());
-    categoryEventController.setCategoryList(core.categoriesSaved);
-    categoryEventController.setEventList(core.eventsSaved);
 
     incidentController.init(mainWindow->getIncidentMenuWidget());
     scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
 
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
+    //adminCategoryController.init(mainWindow->getEditMenuWidget());
 
     // Инициализация ядря
     core.init();
-
+    core.loadDatabase();
     // Старт интерфейса
     controller.show();
 

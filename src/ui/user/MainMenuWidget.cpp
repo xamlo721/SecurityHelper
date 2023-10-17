@@ -29,7 +29,6 @@ void MainMenuWidget::addAvalilableEvent(SelectedWidget * event) {
 
 void MainMenuWidget::clearSelectedEvents() {
     this->ui->scrollArea_selectes_eventes->clear();
-
 }
 
 void MainMenuWidget::addSelectedEvent(SelectedWidget * event) {

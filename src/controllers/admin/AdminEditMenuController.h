@@ -43,53 +43,6 @@ class AdminEditMenuController : public QObject {
 
 
 
-        void slotSetAddCategoryButtonEnabled();
-        void slotSetAddCategoryButtonDisabled();
-
-        void slotSetDeleteSelectedCategoriesButtonEnabled();
-        void slotSetDeleteSelectedCategoriesButtonDisabled();
-
-        void slotSetAddToCategoryButtonEnabled();
-        void slotSetAddToCategoryButtonDisabled();
-
-        void slotSetRemoveFromCategoryButtonEnabled();
-        void slotSetRemoveFromCategoryButtonDisabled();
-
-
-
-        void slotSetAddEventButtonEnabled();
-        void slotSetAddEventButtonDisabled();
-
-        void slotSetDeleteSelectedEventsButtonEnabled();
-        void slotSetDeleteSelectedEventsButtonDisabled();
-
-
-
-        void slotSetAddIncidentButtonEnabled();
-        void slotSetAddIncidentButtonDisabled();
-
-        void slotSetDeleteSelectedIncidentsButtonEnabled();
-        void slotSetDeleteSelectedIncidentsButtonDisabled();
-
-        void slotSetAddToIncidentButtonEnabled();
-        void slotSetAddToIncidentButtonDisabled();
-
-        void slotSetRemoveFromIncidentButtonEnabled();
-        void slotSetRemoveFromIncidentButtonDisabled();
-
-
-
-        void slotSetAddScenarioButtonEnabled();
-        void slotSetAddScenarioButtonDisabled();
-
-        void slotSetDeleteSelectedScenariesButtonEnabled();
-        void slotSetDeleteSelectedScenariesButtonDisabled();
-
-        void slotSetAddToScenarioButtonEnabled();
-        void slotSetAddToScenarioButtonDisabled();
-
-        void slotSetRemoveFromScenarioButtonEnabled();
-        void slotSetRemoveFromScenarioButtonDisabled();
 
 
     signals:

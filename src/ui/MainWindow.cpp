@@ -54,6 +54,12 @@ AdminEditMenuWidget *MainWindow::getEditMenuWidget() {
     return this->ui->widget_edit_menu;
 }
 
+AdminCategoriesWidget *MainWindow::getAdminCategoryWidget() {
+    //return this->ui->wid;
+
+}
+
+
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
 }
