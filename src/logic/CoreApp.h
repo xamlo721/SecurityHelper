@@ -62,7 +62,7 @@ class CoreApp : public QObject {
         void updateRecommendations(quint32 recommendationID, SecurityRecommendations recommendation);
 
     signals:
-        void signalDatabaseUpdated(Database db);
+        void signalDatabaseUpdated(const Database & db);
 
 };
 
