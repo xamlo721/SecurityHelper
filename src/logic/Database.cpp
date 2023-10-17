@@ -1,5 +1,9 @@
 #include "Database.h"
 
+Database::Database() {
+    //NO-OP
+}
+
 Database::Database(QMap<quint32, SecurityEvent> events, QMap<quint32, SecurityEventCategory> categories,
                    QMap<quint32, SecurityIncident> incidents, QMap<quint32, SecurityRecommendations> recommendations,
                    QMap<quint32, SecurityScenario> scenaries, QObject *parent) : QObject(parent) {
