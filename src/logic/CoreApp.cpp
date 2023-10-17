@@ -6,318 +6,192 @@ CoreApp::CoreApp(QObject *parent) : QObject(parent) {
 
 void CoreApp::init() {
 
-    //Отправим в UI список категорий
-    //emit signalOpenCategories(db.categories.values());
-
-    /// Отправление в UI администратора списка категорий
-    //emit signalAdminOpenCategories(db.categories.values());
 }
 
-void CoreApp::acceptCategoriesForSaving(const QMap<quint32, SecurityEventCategory> categories) {
-    categoriesSaved = categories;
+
+void CoreApp::loadDatabase() {
+    this->db = XMLHelper::readDatabase("../SecurityHelper/storage/"); //TODO: Унести в константы
+    emit signalDatabaseUpdated(this->db);
 }
 
-void CoreApp::acceptIncidentsForSaving(const QMap<quint32, SecurityIncident> incidents) {
-    incidentsSaved = incidents;
+void CoreApp::saveDatabase() {
+    //TODO:
 }
 
-void CoreApp::acceptEventCategoryForSaving(const quint32 categoryID, QMap<quint32, SecurityEvent> categoryEvents) {
+
+void CoreApp::addCategory() {
+
+    quint32 newCategoryID = 0;//FIXME
+
     QList<quint32> events;
-    for(SecurityEvent securityEvent : categoryEvents) {
-        events.append(securityEvent.getId());
-    }
-    categoriesSaved[categoryID].setIDEvents(events);
-    QMap<quint32, SecurityEventCategory> readyToSaveCategories;
-    for(SecurityEventCategory category : categoriesSaved) {
-        readyToSaveCategories.insert(category.getId(), category);
-    }
-    XMLHelper::writeDatabaseCategory("../SecurityHelper/storage/", readyToSaveCategories);
+    SecurityEventCategory category(newCategoryID, "", events);
+
+    this->db.categories.insert(newCategoryID, category);
+    emit signalDatabaseUpdated(this->db);
 }
-void CoreApp::acceptEventIncidentsForSaving(const quint32 incidentID, QMap<quint32, SecurityEvent> incidentEvents) {
+
+
+void CoreApp::addEvent() {
+
+    quint32 newEventID = 0;//FIXME
+
+    SecurityEvent event(newEventID, "");
+
+    this->db.events.insert(newEventID, event);
+    emit signalDatabaseUpdated(this->db);
+
+}
+
+
+void CoreApp::addIncident() {
+
+    quint32 newIncidentID = 0;//FIXME
+
     QList<quint32> events;
-    for(SecurityEvent securityEvent : incidentEvents) {
-        events.append(securityEvent.getId());
-    }
-    incidentsSaved[incidentID].setIDEvents(events);
-    QMap<quint32, SecurityIncident> readyToSaveIncident;
-    for(SecurityIncident incident : incidentsSaved) {
-        readyToSaveIncident.insert(incident.getId(), incident);
-    }
-    XMLHelper::writeDatabaseIncidents("../SecurityHelper/storage/", readyToSaveIncident);
+    SecurityIncident incident(newIncidentID, "", "", events);
+
+    this->db.incidents.insert(newIncidentID, incident);
+    emit signalDatabaseUpdated(this->db);
+
 }
 
-void CoreApp::acceptEventForSaving(QMap<quint32, SecurityEvent> events) {
-    QMap<quint32, SecurityEvent> readyToSaveEvents;
-    for(SecurityEvent event : events) {
-        readyToSaveEvents.insert(event.getId(), event);
-    }
-    XMLHelper::writeDatabaseEvent("../SecurityHelper/storage/", readyToSaveEvents);
+
+void CoreApp::addScenario() {
+
+    quint32 newScenarioID = 0;//FIXME
+
+    QList<quint32> incidents;
+    SecurityScenario scenario(newScenarioID, "", "", incidents);
+
+    this->db.scenaries.insert(newScenarioID, scenario);
+    emit signalDatabaseUpdated(this->db);
+
 }
 
-//void CoreApp::onOpenCategory(quint32 categoryId, bool isForAdminMode) {
 
-//    QList<SecurityEvent> categoryEvents;
-//    SecurityEventCategory category = db.categories.value(categoryId);
-//    //Проходимся по списку всех событий в категории
-//    for (quint32 eventID : category.getEventIds()) {
-//        if (!db.events.contains(eventID)) {
-//            //Бросить исключение
-//            continue;
-//        }
-//        if (!categoryEvents.contains(db.events.value(eventID))) {
+void CoreApp::addRecommendations() {
 
-//            categoryEvents.append(db.events.value(eventID));
+    quint32 newRecommendationID = 0;//FIXME
 
-//        }
-//    }
+    QList<quint32> scenaries;
+    SecurityRecommendations recommendation(newRecommendationID, "", "", "", scenaries);
 
-//    if(isForAdminMode)
-//        emit signalOpenAdminCategory(categoryEvents);
-//    else
-//        XMLHelper::writeDatabase("../SecurityHelper/storage/new/");
-//        emit signalOpenCategory(categoryEvents);
+    this->db.recommendations.insert(newRecommendationID, recommendation);
+    emit signalDatabaseUpdated(this->db);
 
-//}
+}
 
-//void CoreApp::onOpenDeletedCategory(const quint32 categoryId) {
 
-//    QList<SecurityEvent> categoryEvents;
-//    SecurityEventCategory category = db.categories.value(categoryId);
-//    //Проходимся по списку всех событий в категории
-//    for (quint32 eventID : category.getEventIds()) {
-//        if (!db.events.contains(eventID)) {
-//            //Бросить исключение
-//            continue;
-//        }
-//        if (!categoryEvents.contains(db.events.value(eventID))) {
 
-//            categoryEvents.append(db.events.value(eventID));
+void CoreApp::removeCategory(quint32 categoryID) {
+    this->db.categories.remove(categoryID);
+    emit signalDatabaseUpdated(this->db);
+}
 
-//        }
-//    }
 
-//    emit signalOpenAdminDeletedCategory(categoryEvents);
-//}
+void CoreApp::removeEvent(quint32 eventID) {
 
-//void CoreApp::formEvents() {
-//    /// Берем из базы данных события
-//    QList<SecurityEvent> events = db.events.values();
-//    /// Составляем лист свободных событий для вкладки Категории событий и отправляем их в неё
-//    this->formFreeEvents();
-//    /// Отправляем сигнал с событиями во вкладку События
-//    emit eventsFormed(events);
-//}
+    //Удалить событие из категорий, если оно там есть
+    for (SecurityEventCategory category : this->db.categories.values()) {
 
-//void CoreApp::formFreeEvents() {
-//    QList<SecurityEvent> freeEvents = db.events.values();
+        if (category.getEventIds().contains(eventID)) {
+            QList<quint32> containedEvents = category.getEventIds();
+            containedEvents.removeOne(eventID);
+            category.setIDEvents(containedEvents);
+        }
 
-//    QList<SecurityEventCategory> categories = db.categories.values();
+    }
 
-//    for(auto category : categories) {
+    //Удалить событие из инцидентов, если оно там есть
+    for (SecurityIncident incident : this->db.incidents.values()) {
 
-//        for (quint32 eventID : category.getEventIds()) {
+        if (incident.getEventIds().contains(eventID)) {
+            QList<quint32> containedEvents = incident.getEventIds();
+            containedEvents.removeOne(eventID);
+            incident.setIDEvents(containedEvents);
+        }
 
-//            if (!db.events.contains(eventID)) {
-//                //Бросить исключение
-//                continue;
-//            }
-//            /// Если лист свободных событий содержит событие, которое уже лежит в какой-то категории, то удаляем это событие из листа
-//            if (freeEvents.contains(db.events.value(eventID))) {
+    }
 
-//                freeEvents.removeOne(db.events.value(eventID));
 
-//            }
-//        }
+    this->db.events.remove(eventID);
+    emit signalDatabaseUpdated(this->db);
 
-//    }
+}
 
-//    emit freeEventsFormed(freeEvents);
-//}
 
-//void CoreApp::formFreeEventsForIncident(const quint32 incidentID) {
-//    QList<SecurityEvent> freeEvents = db.events.values();
+void CoreApp::removeIncident(quint32 incidentID) {
+    //Удалить инцидент из сценариев, если оно там есть
+    for (SecurityScenario scenary : this->db.scenaries.values()) {
 
-//    SecurityIncident incident = db.incidents.value(incidentID);
+        if (scenary.getIncidents().contains(incidentID)) {
+            QList<quint32> containedIncident = scenary.getIncidents();
+            containedIncident.removeOne(incidentID);
+            scenary.setIncidents(containedIncident);
+        }
 
-//    for (SecurityEvent event : this->db.events.values()) {
+    }
 
-//        if (!db.events.contains(event.getId())) {
-//            //Бросить исключение
-//            continue;
-//        }
 
-//        if (incident.getEventIds().contains(event.getId()))
+    this->db.incidents.remove(incidentID);
+    emit signalDatabaseUpdated(this->db);
+}
 
-//            freeEvents.removeOne(db.events.value(event.getId()));
 
-//    }
+void CoreApp::removeScenario(quint32 scenarioID) {
+    //Удалить сценарий из рекомендаций, если оно там есть
+    for (SecurityRecommendations recommendation : this->db.recommendations.values()) {
 
-//    emit freeEventsForIncidentFormed(freeEvents);
-//}
+        if (recommendation.getScenaries().contains(scenarioID)) {
+            QList<quint32> containedIncident = recommendation.getScenaries();
+            containedIncident.removeOne(scenarioID);
+            recommendation.setScenaries(containedIncident);
+        }
 
-//void CoreApp::formIncidents() {
+    }
 
-//    QList<SecurityIncident> incidents = db.incidents.values();
+    this->db.scenaries.remove(scenarioID);
+    emit signalDatabaseUpdated(this->db);
+}
 
-//    emit incidentsFormed(incidents);
-//}
 
-//void CoreApp::formFreeIncidents() {
-//    QList<SecurityIncident> freeIncidents = db.incidents.values();
+void CoreApp::removeRecommendations(quint32 recommendationID) {
+    this->db.recommendations.remove(recommendationID);
+    emit signalDatabaseUpdated(this->db);
+}
 
-//    QList<SecurityScenario> scenaries = db.scenaries.values();
 
-//    for(auto scenario : scenaries) {
 
-//        for (quint32 incidentID : scenario.getIncidents()) {
+void CoreApp::updateCategory(quint32 categoryID,SecurityEventCategory category) {
+    this->db.categories.insert(categoryID, category);
+    emit signalDatabaseUpdated(this->db);
 
-//            if (!db.events.contains(incidentID)) {
-//                //Бросить исключение
-//                continue;
-//            }
-//            /// Если лист свободных событий содержит событие, которое уже лежит в какой-то категории, то удаляем это событие из листа
-//            if (freeIncidents.contains(db.incidents.value(incidentID))) {
+}
 
-//                freeIncidents.removeOne(db.incidents.value(incidentID));
 
-//            }
-//        }
+void CoreApp::updateEvent(quint32 eventID, SecurityEvent event) {
+    this->db.events.insert(eventID, event);
+    emit signalDatabaseUpdated(this->db);
 
-//    }
-//    emit freeIncidentsFormed(freeIncidents);
-//}
+}
 
-//void CoreApp::formScenaries() {
-//    QList<SecurityScenario> scenaries = db.scenaries.values();
 
-//    emit scenariesFormed(scenaries);
-//}
+void CoreApp::updateIncident(quint32 incidentID, SecurityIncident incident) {
+    this->db.incidents.insert(incidentID, incident);
+    emit signalDatabaseUpdated(this->db);
 
-//void CoreApp::onCalculateIncident(QList<SecurityEvent> selectedEvents) {
+}
 
-//    QList<SecurityIncident> incidents;
-//    ///Ищем среди инцидентов те, что образуются указанными событиями
-//    for (SecurityEvent event : selectedEvents) {
 
-//        for (SecurityIncident inc : this->db.incidents) {
+void CoreApp::updateScenario(quint32 scenarioID, SecurityScenario scenarion) {
+    this->db.scenaries.insert(scenarioID, scenarion);
+    emit signalDatabaseUpdated(this->db);
 
-//            if (inc.getEventIds().contains(event.getId())) {
+}
 
-//                incidents.append(inc);
 
-//            }
+void CoreApp::updateRecommendations(quint32 recommendationID, SecurityRecommendations recommendation) {
+    this->db.recommendations.insert(recommendationID, recommendation);
+    emit signalDatabaseUpdated(this->db);
 
-//        }
-
-//    }
-
-//    //TODO: Удалить повторы
-
-//    emit signalOpenIncidents(incidents);
-//}
-
-//void CoreApp::onOpenIncident(quint32 incidentID) {
-
-//    QList<SecurityScenario> scenaries;
-//    ///Ищем среди сценариев те, что образуется указанным инцидентом
-
-//    for (SecurityScenario sc : this->db.scenaries) {
-
-//        if (sc.getIncidents().contains(incidentID)) {
-
-//            scenaries.append(sc);
-
-//        }
-
-//    }
-
-
-//    //TODO: Удалить повторы
-
-//    emit signalOpenScenaries(scenaries);
-//}
-
-//void CoreApp::onOpenAdminIncident(quint32 incidentID) {
-
-//    QList<SecurityEvent> incidentEvents;
-//    SecurityIncident incident = db.incidents.value(incidentID);
-
-//    for (quint32 eventID : incident.getEventIds()) {
-//        if (!db.events.contains(eventID)) {
-//            //Бросить исключение
-//            continue;
-//        }
-//        if (!incidentEvents.contains(db.events.value(eventID))) {
-
-//            incidentEvents.append(db.events.value(eventID));
-
-//        }
-//    }
-
-//    emit signalOpenAdminIncident(incidentEvents);
-
-//    this->formFreeEventsForIncident(incidentID);
-//}
-
-//void CoreApp::onOpenScenario(quint32 id) {
-
-//    QList<SecurityRecommendations> recoms;
-//    ///Ищем среди рекомендаций те, что образуется указанным инцидентом
-
-//    for (SecurityRecommendations rec : this->db.recommendations) {
-
-//        if (rec.getScenaries().contains(id)) {
-
-//            recoms.append(rec);
-
-//        }
-
-//    }
-
-//    //TODO: Удалить повторы
-
-//    emit signalOpenRecommandations(recoms);
-//}
-
-//void CoreApp::onOpenAdminScenario(quint32 scenarioID) {
-
-//    QList<SecurityIncident> scenarioIncidents;
-//    SecurityScenario scenario = db.scenaries.value(scenarioID);
-
-//    for (quint32 incidentID : scenario.getIncidents()) {
-//        if (!db.incidents.contains(incidentID)) {
-//            //Бросить исключение
-//            continue;
-//        }
-//        if (!scenarioIncidents.contains(db.incidents.value(incidentID))) {
-
-//            scenarioIncidents.append(db.incidents.value(incidentID));
-
-//        }
-//    }
-
-//    emit signalOpenAdminScenario(scenarioIncidents);
-
-//    this->formFreeIncidentsForScenario(scenarioID);
-//}
-
-//void CoreApp::formFreeIncidentsForScenario(const quint32 scenarioID) {
-//    QList<SecurityIncident> freeIncidents = db.incidents.values();
-
-//    SecurityScenario scenario = db.scenaries.value(scenarioID);
-
-//    for (SecurityIncident incident : this->db.incidents.values()) {
-
-//        if (!db.incidents.contains(incident.getId())) {
-//            //Бросить исключение
-//            continue;
-//        }
-
-//        if (scenario.getIncidents().contains(incident.getId()))
-
-//            freeIncidents.removeOne(db.incidents.value(incident.getId()));
-
-//    }
-
-//    emit freeIncidentsForScenarioFormed(freeIncidents);
-//}
+}

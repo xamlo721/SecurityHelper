@@ -15,67 +15,54 @@ class CoreApp : public QObject {
 
     Q_OBJECT
 
-    public:
-
-        QMap<quint32, SecurityEvent> eventsSaved = XMLHelper::readDatabase("../SecurityHelper/storage/").events;
-        QMap<quint32, SecurityEventCategory> categoriesSaved = XMLHelper::readDatabase("../SecurityHelper/storage/").categories;
-        QMap<quint32, SecurityIncident> incidentsSaved = XMLHelper::readDatabase("../SecurityHelper/storage/").incidents;
+    private:
+        Database db;
 
     public:
-        explicit CoreApp(QObject *parent = nullptr);
+        CoreApp(QObject *parent = nullptr);
 
         void init();
 
+        void loadDatabase();
+
+        void saveDatabase();
+
+        //Сервис для работы из админки
+
+        void addCategory();
+
+        void addEvent();
+
+        void addIncident();
+
+        void addScenario();
+
+        void addRecommendations();
+
+
+        void removeCategory(quint32 categoryID);
+
+        void removeEvent(quint32 eventID);
+
+        void removeIncident(quint32 incidentID);
+
+        void removeScenario(quint32 scenarioID);
+
+        void removeRecommendations(quint32 recommendationID);
+
+
+        void updateCategory(quint32 categoryID, SecurityEventCategory category);
+
+        void updateEvent(quint32 eventID, SecurityEvent event);
+
+        void updateIncident(quint32 incidentID, SecurityIncident incident);
+
+        void updateScenario(quint32 scenarioID, SecurityScenario scenarion);
+
+        void updateRecommendations(quint32 recommendationID, SecurityRecommendations recommendation);
+
     signals:
-
-//        void eventsFormed(QMap<quint32, SecurityEvent> events);
-//        void freeEventsFormed(QMap<quint32, SecurityEvent> freeEvents);
-//        void freeEventsForIncidentFormed(QMap<quint32, SecurityEvent> freeEvents);
-
-//        void incidentsFormed(QMap<quint32, SecurityIncident> incidents);
-//        void freeIncidentsFormed(QMap<quint32, SecurityIncident> freeIncidents);
-
-//        void scenariesFormed(QMap<quint32, SecurityScenario> scenaries);
-//        void freeIncidentsForScenarioFormed(QMap<quint32, SecurityIncident> freeIncidents);
-
-//        void signalOpenAdminCategory(const QMap<quint32, SecurityEvent> categoryEvents);
-//        void signalOpenAdminDeletedCategory(const QMap<quint32, SecurityEvent> categoryEvents);
-
-//        void signalOpenAdminIncident(const QMap<quint32, SecurityEvent> incidentEvents);
-
-//        void signalOpenAdminScenario(const QMap<quint32, SecurityIncident> scenarioIncidents);
-
-    public slots:
-        void acceptCategoriesForSaving(const QMap<quint32, SecurityEventCategory> categories);
-        void acceptIncidentsForSaving(const QMap<quint32, SecurityIncident> incidents);
-
-        void acceptEventCategoryForSaving(const quint32 categoryID, QMap<quint32, SecurityEvent> categoryEvents);
-        void acceptEventIncidentsForSaving(const quint32 incidentID, QMap<quint32, SecurityEvent> incidentEvents);
-        void acceptEventForSaving(QMap<quint32, SecurityEvent> events);
-
-//        void onOpenCategory(quint32 categoryId, bool isForAdminMode = false);
-//        void onOpenDeletedCategory(const quint32 categoryId);
-
-//        void onCalculateIncident(QMap<quint32, SecurityEvent> selectedEvents);
-
-//        void onOpenIncident(quint32 incidentId);
-//        void onOpenAdminIncident(quint32 incidentId);
-
-//        void onOpenScenario(quint32 id);
-//        void onOpenAdminScenario(quint32 scenarioID);
-
-//        void formEvents();
-//        void formFreeEvents();
-//        void formFreeEventsForIncident(const quint32 incidentID);
-
-//        void formIncidents();
-//        void formFreeIncidents();
-
-//        void formScenaries();
-//        void formFreeIncidentsForScenario(const quint32 scenarioID);
-
-    private:
-        Database db = XMLHelper::readDatabase("../SecurityHelper/storage/");
+        void signalDatabaseUpdated(Database db);
 
 };
 
