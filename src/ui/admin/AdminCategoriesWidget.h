@@ -71,16 +71,16 @@ class AdminCategoriesWidget : public QWidget {
         /**
          * @brief signalAddCategoryClicked - сигнал вызывается
          * при кажатии администратором на кнопку добавления категории
-         * @param categoryId - ID выбранной категории
          */
-        void signalAddCategoryClicked(quint32 categoryId);
+        void signalAddCategoryClicked();
 
         /**
          * @brief signalEditCategoryClicked - сигнал вызывается
          * при кажатии администратором на кнопку редактирования категории
          * @param categoryId - ID выбранной категории
+         * @param containedEvents - Новый набор входящих событий
          */
-        void signalEditCategoryClicked(quint32 categoryId);
+        void signalEditCategoryClicked(quint32 categoryId, QString categoryName);
 
         /**
          * @brief signalDelCategoryClicked - сигнал вызывается
@@ -88,13 +88,6 @@ class AdminCategoriesWidget : public QWidget {
          * @param categoryId - ID выбранной категории
          */
         void signalDelCategoryClicked(quint32 categoryId);
-
-        /**
-         * @brief signalSaveCategoryClicked - сигнал вызывается
-         * при кажатии администратором на кнопку сохранении категории
-         * @param categoryId - ID выбранной категории
-         */
-        void signalSaveCategoryClicked(quint32 categoryId);
 
         /**
          * @brief signalUnselectedEventClicked - сигнал вызывается

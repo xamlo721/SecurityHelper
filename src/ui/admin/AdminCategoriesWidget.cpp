@@ -41,11 +41,12 @@ void AdminCategoriesWidget::addSelectedEvent(SelectedWidget * event) {
 }
 
 void AdminCategoriesWidget::onAddCategoryButtonPressed() {
-    emit signalAddCategoryClicked(this->ui->scrollArea_categories->getSelectedWidgetID());
+    this->ui->scrollArea_categories->unselect();
+    emit signalAddCategoryClicked();
 }
 
 void AdminCategoriesWidget::onEditCategoryButtonPressed() {
-    emit signalEditCategoryClicked(this->ui->scrollArea_categories->getSelectedWidgetID());
+    //TODO: открыть окно редактирования
 }
 
 void AdminCategoriesWidget::onDelCategoryButtonPressed() {
@@ -53,7 +54,8 @@ void AdminCategoriesWidget::onDelCategoryButtonPressed() {
 }
 
 void AdminCategoriesWidget::onSaveCategoryButtonPressed() {
-    emit signalSaveCategoryClicked(this->ui->scrollArea_categories->getSelectedWidgetID());
+    SelectedWidget * selected =  this->ui->scrollArea_categories->getSelectedWidget();
+    emit signalEditCategoryClicked(selected->getId(), selected->getText());
 }
 
 AdminCategoriesWidget::~AdminCategoriesWidget() {

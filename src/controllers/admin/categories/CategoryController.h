@@ -4,9 +4,12 @@
 #include <QObject>
 #include <QMap>
 
-#include "src/ui/admin/AdminCategoriesWidget.h"
 #include "src/items/SecurityEventCategory.h"
 #include "src/items/SecurityEvent.h"
+
+#include "src/logic/Database.h"
+
+#include "src/ui/admin/AdminCategoriesWidget.h"
 
 class CategoryController : public QObject {
 
@@ -24,15 +27,40 @@ class CategoryController : public QObject {
 
         void init(AdminCategoriesWidget *categoryWidget);
 
-        void setCategoryList(QMap<quint32, SecurityEventCategory> categories);
+    public slots:
+
+        void onDatabaseUpdated(const Database & db);
 
 
     private slots:
         void onCetegorySelected(quint32 categoryID);
+        void onCategoryAdded();
+        void onCategoryEdited(quint32 categoryID, QString categoryName);
+        void onCategoryDeleted(quint32 categoryID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
 
     signals:
+        /**
+         * @brief signalAdminAddCategory - сигнал вызывается
+         * при кажатии добавлении администратором новой категории
+         */
+        void signalAdminAddCategory();
+
+        /**
+         * @brief signalAdminUpdateCategory - сигнал вызывается
+         * при изменении администратором существующей категории
+         * @param categoryID - ID выбранной категории
+         * @param category - изменённая категория
+         */
+        void signalAdminUpdateCategory(quint32 categoryID, SecurityEventCategory category);
+
+        /**
+         * @brief signalAdminDeleteCategory - сигнал вызывается
+         * при удалении администратором существующей категории
+         * @param categoryID - ID выбранной категории
+         */
+        void signalAdminDeleteCategory(quint32 categoryID);
 
 };
 
