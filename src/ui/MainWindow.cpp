@@ -56,7 +56,6 @@ AdminEditMenuWidget *MainWindow::getEditMenuWidget() {
 
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
-    this->ui->widget_main_menu->openMainMenu();
 }
 
 void MainWindow::openIncidentMenu() {

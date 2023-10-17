@@ -38,10 +38,6 @@ void MainMenuWidget::addSelectedEvent(SelectedWidget * event) {
 
 }
 
-void MainMenuWidget::openMainMenu() {
-    this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
-}
-
 MainMenuWidget::~MainMenuWidget() {
     delete ui;
 }

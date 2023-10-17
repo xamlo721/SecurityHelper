@@ -62,11 +62,6 @@ private:
          */
         void addSelectedEvent(SelectedWidget * event);
 
-        void openMainMenu();
-
-    public slots:
-        //void onCategoryClicked(int categoryId);
-
     signals:
 
         /**
