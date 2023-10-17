@@ -6,6 +6,8 @@
 #include "src/items/SecurityEventCategory.h"
 #include "src/items/SecurityEvent.h"
 
+#include "src/logic/Database.h"
+
 #include "src/ui/user/MainMenuWidget.h"
 
 class UserEventsController : public QObject {
@@ -25,8 +27,7 @@ class UserEventsController : public QObject {
         void init(MainMenuWidget *menuWidget);
 
     public slots:
-        void setCategoryList(QMap<quint32, SecurityEventCategory> categories);
-        void setEventList(QMap<quint32, SecurityEvent> events);
+        void onDatabaseUpdated(const Database & db);
 
         void resetWidget();
 

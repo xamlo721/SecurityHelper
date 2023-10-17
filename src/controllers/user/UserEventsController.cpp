@@ -13,8 +13,9 @@ void UserEventsController::init(MainMenuWidget *menuWidget) {
     QObject::connect(menuWidget, &MainMenuWidget::signalSelectedEventClicked, this, &UserEventsController::onEventUnselected);
 }
 
-void UserEventsController::setCategoryList(QMap< quint32, SecurityEventCategory> categories) {
-    this->categories = categories;
+void UserEventsController::onDatabaseUpdated(const Database & db) {
+    this->categories = db.categories;
+    this->allEvents = db.events;
 
     //Отображение категорий
     this->mainMenuWidget->clearCategories();
@@ -23,10 +24,6 @@ void UserEventsController::setCategoryList(QMap< quint32, SecurityEventCategory>
 
         this->mainMenuWidget->addCategory(categoryWidget);
     }
-}
-
-void UserEventsController::setEventList(QMap< quint32, SecurityEvent> events) {
-    this->allEvents = events;
 }
 
 void UserEventsController::onCetegorySelected(quint32 categoryID) {
