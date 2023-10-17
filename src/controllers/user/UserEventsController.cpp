@@ -3,7 +3,7 @@
 #include "src/ui/SelectedWidget.h"
 
 UserEventsController::UserEventsController(QObject *parent) : QObject{parent} {
-
+    //NO-OP
 }
 
 void UserEventsController::init(MainMenuWidget *menuWidget) {
@@ -27,18 +27,6 @@ void UserEventsController::setCategoryList(QMap< quint32, SecurityEventCategory>
 
 void UserEventsController::setEventList(QMap< quint32, SecurityEvent> events) {
     this->allEvents = events;
-
-    //TODO: Вычесть те, которые уже отображены
-    /**
-    this->mainMenuWidget->clearAvailableEvents();
-
-    for (SecurityEvent event : events) {
-        SelectedWidget * eventWidget = new SelectedWidget(event.getId(), event.getText(), false);
-        QObject::connect(eventWidget, &SelectedWidget::signalSelected, this, &UserEventsController::onEventSelected);
-
-        this->mainMenuWidget->addEvent(eventWidget);
-    } */
-
 }
 
 void UserEventsController::onCetegorySelected(quint32 categoryID) {
@@ -108,11 +96,7 @@ void UserEventsController::onEventUnselected(quint32 eventID) {
 
 }
 
-void UserEventsController::onCalculateIncident() {
-    emit signalCalculateIncident(selectedEvents);
-}
-
-void UserEventsController::clearWidget() {
+void UserEventsController::resetWidget() {
     this->availableEvents.clear();
     this->selectedEvents.clear();
     this->mainMenuWidget->clearAvailableEvents();

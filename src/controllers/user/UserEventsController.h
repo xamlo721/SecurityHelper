@@ -12,19 +12,6 @@ class UserEventsController : public QObject {
 
     Q_OBJECT
 
-    public:
-        explicit UserEventsController(QObject *parent = nullptr);
-
-        void init(MainMenuWidget *menuWidget);
-
-    public slots:
-        void setCategoryList(QMap<quint32, SecurityEventCategory> categories);
-        void setEventList(QMap<quint32, SecurityEvent> events);
-
-        void onCalculateIncident();
-
-        void clearWidget();
-
     private:
         MainMenuWidget *mainMenuWidget;
         QMap<quint32, SecurityEventCategory> categories;
@@ -32,14 +19,22 @@ class UserEventsController : public QObject {
         QList<SecurityEvent> availableEvents;
         QList<SecurityEvent> selectedEvents;
 
+    public:
+        UserEventsController(QObject *parent = nullptr);
+
+        void init(MainMenuWidget *menuWidget);
+
+    public slots:
+        void setCategoryList(QMap<quint32, SecurityEventCategory> categories);
+        void setEventList(QMap<quint32, SecurityEvent> events);
+
+        void resetWidget();
+
+
     private slots:
         void onCetegorySelected(quint32 categoryID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
-
-    signals:
-        void signalOpenCategory(quint32 id, const bool isForAdminMode = false);
-        void signalCalculateIncident(QList<SecurityEvent> selectedEvents);
 
 };
 
