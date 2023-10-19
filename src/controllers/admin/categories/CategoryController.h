@@ -16,6 +16,7 @@ class CategoryController : public QObject {
     Q_OBJECT
 
     private:
+        Database copyDatabase;
         AdminCategoriesWidget *ui;
         QMap<quint32, SecurityEventCategory> categories;
         QMap<quint32, SecurityEvent> allEvents;

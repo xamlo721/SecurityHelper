@@ -45,51 +45,6 @@
                 <Text>Я категориЯ</Text>
                 <events>7</events>
             </Category>
-            <Category>
-                <id>7</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>8</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>9</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>10</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>11</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>12</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>13</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>14</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
-            <Category>
-                <id>15</id>
-                <Text>Я категориЯ</Text>
-                <events>7</events>
-            </Category>
         </Categories>
     </Database>
 </xmlDocument>

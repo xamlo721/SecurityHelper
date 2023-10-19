@@ -23,6 +23,7 @@ void MenuSelectedWidget::addWidgets(QList<SelectedWidget *> widgets) {
 void MenuSelectedWidget::addWidget(qint32 widgetID,  SelectedWidget * widget) {
     this->widgets.insert(widgetID, widget);
     this->ui->scrollArea_selectedWidgets->layout()->addWidget(widget);
+    widget->setMinimumSize(100, 200);
     QObject::connect(widget, &SelectedWidget::signalSelected, this, &MenuSelectedWidget::onWidgetSelected);
     QObject::connect(widget, &SelectedWidget::signalUnselected, this, &MenuSelectedWidget::onWidgetUnselected);
 }
