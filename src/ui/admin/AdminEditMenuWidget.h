@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "qboxlayout.h"
 #include "qscrollarea.h"
+#include "ui_AdminEditMenuWidget.h"
 
 namespace Ui {
 class AdminEditMenuWidget;
@@ -34,8 +35,7 @@ class AdminEditMenuWidget : public QWidget {
         QVBoxLayout *boxLayoutInScenarioFreeIncidents;
         QVBoxLayout *boxLayoutInScenarioContainedIncidents;
 
-        /// Переменная, хранящая в себе данные интерфейса
-        Ui::AdminEditMenuWidget *ui;
+
 
         void setAllAddToButtonsDisabled();
         void setAllDeleteButtonsDisabled();
@@ -43,6 +43,10 @@ class AdminEditMenuWidget : public QWidget {
     private slots:
 
     public:
+
+        /// Переменная, хранящая в себе данные интерфейса
+        Ui::AdminEditMenuWidget *ui; //public потому что контролер должен был достучаться
+
         /**
          *  @brief AdminEditMenuWidget - конструктор по умолчанию
          *  @param parent - родительский объект в иерархии Qt.

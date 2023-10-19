@@ -55,8 +55,7 @@ AdminEditMenuWidget *MainWindow::getEditMenuWidget() {
 }
 
 AdminCategoriesWidget *MainWindow::getAdminCategoryWidget() {
-    //return this->ui->wid;
-
+    return this->ui->widget_edit_menu->ui->categories;
 }
 
 

@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
     CategoryController adminCategoryController;
 
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminCategoryController, &CategoryController::onDatabaseUpdated);
 
 
 
@@ -77,7 +78,7 @@ int main(int argc, char *argv[]) {
 
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
-    //adminCategoryController.init(mainWindow->getEditMenuWidget());
+    adminCategoryController.init(mainWindow->getAdminCategoryWidget());
 
     // Инициализация ядря
     core.init();

@@ -1,5 +1,4 @@
 #include "AdminEditMenuWidget.h"
-#include "ui_AdminEditMenuWidget.h"
 
 /**
  *  @brief AdminEditMenuWidget - конструктор по умолчанию
