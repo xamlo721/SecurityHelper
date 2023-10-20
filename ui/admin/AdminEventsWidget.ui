@@ -44,6 +44,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButton_editEvent">
+          <property name="text">
+           <string>Редактировать</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="pushButton_deleteSelectedEvents">
           <property name="text">
            <string>Удалить выбранное</string>
@@ -63,6 +70,12 @@
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
           <widget class="QLabel" name="label_Intruction_title_2">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>200</height>
+            </size>
+           </property>
            <property name="text">
             <string>Инструкция</string>
            </property>
