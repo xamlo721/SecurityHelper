@@ -17,6 +17,7 @@ void AdminEventsController::init(AdminEventsWidget *eventsWidget) {
 void AdminEventsController::onDatabaseUpdated(const Database & db) {
     copyDatabase = db;
 
+    this->ui->clearEvents();
     this->allEvents = db.events;
 
     //Отобразить все категории в списке
