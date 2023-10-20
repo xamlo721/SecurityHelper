@@ -8,6 +8,7 @@
 
 #include "src/controllers/admin/AdminEditMenuController.h"
 #include "src/controllers/admin/categories/CategoryController.h"
+#include "src/controllers/admin/AdminEventsController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -35,14 +36,20 @@ int main(int argc, char *argv[]) {
     ///Admin
     AdminEditMenuController editMenuController;
     CategoryController adminCategoryController;
+    AdminEventsController adminEventsController;
 
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminCategoryController, &CategoryController::onDatabaseUpdated);
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminEventsController, &AdminEventsController::onDatabaseUpdated);
 
 
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminAddCategory, &core, &CoreApp::addCategory);
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminUpdateCategory, &core, &CoreApp::updateCategory);
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminDeleteCategory, &core, &CoreApp::removeCategory);
+
+    QObject::connect(&adminEventsController, &AdminEventsController::signalAdminAddEvent, &core, &CoreApp::addEvent);
+    QObject::connect(&adminEventsController, &AdminEventsController::signalAdminUpdateEvent, &core, &CoreApp::updateEvent);
+    QObject::connect(&adminEventsController, &AdminEventsController::signalAdminDeleteEvent, &core, &CoreApp::removeEvent);
 
 
 
@@ -84,6 +91,7 @@ int main(int argc, char *argv[]) {
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
     adminCategoryController.init(mainWindow->getAdminCategoryWidget());
+    adminEventsController.init(mainWindow->getAdminEventsWidget());
 
     // Инициализация ядря
     core.init();

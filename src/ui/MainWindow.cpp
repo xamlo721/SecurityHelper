@@ -58,6 +58,10 @@ AdminCategoriesWidget *MainWindow::getAdminCategoryWidget() {
     return this->ui->widget_edit_menu->ui->categories;
 }
 
+AdminEventsWidget *MainWindow::getAdminEventsWidget() {
+    return this->ui->widget_edit_menu->ui->events;
+}
+
 
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
