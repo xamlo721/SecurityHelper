@@ -41,9 +41,23 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_deleteSelectedIncidents">
+      <widget class="QPushButton" name="pushButton_editIncident">
        <property name="text">
-        <string>Удалить выбранное</string>
+        <string>Редактировать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_saveIncident">
+       <property name="text">
+        <string>Сохранить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_deleteIncident">
+       <property name="text">
+        <string>Удалить</string>
        </property>
       </widget>
      </item>
@@ -105,13 +119,6 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_removeFromIncident">
-       <property name="text">
-        <string>Удалить выбранное из инцидента</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -130,13 +137,6 @@ p, li { white-space: pre-wrap; }
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_addToIncident">
-       <property name="text">
-        <string>Добавить выбранное в инцидент</string>
        </property>
       </widget>
      </item>
