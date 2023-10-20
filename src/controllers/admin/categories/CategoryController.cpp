@@ -91,9 +91,6 @@ void CategoryController::onCategoryAdded() {
     //Вызвать создание категории из ядра
     emit signalAdminAddCategory();
 
-    //Очистить отображаемый список событий, принадлежащих категории
-    this->ui->clearSelectedEvents();
-    this->ui->clearAvailableEvents();
 
 }
 

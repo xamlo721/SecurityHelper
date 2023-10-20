@@ -40,6 +40,11 @@ int main(int argc, char *argv[]) {
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminCategoryController, &CategoryController::onDatabaseUpdated);
 
 
+    QObject::connect(&adminCategoryController, &CategoryController::signalAdminAddCategory, &core, &CoreApp::addCategory);
+    QObject::connect(&adminCategoryController, &CategoryController::signalAdminUpdateCategory, &core, &CoreApp::updateCategory);
+    QObject::connect(&adminCategoryController, &CategoryController::signalAdminDeleteCategory, &core, &CoreApp::removeCategory);
+
+
 
 
 
