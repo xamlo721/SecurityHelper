@@ -35,6 +35,7 @@ FORMS += ui/MainWindow.ui \
 HEADERS += \
     src/controllers/MainWindowController.h \
     src/controllers/admin/AdminEditMenuController.h \
+    src/controllers/admin/AdminEventsController.h \
     src/controllers/admin/categories/CategoryController.h \
     src/controllers/admin/incidents/IncidentController.h \
     src/controllers/admin/scenaries/ScenariesController.h \
@@ -80,6 +81,7 @@ HEADERS += \
 SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/controllers/admin/AdminEditMenuController.cpp \
+    src/controllers/admin/AdminEventsController.cpp \
     src/controllers/admin/categories/CategoryController.cpp \
     src/controllers/admin/incidents/IncidentController.cpp \
     src/controllers/admin/scenaries/ScenariesController.cpp \

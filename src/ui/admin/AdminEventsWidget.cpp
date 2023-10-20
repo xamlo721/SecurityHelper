@@ -25,7 +25,7 @@ void AdminEventsWidget::clearEvents() {
  * @param event - заранее сделанный виджет
  */
 void AdminEventsWidget::addEvent(SelectedWidget * event) {
-    QObject::connect(event, &SelectedWidget::signalSelected, this, &AdminEventsWidget::signaEventClicked);
+    QObject::connect(event, &SelectedWidget::signalSelected, this, &AdminEventsWidget::signalEventClicked);
     this->ui->scrollArea_events->addWidget(event->getId(), event);
 }
 
