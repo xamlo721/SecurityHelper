@@ -35,21 +35,21 @@ SecurityIncident::SecurityIncident(quint32 id, QString text, QString name, QList
  * @brief getId - Получить ID инцидента
  * @return
  */
-quint32 SecurityIncident::getId() {
+quint32 SecurityIncident::getId() const {
     return this->id;
 }
 /**
  * @brief getText - Получить текст инцидента
  * @return
  */
-QString SecurityIncident::getText() {
+QString SecurityIncident::getText() const {
     return this->text;
 }
 /**
  * @brief getName - Получить название инцидента
  * @return
  */
-QString SecurityIncident::getName() {
+QString SecurityIncident::getName() const {
     return this->name;
 }
 /**
@@ -57,7 +57,7 @@ QString SecurityIncident::getName() {
  * которые могут согнализируют о наструплении этого инцидента
  * @return
  */
-QList<quint32> SecurityIncident::getEventIds() {
+QList<quint32> SecurityIncident::getEventIds() const {
     return this->events;
 }
 

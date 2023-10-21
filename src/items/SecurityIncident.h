@@ -50,26 +50,26 @@ class SecurityIncident : public QObject {
          * @brief getId - Получить ID инцидента
          * @return
          */
-        quint32 getId();
+        quint32 getId() const;
 
         /**
          * @brief getText - Получить текст инцидента
          * @return
          */
-        QString getText();
+        QString getText() const;
 
         /**
          * @brief getName - Получить название инцидента
          * @return
          */
-        QString getName();
+        QString getName() const;
 
         /**
          * @brief getEventIds - Получить список событий ИБ,
          * которые могут согнализируют о наструплении этого инцидента
          * @return
          */
-        QList<quint32> getEventIds();
+        QList<quint32> getEventIds() const;
 
         /**
          * @brief setText - Установить текст инцидента
