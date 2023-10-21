@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1258</width>
-    <height>632</height>
+    <width>1455</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,12 +19,12 @@
      <item>
       <widget class="QLabel" name="label_categoryList_title_5">
        <property name="text">
-        <string>Список сценариев</string>
+        <string>Список рекомендаций</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="MenuSelectedWidget" name="scrollArea_free_scenaries" native="true">
+      <widget class="MenuSelectedWidget" name="scrollArea_recommendations" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -67,7 +67,7 @@
     <widget class="QWidget" name="widget_editCategoryMenu_5" native="true">
      <property name="minimumSize">
       <size>
-       <width>400</width>
+       <width>200</width>
        <height>0</height>
       </size>
      </property>
@@ -142,6 +142,48 @@ p, li { white-space: pre-wrap; }
      </item>
      <item>
       <widget class="QTextEdit" name="textEdit_4"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_included_scenaries_title">
+       <property name="text">
+        <string>Включенные сцераии</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="MenuSelectedWidget" name="scrollArea_included_scenaries" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_free_scenaries_title">
+       <property name="text">
+        <string>Свободные сценарии</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="MenuSelectedWidget" name="scrollArea_free_scenaries" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
