@@ -41,6 +41,20 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_editRecommendation">
+       <property name="text">
+        <string>Редактировать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_saveRecommendation">
+       <property name="text">
+        <string>Сохранить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_deleteRecommendation">
        <property name="text">
         <string>Удалить</string>
