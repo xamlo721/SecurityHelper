@@ -41,7 +41,21 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_deleteSelectedScenaries">
+      <widget class="QPushButton" name="pushButton_editScenario">
+       <property name="text">
+        <string>Редактировать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_saveScenario">
+       <property name="text">
+        <string>Сохрранить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_deleteScenario">
        <property name="text">
         <string>Удалить выбранное</string>
        </property>
@@ -105,13 +119,6 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_removeFromScenario">
-       <property name="text">
-        <string>Удалить выбранное из сценария</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -130,13 +137,6 @@ p, li { white-space: pre-wrap; }
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_addToScenario">
-       <property name="text">
-        <string>Добавить выбранное в сценарий</string>
        </property>
       </widget>
      </item>
