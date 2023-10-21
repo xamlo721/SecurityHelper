@@ -38,7 +38,7 @@ SecurityScenario::SecurityScenario(quint32 id, QString text, QString name, QList
  * @brief getId - Получить ID сценария
  * @return
  */
-quint32 SecurityScenario::getId() {
+quint32 SecurityScenario::getId() const {
     return this->id;
 }
 
@@ -46,7 +46,7 @@ quint32 SecurityScenario::getId() {
  * @brief getText - Получить текст Сценария
  * @return
  */
-QString SecurityScenario::getText() {
+QString SecurityScenario::getText() const {
     return this->text;
 }
 
@@ -54,7 +54,7 @@ QString SecurityScenario::getText() {
  * @brief getName - Получить название Сценария
  * @return
  */
-QString SecurityScenario::getName() {
+QString SecurityScenario::getName() const {
     return this->name;
 }
 
@@ -63,7 +63,7 @@ QString SecurityScenario::getName() {
  * которые могут приветси к развитию этого сценария
  * @return
  */
-QList<quint32> SecurityScenario::getIncidents() {
+QList<quint32> SecurityScenario::getIncidents() const {
     return this->incidents;
 }
 

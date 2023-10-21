@@ -50,19 +50,19 @@ class SecurityScenario : public QObject {
          * @brief getId - Получить ID сценария
          * @return
          */
-        quint32 getId();
+        quint32 getId() const;
 
         /**
          * @brief getText - Получить текст Сценария
          * @return
          */
-        QString getText();
+        QString getText() const;
 
         /**
          * @brief getName - Получить название Сценария
          * @return
          */
-        QString getName();
+        QString getName() const;
 
 
         /**
@@ -70,7 +70,7 @@ class SecurityScenario : public QObject {
          * которые могут приветси к развитию этого сценария
          * @return
          */
-        QList<quint32> getIncidents();
+        QList<quint32> getIncidents() const;
 
         /**
          * @brief setText - Установить текст сценария
