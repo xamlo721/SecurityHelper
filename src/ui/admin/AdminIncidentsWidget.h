@@ -68,7 +68,7 @@ class AdminIncidentsWidget : public QWidget {
          * @brief signalAddCategoryClicked - сигнал вызывается
          * при кажатии администратором на кнопку добавления категории
          */
-        void signalAddCategoryClicked();
+        void signalAddIncidentClicked();
 
         /**
          * @brief signalEditCategoryClicked - сигнал вызывается

@@ -42,7 +42,7 @@ void AdminIncidentsWidget::addSelectedEvent(SelectedWidget * event) {
 
 void AdminIncidentsWidget::onAddIncidentButtonPressed() {
     this->ui->scrollArea_incidents->unselect();
-    emit signalAddCategoryClicked();
+    emit signalAddIncidentClicked();
 }
 
 void AdminIncidentsWidget::onEditIncidentButtonPressed() {
