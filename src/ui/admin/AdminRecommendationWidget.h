@@ -2,21 +2,124 @@
 #define ADMINRECOMMENDATIONWIDGET_H
 
 #include <QWidget>
+#include "src/ui/SelectedWidget.h"
+
 
 namespace Ui {
-class AdminRecommendationWidget;
+    class AdminRecommendationWidget;
 }
 
-class AdminRecommendationWidget : public QWidget
-{
+class AdminRecommendationWidget : public QWidget {
+
     Q_OBJECT
 
-public:
-    explicit AdminRecommendationWidget(QWidget *parent = nullptr);
-    ~AdminRecommendationWidget();
+    public:
+        AdminRecommendationWidget(QWidget *parent = nullptr);
+        ~AdminRecommendationWidget();
 
-private:
-    Ui::AdminRecommendationWidget *ui;
+
+
+        /**
+         * @brief clearRecomendations - очищает на экране список рекомендаций
+         */
+        void clearRecomendations();
+
+
+        /**
+         * @brief clearAvailableScenarys - очищает на экране список доступных событий
+         */
+        void clearAvailableScenaries();
+
+        /**
+         * @brief clearSelectedScenarys - очищает на экране список выбранных событий
+         */
+        void clearSelectedScenaries();
+
+        /**
+         * @brief addRecomendation - добавляет в отображаемый
+         * список рекомендаций новый виджет
+         * @param recomendation - заранее сделанный виджет
+         */
+        void addRecomendation(SelectedWidget * recomendation);
+
+        /**
+         * @brief addScenary - добавляет в отображаемый
+         * список доступных для выделения событий новый виджет
+         * @param event - заранее сделанный виджет
+         */
+        void addAvalilableScenary(SelectedWidget * event);
+
+        /**
+         * @brief addSelectedScenary - добавляет в отображаемый
+         * список выбранных событий новый виджет
+         * @param event - заранее сделанный виджет
+         */
+        void addSelectedScenary(SelectedWidget * event);
+
+        /**
+         * @brief setRecommendationText - задаёт отображаемый текст рекомендаций по категориям
+         * @param TextContainment - Текст для сдерживания
+         * @param TextFixes - Текст для устранения
+         * @param TextRestore - Текст для восстановления
+         */
+        void setRecommendationText(QString TextContainment, QString TextFixes, QString TextRestore);
+
+    signals:
+
+        /**
+         * @brief signalRecomendationClicked - сигнал вызывается
+         * при кажатии администратором на кнопку рекомендации
+         * @param incidentId - ID выбранного инцидента
+         */
+        void signalRecomendationClicked(quint32 incidentId);
+
+        /**
+         * @brief signalAddRecomendationClicked - сигнал вызывается
+         * при кажатии администратором на кнопку добавления рекомендаций
+         */
+        void signalAddRecomendationClicked();
+
+        /**
+         * @brief signalEditRecomendationClicked - сигнал вызывается
+         * при кажатии администратором на кнопку редактирования рекомендаций
+         * @param recomendationId - ID выбранной рекомендации
+         * @param recomendationName - Название рекомендации
+         * @param TextContainment - Текст для сдерживания
+         * @param TextFixes - Текст для устранения
+         * @param TextRestore - Текст для восстановления
+         */
+        void signalEditRecomendationClicked(quint32 recomendationId, QString recomendationName, QString TextContainment, QString TextFixes, QString TextRestore);
+
+        /**
+         * @brief signalDelRecomendationClicked - сигнал вызывается
+         * при кажатии администратором на кнопку удаления инцидента
+         * @param incidentId - ID выбранного инцидента
+         */
+        void signalDelRecomendationClicked(quint32 recomendationId);
+
+        /**
+         * @brief signalUnselectedScenaryClicked - сигнал вызывается
+         * при кажатии администратором на кнопку доступного события
+         * @param scenaryID - ID события
+         */
+        void signaAvailableScenaryClicked(quint32 scenaryID);
+
+        /**
+         * @brief signalSelectedScenaryClicked - сигнал вызывается
+         * при кажатии администратором на кнопку уже выбранного события
+         * @param scenaryID - ID события
+         */
+        void signalSelectedScenaryClicked(quint32 scenaryID);
+
+    private slots:
+        void onAddRecomendationButtonPressed();
+        void onEditRecomendationButtonPressed();
+        void onDelRecomendationButtonPressed();
+        void onSaveRecomendationButtonPressed();
+
+
+    private:
+        Ui::AdminRecommendationWidget *ui;
 };
 
 #endif // ADMINRECOMMENDATIONWIDGET_H
