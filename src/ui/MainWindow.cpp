@@ -68,6 +68,9 @@ AdminIncidentsWidget *MainWindow::getAdminIncidentWidget() {
 AdminScenariesWidget *MainWindow::getAdminScenariesWidget() {
     return this->ui->widget_edit_menu->ui->scenaries;
 }
+AdminRecommendationWidget *MainWindow::getAdminRecommendationsWidget() {
+    return this->ui->widget_edit_menu->ui->recommendations;
+}
 
 
 

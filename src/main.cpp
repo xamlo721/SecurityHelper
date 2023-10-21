@@ -11,6 +11,7 @@
 #include "src/controllers/admin/AdminEventsController.h"
 #include "src/controllers/admin/incidents/IncidentController.h"
 #include "src/controllers/admin/scenaries/ScenariesController.h"
+#include "src/controllers/admin/recomms/AdminRecommendationsController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -41,7 +42,7 @@ int main(int argc, char *argv[]) {
     AdminEventsController adminEventsController;
     IncidentController adminIncidentController;
     ScenariesController adminScenariesController;
-
+    AdminRecommendationsController adminRecommendationsController;
 
 
 
@@ -73,6 +74,12 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminScenariesController, &ScenariesController::signalAdminAddScenary, &core, &CoreApp::addScenario);
     QObject::connect(&adminScenariesController, &ScenariesController::signalAdminUpdateScenary, &core, &CoreApp::updateScenario);
     QObject::connect(&adminScenariesController, &ScenariesController::signalAdminDeleteScenary, &core, &CoreApp::removeScenario);
+
+    //Admin Scenaries
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminRecommendationsController, &AdminRecommendationsController::onDatabaseUpdated);
+    QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminAddRecommendation, &core, &CoreApp::addRecommendations);
+    QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminUpdateRecommendation, &core, &CoreApp::updateRecommendations);
+    QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminDeleteRecommendation, &core, &CoreApp::removeRecommendations);
 
 
 
@@ -114,6 +121,7 @@ int main(int argc, char *argv[]) {
     adminEventsController.init(mainWindow->getAdminEventsWidget());
     adminIncidentController.init(mainWindow->getAdminIncidentWidget());
     adminScenariesController.init(mainWindow->getAdminScenariesWidget());
+    adminRecommendationsController.init(mainWindow->getAdminRecommendationsWidget());
 
 
 
