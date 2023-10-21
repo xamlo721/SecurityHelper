@@ -62,6 +62,11 @@ AdminEventsWidget *MainWindow::getAdminEventsWidget() {
     return this->ui->widget_edit_menu->ui->events;
 }
 
+AdminIncidentsWidget *MainWindow::getAdminIncidentWidget() {
+    return this->ui->widget_edit_menu->ui->incidents;
+}
+
+
 
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);

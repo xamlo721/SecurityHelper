@@ -9,6 +9,7 @@
 #include "src/controllers/admin/AdminEditMenuController.h"
 #include "src/controllers/admin/categories/CategoryController.h"
 #include "src/controllers/admin/AdminEventsController.h"
+#include "src/controllers/admin/incidents/IncidentController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -30,28 +31,35 @@ int main(int argc, char *argv[]) {
 
     ///User
     UserEventsController categoryEventController;
-    UserIncidentController incidentController;
+    UserIncidentController userIncidentController;
     UserRecommendationController scenarioRecommendationController;
 
     ///Admin
     AdminEditMenuController editMenuController;
     CategoryController adminCategoryController;
     AdminEventsController adminEventsController;
+    IncidentController adminIncidentController;
 
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
+
+
+    //Admin Categories
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminCategoryController, &CategoryController::onDatabaseUpdated);
-    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminEventsController, &AdminEventsController::onDatabaseUpdated);
-
-
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminAddCategory, &core, &CoreApp::addCategory);
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminUpdateCategory, &core, &CoreApp::updateCategory);
     QObject::connect(&adminCategoryController, &CategoryController::signalAdminDeleteCategory, &core, &CoreApp::removeCategory);
 
+    //Admin Events
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminEventsController, &AdminEventsController::onDatabaseUpdated);
     QObject::connect(&adminEventsController, &AdminEventsController::signalAdminAddEvent, &core, &CoreApp::addEvent);
     QObject::connect(&adminEventsController, &AdminEventsController::signalAdminUpdateEvent, &core, &CoreApp::updateEvent);
     QObject::connect(&adminEventsController, &AdminEventsController::signalAdminDeleteEvent, &core, &CoreApp::removeEvent);
 
-
+    //Admin Incidents
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminIncidentController, &IncidentController::onDatabaseUpdated);
+    QObject::connect(&adminIncidentController, &IncidentController::signalAdminAddIncident, &core, &CoreApp::addIncident);
+    QObject::connect(&adminIncidentController, &IncidentController::signalAdminUpdateIncident, &core, &CoreApp::updateIncident);
+    QObject::connect(&adminIncidentController, &IncidentController::signalAdminDeleteIncident, &core, &CoreApp::removeIncident);
 
 
 
@@ -85,13 +93,16 @@ int main(int argc, char *argv[]) {
 
     categoryEventController.init(mainWindow->getMainMenuWidget());
 
-    incidentController.init(mainWindow->getIncidentMenuWidget());
+    userIncidentController.init(mainWindow->getIncidentMenuWidget());
     scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
 
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
     adminCategoryController.init(mainWindow->getAdminCategoryWidget());
     adminEventsController.init(mainWindow->getAdminEventsWidget());
+    adminIncidentController.init(mainWindow->getAdminIncidentWidget());
+
+
 
     // Инициализация ядря
     core.init();

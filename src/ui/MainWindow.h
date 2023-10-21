@@ -29,8 +29,10 @@ class MainWindow : public QMainWindow {
         IncidentMenuWidget *getIncidentMenuWidget();
         ScenarioMenuWidget *getScenarioMenuWidget();
         AdminEditMenuWidget *getEditMenuWidget();
+
         AdminCategoriesWidget *getAdminCategoryWidget();
         AdminEventsWidget *getAdminEventsWidget();
+        AdminIncidentsWidget *getAdminIncidentWidget();
 
         //TODO: Странная проектировка, возможно переписать
         void openMainMenu();
