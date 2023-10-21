@@ -34,7 +34,7 @@ void AdminRecommendationWidget::addRecomendation(SelectedWidget * recomendation)
 
 
 void AdminRecommendationWidget::addAvalilableScenary(SelectedWidget * scenary){
-    QObject::connect(scenary, &SelectedWidget::signalSelected, this, &AdminRecommendationWidget::signalAddRecomendationClicked);
+    QObject::connect(scenary, &SelectedWidget::signalSelected, this, &AdminRecommendationWidget::signaAvailableScenaryClicked);
     this->ui->scrollArea_free_scenaries->addWidget(scenary->getId(), scenary);
 }
 
