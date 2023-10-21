@@ -58,31 +58,31 @@ class SecurityRecommendations : public QObject {
          * @brief getId - получить ID рекомендации
          * @return
          */
-        quint32 getId();
+        quint32 getId() const;
 
         /**
          * @brief getTextContainment - получить текст рекомендации для сдерживания
          * @return
          */
-        QString getTextContainment();
+        QString getTextContainment() const;
 
         /**
          * @brief getTextFixes - получить текст рекомендации для устранения
          * @return
          */
-        QString getTextFixes();
+        QString getTextFixes() const;
 
         /**
          * @brief getTextRestore - получить текст рекомендации для восстановления
          * @return
          */
-        QString getTextRestore();
+        QString getTextRestore() const;
 
         /**
          * @brief getScenaries - получить перечень возможных сценариев
          * @return
          */
-        QList<quint32> getScenaries();
+        QList<quint32> getScenaries() const;
 
         /**
          * @brief setId - установить ID рекомендации

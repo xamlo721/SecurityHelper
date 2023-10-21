@@ -39,7 +39,7 @@ SecurityRecommendations::SecurityRecommendations(const SecurityRecommendations& 
  * @brief getId - Получить ID рекомендации
  * @return
  */
-quint32 SecurityRecommendations::getId() {
+quint32 SecurityRecommendations::getId() const {
     return this->id;
 }
 
@@ -47,7 +47,7 @@ quint32 SecurityRecommendations::getId() {
  * @brief getTextContainment - Получить текст рекомендации для сдерживания
  * @return
  */
-QString SecurityRecommendations::getTextContainment() {
+QString SecurityRecommendations::getTextContainment() const {
     return this->textContainment;
 }
 
@@ -55,7 +55,7 @@ QString SecurityRecommendations::getTextContainment() {
  * @brief getTextFixes - Получить текст рекомендации для устранения
  * @return
  */
-QString SecurityRecommendations::getTextFixes() {
+QString SecurityRecommendations::getTextFixes() const {
     return this->textFixes;
 }
 
@@ -63,7 +63,7 @@ QString SecurityRecommendations::getTextFixes() {
  * @brief getTextRestore - Получить текст рекомендации для восстановления
  * @return
  */
-QString SecurityRecommendations::getTextRestore() {
+QString SecurityRecommendations::getTextRestore() const {
     return this->textRestore;
 }
 
@@ -71,7 +71,7 @@ QString SecurityRecommendations::getTextRestore() {
  * @brief getScenaries - получить перечень возможных сценариев
  * @return
  */
-QList<quint32> SecurityRecommendations::getScenaries() {
+QList<quint32> SecurityRecommendations::getScenaries() const {
     return this->scenaries;
 }
 
