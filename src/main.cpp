@@ -10,6 +10,7 @@
 #include "src/controllers/admin/categories/CategoryController.h"
 #include "src/controllers/admin/AdminEventsController.h"
 #include "src/controllers/admin/incidents/IncidentController.h"
+#include "src/controllers/admin/scenaries/ScenariesController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"
@@ -39,6 +40,12 @@ int main(int argc, char *argv[]) {
     CategoryController adminCategoryController;
     AdminEventsController adminEventsController;
     IncidentController adminIncidentController;
+    ScenariesController adminScenariesController;
+
+
+
+
+
 
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
 
@@ -61,6 +68,11 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminIncidentController, &IncidentController::signalAdminUpdateIncident, &core, &CoreApp::updateIncident);
     QObject::connect(&adminIncidentController, &IncidentController::signalAdminDeleteIncident, &core, &CoreApp::removeIncident);
 
+    //Admin Scenaries
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminScenariesController, &ScenariesController::onDatabaseUpdated);
+    QObject::connect(&adminScenariesController, &ScenariesController::signalAdminAddScenary, &core, &CoreApp::addScenario);
+    QObject::connect(&adminScenariesController, &ScenariesController::signalAdminUpdateScenary, &core, &CoreApp::updateScenario);
+    QObject::connect(&adminScenariesController, &ScenariesController::signalAdminDeleteScenary, &core, &CoreApp::removeScenario);
 
 
 
@@ -101,6 +113,7 @@ int main(int argc, char *argv[]) {
     adminCategoryController.init(mainWindow->getAdminCategoryWidget());
     adminEventsController.init(mainWindow->getAdminEventsWidget());
     adminIncidentController.init(mainWindow->getAdminIncidentWidget());
+    adminScenariesController.init(mainWindow->getAdminScenariesWidget());
 
 
 

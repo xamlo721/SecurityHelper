@@ -65,6 +65,9 @@ AdminEventsWidget *MainWindow::getAdminEventsWidget() {
 AdminIncidentsWidget *MainWindow::getAdminIncidentWidget() {
     return this->ui->widget_edit_menu->ui->incidents;
 }
+AdminScenariesWidget *MainWindow::getAdminScenariesWidget() {
+    return this->ui->widget_edit_menu->ui->scenaries;
+}
 
 
 
