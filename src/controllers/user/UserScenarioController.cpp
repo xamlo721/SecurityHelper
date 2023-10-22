@@ -12,7 +12,7 @@ void UserScenaryController::setScenariesList(QList<SecurityScenario> scenaries) 
     clearScenaries();
     for (SecurityScenario sc : scenaries) {
             ScenarioWidget * widget = new ScenarioWidget(sc.getId(), sc.getText(), sc.getName());
-            QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &UserScenaryController::signalOpenScenario);
+            QObject::connect(widget, &ScenarioWidget::signalScenarioOpen, this, &UserScenaryController::slotOnScenaryClicked);
             QObject::connect(widget, &ScenarioWidget::signalClarify, this, &UserScenaryController::signalOnClarifyEvents);
             if (!shownScenariesWidget.contains(widget)) {
                 shownScenariesWidget << widget;
@@ -29,3 +29,7 @@ void UserScenaryController::clearScenaries() {
     shownScenariesWidget.clear();
 }
 
+void UserScenaryController::slotOnScenaryClicked(quint32 id) {
+    emit signalOpenScenario(id);
+    emit signalScenarySelected();
+}

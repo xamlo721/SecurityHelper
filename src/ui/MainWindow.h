@@ -28,6 +28,7 @@ class MainWindow : public QMainWindow {
         MainMenuWidget *getMainMenuWidget();
         IncidentMenuWidget *getIncidentMenuWidget();
         ScenarioMenuWidget *getScenarioMenuWidget();
+        RecommendationsWidget *getRecommendationMenuWidget();
         AdminEditMenuWidget *getEditMenuWidget();
 
         AdminCategoriesWidget *getAdminCategoryWidget();
@@ -46,8 +47,6 @@ class MainWindow : public QMainWindow {
 
         void openUserToolbar();
         void openAdminToolbar();
-
-        void setRemmendationWidget(RecommendationsWidget * widget);
 
     signals:
         void signalAdminButtonPressed();

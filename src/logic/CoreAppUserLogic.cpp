@@ -39,3 +39,7 @@ void CoreApp::onIncidentSelected(quint32 incidentID) {
 
     emit signalScenarioCalculated(availableScenaries.values());
 }
+
+void CoreApp::onScenarySelected(quint32 scenaryID) {
+
+}

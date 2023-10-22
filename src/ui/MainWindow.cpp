@@ -50,6 +50,11 @@ ScenarioMenuWidget *MainWindow::getScenarioMenuWidget() {
     return this->ui->widget_scenario_menu;
 }
 
+RecommendationsWidget *MainWindow::getRecommendationMenuWidget() {
+    return this->ui->widget_recomendations_menu;
+}
+
+
 AdminEditMenuWidget *MainWindow::getEditMenuWidget() {
     return this->ui->widget_edit_menu;
 }
@@ -102,13 +107,6 @@ void MainWindow::openAdminToolbar() {
     this->ui->stackedWidgetStatusbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
 }
 
-void MainWindow::setRemmendationWidget(RecommendationsWidget * widget) {
-    //FIXME: Уродская система, переписать!
-    delete this->ui->widget_recomendations_menu;
-    this->ui->widget_recomendations_menu = widget;
-    this->ui->stackedWidget->repaint();
-    this->ui->verticalLayout_3->addWidget(widget);
-}
 
 MainWindow::~MainWindow() {
     delete ui;

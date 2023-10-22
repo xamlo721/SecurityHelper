@@ -24,12 +24,14 @@ class UserScenaryController : public QObject {
         ///Лист с виджетами сценариев, которые уже показаны
         QList<ScenarioWidget*> shownScenariesWidget;
         ///Закрывает все виджеты сценариев из листа shownScenariesWidget
-        void closeShownScenariesWidget();
+        void clearScenaries();
 
     private slots:
+        void slotOnScenaryClicked(quint32 id);
 
 
     signals:
+        void signalScenarySelected();
         void signalOpenScenario(quint32 id);
         void signalOnClarifyEvents();
 };

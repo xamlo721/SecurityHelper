@@ -48,7 +48,7 @@ void MainWindowController::onIncidentsButtonPressed() {
 }
 
 void MainWindowController::onSettingsButtonPressed() {
-
+    //TODO: Нам нужна кнопка настроек?
 }
 
 void MainWindowController::onExitButtonPressed() {
@@ -56,15 +56,15 @@ void MainWindowController::onExitButtonPressed() {
 }
 
 void MainWindowController::onUndoButtonPressed() {
-
+    //TODO: Нам нужна эта кнопка?
 }
 
 void MainWindowController::onRedoButtonPressed() {
-
+    //TODO: Нам нужна эта кнопка?
 }
 
 void MainWindowController::onResetEditButtonPressed() {
-
+    //TODO: Нам нужна эта кнопка?
 }
 
 void MainWindowController::onEditButtonPressed() {
@@ -83,10 +83,6 @@ void MainWindowController::onOpenScenarioMenu() {
 
 void MainWindowController::onOpenRecommendationMenu() {
     this->w->openRecommendationMenu();
-}
-
-void MainWindowController::setRecommendationWidget(RecommendationsWidget * widget) {
-    this->w->setRemmendationWidget(widget);
 }
 
 void MainWindowController::onClarifyEvents() {

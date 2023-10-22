@@ -3,7 +3,8 @@
 #include "src/controllers/MainWindowController.h"
 #include "src/controllers/user/UserEventsController.h"
 #include "src/controllers/user/UserIncidentWidgetController.h"
-#include "src/controllers/user/UserScenarioRecommendationWidgetController.h"
+#include "src/controllers/user/UserScenarioController.h"
+#include "src/controllers/user/UserRecommendationController.h"
 
 
 #include "src/controllers/admin/AdminEditMenuController.h"
@@ -32,9 +33,10 @@ int main(int argc, char *argv[]) {
     MainWindowController controller;
 
     ///User
-    UserEventsController categoryEventController;
+    UserEventsController userEventController;
     UserIncidentController userIncidentController;
-    UserRecommendationController scenarioRecommendationController;
+    UserScenaryController userScenaryController;
+    UserRecommendationController userRecommendationController;
 
     ///Admin
     AdminEditMenuController editMenuController;
@@ -48,7 +50,7 @@ int main(int argc, char *argv[]) {
 
 
 
-    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &categoryEventController, &UserEventsController::onDatabaseUpdated);
+    QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &userEventController, &UserEventsController::onDatabaseUpdated);
 
 
     //Admin Categories
@@ -87,24 +89,23 @@ int main(int argc, char *argv[]) {
     //##############    USER ACTION    ################//
 
     //Select Events
-    QObject::connect(&controller, &MainWindowController::signalResetButtonPressed, &categoryEventController, &UserEventsController::resetWidget);
+    QObject::connect(&controller, &MainWindowController::signalResetButtonPressed, &userEventController, &UserEventsController::resetWidget);
 
-    QObject::connect(&controller, &MainWindowController::signalCalculateIncidentButtonPressed, &categoryEventController, &UserEventsController::onCalculateIncident);
-    QObject::connect(&categoryEventController, &UserEventsController::signalEventsForIncidentSelected, &core, &CoreApp::onEventsSelected);
+    QObject::connect(&controller, &MainWindowController::signalCalculateIncidentButtonPressed, &userEventController, &UserEventsController::onCalculateIncident);
+    QObject::connect(&userEventController, &UserEventsController::signalEventsForIncidentSelected, &core, &CoreApp::onEventsSelected);
     QObject::connect(&core, &CoreApp::signalIncidentCalculated, &userIncidentController, &UserIncidentController::setIncidentList);
 
     //Incident Selected
     QObject::connect(&userIncidentController, &UserIncidentController::signalOpenIncident, &core, &CoreApp::onIncidentSelected);
-    QObject::connect(&core, &CoreApp::signalScenarioCalculated, &scenarioRecommendationController, &UserRecommendationController::setScenariesList);
+    QObject::connect(&userIncidentController, &UserIncidentController::signalIncidentSelected, &controller, &MainWindowController::onOpenScenarioMenu);
+    QObject::connect(&core, &CoreApp::signalScenarioCalculated, &userScenaryController, &UserScenaryController::setScenariesList);
 
+    //Scenario Selected
+    QObject::connect(&userScenaryController, &UserScenaryController::signalOnClarifyEvents, &controller, &MainWindowController::onClarifyEvents);
+    QObject::connect(&userScenaryController, &UserScenaryController::signalOpenScenario, &core, &CoreApp::onScenarySelected);
+    QObject::connect(&userScenaryController, &UserScenaryController::signalScenarySelected, &controller, &MainWindowController::onOpenRecommendationMenu);
+    QObject::connect( &core, &CoreApp::signalRecommendationCalculated, &userRecommendationController, &UserRecommendationController::setRecommendation);
 
-
-
-    QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOpenScenarioMenu, &controller, &MainWindowController::onOpenScenarioMenu);
-    //QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOpenScenario, &core, &CoreApp::onOpenScenario);
-    QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOnClarifyEvents, &controller, &MainWindowController::onClarifyEvents);
-    QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOpenRecommendationMenu, &controller, &MainWindowController::onOpenRecommendationMenu);
-    QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalSetRecommentationWidget, &controller, &MainWindowController::setRecommendationWidget);
 
 
 
@@ -112,13 +113,14 @@ int main(int argc, char *argv[]) {
     // Инициализация контроллеров пользовательского интерфейса
     controller.init(mainWindow);
 
-    categoryEventController.init(mainWindow->getMainMenuWidget());
-
+    userEventController.init(mainWindow->getMainMenuWidget());
     userIncidentController.init(mainWindow->getIncidentMenuWidget());
-    scenarioRecommendationController.init(mainWindow->getScenarioMenuWidget());
+    userScenaryController.init(mainWindow->getScenarioMenuWidget());
+    userRecommendationController.init(mainWindow->getRecommendationMenuWidget());
 
     // Инициализация контроллеров административного интерфейса
     editMenuController.init(mainWindow->getEditMenuWidget());
+
     adminCategoryController.init(mainWindow->getAdminCategoryWidget());
     adminEventsController.init(mainWindow->getAdminEventsWidget());
     adminIncidentController.init(mainWindow->getAdminIncidentWidget());

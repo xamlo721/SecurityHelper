@@ -67,13 +67,16 @@ class CoreApp : public QObject {
 
         void onIncidentSelected(quint32 incidentID);
 
+        void onScenarySelected(quint32 scenaryID);
+
     signals:
-            void signalDatabaseUpdated(const Database & db);
+        void signalDatabaseUpdated(const Database & db);
 
-            void signalIncidentCalculated(QList<SecurityIncident> incidents);
+        void signalIncidentCalculated(QList<SecurityIncident> incidents);
 
-            void signalScenarioCalculated(QList<SecurityScenario> scenaries);
+        void signalScenarioCalculated(QList<SecurityScenario> scenaries);
 
+        void signalRecommendationCalculated(SecurityRecommendations recommedation);
 
 };
 

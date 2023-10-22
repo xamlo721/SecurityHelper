@@ -37,7 +37,6 @@ class MainWindowController : public QObject {
 
         void onOpenScenarioMenu();
         void onOpenRecommendationMenu();
-        void setRecommendationWidget(RecommendationsWidget * widget);
 
         void onClarifyEvents();
 

@@ -22,8 +22,12 @@ class UserIncidentController : public QObject {
     private:
         IncidentMenuWidget *incidentMenuWidget;
 
+    private slots:
+        void slotOnIncidentSelected(quint32 id);
+
     signals:
         void signalOpenIncident(quint32 id);
+        void signalIncidentSelected();
 };
 
 #endif // USERINCIDENTWIDGETCONTROLLER_H

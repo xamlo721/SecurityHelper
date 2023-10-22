@@ -13,8 +13,13 @@ void UserIncidentController::setIncidentList(QList<SecurityIncident> incidents) 
 
     for (SecurityIncident inc : incidents) {
         IncidentWidget * widget = new IncidentWidget(inc.getId(), inc.getText(), inc.getName());
-        QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &UserIncidentController::signalOpenIncident);
+        QObject::connect(widget, &IncidentWidget::signalIncidentOpen, this, &UserIncidentController::slotOnIncidentSelected);
         this->incidentMenuWidget->addIncidentWidget(widget);
     }
 
+}
+
+void UserIncidentController::slotOnIncidentSelected(quint32 id) {
+    emit signalOpenIncident(id);
+    emit signalIncidentSelected();
 }
