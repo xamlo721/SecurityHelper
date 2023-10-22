@@ -41,8 +41,9 @@ HEADERS += \
     src/controllers/admin/recomms/AdminRecommendationsController.h \
     src/controllers/admin/scenaries/ScenariesController.h \
     src/controllers/user/UserEventsController.h \
-    src/controllers/user/UserScenarioRecommendationWidgetController.h \
     src/controllers/user/UserIncidentWidgetController.h \
+    src/controllers/user/UserRecommendationController.h \
+    src/controllers/user/UserScenarioController.h \
     src/exception/Exception.h \
     src/exception/FileOperationException.h \
     src/exception/IllegalArgumentException.h \
@@ -88,8 +89,9 @@ SOURCES += \
     src/controllers/admin/recomms/AdminRecommendationsController.cpp \
     src/controllers/admin/scenaries/ScenariesController.cpp \
     src/controllers/user/UserEventsController.cpp \
-    src/controllers/user/UserScenarioRecommendationWidgetController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
+    src/controllers/user/UserRecommendationController.cpp \
+    src/controllers/user/UserScenarioController.cpp \
     src/items/SecurityEvent.cpp \
     src/items/SecurityEventCategory.cpp \
     src/items/SecurityIncident.cpp \
