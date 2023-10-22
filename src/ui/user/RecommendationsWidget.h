@@ -12,9 +12,15 @@ class RecommendationsWidget : public QWidget {
     Q_OBJECT
 
     public:
-        explicit RecommendationsWidget(QWidget *parent = nullptr);
-        explicit RecommendationsWidget(QString textContainment, QString textFixes, QString textRestore, QWidget *parent = nullptr);
+        RecommendationsWidget(QWidget *parent = nullptr);
+        RecommendationsWidget(QString textContainment, QString textFixes, QString textRestore, QWidget *parent = nullptr);
         ~RecommendationsWidget();
+
+        void setTextContaiment(QString textContainment);
+        void setTextFixes(QString textFixes);
+        void setTextRestore(QString textRestore);
+
+        void clear();
 
     private:
         Ui::RecommendationsWidget *ui;
