@@ -63,13 +63,16 @@ class CoreApp : public QObject {
 
 
     public slots:
-            void onEventsSelected(QList<SecurityEvent> selectedEvents);
+        void onEventsSelected(QList<SecurityEvent> selectedEvents);
+
+        void onIncidentSelected(quint32 incidentID);
 
     signals:
             void signalDatabaseUpdated(const Database & db);
 
             void signalIncidentCalculated(QList<SecurityIncident> incidents);
 
+            void signalScenarioCalculated(QList<SecurityScenario> scenaries);
 
 
 };

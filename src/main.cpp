@@ -82,25 +82,23 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminDeleteRecommendation, &core, &CoreApp::removeRecommendations);
 
 
-
-
-
-
-
-
     // Блок инициализации связи сигналов/слотов для пользователя
 
-    //QObject::connect(&controller, &MainWindowController::signalCalculateIncident, &categoryEventController, &UserEventsController::onCalculateIncident);
+    //##############    USER ACTION    ################//
+
+    //Select Events
     QObject::connect(&controller, &MainWindowController::signalResetButtonPressed, &categoryEventController, &UserEventsController::resetWidget);
 
     QObject::connect(&controller, &MainWindowController::signalCalculateIncidentButtonPressed, &categoryEventController, &UserEventsController::onCalculateIncident);
     QObject::connect(&categoryEventController, &UserEventsController::signalEventsForIncidentSelected, &core, &CoreApp::onEventsSelected);
     QObject::connect(&core, &CoreApp::signalIncidentCalculated, &userIncidentController, &UserIncidentController::setIncidentList);
 
-    //QObject::connect(&categoryEventController, &UserEventsController::signalOpenCategory, &core, &CoreApp::onOpenCategory);
-    //QObject::connect(&categoryEventController, &UserEventsController::signalCalculateIncident, &core, &CoreApp::onCalculateIncident);
+    //Incident Selected
+    QObject::connect(&userIncidentController, &UserIncidentController::signalOpenIncident, &core, &CoreApp::onIncidentSelected);
+    QObject::connect(&core, &CoreApp::signalScenarioCalculated, &scenarioRecommendationController, &UserRecommendationController::setScenariesList);
 
-    //QObject::connect(&incidentController, &UserIncidentController::signalOpenIncident, &core, &CoreApp::onOpenIncident);
+
+
 
     QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOpenScenarioMenu, &controller, &MainWindowController::onOpenScenarioMenu);
     //QObject::connect(&scenarioRecommendationController, &UserRecommendationController::signalOpenScenario, &core, &CoreApp::onOpenScenario);

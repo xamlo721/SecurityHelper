@@ -22,3 +22,20 @@ void CoreApp::onEventsSelected(QList<SecurityEvent> selectedEvents) {
 
     emit signalIncidentCalculated(availableIncidents.values());
 }
+
+
+void CoreApp::onIncidentSelected(quint32 incidentID) {
+
+    QMap<quint32, SecurityScenario> availableScenaries;
+
+    for (const SecurityScenario scenary : db.scenaries) {
+
+        //Выбираем сценарии, которые содержат такой инцидент
+        if (scenary.getIncidents().contains(incidentID) && !availableScenaries.contains(incidentID)) {
+            availableScenaries.insert(scenary.getId(), scenary);
+        }
+
+    }
+
+    emit signalScenarioCalculated(availableScenaries.values());
+}

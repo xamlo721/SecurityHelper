@@ -13,6 +13,9 @@ class IncidentMenuWidget : public QWidget {
 
     Q_OBJECT
 
+    private:
+        Ui::IncidentMenuWidget *ui;
+
     public:
         explicit IncidentMenuWidget(QWidget *parent = nullptr);
         ~IncidentMenuWidget();
@@ -20,8 +23,6 @@ class IncidentMenuWidget : public QWidget {
         void clear();
         void addIncidentWidget(IncidentWidget * widget);
 
-    private:
-        Ui::IncidentMenuWidget *ui;
 };
 
 #endif // INCIDENTMENU_WIDGET_H
