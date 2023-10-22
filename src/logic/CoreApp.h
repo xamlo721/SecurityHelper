@@ -61,8 +61,16 @@ class CoreApp : public QObject {
 
         void updateRecommendations(quint32 recommendationID, SecurityRecommendations recommendation);
 
+
+    public slots:
+            void onEventsSelected(QList<SecurityEvent> selectedEvents);
+
     signals:
-        void signalDatabaseUpdated(const Database & db);
+            void signalDatabaseUpdated(const Database & db);
+
+            void signalIncidentCalculated(QList<SecurityIncident> incidents);
+
+
 
 };
 

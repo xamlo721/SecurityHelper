@@ -99,3 +99,8 @@ void UserEventsController::resetWidget() {
     this->mainMenuWidget->clearAvailableEvents();
     this->mainMenuWidget->clearSelectedEvents();
 }
+
+
+void UserEventsController::onCalculateIncident() {
+    emit signalEventsForIncidentSelected(this->selectedEvents);
+}

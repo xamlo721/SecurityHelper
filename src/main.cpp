@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&adminScenariesController, &ScenariesController::signalAdminUpdateScenary, &core, &CoreApp::updateScenario);
     QObject::connect(&adminScenariesController, &ScenariesController::signalAdminDeleteScenary, &core, &CoreApp::removeScenario);
 
-    //Admin Scenaries
+    //Admin Categories
     QObject::connect(&core, &CoreApp::signalDatabaseUpdated, &adminRecommendationsController, &AdminRecommendationsController::onDatabaseUpdated);
     QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminAddRecommendation, &core, &CoreApp::addRecommendations);
     QObject::connect(&adminRecommendationsController, &AdminRecommendationsController::signalAdminUpdateRecommendation, &core, &CoreApp::updateRecommendations);
@@ -92,6 +92,10 @@ int main(int argc, char *argv[]) {
 
     //QObject::connect(&controller, &MainWindowController::signalCalculateIncident, &categoryEventController, &UserEventsController::onCalculateIncident);
     QObject::connect(&controller, &MainWindowController::signalResetButtonPressed, &categoryEventController, &UserEventsController::resetWidget);
+
+    QObject::connect(&controller, &MainWindowController::signalCalculateIncidentButtonPressed, &categoryEventController, &UserEventsController::onCalculateIncident);
+    QObject::connect(&categoryEventController, &UserEventsController::signalEventsForIncidentSelected, &core, &CoreApp::onEventsSelected);
+    QObject::connect(&core, &CoreApp::signalIncidentCalculated, &userIncidentController, &UserIncidentController::setIncidentList);
 
     //QObject::connect(&categoryEventController, &UserEventsController::signalOpenCategory, &core, &CoreApp::onOpenCategory);
     //QObject::connect(&categoryEventController, &UserEventsController::signalCalculateIncident, &core, &CoreApp::onCalculateIncident);

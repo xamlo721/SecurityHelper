@@ -42,8 +42,8 @@ void MainWindowController::onResetButtonPressed() {
     this->w->openMainMenu();
 }
 
-void MainWindowController::onIncidentsButtonPressed() {
-    emit signalCalculateIncident();
+void MainWindowController::onIncidentsButtonPressed() {    
+    emit signalCalculateIncidentButtonPressed();
     this->w->openIncidentMenu();
 }
 

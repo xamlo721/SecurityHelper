@@ -96,6 +96,7 @@ SOURCES += \
     src/items/SecurityRecommendations.cpp \
     src/items/SecurityScenario.cpp \
     src/logic/CoreApp.cpp \
+    src/logic/CoreAppUserLogic.cpp \
     src/logic/Database.cpp \
     src/logic/XMLHelper.cpp \
     src/logic/XmlUtils.cpp \

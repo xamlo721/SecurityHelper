@@ -42,7 +42,7 @@ class MainWindowController : public QObject {
         void onClarifyEvents();
 
     signals:
-        void signalCalculateIncident();
+        void signalCalculateIncidentButtonPressed();
 
         void signalResetButtonPressed();
 

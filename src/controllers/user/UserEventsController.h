@@ -31,11 +31,17 @@ class UserEventsController : public QObject {
 
         void resetWidget();
 
+        void onCalculateIncident();
+
+    signals:
+            void signalEventsForIncidentSelected(QList<SecurityEvent> selectedEvents);
 
     private slots:
         void onCetegorySelected(quint32 categoryID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
+
+
 
 };
 
