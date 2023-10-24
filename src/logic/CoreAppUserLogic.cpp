@@ -42,4 +42,15 @@ void CoreApp::onIncidentSelected(quint32 incidentID) {
 
 void CoreApp::onScenarySelected(quint32 scenaryID) {
 
+    for (const SecurityRecommendations recommendation : db.recommendations) {
+
+        //Выбираем сценарии, которые содержат такой инцидент
+        if (recommendation.getScenaries().contains(scenaryID)) {
+            emit signalRecommendationCalculated(recommendation);
+            break;
+        }
+
+    }
+
+
 }
