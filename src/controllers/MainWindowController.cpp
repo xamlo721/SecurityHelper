@@ -10,13 +10,7 @@ void MainWindowController::init(MainWindow *mainWindow) {
     QObject::connect(this->w, &MainWindow::signalAdminButtonPressed, this, &MainWindowController::onAdminButtonPressed);
     QObject::connect(this->w, &MainWindow::signalResetButtonPressed, this, &MainWindowController::onResetButtonPressed);
     QObject::connect(this->w, &MainWindow::signalIncidentsButtonPressed, this, &MainWindowController::onIncidentsButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalSettingsButtonPressed, this, &MainWindowController::onSettingsButtonPressed);
     QObject::connect(this->w, &MainWindow::signalExitButtonPressed, this, &MainWindowController::onExitButtonPressed);
-
-    QObject::connect(this->w, &MainWindow::signalUndoButtonPressed, this, &MainWindowController::onUndoButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalRedoButtonPressed, this, &MainWindowController::onRedoButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalResetEditButtonPressed, this, &MainWindowController::onResetEditButtonPressed);
-    QObject::connect(this->w, &MainWindow::signalEditButtonPressed, this, &MainWindowController::onEditButtonPressed);
     QObject::connect(this->w, &MainWindow::signalBackButtonPressed, this, &MainWindowController::onBackButtonPressed);
 
     w->openMainMenu();
@@ -34,7 +28,6 @@ void MainWindowController::shutdown() {
 void MainWindowController::onAdminButtonPressed() {
     emit signalResetButtonPressed();
     w->openAdminEditMenu();
-    w->openAdminToolbar();
 }
 
 void MainWindowController::onResetButtonPressed() {
@@ -47,34 +40,13 @@ void MainWindowController::onIncidentsButtonPressed() {
     this->w->openIncidentMenu();
 }
 
-void MainWindowController::onSettingsButtonPressed() {
-    //TODO: Нам нужна кнопка настроек?
-}
-
 void MainWindowController::onExitButtonPressed() {
     this->w->close();
-}
-
-void MainWindowController::onUndoButtonPressed() {
-    //TODO: Нам нужна эта кнопка?
-}
-
-void MainWindowController::onRedoButtonPressed() {
-    //TODO: Нам нужна эта кнопка?
-}
-
-void MainWindowController::onResetEditButtonPressed() {
-    //TODO: Нам нужна эта кнопка?
-}
-
-void MainWindowController::onEditButtonPressed() {
-    // замена item-ов на редактируемые
 }
 
 void MainWindowController::onBackButtonPressed() {
     emit signalResetButtonPressed();
     w->openMainMenu();
-    w->openUserToolbar();
 }
 
 void MainWindowController::onOpenScenarioMenu() {

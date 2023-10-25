@@ -17,13 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     QObject::connect(this->ui->pushButton_admin, &QPushButton::clicked, this, &MainWindow::signalAdminButtonPressed);
     QObject::connect(this->ui->pushButton_reset, &QPushButton::clicked, this, &MainWindow::signalResetButtonPressed);
     QObject::connect(this->ui->pushButton_incidents, &QPushButton::clicked, this, &MainWindow::signalIncidentsButtonPressed);
-    QObject::connect(this->ui->pushButton_settigns, &QPushButton::clicked, this, &MainWindow::signalSettingsButtonPressed);
     QObject::connect(this->ui->pushButton_exit, &QPushButton::clicked, this, &MainWindow::signalExitButtonPressed);
-
-    QObject::connect(this->ui->pushButton_undo, &QPushButton::clicked, this, &MainWindow::signalUndoButtonPressed);
-    QObject::connect(this->ui->pushButton_redo, &QPushButton::clicked, this, &MainWindow::signalRedoButtonPressed);
-    QObject::connect(this->ui->pushButton_reset_edit, &QPushButton::clicked, this, &MainWindow::signalResetEditButtonPressed);
-    QObject::connect(this->ui->pushButton_edit, &QPushButton::clicked, this, &MainWindow::signalEditButtonPressed);
     QObject::connect(this->ui->pushButton_back, &QPushButton::clicked, this, &MainWindow::signalBackButtonPressed);
 }
 
@@ -81,6 +75,12 @@ AdminRecommendationWidget *MainWindow::getAdminRecommendationsWidget() {
 
 void MainWindow::openMainMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::MainMenu);
+    this->ui->pushButton_back->setDisabled(true);
+    this->ui->pushButton_admin->setDisabled(false);
+    this->ui->pushButton_reset->setDisabled(false);
+    this->ui->pushButton_incidents->setDisabled(false);
+    this->ui->pushButton_admin->setDisabled(false);
+
 }
 
 void MainWindow::openIncidentMenu() {
@@ -97,16 +97,13 @@ void MainWindow::openRecommendationMenu() {
 
 void MainWindow::openAdminEditMenu() {
     this->ui->stackedWidget->setCurrentIndex(EnumMenuPages::AdminEditMenu);
-}
+    this->ui->pushButton_back->setDisabled(false);
+    this->ui->pushButton_admin->setDisabled(true);
+    this->ui->pushButton_reset->setDisabled(true);
+    this->ui->pushButton_incidents->setDisabled(true);
+    this->ui->pushButton_admin->setDisabled(true);
 
-void MainWindow::openUserToolbar() {
-    this->ui->stackedWidgetStatusbar->setCurrentIndex(EnumToolbarPages::UserToolbar);
 }
-
-void MainWindow::openAdminToolbar() {
-    this->ui->stackedWidgetStatusbar->setCurrentIndex(EnumToolbarPages::AdminToolbar);
-}
-
 
 MainWindow::~MainWindow() {
     delete ui;

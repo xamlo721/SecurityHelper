@@ -26,13 +26,7 @@ class MainWindowController : public QObject {
         void onAdminButtonPressed();
         void onResetButtonPressed();
         void onIncidentsButtonPressed();
-        void onSettingsButtonPressed();
         void onExitButtonPressed();
-
-        void onUndoButtonPressed();
-        void onRedoButtonPressed();
-        void onResetEditButtonPressed();
-        void onEditButtonPressed();
         void onBackButtonPressed();
 
         void onOpenScenarioMenu();

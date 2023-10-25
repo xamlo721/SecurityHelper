@@ -45,21 +45,12 @@ class MainWindow : public QMainWindow {
 
         void openAdminEditMenu();
 
-        void openUserToolbar();
-        void openAdminToolbar();
-
     signals:
         void signalAdminButtonPressed();
         void signalResetButtonPressed();
         void signalIncidentsButtonPressed();
-        void signalSettingsButtonPressed();
         void signalExitButtonPressed();
         void signalCategoryClicked(quint32 categoryID);
-
-        void signalUndoButtonPressed();
-        void signalRedoButtonPressed();
-        void signalResetEditButtonPressed();
-        void signalEditButtonPressed();
         void signalBackButtonPressed();
 
     private:
