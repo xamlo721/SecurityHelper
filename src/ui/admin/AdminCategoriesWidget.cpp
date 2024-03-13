@@ -34,6 +34,10 @@ void AdminCategoriesWidget::clearSelectedEvents() {
 
 }
 
+void AdminCategoriesWidget::selectCategory(quint32 categoryID) {
+    this->ui->scrollArea_categories->select(categoryID);
+}
+
 void AdminCategoriesWidget::addSelectedEvent(SelectedWidget * event) {
     QObject::connect(event, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signalSelectedEventClicked);
     this->ui->scrollArea_categories_includedEvent->addWidget(event->getId(), event);

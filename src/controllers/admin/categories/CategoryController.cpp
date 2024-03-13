@@ -68,6 +68,9 @@ void CategoryController::onCetegorySelected(quint32 categoryID) {
 
     this->selectedEvents.clear();
     this->ui->clearSelectedEvents();
+
+    //Вернуть выделенную категорию после обновления
+    this->ui->selectCategory(categoryID);
     SecurityEventCategory category = categories.value(categoryID);
 
     for (quint32 eventID : category.getEventIds()) {

@@ -24,6 +24,11 @@ FORMS += ui/MainWindow.ui \
     ui/admin/AdminIncidentsWidget.ui \
     ui/admin/AdminRecommendationWidget.ui \
     ui/admin/AdminScenariesWidget.ui \
+    ui/admin/dialogs/AdminEditCatorgyDialog.ui \
+    ui/admin/dialogs/AdminEventDialog.ui \
+    ui/admin/dialogs/AdminIncidentDialog.ui \
+    ui/admin/dialogs/AdminRecommendationDialog.ui \
+    ui/admin/dialogs/AdminScenariesDialog.ui \
     ui/user/IncidentMenuWidget.ui \
     ui/user/IncidentWidget.ui \
     ui/user/MainMenuWidget.ui \
@@ -78,7 +83,12 @@ HEADERS += \
     src/ui/admin/AdminIncidentsWidget.h \
     src/ui/admin/AdminRecommendationWidget.h \
     src/ui/admin/AdminScenariesWidget.h \
-    src/ui/MenuSelectedWidget.h
+    src/ui/MenuSelectedWidget.h \
+    src/ui/admin/dialogs/AdminEditCatorgyDialog.h \
+    src/ui/admin/dialogs/AdminEventDialog.h \
+    src/ui/admin/dialogs/AdminIncidentDialog.h \
+    src/ui/admin/dialogs/AdminRecommendationDialog.h \
+    src/ui/admin/dialogs/AdminScenariesDialog.h
 
 SOURCES += \
     src/controllers/MainWindowController.cpp \
@@ -118,7 +128,12 @@ SOURCES += \
     src/ui/admin/AdminIncidentsWidget.cpp \
     src/ui/admin/AdminRecommendationWidget.cpp \
     src/ui/admin/AdminScenariesWidget.cpp \
-    src/ui/MenuSelectedWidget.cpp
+    src/ui/MenuSelectedWidget.cpp \
+    src/ui/admin/dialogs/AdminEditCatorgyDialog.cpp \
+    src/ui/admin/dialogs/AdminEventDialog.cpp \
+    src/ui/admin/dialogs/AdminIncidentDialog.cpp \
+    src/ui/admin/dialogs/AdminRecommendationDialog.cpp \
+    src/ui/admin/dialogs/AdminScenariesDialog.cpp
 
 DISTFILES += \
     rss/StockDatabase/Categories.xml \

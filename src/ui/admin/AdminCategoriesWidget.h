@@ -59,6 +59,9 @@ class AdminCategoriesWidget : public QWidget {
          */
         void addSelectedEvent(SelectedWidget * event);
 
+
+        void selectCategory(quint32 categoryID);
+
     signals:
 
         /**

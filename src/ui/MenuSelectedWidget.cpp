@@ -70,6 +70,22 @@ void MenuSelectedWidget::unselect() {
     }
 }
 
+void MenuSelectedWidget::select(quint32 widgetID) {
+    this->unselect();
+
+    this->selectedID = widgetID;
+
+    for (SelectedWidget * w : this->widgets) {
+
+        if (w->getId() == widgetID) {
+            w->unselect();
+        }
+
+    }
+
+}
+
+
 void MenuSelectedWidget::clear() {
     QWidget * m_view = this->ui->scrollArea_selectedWidgets->widget();
     if ( m_view->layout() != NULL ) {
