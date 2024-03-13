@@ -11,24 +11,44 @@ AdminCategoriesWidget::AdminCategoriesWidget(QWidget *parent) : QWidget(parent),
 }
 
 
+/**
+ * @brief clearCategories - очищает визуальный список категорий событий
+ */
 void AdminCategoriesWidget::clearCategories() {
     this->ui->scrollArea_categories->clear();
 }
 
+/**
+ * @brief addCategory - добавляет в отображаемый
+ * список категорий новый виджет категории
+ * @param category - заранее сделанный виджет
+ */
 void AdminCategoriesWidget::addCategory(SelectedWidget * category) {
     QObject::connect(category, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signalCategoryClicked);
     this->ui->scrollArea_categories->addWidget(category->getId(), category);
 }
 
+/**
+ * @brief clearAvailableEvents - очищает визуальный список доступных событий
+ */
 void AdminCategoriesWidget::clearAvailableEvents() {
     this->ui->scrollArea_categories_freeEvents->clear();
 }
 
+/**
+ * @brief addEvent - добавляет в отображаемый
+ * список доступных для выделения событий
+ * новый виджет
+ * @param event - заранее сделанный виджет
+ */
 void AdminCategoriesWidget::addAvalilableEvent(SelectedWidget * event) {
     QObject::connect(event, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signaAvailableEventClicked);
     this->ui->scrollArea_categories_freeEvents->addWidget(event->getId(), event);
 }
 
+/**
+ * @brief clearSelectedEvents - очищает визуальный список выбранных событий
+ */
 void AdminCategoriesWidget::clearSelectedEvents() {
     this->ui->scrollArea_categories_includedEvent->clear();
 
@@ -38,6 +58,11 @@ void AdminCategoriesWidget::selectCategory(quint32 categoryID) {
     this->ui->scrollArea_categories->select(categoryID);
 }
 
+/**
+ * @brief addSelectedEvent - добавляет в отображаемый
+ * список выбранных событий новый виджет
+ * @param event - заранее сделанный виджет
+ */
 void AdminCategoriesWidget::addSelectedEvent(SelectedWidget * event) {
     QObject::connect(event, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signalSelectedEventClicked);
     this->ui->scrollArea_categories_includedEvent->addWidget(event->getId(), event);
