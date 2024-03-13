@@ -81,9 +81,16 @@ class AdminCategoriesWidget : public QWidget {
          * @brief signalEditCategoryClicked - сигнал вызывается
          * при кажатии администратором на кнопку редактирования категории
          * @param categoryId - ID выбранной категории
+         */
+        void signalEditCategoryClicked(quint32 categoryId);
+
+        /**
+         * @brief signalEditCategoryClicked - сигнал вызывается
+         * при кажатии администратором на кнопку редактирования категории
+         * @param categoryId - ID выбранной категории
          * @param containedEvents - Новый набор входящих событий
          */
-        void signalEditCategoryClicked(quint32 categoryId, QString categoryName);
+        void signalSaveCategoryClicked(quint32 categoryId, QString categoryName);
 
         /**
          * @brief signalDelCategoryClicked - сигнал вызывается

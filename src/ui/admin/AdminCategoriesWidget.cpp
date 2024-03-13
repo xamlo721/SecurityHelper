@@ -50,7 +50,8 @@ void AdminCategoriesWidget::onAddCategoryButtonPressed() {
 }
 
 void AdminCategoriesWidget::onEditCategoryButtonPressed() {
-    //TODO: открыть окно редактирования
+    //TODO: Оставить возможность редактировать только если выбрана категория
+    emit signalEditCategoryClicked(this->ui->scrollArea_categories->getSelectedWidgetID());
 }
 
 void AdminCategoriesWidget::onDelCategoryButtonPressed() {
@@ -59,7 +60,7 @@ void AdminCategoriesWidget::onDelCategoryButtonPressed() {
 
 void AdminCategoriesWidget::onSaveCategoryButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_categories->getSelectedWidget();
-    emit signalEditCategoryClicked(selected->getId(), selected->getText());
+    emit signalSaveCategoryClicked(selected->getId(), selected->getText());
 }
 
 AdminCategoriesWidget::~AdminCategoriesWidget() {

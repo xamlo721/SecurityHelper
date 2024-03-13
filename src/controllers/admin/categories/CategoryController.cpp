@@ -8,9 +8,12 @@ CategoryController::CategoryController(QObject *parent) : QObject(parent) {
 
 void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
     this->ui = categoryWidget;
+    this->editDialog = new AdminEditCatorgyDialog(categoryWidget);
+
     QObject::connect(this->ui, &AdminCategoriesWidget::signalCategoryClicked, this, &CategoryController::onCetegorySelected);
     QObject::connect(this->ui, &AdminCategoriesWidget::signalAddCategoryClicked, this, &CategoryController::onCategoryAdded);
-    QObject::connect(this->ui, &AdminCategoriesWidget::signalEditCategoryClicked, this, &CategoryController::onCategoryEdited);
+    QObject::connect(this->ui, &AdminCategoriesWidget::signalSaveCategoryClicked, this, &CategoryController::onCategoryUpdated);
+    QObject::connect(this->ui, &AdminCategoriesWidget::signalEditCategoryClicked, this, &CategoryController::onCategoryEditRequest);
     QObject::connect(this->ui, &AdminCategoriesWidget::signalDelCategoryClicked, this, &CategoryController::onCategoryDeleted);
 
     QObject::connect(this->ui, &AdminCategoriesWidget::signalSelectedEventClicked, this, &CategoryController::onEventUnselected);
@@ -97,7 +100,11 @@ void CategoryController::onCategoryAdded() {
 
 }
 
-void CategoryController::onCategoryEdited(quint32 categoryID, QString categoryName) {
+void CategoryController::onCategoryEditRequest(quint32 categoryID) {
+    this->editDialog->show();
+}
+
+void CategoryController::onCategoryUpdated(quint32 categoryID, QString categoryName) {
 
     QList<quint32> selectedEventIDs;
     for (SecurityEvent event : this->selectedEvents) {

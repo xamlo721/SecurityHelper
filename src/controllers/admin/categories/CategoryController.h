@@ -10,6 +10,7 @@
 #include "src/logic/Database.h"
 
 #include "src/ui/admin/AdminCategoriesWidget.h"
+#include "src/ui/admin/dialogs/AdminEditCatorgyDialog.h"
 
 class CategoryController : public QObject {
 
@@ -18,6 +19,7 @@ class CategoryController : public QObject {
     private:
         Database copyDatabase;
         AdminCategoriesWidget *ui;
+        AdminEditCatorgyDialog * editDialog;
         QMap<quint32, SecurityEventCategory> categories;
         QMap<quint32, SecurityEvent> allEvents;
         QList<SecurityEvent> availableEvents;
@@ -36,7 +38,8 @@ class CategoryController : public QObject {
     private slots:
         void onCetegorySelected(quint32 categoryID);
         void onCategoryAdded();
-        void onCategoryEdited(quint32 categoryID, QString categoryName);
+        void onCategoryEditRequest(quint32 categoryID);
+        void onCategoryUpdated(quint32 categoryID, QString categoryName);
         void onCategoryDeleted(quint32 categoryID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);
