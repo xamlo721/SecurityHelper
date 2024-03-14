@@ -6,6 +6,7 @@
 #include "src/logic/Database.h"
 
 #include "src/ui/admin/AdminEventsWidget.h"
+#include "src/ui/admin/dialogs/AdminEventDialog.h"
 
 class AdminEventsController : public QObject {
 
@@ -14,6 +15,7 @@ class AdminEventsController : public QObject {
     private:
         Database copyDatabase;
         AdminEventsWidget *ui;
+        AdminEventDialog *editDialog;
         QMap<quint32, SecurityEvent> allEvents;
 
     public:
@@ -28,7 +30,8 @@ class AdminEventsController : public QObject {
 
     private slots:
         void onEventAdded();
-        void onEventEdited(quint32 eventID, QString eventName);
+        void onEventUpdated(quint32 eventID, QString eventName);
+        void onEventEditRequest(quint32 eventID);
         void onEventDeleted(quint32 eventID);
 
     signals:

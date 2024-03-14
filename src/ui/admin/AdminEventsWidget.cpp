@@ -35,8 +35,8 @@ void AdminEventsWidget::onAddEventButtonPressed() {
 }
 
 void AdminEventsWidget::onEditEventButtonPressed() {
-    //TODO: открыть окно редактирования
-
+    //TODO: Оставить возможность редактировать только если выбрано событие
+    emit signalEditEventClicked(this->ui->scrollArea_events->getSelectedWidgetID());
 }
 
 void AdminEventsWidget::onDelEventButtonPressed() {

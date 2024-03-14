@@ -46,7 +46,14 @@ class AdminEventsWidget : public QWidget {
          * @param eventID - ID выбранного события
          * @param containedEvents - Новый набор входящих событий
          */
-        void signalEditEventClicked(quint32 eventID, QString categoryName);
+        void signalSaveEventClicked(quint32 eventID, QString categoryName);
+
+        /**
+         * @brief signalEditEventClicked - сигнал вызывается
+         * при кажатии администратором на кнопку редактирования события
+         * @param eventID - ID выбранного события
+         */
+        void signalEditEventClicked(quint32 eventID);
 
         /**
          * @brief signalDelEventClicked - сигнал вызывается

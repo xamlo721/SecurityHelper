@@ -6,9 +6,12 @@ AdminEventsController::AdminEventsController(QObject *parent) : QObject(parent)
 }
 void AdminEventsController::init(AdminEventsWidget *eventsWidget) {
     this->ui = eventsWidget;
+    this->editDialog = new AdminEventDialog(eventsWidget);
+
     //QObject::connect(this->ui, &AdminEventsWidget::signalEventClicked, this, &AdminEventsController::onCetegorySelected);
     QObject::connect(this->ui, &AdminEventsWidget::signalAddEventClicked, this, &AdminEventsController::onEventAdded);
-    QObject::connect(this->ui, &AdminEventsWidget::signalEditEventClicked, this, &AdminEventsController::onEventEdited);
+    QObject::connect(this->ui, &AdminEventsWidget::signalEditEventClicked, this, &AdminEventsController::onEventEditRequest);
+    QObject::connect(this->ui, &AdminEventsWidget::signalSaveEventClicked, this, &AdminEventsController::onEventUpdated);
     QObject::connect(this->ui, &AdminEventsWidget::signalDelEventClicked, this, &AdminEventsController::onEventDeleted);
 
 }
@@ -36,10 +39,14 @@ void AdminEventsController::onEventAdded() {
 
 }
 
-void AdminEventsController::onEventEdited(quint32 eventID, QString eventName) {
+void AdminEventsController::onEventUpdated(quint32 eventID, QString eventName) {
 
     SecurityEvent updatedEvent (eventID, eventName);
     emit signalAdminUpdateEvent(eventID, updatedEvent);
+}
+
+void AdminEventsController::onEventEditRequest(quint32 eventID) {
+    this->editDialog->show();
 }
 
 void AdminEventsController::onEventDeleted(quint32 eventID) {
