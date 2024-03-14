@@ -88,19 +88,25 @@ class AdminRecommendationWidget : public QWidget {
          * @param TextFixes - Текст для устранения
          * @param TextRestore - Текст для восстановления
          */
-        void signalEditRecomendationClicked(quint32 recomendationId, QString recomendationName, QString TextContainment, QString TextFixes, QString TextRestore);
+        void signalSaveRecomendationClicked(quint32 recomendationId, QString recomendationName, QString TextContainment, QString TextFixes, QString TextRestore);
+        /**
+         * @brief signalEditRecomendationClicked - сигнал вызывается
+         * при кажатии администратором на кнопку удаления инцидента
+         * @param recomendationId - ID выбранной рекомендации
+         */
+        void signalEditRecomendationClicked(quint32 recomendationId);
 
         /**
          * @brief signalDelRecomendationClicked - сигнал вызывается
          * при кажатии администратором на кнопку удаления инцидента
-         * @param incidentId - ID выбранного инцидента
+         * @param recomendationId - ID выбранной рекомендации
          */
         void signalDelRecomendationClicked(quint32 recomendationId);
 
         /**
          * @brief signalUnselectedScenaryClicked - сигнал вызывается
          * при кажатии администратором на кнопку доступного события
-         * @param scenaryID - ID события
+         * @param scenaryID - ID сценария
          */
         void signaAvailableScenaryClicked(quint32 scenaryID);
 

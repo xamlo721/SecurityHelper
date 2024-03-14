@@ -10,6 +10,7 @@
 #include "src/logic/Database.h"
 
 #include "src/ui/admin/AdminRecommendationWidget.h"
+#include "src/ui/admin/dialogs/AdminRecommendationDialog.h"
 
 class AdminRecommendationsController : public QObject {
 
@@ -18,6 +19,7 @@ class AdminRecommendationsController : public QObject {
     private:
         Database copyDatabase;
         AdminRecommendationWidget *ui;
+        AdminRecommendationDialog *editDialog;
         QMap<quint32, SecurityRecommendations> recommendations;
         QMap<quint32, SecurityScenario> allScenaries;
         QList<SecurityScenario> availableScenaries;
@@ -36,7 +38,8 @@ class AdminRecommendationsController : public QObject {
     private slots:
         void onRecommendationSelected(quint32 recommendationID);
         void onRecommendationAdded();
-        void onRecommendationEdited(quint32 recommendationID, QString recommendationName, QString TextContainment, QString TextFixes, QString TextRestore);
+        void onRecommendationUpdated(quint32 recommendationID, QString recommendationName, QString TextContainment, QString TextFixes, QString TextRestore);
+        void onRecommendationEditRequest(quint32 recommendationID);
         void onRecommendationDeleted(quint32 recommendationID);
         void onScenarySelected(quint32 scenaryID);
         void onScenaryUnselected(quint32 scenaryID);

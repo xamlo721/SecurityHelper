@@ -7,9 +7,12 @@ AdminRecommendationsController::AdminRecommendationsController(QObject *parent) 
 
 void AdminRecommendationsController::init(AdminRecommendationWidget * recommendationWidget) {
     this->ui = recommendationWidget;
+    this->editDialog = new AdminRecommendationDialog(recommendationWidget);
+
     QObject::connect(this->ui, &AdminRecommendationWidget::signalRecomendationClicked, this, &AdminRecommendationsController::onRecommendationSelected);
     QObject::connect(this->ui, &AdminRecommendationWidget::signalAddRecomendationClicked, this, &AdminRecommendationsController::onRecommendationAdded);
-    QObject::connect(this->ui, &AdminRecommendationWidget::signalEditRecomendationClicked, this, &AdminRecommendationsController::onRecommendationEdited);
+    QObject::connect(this->ui, &AdminRecommendationWidget::signalEditRecomendationClicked, this, &AdminRecommendationsController::onRecommendationEditRequest);
+    QObject::connect(this->ui, &AdminRecommendationWidget::signalSaveRecomendationClicked, this, &AdminRecommendationsController::onRecommendationUpdated);
     QObject::connect(this->ui, &AdminRecommendationWidget::signalDelRecomendationClicked, this, &AdminRecommendationsController::onRecommendationDeleted);
 
     QObject::connect(this->ui, &AdminRecommendationWidget::signalSelectedScenaryClicked, this, &AdminRecommendationsController::onScenaryUnselected);
@@ -96,7 +99,7 @@ void AdminRecommendationsController::onRecommendationAdded() {
 
 }
 
-void AdminRecommendationsController::onRecommendationEdited(quint32 incidentID, QString incidentName, QString TextContainment, QString TextFixes, QString TextRestore) {
+void AdminRecommendationsController::onRecommendationUpdated(quint32 incidentID, QString incidentName, QString TextContainment, QString TextFixes, QString TextRestore) {
 
     QList<quint32> selectedScenaryIDs;
     for (SecurityScenario scenary : this->selectedScenaries) {
@@ -104,6 +107,10 @@ void AdminRecommendationsController::onRecommendationEdited(quint32 incidentID, 
     }
     SecurityRecommendations updatedRecommendation (incidentID, /*incidentName,*/ TextContainment, TextFixes, TextRestore, selectedScenaryIDs); //FIXME: Добавить параметр
     emit signalAdminUpdateRecommendation(incidentID, updatedRecommendation);
+}
+
+void AdminRecommendationsController::onRecommendationEditRequest(quint32 recommendationID) {
+    this->editDialog->show();
 }
 
 void AdminRecommendationsController::onRecommendationDeleted(quint32 incidentID) {

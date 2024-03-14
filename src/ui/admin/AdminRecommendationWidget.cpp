@@ -56,7 +56,8 @@ void AdminRecommendationWidget::onAddRecomendationButtonPressed() {
 }
 
 void AdminRecommendationWidget::onEditRecomendationButtonPressed() {
-    //TODO: открыть окно редактирования
+    //TODO: Оставить возможность редактировать только если выбраная рекомендация
+    emit signalEditRecomendationClicked(this->ui->scrollArea_recommendations->getSelectedWidgetID());
 
 }
 
@@ -67,7 +68,7 @@ void AdminRecommendationWidget::onDelRecomendationButtonPressed() {
 
 void AdminRecommendationWidget::onSaveRecomendationButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_recommendations->getSelectedWidget();
-    emit signalEditRecomendationClicked(selected->getId(), selected->getText(), this->ui->textEdit->toPlainText(), this->ui->textEdit_2->toPlainText(), this->ui->textEdit_4->toPlainText());
+    emit signalSaveRecomendationClicked(selected->getId(), selected->getText(), this->ui->textEdit->toPlainText(), this->ui->textEdit_2->toPlainText(), this->ui->textEdit_4->toPlainText());
 
 }
 
