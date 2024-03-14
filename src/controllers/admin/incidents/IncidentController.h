@@ -10,6 +10,7 @@
 #include "src/logic/Database.h"
 
 #include "src/ui/admin/AdminIncidentsWidget.h"
+#include "src/ui/admin/dialogs/AdminIncidentDialog.h"
 
 class IncidentController : public QObject {
 
@@ -18,6 +19,7 @@ class IncidentController : public QObject {
     private:
         Database copyDatabase;
         AdminIncidentsWidget *ui;
+        AdminIncidentDialog *editDialog;
         QMap<quint32, SecurityIncident> incidents;
         QMap<quint32, SecurityEvent> allEvents;
         QList<SecurityEvent> availableEvents;
@@ -36,7 +38,8 @@ class IncidentController : public QObject {
     private slots:
         void onIncidentSelected(quint32 incidentID);
         void onIncidentAdded();
-        void onIncidentEdited(quint32 incidentID, QString categoryName);
+        void onIncidentEditRequest(quint32 incidentID);
+        void onIncidentUpdated(quint32 incidentID, QString categoryName);
         void onIncidentDeleted(quint32 incidentID);
         void onEventSelected(quint32 eventID);
         void onEventUnselected(quint32 eventID);

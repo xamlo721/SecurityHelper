@@ -6,9 +6,12 @@ IncidentController::IncidentController(QObject *parent) : QObject(parent) {
 
 void IncidentController::init(AdminIncidentsWidget *incidentWidget) {
     this->ui = incidentWidget;
+    this->editDialog = new AdminIncidentDialog(incidentWidget);
+
     QObject::connect(this->ui, &AdminIncidentsWidget::signalIncidentClicked, this, &IncidentController::onIncidentSelected);
     QObject::connect(this->ui, &AdminIncidentsWidget::signalAddIncidentClicked, this, &IncidentController::onIncidentAdded);
-    QObject::connect(this->ui, &AdminIncidentsWidget::signalEditIncidentClicked, this, &IncidentController::onIncidentEdited);
+    QObject::connect(this->ui, &AdminIncidentsWidget::signaEditIncidentClicked, this, &IncidentController::onIncidentEditRequest);
+    QObject::connect(this->ui, &AdminIncidentsWidget::signaSaveIncidentClicked, this, &IncidentController::onIncidentUpdated);
     QObject::connect(this->ui, &AdminIncidentsWidget::signalDelIncidentClicked, this, &IncidentController::onIncidentDeleted);
 
     QObject::connect(this->ui, &AdminIncidentsWidget::signalSelectedEventClicked, this, &IncidentController::onEventUnselected);
@@ -83,6 +86,10 @@ void IncidentController::onIncidentSelected(quint32 incidentID) {
 
 }
 
+void IncidentController::onIncidentEditRequest(quint32 incidentID) {
+    this->editDialog->show();
+}
+
 
 void IncidentController::onIncidentAdded() {
 
@@ -92,7 +99,7 @@ void IncidentController::onIncidentAdded() {
 
 }
 
-void IncidentController::onIncidentEdited(quint32 incidentID, QString incidentName) {
+void IncidentController::onIncidentUpdated(quint32 incidentID, QString incidentName) {
 
     QList<quint32> selectedEventIDs;
     for (SecurityEvent event : this->selectedEvents) {

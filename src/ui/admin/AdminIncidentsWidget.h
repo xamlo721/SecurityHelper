@@ -71,12 +71,20 @@ class AdminIncidentsWidget : public QWidget {
         void signalAddIncidentClicked();
 
         /**
+         * @brief signaSaveIncidentClicked - сигнал вызывается
+         * при кажатии администратором на кнопку редактирования категории
+         * @param categoryId - ID выбранной категории
+         * @param containedEvents - Новый набор входящих событий
+         */
+        void signaSaveIncidentClicked(quint32 incidentId, QString categoryName);
+
+        /**
          * @brief signalEditCategoryClicked - сигнал вызывается
          * при кажатии администратором на кнопку редактирования категории
          * @param categoryId - ID выбранной категории
          * @param containedEvents - Новый набор входящих событий
          */
-        void signalEditIncidentClicked(quint32 incidentId, QString categoryName);
+        void signaEditIncidentClicked(quint32 incidentId);
 
         /**
          * @brief signalDelIncidentClicked - сигнал вызывается

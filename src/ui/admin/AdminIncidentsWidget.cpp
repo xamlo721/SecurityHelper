@@ -46,7 +46,8 @@ void AdminIncidentsWidget::onAddIncidentButtonPressed() {
 }
 
 void AdminIncidentsWidget::onEditIncidentButtonPressed() {
-    //TODO: открыть окно редактирования
+    //TODO: Оставить возможность редактировать только если выбран инцидент
+    emit signaEditIncidentClicked(this->ui->scrollArea_incidents->getSelectedWidgetID());
 }
 
 void AdminIncidentsWidget::onDelIncidentButtonPressed() {
@@ -55,7 +56,7 @@ void AdminIncidentsWidget::onDelIncidentButtonPressed() {
 
 void AdminIncidentsWidget::onSaveIncidentButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_incidents->getSelectedWidget();
-    emit signalEditIncidentClicked(selected->getId(), selected->getText());
+    emit signaSaveIncidentClicked(selected->getId(), selected->getText());
 }
 
 AdminIncidentsWidget::~AdminIncidentsWidget() {
