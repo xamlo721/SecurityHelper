@@ -13,6 +13,22 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+		background-color : rgba(120, 200, 228, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QLabel {
+		background-color : rgba(255, 255, 255, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+QDialog {
+		background-color : rgba(255, 255, 255, 255);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+</string>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -33,7 +49,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>140</y>
+     <y>160</y>
      <width>301</width>
      <height>41</height>
     </rect>
@@ -42,14 +58,21 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>110</y>
-     <width>261</width>
-     <height>16</height>
+     <x>40</x>
+     <y>90</y>
+     <width>291</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+</string>
    </property>
    <property name="text">
     <string>Введите имя сценария</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

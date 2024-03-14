@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>AdminEditCatorgyDialog</class>
  <widget class="QDialog" name="AdminEditCatorgyDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,6 +15,28 @@
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+		background-color : rgba(120, 200, 228, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QLabel {
+		background-color : rgba(255, 255, 255, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+QDialog {
+		background-color : rgba(255, 255, 255, 255);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -27,6 +52,32 @@
    </property>
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>311</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите имя категории</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditName">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>311</width>
+     <height>41</height>
+    </rect>
    </property>
   </widget>
  </widget>

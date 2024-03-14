@@ -1,9 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>AdminEventDialog</class>
- <widget name="AdminEventDialog" class="QDialog">
+ <widget class="QDialog" name="AdminEventDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,7 +13,23 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget name="buttonBox" class="QDialogButtonBox">
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+		background-color : rgba(120, 200, 228, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+
+QLabel {
+		background-color : rgba(255, 255, 255, 20);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+QDialog {
+		background-color : rgba(255, 255, 255, 255);
+		font: 75 16pt &quot;MS Shell Dlg 2&quot;;
+}
+</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -31,8 +45,36 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
+  <widget class="QLineEdit" name="lineEditName">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>311</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelTitle">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>311</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Введите имя события</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
  </widget>
- <pixmapfunction/>
  <resources/>
  <connections>
   <connection>
