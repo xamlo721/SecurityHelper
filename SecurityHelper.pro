@@ -41,10 +41,10 @@ HEADERS += \
     src/controllers/MainWindowController.h \
     src/controllers/admin/AdminEditMenuController.h \
     src/controllers/admin/AdminEventsController.h \
-    src/controllers/admin/categories/CategoryController.h \
-    src/controllers/admin/incidents/IncidentController.h \
-    src/controllers/admin/recomms/AdminRecommendationsController.h \
-    src/controllers/admin/scenaries/ScenariesController.h \
+    src/controllers/admin/CategoryController.h \
+    src/controllers/admin/IncidentController.h \
+    src/controllers/admin/AdminRecommendationsController.h \
+    src/controllers/admin/ScenariesController.h \
     src/controllers/user/UserEventsController.h \
     src/controllers/user/UserIncidentWidgetController.h \
     src/controllers/user/UserRecommendationController.h \
@@ -94,10 +94,10 @@ SOURCES += \
     src/controllers/MainWindowController.cpp \
     src/controllers/admin/AdminEditMenuController.cpp \
     src/controllers/admin/AdminEventsController.cpp \
-    src/controllers/admin/categories/CategoryController.cpp \
-    src/controllers/admin/incidents/IncidentController.cpp \
-    src/controllers/admin/recomms/AdminRecommendationsController.cpp \
-    src/controllers/admin/scenaries/ScenariesController.cpp \
+    src/controllers/admin/CategoryController.cpp \
+    src/controllers/admin/IncidentController.cpp \
+    src/controllers/admin/AdminRecommendationsController.cpp \
+    src/controllers/admin/ScenariesController.cpp \
     src/controllers/user/UserEventsController.cpp \
     src/controllers/user/UserIncidentWidgetController.cpp \
     src/controllers/user/UserRecommendationController.cpp \
