@@ -6,9 +6,12 @@ ScenariesController::ScenariesController(QObject *parent) : QObject(parent) {
 
 void ScenariesController::init(AdminScenariesWidget *incidentWidget) {
     this->ui = incidentWidget;
+    this->editDialog = new AdminScenariesDialog(incidentWidget);
+
     QObject::connect(this->ui, &AdminScenariesWidget::signalScenaryClicked, this, &ScenariesController::onScenarySelected);
     QObject::connect(this->ui, &AdminScenariesWidget::signalAddScenaryClicked, this, &ScenariesController::onScenaryAdded);
-    QObject::connect(this->ui, &AdminScenariesWidget::signalEditScenaryClicked, this, &ScenariesController::onScenaryEdited);
+    QObject::connect(this->ui, &AdminScenariesWidget::signaEditScenaryClicked, this, &ScenariesController::onScenaryEditRequest);
+    QObject::connect(this->ui, &AdminScenariesWidget::signaSaveScenaryClicked, this, &ScenariesController::onScenaryUpdated);
     QObject::connect(this->ui, &AdminScenariesWidget::signalDelScenaryClicked, this, &ScenariesController::onScenaryDeleted);
 
     QObject::connect(this->ui, &AdminScenariesWidget::signalSelectedIncidentClicked, this, &ScenariesController::onIncidentUnselected);
@@ -92,7 +95,7 @@ void ScenariesController::onScenaryAdded() {
 
 }
 
-void ScenariesController::onScenaryEdited(quint32 scenaryID, QString scenaryName) {
+void ScenariesController::onScenaryUpdated(quint32 scenaryID, QString scenaryName) {
 
     QList<quint32> selectedIncidentIDs;
     for (SecurityIncident incident : this->selectedIncidents) {
@@ -100,6 +103,10 @@ void ScenariesController::onScenaryEdited(quint32 scenaryID, QString scenaryName
     }
     SecurityScenario updatedIncident (scenaryID, scenaryName, "", selectedIncidentIDs); //FIXME: Добавить параметр
     emit signalAdminUpdateScenary(scenaryID, updatedIncident);
+}
+
+void ScenariesController::onScenaryEditRequest(quint32 scenaryID) {
+    this->editDialog->show();
 }
 
 void ScenariesController::onScenaryDeleted(quint32 scenaryID) {

@@ -9,6 +9,7 @@
 #include "src/logic/Database.h"
 
 #include "src/ui/admin/AdminScenariesWidget.h"
+#include "src/ui/admin/dialogs/AdminScenariesDialog.h"
 
 class ScenariesController  : public QObject {
 
@@ -17,6 +18,7 @@ class ScenariesController  : public QObject {
     private:
         Database copyDatabase;
         AdminScenariesWidget *ui;
+        AdminScenariesDialog *editDialog;
         QMap<quint32, SecurityScenario> scenaries;
         QMap<quint32, SecurityIncident> allIncidents;
         QList<SecurityIncident> availableIncidents;
@@ -35,7 +37,8 @@ class ScenariesController  : public QObject {
     private slots:
         void onScenarySelected(quint32 scenaryID);
         void onScenaryAdded();
-        void onScenaryEdited(quint32 scenaryID, QString categoryName);
+        void onScenaryUpdated(quint32 scenaryID, QString categoryName);
+        void onScenaryEditRequest(quint32 scenaryID);
         void onScenaryDeleted(quint32 scenaryID);
         void onIncidentSelected(quint32 incidentID);
         void onIncidentUnselected(quint32 incidentID);

@@ -8,11 +8,11 @@
 
 
 #include "src/controllers/admin/AdminEditMenuController.h"
-#include "src/controllers/admin/categories/CategoryController.h"
+#include "src/controllers/admin/CategoryController.h"
 #include "src/controllers/admin/AdminEventsController.h"
-#include "src/controllers/admin/incidents/IncidentController.h"
-#include "src/controllers/admin/scenaries/ScenariesController.h"
-#include "src/controllers/admin/recomms/AdminRecommendationsController.h"
+#include "src/controllers/admin/IncidentController.h"
+#include "src/controllers/admin/ScenariesController.h"
+#include "src/controllers/admin/AdminRecommendationsController.h"
 
 #include "src/logic/Database.h"
 #include "src/logic/CoreApp.h"

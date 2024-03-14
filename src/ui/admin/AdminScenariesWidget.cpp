@@ -46,7 +46,8 @@ void AdminScenariesWidget::onAddScenaryButtonPressed() {
 }
 
 void AdminScenariesWidget::onEditScenaryButtonPressed() {
-    //TODO: открыть окно редактирования
+    //TODO: Оставить возможность редактировать только если выбран сценарий
+    emit signaEditScenaryClicked(this->ui->scrollArea_scenaries->getSelectedWidgetID());
 }
 
 void AdminScenariesWidget::onDelScenaryButtonPressed() {
@@ -55,7 +56,7 @@ void AdminScenariesWidget::onDelScenaryButtonPressed() {
 
 void AdminScenariesWidget::onSaveScenaryButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_scenaries->getSelectedWidget();
-    emit signalEditScenaryClicked(selected->getId(), selected->getText());
+    emit signaSaveScenaryClicked(selected->getId(), selected->getText());
 }
 
 AdminScenariesWidget::~AdminScenariesWidget() {

@@ -70,7 +70,13 @@ class AdminScenariesWidget : public QWidget {
          * @param scenaryId - ID выбранного сценарария
          * @param containedEvents - Новый набор входящих инцидентов
          */
-        void signalEditScenaryClicked(quint32 scenaryId, QString scenaryName);
+        void signaSaveScenaryClicked(quint32 scenaryId, QString scenaryName);
+
+        /**
+         * @brief signalEditScenaryClicked - сигнал вызывается при кажатии администратором на кнопку редактирования сценарариев
+         * @param scenaryId - ID выбранного сценарария
+         */
+        void signaEditScenaryClicked(quint32 scenaryId);
 
         /**
          * @brief signalDelScenaryClicked - сигнал вызывается при кажатии администратором на кнопку удаления категории
