@@ -54,10 +54,6 @@ void AdminCategoriesWidget::clearSelectedEvents() {
 
 }
 
-void AdminCategoriesWidget::selectCategory(quint32 categoryID) {
-    this->ui->scrollArea_categories->select(categoryID);
-}
-
 /**
  * @brief addSelectedEvent - добавляет в отображаемый
  * список выбранных событий новый виджет

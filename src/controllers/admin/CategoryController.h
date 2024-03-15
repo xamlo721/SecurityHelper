@@ -30,6 +30,10 @@ class CategoryController : public QObject {
 
         void init(AdminCategoriesWidget *categoryWidget);
 
+    private:
+        void resetSelectedEvents(QMap<quint32, SecurityEvent> freeEvents);
+        void resetAvailableEvents(QMap<quint32, SecurityEvent> freeEvents);
+
     public slots:
 
         void onDatabaseUpdated(const Database & db);

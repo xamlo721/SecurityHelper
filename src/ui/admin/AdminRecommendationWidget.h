@@ -49,6 +49,7 @@ class AdminRecommendationWidget : public QWidget {
          */
         void addAvalilableScenary(SelectedWidget * event);
 
+
         /**
          * @brief addSelectedScenary - добавляет в отображаемый
          * список выбранных событий новый виджет
@@ -63,6 +64,7 @@ class AdminRecommendationWidget : public QWidget {
          * @param TextRestore - Текст для восстановления
          */
         void setRecommendationText(QString TextContainment, QString TextFixes, QString TextRestore);
+
 
     signals:
 

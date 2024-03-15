@@ -70,6 +70,8 @@ void AdminRecommendationsController::onRecommendationSelected(quint32 recommenda
 
     this->selectedScenaries.clear();
     this->ui->clearSelectedScenaries();
+
+
     SecurityRecommendations recommendation = recommendations.value(recommendationID);
 
     for (quint32 scenaryID : recommendation.getScenaries()) {

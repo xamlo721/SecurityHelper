@@ -37,8 +37,6 @@ class MenuSelectedWidget : public QWidget {
 
         void unselect();
 
-        void select(quint32 widgetID);
-
         void clear();
 
     signals:
