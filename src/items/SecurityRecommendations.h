@@ -19,6 +19,8 @@ class SecurityRecommendations : public QObject {
     private:
         ///Цифровой целочисленный ID для однозначной идентификации и учёта объекта
         quint32 id;
+        ///Имя рекомендации
+        QString textName;
         ///Набор инструкций для сдерживания игрозы, задаваемый администратором
         QString textContainment;
         ///Набор инструкций для устранения угрозы, задаваемый администратором
@@ -52,13 +54,19 @@ class SecurityRecommendations : public QObject {
          * могут быть исправлены этими рекомендациями
          * @param parent - родительский объект в иерархии Qt.
          */
-        SecurityRecommendations(quint32 id, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent = nullptr);
+        SecurityRecommendations(quint32 id, QString textName, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent = nullptr);
 
         /**
          * @brief getId - получить ID рекомендации
          * @return
          */
         quint32 getId() const;
+
+        /**
+         * @brief getTextName - получить текст названия рекомендации
+         * @return
+         */
+        QString getTextName() const;
 
         /**
          * @brief getTextContainment - получить текст рекомендации для сдерживания
@@ -89,6 +97,12 @@ class SecurityRecommendations : public QObject {
          * @return
          */
         void setId(quint32 const id);
+
+        /**
+         * @brief setTextNames - установить текст имени рекомендации
+         * @return
+         */
+        void setTextName(QString const textName);
 
         /**
          * @brief setTextContainment - установить текст рекомендации для сдерживания

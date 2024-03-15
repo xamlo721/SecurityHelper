@@ -12,8 +12,9 @@ SecurityRecommendations::SecurityRecommendations() {
  * @brief SecurityRecommendations - конструктор копирования объектов
  * @param other - объект, используемый как источник данных
  */
-SecurityRecommendations::SecurityRecommendations(quint32 id, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent) : QObject(parent) {
+SecurityRecommendations::SecurityRecommendations(quint32 id, QString textName, QString textContainment, QString textFixes, QString textRestore, QList<quint32> scenaries, QObject *parent) : QObject(parent) {
     this->id = id;
+    this->textName = textName;
     this->textContainment = textContainment;
     this->textFixes = textFixes;
     this->textRestore = textRestore;
@@ -31,7 +32,7 @@ SecurityRecommendations::SecurityRecommendations(quint32 id, QString textContain
  * @param parent - родительский объект в иерархии Qt.
  */
 SecurityRecommendations::SecurityRecommendations(const SecurityRecommendations& other)
-    : QObject(other.parent()), id(other.id), textContainment(other.textContainment),
+    : QObject(other.parent()), id(other.id), textName (other.textName), textContainment(other.textContainment),
       textFixes(other.textFixes), textRestore(other.textRestore), scenaries(other.scenaries) {
 }
 
@@ -41,6 +42,14 @@ SecurityRecommendations::SecurityRecommendations(const SecurityRecommendations& 
  */
 quint32 SecurityRecommendations::getId() const {
     return this->id;
+}
+
+/**
+ * @brief getTextName - получить текст названия рекомендации
+ * @return
+ */
+QString SecurityRecommendations::getTextName() const {
+    return this->textName;
 }
 
 /**
@@ -81,6 +90,14 @@ QList<quint32> SecurityRecommendations::getScenaries() const {
  */
 void SecurityRecommendations::setId(quint32 const id) {
     this->id = id;
+}
+
+/**
+ * @brief setTextNames - установить текст имени рекомендации
+ * @return
+ */
+void SecurityRecommendations::setTextName(QString const textName) {
+    this->textName = textName;
 }
 
 /**
@@ -126,6 +143,7 @@ SecurityRecommendations& SecurityRecommendations::operator=(const SecurityRecomm
 
     QObject::setParent(other.parent());
     id = other.id;
+    textName = other.textName;
     textContainment = other.textContainment;
     textFixes = other.textFixes;
     textRestore = other.textRestore;
@@ -141,6 +159,7 @@ SecurityRecommendations& SecurityRecommendations::operator=(const SecurityRecomm
  */
 bool SecurityRecommendations::operator==(const SecurityRecommendations& other) const {
     return (id == other.id
+         && textName == other.textName
          && textContainment == other.textContainment
          && textFixes == other.textFixes
          && textRestore == other.textRestore

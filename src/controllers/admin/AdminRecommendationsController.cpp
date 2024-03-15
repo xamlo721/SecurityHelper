@@ -35,8 +35,7 @@ void AdminRecommendationsController::onDatabaseUpdated(const Database & db) {
 
     //Отобразить все категории в списке
     for (const SecurityRecommendations recommendation : db.recommendations) {
-        //FIXME: У рекомендаций нет названия в текущем домене, обсудить и добавить
-        this->ui->addRecomendation(new SelectedWidget(recommendation.getId(), QString::number(recommendation.getId())));
+        this->ui->addRecomendation(new SelectedWidget(recommendation.getId(), recommendation.getTextName()));
     }
 
     //Назодим среди всех событий те, которые никуда не входят
@@ -99,13 +98,13 @@ void AdminRecommendationsController::onRecommendationAdded() {
 
 }
 
-void AdminRecommendationsController::onRecommendationUpdated(quint32 incidentID, QString incidentName, QString TextContainment, QString TextFixes, QString TextRestore) {
+void AdminRecommendationsController::onRecommendationUpdated(quint32 incidentID, QString recomendationName, QString TextContainment, QString TextFixes, QString TextRestore) {
 
     QList<quint32> selectedScenaryIDs;
     for (SecurityScenario scenary : this->selectedScenaries) {
         selectedScenaryIDs.append(scenary.getId());
     }
-    SecurityRecommendations updatedRecommendation (incidentID, /*incidentName,*/ TextContainment, TextFixes, TextRestore, selectedScenaryIDs); //FIXME: Добавить параметр
+    SecurityRecommendations updatedRecommendation (incidentID, recomendationName, TextContainment, TextFixes, TextRestore, selectedScenaryIDs); //FIXME: Добавить параметр
     emit signalAdminUpdateRecommendation(incidentID, updatedRecommendation);
 }
 

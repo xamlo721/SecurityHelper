@@ -222,6 +222,7 @@ void XMLHelper::writeDatabaseRecommendation(QString path, QMap<quint32, Security
     for (SecurityRecommendations event : recommendations.values()) {
         QDomElement eventElement = eventsDoc.createElement("Recommendation");
         XmlUtils::writeUint(eventsDoc, eventElement , "id", event.getId());
+        XmlUtils::writeText(eventsDoc, eventElement , "TextName", event.getTextName());
         XmlUtils::writeText(eventsDoc, eventElement , "TextContainment", event.getTextContainment());
         XmlUtils::writeText(eventsDoc, eventElement , "TextFixes", event.getTextFixes());
         XmlUtils::writeText(eventsDoc, eventElement , "TextRestore", event.getTextRestore());
@@ -347,11 +348,12 @@ SecurityIncident XMLHelper::readSecurityIncident(QDomElement xmlDomElement) {
 
 SecurityRecommendations XMLHelper::readSecurityRecommendations(QDomElement xmlDomElement) {
     QString recContainment =XmlUtils::readText(xmlDomElement, "TextContainment");
+    QString recName =XmlUtils::readText(xmlDomElement, "TextName");
     QString recFixes =XmlUtils::readText(xmlDomElement, "TextFixes");
     QString recRestore =XmlUtils::readText(xmlDomElement, "TextRestore");
     quint32 recId = XmlUtils::readint(xmlDomElement, "id");
     QList<quint32> scenaryIds = XmlUtils::readUints(xmlDomElement, "Scenario");
-    return SecurityRecommendations(recId, recContainment, recFixes, recRestore,scenaryIds);
+    return SecurityRecommendations(recId, recName, recContainment, recFixes, recRestore,scenaryIds);
 }
 
 SecurityScenario XMLHelper::readSecurityScenario(QDomElement xmlDomElement) {

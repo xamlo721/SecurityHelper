@@ -74,7 +74,7 @@ void CoreApp::addRecommendations() {
     quint32 newRecommendationID = 0;//FIXME
 
     QList<quint32> scenaries;
-    SecurityRecommendations recommendation(newRecommendationID, "", "", "", scenaries);
+    SecurityRecommendations recommendation(newRecommendationID, "", "", "", "", scenaries);
 
     this->db.recommendations.insert(newRecommendationID, recommendation);
     emit signalDatabaseUpdated(this->db);
