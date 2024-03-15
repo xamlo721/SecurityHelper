@@ -31,8 +31,8 @@ class CategoryController : public QObject {
         void init(AdminCategoriesWidget *categoryWidget);
 
     private:
-        void resetSelectedEvents(QMap<quint32, SecurityEvent> freeEvents);
-        void resetAvailableEvents(QMap<quint32, SecurityEvent> freeEvents);
+        void resetSelectedEvents(QList<SecurityEvent> freeEvents);
+        void resetAvailableEvents(QList<SecurityEvent> freeEvents);
 
     public slots:
 

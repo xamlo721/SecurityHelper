@@ -21,40 +21,34 @@ void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
 
 }
 
-void CategoryController::resetSelectedEvents(QMap<quint32, SecurityEvent> freeEvents) {
+void CategoryController::resetSelectedEvents(QList<SecurityEvent> selectedEvents) {
     this->ui->clearSelectedEvents();
-    this->selectedEvents.clear();
+    this->selectedEvents = selectedEvents;
 
     //Отобразить все события, не входящие в какие либо категории
-    for (const SecurityEvent event : freeEvents) {
-        this->ui->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
+    for (const SecurityEvent event : selectedEvents) {
+        this->ui->addSelectedEvent(new SelectedWidget(event.getId(), event.getText()));
     }
+
 
 }
 
-void CategoryController::resetAvailableEvents(QMap<quint32, SecurityEvent> freeEvents) {
+void CategoryController::resetAvailableEvents(QList<SecurityEvent> freeEvents) {
     this->ui->clearAvailableEvents();
-    this->availableEvents.clear();
-    this->allEvents = freeEvents;
+    this->availableEvents = freeEvents;
 
     //Назодим среди всех событий те, которые никуда не входят
 
-    for (const SecurityEventCategory category : this->copyDatabase.categories) {
-
-        for (const quint32 eventID : category.getEventIds()) {
-
-            if (freeEvents.contains(eventID)) {
-                freeEvents.remove(eventID);
-            }
-
-        }
-
+    for (const SecurityEvent event : availableEvents) {
+        this->ui->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
     }
-    this->availableEvents = freeEvents.values();
+
 
 }
 
 void CategoryController::onDatabaseUpdated(const Database & db) {
+
+    this->allEvents = db.events;
 
     this->copyDatabase = db;
 
@@ -67,33 +61,42 @@ void CategoryController::onDatabaseUpdated(const Database & db) {
         this->ui->addCategory(new SelectedWidget(category.getId(), category.getText()));
     }
 
-    this->resetSelectedEvents(db.events);
-    this->resetAvailableEvents(db.events);
+    this->ui->clearSelectedEvents();
+    this->selectedEvents.clear();
+
+    this->ui->clearAvailableEvents();
+    this->availableEvents.clear();
 
 }
 
-
+//Сбрасывает всё что ты накрутил там
 void CategoryController::onCetegorySelected(quint32 categoryID) {
 
-    //Сбрасывает всё что ты накрутил там
+    ///Для поиска доступных ивентов, сначала скопируем все ивенты, затем удалим
+    QMap<quint32, SecurityEvent> copyAllEvents = this->copyDatabase.events;
 
-    this->resetSelectedEvents(this->copyDatabase.events);
-    this->resetAvailableEvents(this->copyDatabase.events);
+    ///Поиск среди всех доступных категорий
+    for (SecurityEventCategory category : this->copyDatabase.categories) {
+        ///Среди всех событий категории
+        for (quint32 eventID : category.getEventIds()) {
+            ///Если категория содержит такой ID, значит не доступен он!
+            if (copyAllEvents.contains(eventID)) {
+                copyAllEvents.remove(eventID);
+            }
+
+        }
+    }
+
+    QList<SecurityEvent> categorySelectedEvents;
 
     SecurityEventCategory category = categories.value(categoryID);
 
     for (quint32 eventID : category.getEventIds()) {
-
-        for (SecurityEvent event : allEvents) {
-            if (event.getId() == eventID && !selectedEvents.contains(event)) {
-                this->selectedEvents.append(event);
-            }
-        }
+        categorySelectedEvents.append(this->allEvents.value(eventID));
     }
 
-    for (SecurityEvent event : selectedEvents) {
-        this->ui->addSelectedEvent(new SelectedWidget(event.getId(), event.getText()));
-    }
+    this->resetAvailableEvents(copyAllEvents.values());
+    this->resetSelectedEvents(categorySelectedEvents);
 
 }
 
@@ -127,21 +130,16 @@ void CategoryController::onCategoryDeleted(quint32 categoryID) {
 void CategoryController::onEventSelected(quint32 eventID) {
 
     ///1) Найти и переложить событие
-    this->selectedEvents.append(allEvents.value(eventID));
     this->availableEvents.removeOne(allEvents.value(eventID));
+    this->selectedEvents.append(allEvents.value(eventID));
 
     ///2) Почистить доступные ивенты от него
-    this->ui->clearAvailableEvents();
-    this->ui->clearSelectedEvents();
 
-    for (SecurityEvent event : availableEvents) {
-        this->ui->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
-    }
 
     ///3) обновить выбранные ивенты
-    for (SecurityEvent event : selectedEvents) {
-        this->ui->addSelectedEvent(new SelectedWidget(event.getId(), event.getText()));
-    }
+
+    this->resetAvailableEvents(this->availableEvents);
+    this->resetSelectedEvents(this->selectedEvents);
 
 }
 
@@ -152,17 +150,12 @@ void CategoryController::onEventUnselected(quint32 eventID) {
     this->availableEvents.append(allEvents.value(eventID));
 
     ///2) Почистить доступные ивенты от него
-    this->ui->clearAvailableEvents();
-    this->ui->clearSelectedEvents();
 
-    for (SecurityEvent event : availableEvents) {
-        this->ui->addAvalilableEvent(new SelectedWidget(event.getId(), event.getText()));
-    }
 
     ///3) обновить выбранные ивенты
-    for (SecurityEvent event : selectedEvents) {
-        this->ui->addSelectedEvent(new SelectedWidget(event.getId(), event.getText()));
-    }
+
+    this->resetAvailableEvents(this->availableEvents);
+    this->resetSelectedEvents(this->selectedEvents);
 
 
 }
