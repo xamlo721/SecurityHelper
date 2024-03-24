@@ -17,7 +17,7 @@ class AdminEventsWidget : public QWidget {
         Ui::AdminEventsWidget *ui;
 
     public:
-        explicit AdminEventsWidget(QWidget *parent = nullptr);
+        AdminEventsWidget(QWidget *parent = nullptr);
         ~AdminEventsWidget();
 
         /**
@@ -31,6 +31,30 @@ class AdminEventsWidget : public QWidget {
          * @param event - заранее сделанный виджет
          */
         void addEvent(SelectedWidget * event);
+
+        /**
+         * @brief enableEditButton - включить доступность кнопки
+         * "Редактировать" на пакели событий
+         */
+        void enableEditButton();
+
+        /**
+         * @brief disableEditButton - выключить доступность кнопки
+         * "Редактировать" на пакели событий
+         */
+        void disableEditButton();
+
+        /**
+         * @brief enableDeleteButton - включить доступность кнопки
+         * "Удалить" на пакели событий
+         */
+        void enableDeleteButton();
+
+        /**
+         * @brief disableDeleteButton - выключить доступность кнопки
+         * "Удалить" на пакели событий
+         */
+        void disableDeleteButton();
 
     signals:
 
@@ -67,11 +91,34 @@ class AdminEventsWidget : public QWidget {
          * при кажатии администратором на событие
          * @param eventID - ID события
          */
-        void signalEventClicked(quint32 eventID);
+        void signalEventSelected(quint32 eventID);
+
+        /**
+         * @brief signalEventUnselected - сигнал вызывается
+         * при кажатии администратором на событие
+         * @param eventID - ID события
+         */
+        void signalEventUnselected(quint32 eventID);
 
     private slots:
+
+
+        /**
+         * @brief onAddEventButtonPressed - слот, активируемый при нажатии
+         * накнопку "Добавить" в списке событий
+         */
         void onAddEventButtonPressed();
+
+        /**
+         * @brief onEditEventButtonPressed - слот, активируемый при нажатии
+         * на кнопку "Редактировать" в списке событий
+         */
         void onEditEventButtonPressed();
+
+        /**
+         * @brief onDelEventButtonPressed - слот, активируемый при нажатии
+         * на кнопку "Удалить" в списке событий
+         */
         void onDelEventButtonPressed();
 
 };

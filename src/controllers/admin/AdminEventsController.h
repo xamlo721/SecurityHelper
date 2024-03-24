@@ -13,9 +13,17 @@ class AdminEventsController : public QObject {
     Q_OBJECT
 
     private:
+
+        ///Копия базы даных для работы с данными на экране
         Database copyDatabase;
+        ///Указатель на управляемый виджет
         AdminEventsWidget *ui;
+        ///Указатель на открываемое окно редактирования
         AdminEventDialog *editDialog;
+
+        ///ID выбранного события
+        quint32 selectedEventID;
+
         QMap<quint32, SecurityEvent> allEvents;
 
     public:
@@ -29,6 +37,20 @@ class AdminEventsController : public QObject {
         void onDatabaseUpdated(const Database & db);
 
     private slots:
+        /**
+         * @brief slotOnEventButtonPressed - слот. активируемый при нажатии
+         * на нажатии на кнопку События.
+         * @param eventId
+         */
+        void slotOnEventSelected(quint32 eventId);
+
+        /**
+         * @brief slotOnEventButtonPressed - слот. активируемый при нажатии
+         * на нажатии на кнопку События.
+         * @param eventId
+         */
+        void slotOnEventUnselected(quint32 eventId);
+
         void onEventAdded();
         void onEventUpdated(quint32 eventID, QString eventName);
         void onEventEditRequest(quint32 eventID);
