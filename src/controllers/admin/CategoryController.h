@@ -25,6 +25,9 @@ class CategoryController : public QObject {
         QList<SecurityEvent> availableEvents;
         QList<SecurityEvent> selectedEvents;
 
+        ///ID выбранной каьешлоии
+        quint32 categoryEventID;
+
     public:
         explicit CategoryController(QObject *parent = nullptr);
 
@@ -41,6 +44,7 @@ class CategoryController : public QObject {
 
     private slots:
         void onCetegorySelected(quint32 categoryID);
+        void onCetegoryUnselected(quint32 categoryID);
         void onCategoryAdded();
         void onCategoryEditRequest(quint32 categoryID);
         void onCategoryUpdated(quint32 categoryID, QString categoryName);

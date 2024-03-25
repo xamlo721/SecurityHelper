@@ -59,6 +59,30 @@ class AdminCategoriesWidget : public QWidget {
          */
         void addSelectedEvent(SelectedWidget * event);
 
+        /**
+         * @brief enableEditButton - включить доступность кнопки
+         * "Редактировать" на пакели событий
+         */
+        void enableEditButton();
+
+        /**
+         * @brief disableEditButton - выключить доступность кнопки
+         * "Редактировать" на пакели событий
+         */
+        void disableEditButton();
+
+        /**
+         * @brief enableDeleteButton - включить доступность кнопки
+         * "Удалить" на пакели событий
+         */
+        void enableDeleteButton();
+
+        /**
+         * @brief disableDeleteButton - выключить доступность кнопки
+         * "Удалить" на пакели событий
+         */
+        void disableDeleteButton();
+
     signals:
 
         /**
@@ -66,7 +90,14 @@ class AdminCategoriesWidget : public QWidget {
          * при кажатии администратором на кнопку категории
          * @param categoryId - ID выбранной категории
          */
-        void signalCategoryClicked(quint32 categoryId);
+        void signalCategorySelected(quint32 categoryId);
+
+        /**
+         * @brief signalCategoryUnselected - сигнал вызывается
+         * при кажатии администратором на кнопку категории
+         * @param categoryId - ID выбранной категории
+         */
+        void signalCategoryUnselected(quint32 categoryId);
 
         /**
          * @brief signalAddCategoryClicked - сигнал вызывается

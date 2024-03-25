@@ -24,7 +24,8 @@ void AdminCategoriesWidget::clearCategories() {
  * @param category - заранее сделанный виджет
  */
 void AdminCategoriesWidget::addCategory(SelectedWidget * category) {
-    QObject::connect(category, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signalCategoryClicked);
+    QObject::connect(category, &SelectedWidget::signalSelected, this, &AdminCategoriesWidget::signalCategorySelected);
+    QObject::connect(category, &SelectedWidget::signalUnselected, this, &AdminCategoriesWidget::signalCategoryUnselected);
     this->ui->scrollArea_categories->addWidget(category->getId(), category);
 }
 
@@ -83,6 +84,40 @@ void AdminCategoriesWidget::onSaveCategoryButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_categories->getSelectedWidget();
     emit signalSaveCategoryClicked(selected->getId(), selected->getText());
 }
+
+
+/**
+ * @brief enableEditButton - включить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminCategoriesWidget::enableEditButton() {
+    this->ui->pushButton_editCategory->setEnabled(true);
+}
+
+/**
+ * @brief disableEditButton - выключить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminCategoriesWidget::disableEditButton() {
+    this->ui->pushButton_editCategory->setEnabled(false);
+}
+
+/**
+ * @brief enableDeleteButton - включить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminCategoriesWidget::enableDeleteButton() {
+    this->ui->pushButton_deleteSelectedCategories->setEnabled(true);
+}
+
+/**
+ * @brief disableDeleteButton - выключить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminCategoriesWidget::disableDeleteButton() {
+    this->ui->pushButton_deleteSelectedCategories->setEnabled(false);
+}
+
 
 AdminCategoriesWidget::~AdminCategoriesWidget() {
     delete ui;

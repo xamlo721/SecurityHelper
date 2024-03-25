@@ -9,8 +9,10 @@ CategoryController::CategoryController(QObject *parent) : QObject(parent) {
 void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
     this->ui = categoryWidget;
     this->editDialog = new AdminEditCatorgyDialog(categoryWidget);
+    this->categoryEventID = -1;
 
-    QObject::connect(this->ui, &AdminCategoriesWidget::signalCategoryClicked, this, &CategoryController::onCetegorySelected);
+    QObject::connect(this->ui, &AdminCategoriesWidget::signalCategorySelected, this, &CategoryController::onCetegorySelected);
+    QObject::connect(this->ui, &AdminCategoriesWidget::signalCategoryUnselected, this, &CategoryController::onCetegoryUnselected);
     QObject::connect(this->ui, &AdminCategoriesWidget::signalAddCategoryClicked, this, &CategoryController::onCategoryAdded);
     QObject::connect(this->ui, &AdminCategoriesWidget::signalSaveCategoryClicked, this, &CategoryController::onCategoryUpdated);
     QObject::connect(this->ui, &AdminCategoriesWidget::signalEditCategoryClicked, this, &CategoryController::onCategoryEditRequest);
@@ -19,6 +21,9 @@ void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
     QObject::connect(this->ui, &AdminCategoriesWidget::signalSelectedEventClicked, this, &CategoryController::onEventUnselected);
     QObject::connect(this->ui, &AdminCategoriesWidget::signaAvailableEventClicked, this, &CategoryController::onEventSelected);
 
+
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
 }
 
 void CategoryController::resetSelectedEvents(QList<SecurityEvent> selectedEvents) {
@@ -98,6 +103,31 @@ void CategoryController::onCetegorySelected(quint32 categoryID) {
     this->resetAvailableEvents(copyAllEvents.values());
     this->resetSelectedEvents(categorySelectedEvents);
 
+
+    ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
+    this->categoryEventID = categoryID;
+    this->ui->enableEditButton();
+    this->ui->enableDeleteButton();
+
+}
+void CategoryController::onCetegoryUnselected(quint32 categoryID) {
+    ///Если ID совпали, то мы отжали кнопку
+    if (this->categoryEventID != categoryID) {
+        //А как мы сюда попали?
+        throw "onCetegoryUnselected()";
+        return;
+    }
+
+    this->categoryEventID = -1;
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
+
+
+    this->selectedEvents.clear();
+    this->availableEvents.clear();
+
+    this->resetAvailableEvents(this->availableEvents);
+    this->resetSelectedEvents(this->selectedEvents);
 }
 
 
@@ -121,6 +151,7 @@ void CategoryController::onCategoryUpdated(quint32 categoryID, QString categoryN
     }
     SecurityEventCategory updatedCategory (categoryID, categoryName, selectedEventIDs);
     emit signalAdminUpdateCategory(categoryID, updatedCategory);
+    this->onCetegoryUnselected(categoryID);
 }
 
 void CategoryController::onCategoryDeleted(quint32 categoryID) {
