@@ -25,10 +25,17 @@ class IncidentController : public QObject {
         QList<SecurityEvent> availableEvents;
         QList<SecurityEvent> selectedEvents;
 
+        ///ID выбранной каьешлоии
+        quint32 selectedIncidentID;
+
     public:
         explicit IncidentController(QObject *parent = nullptr);
 
         void init(AdminIncidentsWidget *incidentWidget);
+
+    private:
+        void resetSelectedEvents(QList<SecurityEvent> freeEvents);
+        void resetAvailableEvents(QList<SecurityEvent> freeEvents);
 
     public slots:
 
@@ -37,6 +44,7 @@ class IncidentController : public QObject {
 
     private slots:
         void onIncidentSelected(quint32 incidentID);
+        void onIncidentUnselected(quint32 incidentID);
         void onIncidentAdded();
         void onIncidentEditRequest(quint32 incidentID);
         void onIncidentUpdated(quint32 incidentID, QString categoryName);

@@ -16,7 +16,8 @@ void AdminIncidentsWidget::clearIncidents() {
 }
 
 void AdminIncidentsWidget::addIncident(SelectedWidget *incident) {
-    QObject::connect(incident, &SelectedWidget::signalSelected, this, &AdminIncidentsWidget::signalIncidentClicked);
+    QObject::connect(incident, &SelectedWidget::signalSelected, this, &AdminIncidentsWidget::signalIncidentSelected);
+    QObject::connect(incident, &SelectedWidget::signalUnselected, this, &AdminIncidentsWidget::signalIncidentUnselected);
     this->ui->scrollArea_incidents->addWidget(incident->getId(), incident);
 }
 
@@ -57,6 +58,39 @@ void AdminIncidentsWidget::onDelIncidentButtonPressed() {
 void AdminIncidentsWidget::onSaveIncidentButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_incidents->getSelectedWidget();
     emit signaSaveIncidentClicked(selected->getId(), selected->getText());
+}
+
+
+/**
+ * @brief enableEditButton - включить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminIncidentsWidget::enableEditButton() {
+    this->ui->pushButton_editIncident->setEnabled(true);
+}
+
+/**
+ * @brief disableEditButton - выключить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminIncidentsWidget::disableEditButton() {
+    this->ui->pushButton_editIncident->setEnabled(false);
+}
+
+/**
+ * @brief enableDeleteButton - включить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminIncidentsWidget::enableDeleteButton() {
+    this->ui->pushButton_deleteIncident->setEnabled(true);
+}
+
+/**
+ * @brief disableDeleteButton - выключить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminIncidentsWidget::disableDeleteButton() {
+    this->ui->pushButton_deleteIncident->setEnabled(false);
 }
 
 AdminIncidentsWidget::~AdminIncidentsWidget() {
