@@ -4,12 +4,38 @@ AdminRecommendationsController::AdminRecommendationsController(QObject *parent) 
 
 }
 
+void AdminRecommendationsController::resetSelectedRecommendations(QList<SecurityScenario> selectedScenaries) {
+    this->ui->clearSelectedScenaries();
+    this->selectedScenaries = selectedScenaries;
+
+    //Отобразить все события, не входящие в какие либо категории
+    for (const SecurityScenario incident : selectedScenaries) {
+        this->ui->addSelectedScenary(new SelectedWidget(incident.getId(), incident.getText()));
+    }
+
+
+}
+
+void AdminRecommendationsController::resetAvailableRecommendations(QList<SecurityScenario> freeScenaries) {
+    this->ui->clearAvailableScenaries();
+    this->availableScenaries = freeScenaries;
+
+    //Назодим среди всех событий те, которые никуда не входят
+
+    for (const SecurityScenario incident : freeScenaries) {
+        this->ui->addAvalilableScenary(new SelectedWidget(incident.getId(), incident.getText()));
+    }
+
+
+}
+
 
 void AdminRecommendationsController::init(AdminRecommendationWidget * recommendationWidget) {
     this->ui = recommendationWidget;
     this->editDialog = new AdminRecommendationDialog(recommendationWidget);
 
-    QObject::connect(this->ui, &AdminRecommendationWidget::signalRecomendationClicked, this, &AdminRecommendationsController::onRecommendationSelected);
+    QObject::connect(this->ui, &AdminRecommendationWidget::signalRecomendationSelected, this, &AdminRecommendationsController::onRecommendationSelected);
+    QObject::connect(this->ui, &AdminRecommendationWidget::signalRecomendationUnselected, this, &AdminRecommendationsController::onRecommendationUnselected);
     QObject::connect(this->ui, &AdminRecommendationWidget::signalAddRecomendationClicked, this, &AdminRecommendationsController::onRecommendationAdded);
     QObject::connect(this->ui, &AdminRecommendationWidget::signalEditRecomendationClicked, this, &AdminRecommendationsController::onRecommendationEditRequest);
     QObject::connect(this->ui, &AdminRecommendationWidget::signalSaveRecomendationClicked, this, &AdminRecommendationsController::onRecommendationUpdated);
@@ -18,79 +44,91 @@ void AdminRecommendationsController::init(AdminRecommendationWidget * recommenda
     QObject::connect(this->ui, &AdminRecommendationWidget::signalSelectedScenaryClicked, this, &AdminRecommendationsController::onScenaryUnselected);
     QObject::connect(this->ui, &AdminRecommendationWidget::signaAvailableScenaryClicked, this, &AdminRecommendationsController::onScenarySelected);
 
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
 }
 
 void AdminRecommendationsController::onDatabaseUpdated(const Database & db) {
-    copyDatabase = db;
 
-    this->ui->clearSelectedScenaries();
-    this->ui->clearAvailableScenaries();
-    this->ui->clearRecomendations();
 
-    this->availableScenaries.clear();
-    this->selectedScenaries.clear();
-
-    this->recommendations = db.recommendations;
     this->allScenaries = db.scenaries;
 
+    this->copyDatabase = db;
+
+    this->ui->clearRecomendations();
+
+    this->recommendations = db.recommendations;
+
     //Отобразить все категории в списке
-    for (const SecurityRecommendations recommendation : db.recommendations) {
-        this->ui->addRecomendation(new SelectedWidget(recommendation.getId(), recommendation.getTextName()));
+    for (const SecurityScenario scenario : db.scenaries) {
+        this->ui->addRecomendation(new SelectedWidget(scenario.getId(), scenario.getText()));
     }
 
-    //Назодим среди всех событий те, которые никуда не входят
-    QMap<quint32, SecurityScenario> freeScenaries = db.scenaries;
+    this->ui->clearSelectedScenaries();
+    this->selectedScenaries.clear();
 
-    for (const SecurityScenario scenary : db.scenaries) {
+    this->ui->clearAvailableScenaries();
+    this->availableScenaries.clear();
 
-        for (const quint32 incidentID : scenary.getIncidents()) {
-
-            if (freeScenaries.contains(incidentID)) {
-                freeScenaries.remove(incidentID);
-            }
-
-        }
-
-    }
-
-    //Отобразить все события, не входящие в какие либо категории
-    for (const SecurityScenario scenary : freeScenaries) {
-        this->ui->addAvalilableScenary(new SelectedWidget(scenary.getId(), scenary.getText()));
-    }
-
-    availableScenaries = freeScenaries.values();
 
 }
 
 
 void AdminRecommendationsController::onRecommendationSelected(quint32 recommendationID) {
 
-    //Сбрасывает всё что ты накрутил там
-    this->onDatabaseUpdated(this->copyDatabase);
+    ///Для поиска доступных ивентов, сначала скопируем все ивенты, затем удалим
+    QMap<quint32, SecurityScenario> copyAllScenaries = this->copyDatabase.scenaries;
 
-    this->selectedScenaries.clear();
-    this->ui->clearSelectedScenaries();
-
-
-    SecurityRecommendations recommendation = recommendations.value(recommendationID);
-
-    for (quint32 scenaryID : recommendation.getScenaries()) {
-
-        for (SecurityScenario scenary : allScenaries) {
-            if (scenary.getId() == scenaryID && !selectedScenaries.contains(scenary)) {
-                this->selectedScenaries.append(scenary);
+    ///Поиск среди всех доступных категорий
+    for (SecurityRecommendations rec : this->copyDatabase.recommendations) {
+        ///Среди всех событий категории
+        for (quint32 scenaryID : rec.getScenaries()) {
+            ///Если категория содержит такой ID, значит не доступен он!
+            if (copyAllScenaries.contains(scenaryID)) {
+                copyAllScenaries.remove(scenaryID);
             }
+
         }
     }
 
-    for (SecurityScenario scenary : selectedScenaries) {
-        this->ui->addSelectedScenary(new SelectedWidget(scenary.getId(), scenary.getText()));
+    QList<SecurityScenario> recSelectedScenaries;
+
+    SecurityRecommendations selectedRecommendation = recommendations.value(recommendationID);
+
+    for (quint32 scenaryID : selectedRecommendation.getScenaries()) {
+        recSelectedScenaries.append(this->allScenaries.value(scenaryID));
     }
 
-    this->ui->setRecommendationText(recommendation.getTextContainment(), recommendation.getTextFixes(), recommendation.getTextRestore());
+    this->resetAvailableRecommendations(copyAllScenaries.values());
+    this->resetSelectedRecommendations(recSelectedScenaries);
+
+    ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
+    this->selectedRecommendationID = recommendationID;
+    this->ui->enableEditButton();
+    this->ui->enableDeleteButton();
 
 }
 
+
+void AdminRecommendationsController::onRecommendationUnselected(quint32 recommendationID) {
+    ///Если ID совпали, то мы отжали кнопку
+    if (this->selectedRecommendationID!= recommendationID) {
+        //А как мы сюда попали?
+        throw "onRecommendationUnselected()";
+        return;
+    }
+
+    this->selectedRecommendationID = -1;
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
+
+
+    this->selectedScenaries.clear();
+    this->availableScenaries.clear();
+
+    this->resetAvailableRecommendations(this->availableScenaries);
+    this->resetSelectedRecommendations(this->selectedScenaries);
+}
 
 void AdminRecommendationsController::onRecommendationAdded() {
 
@@ -108,6 +146,7 @@ void AdminRecommendationsController::onRecommendationUpdated(quint32 incidentID,
     }
     SecurityRecommendations updatedRecommendation (incidentID, recomendationName, TextContainment, TextFixes, TextRestore, selectedScenaryIDs); //FIXME: Добавить параметр
     emit signalAdminUpdateRecommendation(incidentID, updatedRecommendation);
+    this->onScenaryUnselected(incidentID);
 }
 
 void AdminRecommendationsController::onRecommendationEditRequest(quint32 recommendationID) {

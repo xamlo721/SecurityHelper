@@ -66,6 +66,31 @@ class AdminRecommendationWidget : public QWidget {
         void setRecommendationText(QString TextContainment, QString TextFixes, QString TextRestore);
 
 
+        /**
+         * @brief enableEditButton - включить доступность кнопки
+         * "Редактировать" на пакели инцидентов
+         */
+        void enableEditButton();
+
+        /**
+         * @brief disableEditButton - выключить доступность кнопки
+         * "Редактировать" на пакели инцидентов
+         */
+        void disableEditButton();
+
+        /**
+         * @brief enableDeleteButton - включить доступность кнопки
+         * "Удалить" на пакели инцидентов
+         */
+        void enableDeleteButton();
+
+        /**
+         * @brief disableDeleteButton - выключить доступность кнопки
+         * "Удалить" на пакели инцидентов
+         */
+        void disableDeleteButton();
+
+
     signals:
 
         /**
@@ -73,7 +98,14 @@ class AdminRecommendationWidget : public QWidget {
          * при кажатии администратором на кнопку рекомендации
          * @param incidentId - ID выбранного инцидента
          */
-        void signalRecomendationClicked(quint32 incidentId);
+        void signalRecomendationSelected(quint32 incidentId);
+
+        /**
+         * @brief signalRecomendationUnselected - сигнал вызывается
+         * при кажатии администратором на кнопку рекомендации
+         * @param incidentId - ID выбранного инцидента
+         */
+        void signalRecomendationUnselected(quint32 incidentId);
 
         /**
          * @brief signalAddRecomendationClicked - сигнал вызывается

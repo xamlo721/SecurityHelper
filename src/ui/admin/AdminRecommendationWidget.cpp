@@ -27,7 +27,8 @@ void AdminRecommendationWidget::clearSelectedScenaries(){
 
 
 void AdminRecommendationWidget::addRecomendation(SelectedWidget * recomendation){
-    QObject::connect(recomendation, &SelectedWidget::signalSelected, this, &AdminRecommendationWidget::signalRecomendationClicked);
+    QObject::connect(recomendation, &SelectedWidget::signalSelected, this, &AdminRecommendationWidget::signalRecomendationSelected);
+    QObject::connect(recomendation, &SelectedWidget::signalUnselected, this, &AdminRecommendationWidget::signalRecomendationUnselected);
     this->ui->scrollArea_recommendations->addWidget(recomendation->getId(), recomendation);
 
 }
@@ -69,6 +70,38 @@ void AdminRecommendationWidget::onSaveRecomendationButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_recommendations->getSelectedWidget();
     emit signalSaveRecomendationClicked(selected->getId(), selected->getText(), this->ui->textEdit->toPlainText(), this->ui->textEdit_2->toPlainText(), this->ui->textEdit_4->toPlainText());
 
+}
+
+/**
+ * @brief enableEditButton - включить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminRecommendationWidget::enableEditButton() {
+    this->ui->pushButton_editRecommendation->setEnabled(true);
+}
+
+/**
+ * @brief disableEditButton - выключить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminRecommendationWidget::disableEditButton() {
+    this->ui->pushButton_editRecommendation->setEnabled(false);
+}
+
+/**
+ * @brief enableDeleteButton - включить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminRecommendationWidget::enableDeleteButton() {
+    this->ui->pushButton_deleteRecommendation->setEnabled(true);
+}
+
+/**
+ * @brief disableDeleteButton - выключить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminRecommendationWidget::disableDeleteButton() {
+    this->ui->pushButton_deleteRecommendation->setEnabled(false);
 }
 
 AdminRecommendationWidget::~AdminRecommendationWidget() {

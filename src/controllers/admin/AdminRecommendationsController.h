@@ -25,11 +25,17 @@ class AdminRecommendationsController : public QObject {
         QList<SecurityScenario> availableScenaries;
         QList<SecurityScenario> selectedScenaries;
 
+        ///ID выбранной каьешлоии
+        quint32 selectedRecommendationID;
 
     public:
         AdminRecommendationsController(QObject *parent = nullptr);
 
         void init(AdminRecommendationWidget * recommendationWidget);
+
+    private:
+        void resetSelectedRecommendations(QList<SecurityScenario> selectedScenaries);
+        void resetAvailableRecommendations(QList<SecurityScenario> freeScenaries);
 
     public slots:
 
@@ -37,6 +43,7 @@ class AdminRecommendationsController : public QObject {
 
     private slots:
         void onRecommendationSelected(quint32 recommendationID);
+        void onRecommendationUnselected(quint32 recommendationID);
         void onRecommendationAdded();
         void onRecommendationUpdated(quint32 recommendationID, QString recommendationName, QString TextContainment, QString TextFixes, QString TextRestore);
         void onRecommendationEditRequest(quint32 recommendationID);
