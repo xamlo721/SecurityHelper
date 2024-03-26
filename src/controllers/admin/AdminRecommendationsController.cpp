@@ -9,8 +9,8 @@ void AdminRecommendationsController::resetSelectedRecommendations(QList<Security
     this->selectedScenaries = selectedScenaries;
 
     //Отобразить все события, не входящие в какие либо категории
-    for (const SecurityScenario incident : selectedScenaries) {
-        this->ui->addSelectedScenary(new SelectedWidget(incident.getId(), incident.getText()));
+    for (const SecurityScenario scenario : selectedScenaries) {
+        this->ui->addSelectedScenary(new SelectedWidget(scenario.getId(), scenario.getText()));
     }
 
 
@@ -22,8 +22,8 @@ void AdminRecommendationsController::resetAvailableRecommendations(QList<Securit
 
     //Назодим среди всех событий те, которые никуда не входят
 
-    for (const SecurityScenario incident : freeScenaries) {
-        this->ui->addAvalilableScenary(new SelectedWidget(incident.getId(), incident.getText()));
+    for (const SecurityScenario scenario : freeScenaries) {
+        this->ui->addAvalilableScenary(new SelectedWidget(scenario.getId(), scenario.getText()));
     }
 
 
@@ -77,8 +77,8 @@ void AdminRecommendationsController::onDatabaseUpdated(const Database & db) {
     this->recommendations = db.recommendations;
 
     //Отобразить все категории в списке
-    for (const SecurityScenario scenario : db.scenaries) {
-        this->ui->addRecomendation(new SelectedWidget(scenario.getId(), scenario.getText()));
+    for (const SecurityRecommendations recommendation : db.recommendations) {
+        this->ui->addRecomendation(new SelectedWidget(recommendation.getId(), recommendation.getTextName()));
     }
 
     this->ui->clearSelectedScenaries();
