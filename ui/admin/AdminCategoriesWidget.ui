@@ -43,6 +43,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="pushButton_saveCategory">
+         <property name="text">
+          <string>Сохранить категорию</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton_editCategory">
          <property name="text">
           <string>Редактировать</string>
@@ -113,13 +120,6 @@ p, li { white-space: pre-wrap; }
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton_saveCategory">
-         <property name="text">
-          <string>Сохранить категорию</string>
          </property>
         </widget>
        </item>
