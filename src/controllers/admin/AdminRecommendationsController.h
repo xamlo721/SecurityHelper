@@ -42,6 +42,13 @@ class AdminRecommendationsController : public QObject {
         void onDatabaseUpdated(const Database & db);
 
     private slots:
+
+        /**
+         * @brief slotItemNameEdited - случает, когда меняется имя
+         * @param name - новое имя объекта
+         */
+        void slotItemNameEdited(QString name);
+
         void onRecommendationSelected(quint32 recommendationID);
         void onRecommendationUnselected(quint32 recommendationID);
         void onRecommendationAdded();

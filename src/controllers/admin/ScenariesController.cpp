@@ -46,6 +46,8 @@ void ScenariesController::init(AdminScenariesWidget *incidentWidget) {
     QObject::connect(this->ui, &AdminScenariesWidget::signalSelectedIncidentClicked, this, &ScenariesController::onIncidentUnselected);
     QObject::connect(this->ui, &AdminScenariesWidget::signaAvailableIncidentClicked, this, &ScenariesController::onIncidentSelected);
 
+    QObject::connect(this->editDialog, &AdminScenariesDialog::signalItemNameChanged, this, &ScenariesController::slotItemNameEdited);
+
     this->ui->disableEditButton();
     this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
@@ -72,6 +74,21 @@ void ScenariesController::onDatabaseUpdated(const Database & db) {
 
     this->ui->clearAvailableIncidents();
     this->availableIncidents.clear();
+
+}
+
+/**
+ * @brief slotItemNameEdited - случает, когда меняется имя
+ * @param name - новое имя объекта
+ */
+void ScenariesController::slotItemNameEdited(QString name) {
+
+    SecurityScenario selectedScenaries = this->scenaries.value(this->selectedScenarioID);
+    selectedScenaries.setText(name);
+
+    emit signalAdminUpdateScenary(this->selectedScenarioID, selectedScenaries);
+
+    this->onScenaryUnselected(this->selectedScenarioID);
 
 }
 

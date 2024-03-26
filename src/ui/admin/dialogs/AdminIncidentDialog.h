@@ -20,6 +20,13 @@ class AdminIncidentDialog : public QDialog {
 
         void setEditableText(QString name);
 
+    private slots:
+
+        void onSaveButtonPressed();
+
+    signals:
+        void signalItemNameChanged(QString name);
+
 };
 
 #endif // ADMININCIDENTDIALOG_H

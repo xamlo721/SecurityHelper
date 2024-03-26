@@ -16,6 +16,8 @@ void AdminEventsController::init(AdminEventsWidget *eventsWidget) {
     QObject::connect(this->ui, &AdminEventsWidget::signalEventSelected, this, &AdminEventsController::slotOnEventSelected);
     QObject::connect(this->ui, &AdminEventsWidget::signalEventUnselected, this, &AdminEventsController::slotOnEventUnselected);
 
+    QObject::connect(this->editDialog, &AdminEventDialog::signalItemNameChanged, this, &AdminEventsController::slotItemNameEdited);
+
     this->ui->disableEditButton();
     this->ui->disableDeleteButton();
 }
@@ -32,6 +34,20 @@ void AdminEventsController::onDatabaseUpdated(const Database & db) {
         this->ui->addEvent(new SelectedWidget(event.getId(), event.getText()));
     }
 
+}
+
+/**
+ * @brief slotItemNameEdited - случает, когда меняется имя
+ * @param name - новое имя объекта
+ */
+void AdminEventsController::slotItemNameEdited(QString name) {
+
+    SecurityEvent selectedEvent = this->allEvents.value(this->selectedEventID);
+    selectedEvent.setText(name);
+
+    emit signalAdminUpdateEvent(this->selectedEventID, selectedEvent);
+
+    this->slotOnEventUnselected(this->selectedEventID);
 }
 
 /**

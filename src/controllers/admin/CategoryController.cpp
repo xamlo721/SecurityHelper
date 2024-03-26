@@ -21,6 +21,8 @@ void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
     QObject::connect(this->ui, &AdminCategoriesWidget::signalSelectedEventClicked, this, &CategoryController::onEventUnselected);
     QObject::connect(this->ui, &AdminCategoriesWidget::signaAvailableEventClicked, this, &CategoryController::onEventSelected);
 
+    QObject::connect(this->editDialog, &AdminEditCatorgyDialog::signalItemNameChanged, this, &CategoryController::slotItemNameEdited);
+
 
     this->ui->disableEditButton();
     this->ui->disableSaveButton();
@@ -73,6 +75,20 @@ void CategoryController::onDatabaseUpdated(const Database & db) {
     this->ui->clearAvailableEvents();
     this->availableEvents.clear();
 
+}
+
+/**
+ * @brief slotItemNameEdited - случает, когда меняется имя
+ * @param name - новое имя объекта
+ */
+void CategoryController::slotItemNameEdited(QString name) {
+
+    SecurityEventCategory selectedCategory = this->categories.value(this->categoryEventID);
+    selectedCategory.setText(name);
+
+    emit signalAdminUpdateCategory(this->categoryEventID, selectedCategory);
+
+    this->onCetegoryUnselected(this->categoryEventID);
 }
 
 //Сбрасывает всё что ты накрутил там

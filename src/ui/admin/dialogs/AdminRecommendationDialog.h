@@ -19,6 +19,12 @@ class AdminRecommendationDialog : public QDialog {
 
         void setEditableText(QString name);
 
+    private slots:
+
+        void onSaveButtonPressed();
+
+    signals:
+        void signalItemNameChanged(QString name);
 
 
 };

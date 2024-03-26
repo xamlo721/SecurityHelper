@@ -43,6 +43,13 @@ class CategoryController : public QObject {
 
 
     private slots:
+
+        /**
+         * @brief slotItemNameEdited - случает, когда меняется имя
+         * @param name - новое имя объекта
+         */
+        void slotItemNameEdited(QString name);
+
         void onCetegorySelected(quint32 categoryID);
         void onCetegoryUnselected(quint32 categoryID);
         void onCategoryAdded();

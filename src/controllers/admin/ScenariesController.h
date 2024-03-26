@@ -42,6 +42,13 @@ class ScenariesController  : public QObject {
 
 
     private slots:
+
+        /**
+         * @brief slotItemNameEdited - случает, когда меняется имя
+         * @param name - новое имя объекта
+         */
+        void slotItemNameEdited(QString name);
+
         void onScenarySelected(quint32 scenaryID);
         void onScenaryUnselected(quint32 scenaryID);
         void onScenaryAdded();

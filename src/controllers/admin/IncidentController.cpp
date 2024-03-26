@@ -19,6 +19,8 @@ void IncidentController::init(AdminIncidentsWidget *incidentWidget) {
     QObject::connect(this->ui, &AdminIncidentsWidget::signalSelectedEventClicked, this, &IncidentController::onEventUnselected);
     QObject::connect(this->ui, &AdminIncidentsWidget::signaAvailableEventClicked, this, &IncidentController::onEventSelected);
 
+    QObject::connect(this->editDialog, &AdminIncidentDialog::signalItemNameChanged, this, &IncidentController::slotItemNameEdited);
+
     this->ui->disableEditButton();
     this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
@@ -74,6 +76,20 @@ void IncidentController::onDatabaseUpdated(const Database & db) {
     this->availableEvents.clear();
 
 
+}
+
+/**
+ * @brief slotItemNameEdited - случает, когда меняется имя
+ * @param name - новое имя объекта
+ */
+void IncidentController::slotItemNameEdited(QString name) {
+
+    SecurityIncident selectedIncident = this->incidents.value(this->selectedIncidentID);
+    selectedIncident.setText(name);
+
+    emit signalAdminUpdateIncident(this->selectedIncidentID, selectedIncident);
+
+    this->onIncidentUnselected(this->selectedIncidentID);
 }
 
 

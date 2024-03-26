@@ -37,6 +37,13 @@ class AdminEventsController : public QObject {
         void onDatabaseUpdated(const Database & db);
 
     private slots:
+
+        /**
+         * @brief slotItemNameEdited - случает, когда меняется имя
+         * @param name - новое имя объекта
+         */
+        void slotItemNameEdited(QString name);
+
         /**
          * @brief slotOnEventButtonPressed - слот. активируемый при нажатии
          * на нажатии на кнопку События.

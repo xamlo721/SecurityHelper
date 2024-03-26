@@ -44,9 +44,25 @@ void AdminRecommendationsController::init(AdminRecommendationWidget * recommenda
     QObject::connect(this->ui, &AdminRecommendationWidget::signalSelectedScenaryClicked, this, &AdminRecommendationsController::onScenaryUnselected);
     QObject::connect(this->ui, &AdminRecommendationWidget::signaAvailableScenaryClicked, this, &AdminRecommendationsController::onScenarySelected);
 
+    QObject::connect(this->editDialog, &AdminRecommendationDialog::signalItemNameChanged, this, &AdminRecommendationsController::slotItemNameEdited);
+
     this->ui->disableEditButton();
     this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
+}
+
+/**
+ * @brief slotItemNameEdited - случает, когда меняется имя
+ * @param name - новое имя объекта
+ */
+void AdminRecommendationsController::slotItemNameEdited(QString name) {
+
+    SecurityRecommendations selectedRec = this->recommendations.value(this->selectedRecommendationID);
+    selectedRec.setTextName(name);
+
+    emit signalAdminUpdateRecommendation(this->selectedRecommendationID, selectedRec);
+
+    this->onRecommendationUnselected(this->selectedRecommendationID);
 }
 
 void AdminRecommendationsController::onDatabaseUpdated(const Database & db) {

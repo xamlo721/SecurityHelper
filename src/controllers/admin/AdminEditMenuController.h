@@ -43,8 +43,6 @@ class AdminEditMenuController : public QObject {
 
 
 
-
-
     signals:
         void signalAddCategoryButtonPressed();
         void signalDeleteSelectedCategoriesButtonPressed();
