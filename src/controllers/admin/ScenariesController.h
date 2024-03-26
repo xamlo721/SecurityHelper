@@ -24,10 +24,17 @@ class ScenariesController  : public QObject {
         QList<SecurityIncident> availableIncidents;
         QList<SecurityIncident> selectedIncidents;
 
+        ///ID выбранной каьешлоии
+        quint32 selectedScenarioID;
+
     public:
         ScenariesController(QObject *parent = nullptr);
 
         void init(AdminScenariesWidget *scenaryWidget);
+
+    private:
+        void resetSelectedIncidents(QList<SecurityIncident> freeIncidents);
+        void resetAvailableIncidents(QList<SecurityIncident> freeIncidents);
 
     public slots:
 
@@ -36,6 +43,7 @@ class ScenariesController  : public QObject {
 
     private slots:
         void onScenarySelected(quint32 scenaryID);
+        void onScenaryUnselected(quint32 scenaryID);
         void onScenaryAdded();
         void onScenaryUpdated(quint32 scenaryID, QString categoryName);
         void onScenaryEditRequest(quint32 scenaryID);

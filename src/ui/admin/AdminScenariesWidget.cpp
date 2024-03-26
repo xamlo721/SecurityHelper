@@ -16,7 +16,8 @@ void AdminScenariesWidget::clearScenaries() {
 }
 
 void AdminScenariesWidget::addScenary(SelectedWidget *scenary) {
-    QObject::connect(scenary, &SelectedWidget::signalSelected, this, &AdminScenariesWidget::signalScenaryClicked);
+    QObject::connect(scenary, &SelectedWidget::signalSelected, this, &AdminScenariesWidget::signalScenarySelected);
+    QObject::connect(scenary, &SelectedWidget::signalUnselected, this, &AdminScenariesWidget::signalScenaryUnselected);
     this->ui->scrollArea_scenaries->addWidget(scenary->getId(), scenary);
 }
 
@@ -57,6 +58,38 @@ void AdminScenariesWidget::onDelScenaryButtonPressed() {
 void AdminScenariesWidget::onSaveScenaryButtonPressed() {
     SelectedWidget * selected =  this->ui->scrollArea_scenaries->getSelectedWidget();
     emit signaSaveScenaryClicked(selected->getId(), selected->getText());
+}
+
+/**
+ * @brief enableEditButton - включить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminScenariesWidget::enableEditButton() {
+    this->ui->pushButton_editScenario->setEnabled(true);
+}
+
+/**
+ * @brief disableEditButton - выключить доступность кнопки
+ * "Редактировать" на пакели событий
+ */
+void AdminScenariesWidget::disableEditButton() {
+    this->ui->pushButton_editScenario->setEnabled(false);
+}
+
+/**
+ * @brief enableDeleteButton - включить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminScenariesWidget::enableDeleteButton() {
+    this->ui->pushButton_deleteScenario->setEnabled(true);
+}
+
+/**
+ * @brief disableDeleteButton - выключить доступность кнопки
+ * "Удалить" на пакели событий
+ */
+void AdminScenariesWidget::disableDeleteButton() {
+    this->ui->pushButton_deleteScenario->setEnabled(false);
 }
 
 AdminScenariesWidget::~AdminScenariesWidget() {

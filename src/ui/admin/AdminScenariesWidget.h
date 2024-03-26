@@ -52,13 +52,43 @@ class AdminScenariesWidget : public QWidget {
          */
         void addSelectedIncident(SelectedWidget * incident);
 
+        /**
+         * @brief enableEditButton - включить доступность кнопки
+         * "Редактировать" на пакели инцидентов
+         */
+        void enableEditButton();
+
+        /**
+         * @brief disableEditButton - выключить доступность кнопки
+         * "Редактировать" на пакели инцидентов
+         */
+        void disableEditButton();
+
+        /**
+         * @brief enableDeleteButton - включить доступность кнопки
+         * "Удалить" на пакели инцидентов
+         */
+        void enableDeleteButton();
+
+        /**
+         * @brief disableDeleteButton - выключить доступность кнопки
+         * "Удалить" на пакели инцидентов
+         */
+        void disableDeleteButton();
+
     signals:
 
         /**
          * @brief signalScenaryClicked - сигнал вызывается при кажатии администратором на кнопку сценарариев
          * @param scenaryId - ID выбранной категории
          */
-        void signalScenaryClicked(quint32 scenaryId);
+        void signalScenarySelected(quint32 scenaryId);
+
+        /**
+         * @brief signalScenaryUnselected - сигнал вызывается при кажатии администратором на кнопку сценарариев
+         * @param scenaryId - ID выбранной категории
+         */
+        void signalScenaryUnselected(quint32 scenaryId);
 
         /**
          * @brief signalAddScenaryClicked - сигнал вызывается при кажатии администратором на кнопку добавления сценарариев

@@ -1,14 +1,43 @@
 #include "ScenariesController.h"
 
-ScenariesController::ScenariesController(QObject *parent) : QObject(parent) {
+ScenariesController::ScenariesController(QObject *parent)
+    : QObject(parent) {
 
 }
+
+
+void ScenariesController::resetSelectedIncidents(QList<SecurityIncident> selectedIncidents) {
+    this->ui->clearSelectedIncidents();
+    this->selectedIncidents = selectedIncidents;
+
+    //Отобразить все события, не входящие в какие либо категории
+    for (const SecurityIncident incident : selectedIncidents) {
+        this->ui->addSelectedIncident(new SelectedWidget(incident.getId(), incident.getText()));
+    }
+
+
+}
+
+void ScenariesController::resetAvailableIncidents(QList<SecurityIncident> freeIncidents) {
+    this->ui->clearAvailableIncidents();
+    this->availableIncidents = freeIncidents;
+
+    //Назодим среди всех событий те, которые никуда не входят
+
+    for (const SecurityIncident incident : availableIncidents) {
+        this->ui->addAvalilableIncident(new SelectedWidget(incident.getId(), incident.getText()));
+    }
+
+
+}
+
 
 void ScenariesController::init(AdminScenariesWidget *incidentWidget) {
     this->ui = incidentWidget;
     this->editDialog = new AdminScenariesDialog(incidentWidget);
 
-    QObject::connect(this->ui, &AdminScenariesWidget::signalScenaryClicked, this, &ScenariesController::onScenarySelected);
+    QObject::connect(this->ui, &AdminScenariesWidget::signalScenarySelected, this, &ScenariesController::onScenarySelected);
+    QObject::connect(this->ui, &AdminScenariesWidget::signalScenaryUnselected, this, &ScenariesController::onScenaryUnselected);
     QObject::connect(this->ui, &AdminScenariesWidget::signalAddScenaryClicked, this, &ScenariesController::onScenaryAdded);
     QObject::connect(this->ui, &AdminScenariesWidget::signaEditScenaryClicked, this, &ScenariesController::onScenaryEditRequest);
     QObject::connect(this->ui, &AdminScenariesWidget::signaSaveScenaryClicked, this, &ScenariesController::onScenaryUpdated);
@@ -17,73 +46,88 @@ void ScenariesController::init(AdminScenariesWidget *incidentWidget) {
     QObject::connect(this->ui, &AdminScenariesWidget::signalSelectedIncidentClicked, this, &ScenariesController::onIncidentUnselected);
     QObject::connect(this->ui, &AdminScenariesWidget::signaAvailableIncidentClicked, this, &ScenariesController::onIncidentSelected);
 
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
 }
 
 void ScenariesController::onDatabaseUpdated(const Database & db) {
-    copyDatabase = db;
 
-    this->ui->clearSelectedIncidents();
-    this->ui->clearAvailableIncidents();
-    this->ui->clearScenaries();
 
-    this->availableIncidents.clear();
-    this->selectedIncidents.clear();
-
-    this->scenaries = db.scenaries;
     this->allIncidents = db.incidents;
 
+    this->copyDatabase = db;
+
+    this->ui->clearScenaries();
+
+    this->scenaries = db.scenaries;
+
     //Отобразить все категории в списке
-    for (const SecurityScenario scenary : db.scenaries) {
-        this->ui->addScenary(new SelectedWidget(scenary.getId(), scenary.getText()));
+    for (const SecurityScenario scenario : db.scenaries) {
+        this->ui->addScenary(new SelectedWidget(scenario.getId(), scenario.getText()));
     }
 
-    //Назодим среди всех событий те, которые никуда не входят
-    QMap<quint32, SecurityIncident> freeIncidents = db.incidents;
+    this->ui->clearSelectedIncidents();
+    this->selectedIncidents.clear();
 
-    for (const SecurityScenario scenary : db.scenaries) {
-
-        for (const quint32 incidentID : scenary.getIncidents()) {
-
-            if (freeIncidents.contains(incidentID)) {
-                freeIncidents.remove(incidentID);
-            }
-
-        }
-
-    }
-
-    //Отобразить все инциденты, не входящие в какие либо категории
-    for (const SecurityIncident incident : freeIncidents) {
-        this->ui->addAvalilableIncident(new SelectedWidget(incident.getId(), incident.getText()));
-    }
-
-    availableIncidents = freeIncidents.values();
+    this->ui->clearAvailableIncidents();
+    this->availableIncidents.clear();
 
 }
 
 
 void ScenariesController::onScenarySelected(quint32 scenaryID) {
 
-    //Сбрасывает всё что ты накрутил там
-    this->onDatabaseUpdated(this->copyDatabase);
+    ///Для поиска доступных ивентов, сначала скопируем все ивенты, затем удалим
+    QMap<quint32, SecurityIncident> copyAllIncindets = this->copyDatabase.incidents;
 
-    this->selectedIncidents.clear();
-    this->ui->clearSelectedIncidents();
-    SecurityScenario scenary = scenaries.value(scenaryID);
-
-    for (quint32 incidentID : scenary.getIncidents()) {
-
-        for (SecurityIncident incident : allIncidents) {
-            if (incident.getId() == incidentID && !selectedIncidents.contains(incident)) {
-                this->selectedIncidents.append(incident);
+    ///Поиск среди всех доступных категорий
+    for (SecurityScenario scenary : this->copyDatabase.scenaries) {
+        ///Среди всех событий категории
+        for (quint32 incidentID : scenary.getIncidents()) {
+            ///Если категория содержит такой ID, значит не доступен он!
+            if (copyAllIncindets.contains(incidentID)) {
+                copyAllIncindets.remove(incidentID);
             }
+
         }
     }
 
-    for (SecurityIncident incident : selectedIncidents) {
-        this->ui->addSelectedIncident(new SelectedWidget(incident.getId(), incident.getText()));
+    QList<SecurityIncident> scenarioSelectedIncidents;
+
+    SecurityScenario selectedScenario = scenaries.value(scenaryID);
+
+    for (quint32 scenaryID : selectedScenario.getIncidents()) {
+        scenarioSelectedIncidents.append(this->allIncidents.value(scenaryID));
     }
 
+    this->resetAvailableIncidents(copyAllIncindets.values());
+    this->resetSelectedIncidents(scenarioSelectedIncidents);
+
+    ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
+    this->selectedScenarioID = scenaryID;
+    this->ui->enableEditButton();
+    this->ui->enableDeleteButton();
+
+}
+
+void ScenariesController::onScenaryUnselected(quint32 scenaryID) {
+    ///Если ID совпали, то мы отжали кнопку
+    if (this->selectedScenarioID != scenaryID) {
+        //А как мы сюда попали?
+        throw "onScenaryUnselected()";
+        return;
+    }
+
+    this->selectedScenarioID = -1;
+    this->ui->disableEditButton();
+    this->ui->disableDeleteButton();
+
+
+    this->selectedIncidents.clear();
+    this->availableIncidents.clear();
+
+    this->resetAvailableIncidents(this->availableIncidents);
+    this->resetSelectedIncidents(this->selectedIncidents);
 }
 
 
@@ -103,6 +147,7 @@ void ScenariesController::onScenaryUpdated(quint32 scenaryID, QString scenaryNam
     }
     SecurityScenario updatedIncident (scenaryID, scenaryName, "", selectedIncidentIDs); //FIXME: Добавить параметр
     emit signalAdminUpdateScenary(scenaryID, updatedIncident);
+    this->onScenaryUnselected(scenaryID);
 }
 
 void ScenariesController::onScenaryEditRequest(quint32 scenaryID) {
