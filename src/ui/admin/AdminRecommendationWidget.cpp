@@ -89,6 +89,22 @@ void AdminRecommendationWidget::disableEditButton() {
 }
 
 /**
+ * @brief enableSaveButton - включить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminRecommendationWidget::enableSaveButton() {
+    this->ui->pushButton_saveRecommendation->setEnabled(true);
+}
+
+/**
+ * @brief disableSaveButton - выключить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminRecommendationWidget::disableSaveButton() {
+    this->ui->pushButton_saveRecommendation->setEnabled(false);
+}
+
+/**
  * @brief enableDeleteButton - включить доступность кнопки
  * "Удалить" на пакели событий
  */

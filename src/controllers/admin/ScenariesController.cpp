@@ -47,6 +47,7 @@ void ScenariesController::init(AdminScenariesWidget *incidentWidget) {
     QObject::connect(this->ui, &AdminScenariesWidget::signaAvailableIncidentClicked, this, &ScenariesController::onIncidentSelected);
 
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 }
 
@@ -106,6 +107,7 @@ void ScenariesController::onScenarySelected(quint32 scenaryID) {
     ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
     this->selectedScenarioID = scenaryID;
     this->ui->enableEditButton();
+    this->ui->enableSaveButton();
     this->ui->enableDeleteButton();
 
 }
@@ -120,6 +122,7 @@ void ScenariesController::onScenaryUnselected(quint32 scenaryID) {
 
     this->selectedScenarioID = -1;
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 
 

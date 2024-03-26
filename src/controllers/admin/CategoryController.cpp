@@ -23,6 +23,7 @@ void CategoryController::init(AdminCategoriesWidget *categoryWidget) {
 
 
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 }
 
@@ -107,6 +108,7 @@ void CategoryController::onCetegorySelected(quint32 categoryID) {
     ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
     this->categoryEventID = categoryID;
     this->ui->enableEditButton();
+    this->ui->enableSaveButton();
     this->ui->enableDeleteButton();
 
 }
@@ -120,6 +122,7 @@ void CategoryController::onCetegoryUnselected(quint32 categoryID) {
 
     this->categoryEventID = -1;
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 
 

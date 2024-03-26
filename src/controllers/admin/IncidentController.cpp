@@ -20,6 +20,7 @@ void IncidentController::init(AdminIncidentsWidget *incidentWidget) {
     QObject::connect(this->ui, &AdminIncidentsWidget::signaAvailableEventClicked, this, &IncidentController::onEventSelected);
 
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 
 }
@@ -107,6 +108,7 @@ void IncidentController::onIncidentSelected(quint32 incidentID) {
     ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
     this->selectedIncidentID = incidentID;
     this->ui->enableEditButton();
+    this->ui->enableSaveButton();
     this->ui->enableDeleteButton();
 
 }
@@ -121,6 +123,7 @@ void IncidentController::onIncidentUnselected(quint32 incidentID) {
 
     this->selectedIncidentID = -1;
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 
 

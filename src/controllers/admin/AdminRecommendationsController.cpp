@@ -45,6 +45,7 @@ void AdminRecommendationsController::init(AdminRecommendationWidget * recommenda
     QObject::connect(this->ui, &AdminRecommendationWidget::signaAvailableScenaryClicked, this, &AdminRecommendationsController::onScenarySelected);
 
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 }
 
@@ -105,6 +106,7 @@ void AdminRecommendationsController::onRecommendationSelected(quint32 recommenda
     ///Запоминаем ID кого мы там нажали и включаем кнопки редактирования
     this->selectedRecommendationID = recommendationID;
     this->ui->enableEditButton();
+    this->ui->enableSaveButton();
     this->ui->enableDeleteButton();
 
 }
@@ -120,6 +122,7 @@ void AdminRecommendationsController::onRecommendationUnselected(quint32 recommen
 
     this->selectedRecommendationID = -1;
     this->ui->disableEditButton();
+    this->ui->disableSaveButton();
     this->ui->disableDeleteButton();
 
 

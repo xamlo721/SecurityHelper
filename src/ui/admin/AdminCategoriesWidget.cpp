@@ -103,6 +103,22 @@ void AdminCategoriesWidget::disableEditButton() {
 }
 
 /**
+ * @brief enableSaveButton - включить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminCategoriesWidget::enableSaveButton() {
+    this->ui->pushButton_saveCategory->setEnabled(true);
+}
+
+/**
+ * @brief disableSaveButton - выключить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminCategoriesWidget::disableSaveButton() {
+    this->ui->pushButton_saveCategory->setEnabled(false);
+}
+
+/**
  * @brief enableDeleteButton - включить доступность кнопки
  * "Удалить" на пакели событий
  */

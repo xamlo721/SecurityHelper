@@ -77,6 +77,22 @@ void AdminScenariesWidget::disableEditButton() {
 }
 
 /**
+ * @brief enableSaveButton - включить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminScenariesWidget::enableSaveButton() {
+    this->ui->pushButton_saveScenario->setEnabled(true);
+}
+
+/**
+ * @brief disableSaveButton - выключить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminScenariesWidget::disableSaveButton() {
+    this->ui->pushButton_saveScenario->setEnabled(false);
+}
+
+/**
  * @brief enableDeleteButton - включить доступность кнопки
  * "Удалить" на пакели событий
  */

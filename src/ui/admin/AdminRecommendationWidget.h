@@ -79,6 +79,18 @@ class AdminRecommendationWidget : public QWidget {
         void disableEditButton();
 
         /**
+         * @brief enableSaveButton - включить доступность кнопки
+         * "Сохранить" на пакели событий
+         */
+        void enableSaveButton();
+
+        /**
+         * @brief disableSaveButton - выключить доступность кнопки
+         * "Сохранить" на пакели событий
+         */
+        void disableSaveButton();
+
+        /**
          * @brief enableDeleteButton - включить доступность кнопки
          * "Удалить" на пакели инцидентов
          */

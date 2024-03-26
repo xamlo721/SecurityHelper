@@ -78,6 +78,23 @@ void AdminIncidentsWidget::disableEditButton() {
 }
 
 /**
+ * @brief enableSaveButton - включить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminIncidentsWidget::enableSaveButton() {
+    this->ui->pushButton_saveIncident->setEnabled(true);
+}
+
+/**
+ * @brief disableSaveButton - выключить доступность кнопки
+ * "Сохранить" на пакели событий
+ */
+void AdminIncidentsWidget::disableSaveButton() {
+    this->ui->pushButton_saveIncident->setEnabled(false);
+}
+
+
+/**
  * @brief enableDeleteButton - включить доступность кнопки
  * "Удалить" на пакели событий
  */
