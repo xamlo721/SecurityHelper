@@ -11,3 +11,7 @@ AdminRecommendationDialog::AdminRecommendationDialog(QWidget *parent)
 AdminRecommendationDialog::~AdminRecommendationDialog() {
     delete ui;
 }
+
+void AdminRecommendationDialog::setEditableText(QString name) {
+    this->ui->lineEditName->setText(name);
+}

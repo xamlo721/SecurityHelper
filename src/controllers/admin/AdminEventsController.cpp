@@ -82,6 +82,7 @@ void AdminEventsController::onEventUpdated(quint32 eventID, QString eventName) {
 
 void AdminEventsController::onEventEditRequest(quint32 eventID) {
     this->editDialog->show();
+    this->editDialog->setEditableText(this->allEvents.value(eventID).getText());
 }
 
 void AdminEventsController::onEventDeleted(quint32 eventID) {

@@ -138,6 +138,7 @@ void IncidentController::onIncidentUnselected(quint32 incidentID) {
 
 void IncidentController::onIncidentEditRequest(quint32 incidentID) {
     this->editDialog->show();
+    this->editDialog->setEditableText(this->incidents.value(incidentID).getText());
 }
 
 

@@ -10,3 +10,7 @@ AdminEditCatorgyDialog::AdminEditCatorgyDialog(QWidget *parent)
 AdminEditCatorgyDialog::~AdminEditCatorgyDialog() {
     delete ui;
 }
+
+void AdminEditCatorgyDialog::setEditableText(QString name) {
+    this->ui->lineEditName->setText(name);
+}

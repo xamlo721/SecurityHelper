@@ -18,6 +18,8 @@ class AdminIncidentDialog : public QDialog {
         AdminIncidentDialog(QWidget *parent = nullptr);
         ~AdminIncidentDialog();
 
+        void setEditableText(QString name);
+
 };
 
 #endif // ADMININCIDENTDIALOG_H

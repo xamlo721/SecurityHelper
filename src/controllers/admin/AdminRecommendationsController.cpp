@@ -154,6 +154,7 @@ void AdminRecommendationsController::onRecommendationUpdated(quint32 incidentID,
 
 void AdminRecommendationsController::onRecommendationEditRequest(quint32 recommendationID) {
     this->editDialog->show();
+    this->editDialog->setEditableText(this->recommendations.value(recommendationID).getTextName());
 }
 
 void AdminRecommendationsController::onRecommendationDeleted(quint32 incidentID) {

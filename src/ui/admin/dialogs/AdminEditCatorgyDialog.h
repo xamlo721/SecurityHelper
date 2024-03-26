@@ -18,6 +18,8 @@ class AdminEditCatorgyDialog : public QDialog {
         AdminEditCatorgyDialog(QWidget *parent = nullptr);
         ~AdminEditCatorgyDialog();
 
+        void setEditableText(QString name);
+
 };
 
 #endif // EDITCATORGYDIALOG_H

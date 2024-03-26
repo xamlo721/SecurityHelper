@@ -155,6 +155,7 @@ void ScenariesController::onScenaryUpdated(quint32 scenaryID, QString scenaryNam
 
 void ScenariesController::onScenaryEditRequest(quint32 scenaryID) {
     this->editDialog->show();
+    this->editDialog->setEditableText(this->scenaries.value(scenaryID).getText());
 }
 
 void ScenariesController::onScenaryDeleted(quint32 scenaryID) {

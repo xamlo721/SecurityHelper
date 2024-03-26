@@ -144,6 +144,7 @@ void CategoryController::onCategoryAdded() {
 
 void CategoryController::onCategoryEditRequest(quint32 categoryID) {
     this->editDialog->show();
+    this->editDialog->setEditableText(this->categories.value(categoryID).getText());
 }
 
 void CategoryController::onCategoryUpdated(quint32 categoryID, QString categoryName) {

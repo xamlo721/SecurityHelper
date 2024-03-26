@@ -17,6 +17,9 @@ class AdminRecommendationDialog : public QDialog {
         AdminRecommendationDialog(QWidget *parent = nullptr);
         ~AdminRecommendationDialog();
 
+        void setEditableText(QString name);
+
+
 
 };
 

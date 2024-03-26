@@ -18,6 +18,8 @@ class AdminScenariesDialog : public QDialog {
         AdminScenariesDialog(QWidget *parent = nullptr);
         ~AdminScenariesDialog();
 
+        void setEditableText(QString name);
+
 };
 
 #endif // ADMINSCENARIESDIALOG_H

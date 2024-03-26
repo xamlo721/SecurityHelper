@@ -18,6 +18,8 @@ class AdminEventDialog : public QDialog {
         AdminEventDialog(QWidget *parent = nullptr);
         ~AdminEventDialog();
 
+        void setEditableText(QString name);
+
 };
 
 #endif // ADMINEVENTDIALOG_H

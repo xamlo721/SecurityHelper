@@ -11,3 +11,7 @@ AdminScenariesDialog::AdminScenariesDialog(QWidget *parent)
 AdminScenariesDialog::~AdminScenariesDialog() {
     delete ui;
 }
+
+void AdminScenariesDialog::setEditableText(QString name) {
+    this->ui->lineEdit->setText(name);
+}

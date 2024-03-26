@@ -10,3 +10,7 @@ AdminIncidentDialog::AdminIncidentDialog(QWidget *parent)
 AdminIncidentDialog::~AdminIncidentDialog() {
     delete ui;
 }
+
+void AdminIncidentDialog::setEditableText(QString name) {
+    this->ui->lineEditName->setText(name);
+}
